@@ -1,0 +1,13 @@
+#lv7 
+#ПАО
+#SC
+#UI
+#FE
+#project
+#repo 
+#settings 
+#page
+#webhook 
+#integration
+#jenkins
+#pipline 
