@@ -11,7 +11,7 @@ workflow_status TaskTracker для TQL поиска в Задачах:
 "ready for merge": "RDFR_IOzuKqCEYPCpbzz",
 "QA": "Q_ymlStTGiWDtKMqTySr",
 "in review": "in_review",
-"Ready for QA": "RDFR_EPlJpyvfwBuJOKy"
+"Ready for QA": "RDFR_NiewJYNruxzlMLq"
 
 }
 ]
