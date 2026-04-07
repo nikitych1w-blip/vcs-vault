@@ -13,15 +13,15 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "Obsidian Vault/9.6.0.canvas",
+                "file": "Obsidian Vault/Процессы непрерывной сборки.canvas",
                 "viewState": {
-                  "x": 1217.6432402278633,
-                  "y": -1615.6471976709058,
-                  "zoom": -1.4
+                  "x": 36.53272537941348,
+                  "y": -445.45453263315994,
+                  "zoom": -0.4
                 }
               },
               "icon": "lucide-layout-dashboard",
-              "title": "9.6.0"
+              "title": "Процессы непрерывной сборки"
             }
           }
         ]
@@ -97,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Obsidian Vault/9.6.0.canvas",
+                "file": "Obsidian Vault/Процессы непрерывной сборки.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -107,7 +107,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Обратные ссылки для 9.6.0"
+              "title": "Обратные ссылки для Процессы непрерывной сборки"
             }
           },
           {
@@ -116,12 +116,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Obsidian Vault/9.6.0.canvas",
+                "file": "Obsidian Vault/Процессы непрерывной сборки.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Исходящие ссылки из 9.6.0"
+              "title": "Исходящие ссылки из Процессы непрерывной сборки"
             }
           },
           {
@@ -159,13 +159,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Obsidian Vault/9.6.0.canvas",
+                "file": "Obsidian Vault/Процессы непрерывной сборки.canvas",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Структура 9.6.0"
+              "title": "Структура Процессы непрерывной сборки"
             }
           }
         ]
@@ -188,11 +188,12 @@
   },
   "active": "bdb5627a9a61886c",
   "lastOpenFiles": [
-    "Obsidian Vault/9.5.0.canvas",
+    "graph.png",
+    "Obsidian Vault/Процессы непрерывной сборки.canvas",
     "Obsidian Vault/9.6.0.canvas",
+    "Obsidian Vault/9.5.0.canvas",
     "Obsidian Vault/data-sc.base",
     "Obsidian Vault/hf 9.4.1.canvas",
-    "graph.png",
     "Obsidian Vault/Без названия"
   ]
 }
