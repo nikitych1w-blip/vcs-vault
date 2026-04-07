@@ -11,17 +11,14 @@
             "id": "bdb5627a9a61886c",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "Obsidian Vault/Процессы непрерывной сборки.canvas",
-                "viewState": {
-                  "x": 36.53272537941348,
-                  "y": -445.45453263315994,
-                  "zoom": -0.4
-                }
+                "file": "Obsidian Vault/TQL/workflow_status для TQL.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-dashboard",
-              "title": "Процессы непрерывной сборки"
+              "icon": "lucide-file",
+              "title": "workflow_status для TQL"
             }
           }
         ]
@@ -97,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Obsidian Vault/Процессы непрерывной сборки.canvas",
+                "file": "Obsidian Vault/TQL/workflow_status для TQL.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -107,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Обратные ссылки для Процессы непрерывной сборки"
+              "title": "Обратные ссылки для workflow_status для TQL"
             }
           },
           {
@@ -116,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Obsidian Vault/Процессы непрерывной сборки.canvas",
+                "file": "Obsidian Vault/TQL/workflow_status для TQL.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Исходящие ссылки из Процессы непрерывной сборки"
+              "title": "Исходящие ссылки из workflow_status для TQL"
             }
           },
           {
@@ -159,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Obsidian Vault/Процессы непрерывной сборки.canvas",
+                "file": "Obsidian Vault/TQL/workflow_status для TQL.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Структура Процессы непрерывной сборки"
+              "title": "Структура workflow_status для TQL"
             }
           }
         ]
@@ -188,12 +185,16 @@
   },
   "active": "bdb5627a9a61886c",
   "lastOpenFiles": [
-    "graph.png",
-    "Obsidian Vault/Процессы непрерывной сборки.canvas",
     "Obsidian Vault/9.6.0.canvas",
     "Obsidian Vault/9.5.0.canvas",
+    "Obsidian Vault/TQL/Готовые TQL.md",
+    "Obsidian Vault/TQL/TQL сущности (атрибуты) TaskTracker.md",
+    "Obsidian Vault/TQL/workflow_status для TQL.md",
+    "Obsidian Vault/TQL",
+    "Obsidian Vault/Процессы непрерывной сборки.canvas",
+    "Obsidian Vault/Текущая схема подготовки.canvas",
+    "graph.png",
     "Obsidian Vault/data-sc.base",
-    "Obsidian Vault/hf 9.4.1.canvas",
-    "Obsidian Vault/Без названия"
+    "Obsidian Vault/hf 9.4.1.canvas"
   ]
 }
