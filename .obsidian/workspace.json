@@ -13,15 +13,15 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "Obsidian Vault/hf 9.4.1.canvas",
+                "file": "Obsidian Vault/9.5.0.canvas",
                 "viewState": {
-                  "x": -113.42754291077964,
-                  "y": 157.70688572769498,
-                  "zoom": -1.2000000000000002
+                  "x": -14.384309889569408,
+                  "y": 565.4838181274536,
+                  "zoom": -1.6685787118844506
                 }
               },
               "icon": "lucide-layout-dashboard",
-              "title": "hf 9.4.1"
+              "title": "9.5.0"
             }
           }
         ]
@@ -97,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Obsidian Vault/hf 9.4.1.canvas",
+                "file": "Obsidian Vault/9.5.0.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -107,7 +107,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Обратные ссылки для hf 9.4.1"
+              "title": "Обратные ссылки для 9.5.0"
             }
           },
           {
@@ -116,12 +116,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Obsidian Vault/hf 9.4.1.canvas",
+                "file": "Obsidian Vault/9.5.0.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Исходящие ссылки из hf 9.4.1"
+              "title": "Исходящие ссылки из 9.5.0"
             }
           },
           {
@@ -159,13 +159,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Obsidian Vault/hf 9.4.1.canvas",
+                "file": "Obsidian Vault/9.5.0.canvas",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Структура hf 9.4.1"
+              "title": "Структура 9.5.0"
             }
           }
         ]
@@ -188,11 +188,11 @@
   },
   "active": "bdb5627a9a61886c",
   "lastOpenFiles": [
-    "Obsidian Vault/9.5.0.canvas",
-    "Obsidian Vault/hf 9.4.1.canvas",
-    "graph.png",
-    "Obsidian Vault/Без названия",
     "Obsidian Vault/9.6.0.canvas",
-    "Obsidian Vault/data-sc.base"
+    "Obsidian Vault/data-sc.base",
+    "Obsidian Vault/hf 9.4.1.canvas",
+    "Obsidian Vault/9.5.0.canvas",
+    "graph.png",
+    "Obsidian Vault/Без названия"
   ]
 }
