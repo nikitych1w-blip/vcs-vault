@@ -1,0 +1,39 @@
+{
+	"nodes":[
+		{"id":"592eb9dabf60278a","x":-252,"y":-60,"width":451,"height":62,"color":"2","type":"text","text":"1.1. Убедиться, что тестовый набор создан или существует ранее созданный"},
+		{"id":"7f798c22f3962b90","x":-154,"y":-260,"width":255,"height":50,"color":"4","type":"text","text":"Создание тестового цикла\n\n"},
+		{"id":"f9fac22041152457","x":-229,"y":940,"width":383,"height":101,"color":"2","type":"text","text":"5. В оглавлении интерфейса создания нового цикла, находим и нажимаем \"Тест-кейсы\""},
+		{"id":"e23a7da8b3fb7d5b","x":-238,"y":1060,"width":402,"height":97,"color":"2","type":"text","text":"6. Добавляем подготовленные в п.1. тестовые кейсы новой функциональности и регрессионные тестовые сценарии."},
+		{"id":"30c9bedd13898949","x":-206,"y":1180,"width":336,"height":81,"color":"2","type":"text","text":"7. Заполняет оставшиеся обязательные поля на вкладе \"Атрибуты\""},
+		{"id":"530b6e1a719e414b","x":-162,"y":1300,"width":250,"height":160,"color":"2","type":"text","text":"8. В правом нижнем угле **нажимаем \"Создать\"**\n\n![[Pasted image 20260401181807.png]]"},
+		{"id":"9fd6462c63844a69","x":-499,"y":160,"width":462,"height":99,"color":"2","type":"text","text":"- регрессионного функционала без которого тестирование тестового кейса или локализации дефекта является нецелесообразным"},
+		{"id":"c65e7e9acf7b81e9","x":-25,"y":160,"width":426,"height":99,"color":"2","type":"text","text":"- тестовых кейсов нового функционала или сценария локализации дефекта"},
+		{"id":"fe837c859405ec7c","x":-26,"y":760,"width":326,"height":123,"color":"2","type":"text","text":"- название должно быть максимально близким или равным названию оригинальной задачи."},
+		{"id":"9a1d5a5bccdb2b63","x":-360,"y":763,"width":322,"height":120,"color":"2","type":"text","text":"- номер задачи в формате: VCS-XXXX, где XXXX номер твоей задачи.,"},
+		{"id":"d54eef6d2b57b53c","x":-115,"y":-160,"width":177,"height":60,"color":"2","type":"text","text":"1. Подготовка"},
+		{"id":"748201909622be0f","x":-162,"y":30,"width":271,"height":50,"color":"2","type":"text","text":"1.2. цикл должен состоять из:"},
+		{"id":"82a195d7ce42043f","x":-274,"y":320,"width":462,"height":140,"color":"2","type":"text","text":"2. Когда весь набор тестовых данных собран, необходимо в меню WORKS перейти к разделу \"Циклы\"\n![[Pasted image 20260401181218.png]]"},
+		{"id":"0fb603ea025f8187","x":-224,"y":480,"width":362,"height":140,"color":"2","type":"text","text":"3. В верхнем правом углу раздела \"Циклы\" , нажать кнопку \"+ Создать тестовый цикл\"\n![[Pasted image 20260401181400.png]]"},
+		{"id":"3d62866e45eeb178","x":-168,"y":640,"width":250,"height":60,"color":"2","type":"text","text":"4. В названии указываем:"},
+		{"id":"1d2992fc3737a158","x":-229,"y":1480,"width":385,"height":83,"color":"1","type":"text","text":"9. **Важно! Созданный тестовый цикл необходимо прикрепить к задаче из п.4**"}
+	],
+	"edges":[
+		{"id":"f790f12a8c92ff8e","fromNode":"7f798c22f3962b90","fromSide":"bottom","toNode":"d54eef6d2b57b53c","toSide":"top"},
+		{"id":"742be85085ab3c30","fromNode":"d54eef6d2b57b53c","fromSide":"bottom","toNode":"592eb9dabf60278a","toSide":"top"},
+		{"id":"a0977af9eee2ad4c","fromNode":"592eb9dabf60278a","fromSide":"bottom","toNode":"748201909622be0f","toSide":"top"},
+		{"id":"6069209a0b63167e","fromNode":"748201909622be0f","fromSide":"bottom","toNode":"c65e7e9acf7b81e9","toSide":"top"},
+		{"id":"4fc5245776ae26f8","fromNode":"748201909622be0f","fromSide":"bottom","toNode":"9fd6462c63844a69","toSide":"top"},
+		{"id":"f5f55f6f1a46ce3e","fromNode":"c65e7e9acf7b81e9","fromSide":"bottom","toNode":"82a195d7ce42043f","toSide":"top"},
+		{"id":"22fe4e078fdf1990","fromNode":"9fd6462c63844a69","fromSide":"bottom","toNode":"82a195d7ce42043f","toSide":"top"},
+		{"id":"baef3b2aef5d2411","fromNode":"82a195d7ce42043f","fromSide":"bottom","toNode":"0fb603ea025f8187","toSide":"top"},
+		{"id":"aed2c16e57a55b79","fromNode":"0fb603ea025f8187","fromSide":"bottom","toNode":"3d62866e45eeb178","toSide":"top"},
+		{"id":"0b421f3d2379164b","fromNode":"3d62866e45eeb178","fromSide":"bottom","toNode":"9a1d5a5bccdb2b63","toSide":"top"},
+		{"id":"a8bada794278cb3f","fromNode":"3d62866e45eeb178","fromSide":"bottom","toNode":"fe837c859405ec7c","toSide":"top"},
+		{"id":"9d5d028eaef7e5d0","fromNode":"9a1d5a5bccdb2b63","fromSide":"bottom","toNode":"f9fac22041152457","toSide":"top"},
+		{"id":"7c37b1e7a7334d4a","fromNode":"fe837c859405ec7c","fromSide":"bottom","toNode":"f9fac22041152457","toSide":"top"},
+		{"id":"e1c0cd18c9b1b470","fromNode":"f9fac22041152457","fromSide":"bottom","toNode":"e23a7da8b3fb7d5b","toSide":"top"},
+		{"id":"accd73dc19f58eac","fromNode":"e23a7da8b3fb7d5b","fromSide":"bottom","toNode":"30c9bedd13898949","toSide":"top"},
+		{"id":"dddab9196c0cb2e4","fromNode":"30c9bedd13898949","fromSide":"bottom","toNode":"530b6e1a719e414b","toSide":"top"},
+		{"id":"3e51db68a802d29a","fromNode":"530b6e1a719e414b","fromSide":"bottom","toNode":"1d2992fc3737a158","toSide":"top"}
+	]
+}

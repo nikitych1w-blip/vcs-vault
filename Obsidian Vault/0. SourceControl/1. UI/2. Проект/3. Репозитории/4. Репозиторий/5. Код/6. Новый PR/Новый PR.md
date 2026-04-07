@@ -1,0 +1,13 @@
+#ПАО
+#SC
+#UI 
+#FE
+#lv6
+#project
+#repo
+#code
+#PR 
+#new
+#ivakadrov
+#aigmikhaylov
+#vselysova_dzo

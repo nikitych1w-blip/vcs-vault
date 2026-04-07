@@ -1,0 +1,14 @@
+#lv7 
+#ПАО
+#SC 
+#UI
+#FE
+#repo
+#settings 
+#page 
+#codeOwner
+#owner
+#ivakadrov
+#aigmikhaylov
+#vselysova_dzo
+#OUT-Rakhmetullaev

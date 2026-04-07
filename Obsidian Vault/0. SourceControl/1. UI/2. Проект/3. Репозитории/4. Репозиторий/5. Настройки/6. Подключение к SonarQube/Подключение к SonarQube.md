@@ -1,0 +1,10 @@
+#lv6 
+#ПАО
+#SC
+#UI
+#FE
+#project
+#repo
+#settings 
+#sonar
+#ivakadrov

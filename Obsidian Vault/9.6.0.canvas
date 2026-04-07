@@ -1,0 +1,42 @@
+{
+	"nodes":[
+		{"id":"4b1dbe369af6821c","type":"text","text":"9.6.0","x":-87,"y":-32,"width":250,"height":60},
+		{"id":"e21f254dbcdd6d5a","type":"text","text":"Вероника","x":240,"y":-32,"width":250,"height":60},
+		{"id":"202446d6cb86a36a","type":"text","text":"Дефект \"SBTSUPPORT - 30340\": Не корректное отображение диффа ПРов  \n[https://portal.works.prod.sbt/swtr/units/current/unit/VCS-12803?space=VCS&tenant=default](https://portal.works.prod.sbt/swtr/units/current/unit/VCS-12803?space=VCS&tenant=default)  ","x":600,"y":-338,"width":429,"height":141},
+		{"id":"77974448ea54f887","type":"text","text":"# Bug (VCS): POST /pulls/{index}/build Ошибка 500 при попытке запустить сборку слитого ПР\nhttps://portal.works.prod.sbt/swtr/units/all/unit/VCS-14549?space=VCS&tenant=default\n","x":600,"y":-122,"width":420,"height":240},
+		{"id":"d4b38f4831bc2f96","type":"text","text":"# Bug (VCS): Пользователю с правами на чтение доступна кнопка Закрыть пулл реквест\nhttps://portal.works.prod.sbt/swtr/units/all/unit/VCS-14314?space=VCS&tenant=default","x":604,"y":173,"width":425,"height":285},
+		{"id":"088e7481d729255c","type":"text","text":"Цикл: -\nПройден: -\nТесты: -\nОшибки выявлены по тестам цикла: -\n\nОтметки в комментариях: -\nСсылка на документ-основание: -","x":1280,"y":-365,"width":395,"height":195,"color":"1"},
+		{"id":"01ac113bcb74edb0","type":"text","text":"Цикл: -\nПройден: -\nТесты: -\nОшибки выявлены по тестам цикла: -\n\nОтметки в комментариях: -\nСсылка на документ-основание: -","x":1280,"y":-99,"width":395,"height":195,"color":"1"},
+		{"id":"0f8bd88f721cc29a","type":"text","text":"Цикл: -\nПройден: -\nТесты: -\nОшибки выявлены по тестам цикла: -\n\nОтметки в комментариях: -\nСсылка на документ-основание: -","x":1280,"y":218,"width":395,"height":195,"color":"1"},
+		{"id":"ca8bb65302d307db","type":"text","text":"Цикл: -\nПройден: -\nТесты: -\nОшибки выявлены по тестам цикла: -\n\nОтметки в комментариях: -\nСсылка на документ-основание: -","x":-1500,"y":-69,"width":395,"height":195,"color":"1"},
+		{"id":"2fe37c26ade31b7a","type":"text","text":"Цикл: -\nПройден: -\nТесты: -\nОшибки выявлены по тестам цикла: -\n\nОтметки в комментариях: -\nСсылка на документ-основание: -","x":-1500,"y":160,"width":395,"height":195,"color":"1"},
+		{"id":"6a85e7322d686e60","type":"text","text":"Цикл: -\nПройден: -\nТесты: -\nОшибки выявлены по тестам цикла: -\n\nОтметки в комментариях: -\nСсылка на документ-основание: -","x":-1500,"y":-292,"width":395,"height":195,"color":"1"},
+		{"id":"2730820421c6ca73","type":"text","text":"https://portal.works.prod.sbt/swtr/units/current/unit/VCS-13842?tenant=default&space=VCS\n Bug (VCS): SBTSUPPORT - 33612 - Отвал SSH сервера SC","x":-1040,"y":175,"width":429,"height":164},
+		{"id":"8bc6a2659be4e58d","type":"text","text":"[https://portal.works.prod.sbt/swtr/units/current/unit/VCS-14087?space=VCS&tenant=default](https://portal.works.prod.sbt/swtr/units/current/unit/VCS-14087?space=VCS&tenant=default)  \nCRPV-109330 Пройти ручную проверку на соответствие требованию HCK-502 стандарта STD-15 v2.0 в продукте VCS  ","x":-1040,"y":-57,"width":429,"height":171},
+		{"id":"b24ca7666ea5f721","type":"text","text":"[https://portal.works.prod.sbt/swtr/units/current/unit/VCS-10582?space=VCS&tenant=default](https://portal.works.prod.sbt/swtr/units/current/unit/VCS-10582?space=VCS&tenant=default)  \nSBTSUPPORT - 26921 SC не может обработать PR с ref имеющим кириллицу в branchname  ","x":-1040,"y":-269,"width":429,"height":150},
+		{"id":"d91e2c0896910831","type":"text","text":"[https://portal.works.prod.sbt/swtr/units/current/unit/VCS-14089?space=VCS&tenant=default](https://portal.works.prod.sbt/swtr/units/current/unit/VCS-14089?space=VCS&tenant=default)  \nCRPV-109329 Пройти ручную проверку на соответствие требованию HCK-501 стандарта STD-15 v2.0 в продукте VCS  ","x":-1040,"y":400,"width":429,"height":164},
+		{"id":"25adf350c58d2241","type":"text","text":"[https://portal.works.prod.sbt/swtr/units/current/unit/VCS-14089?space=VCS&tenant=default](https://portal.works.prod.sbt/swtr/units/current/unit/VCS-14089?space=VCS&tenant=default)  \nCRPV-109329 Пройти ручную проверку на соответствие требованию HCK-501 стандарта STD-15 v2.0 в продукте VCS  ","x":-1040,"y":840,"width":429,"height":164},
+		{"id":"5f014d3851f5d31a","x":-87,"y":-260,"width":250,"height":60,"type":"text","text":"Артем"},
+		{"id":"a3f40fd5bf69948f","type":"text","text":"https://portal.works.prod.sbt/swtr/units/current/unit/VCS-10914?tenant=default&space=VCS\n (VCS): SBTSUPPORT - 27684 Ошибка при попытке создания репозитория (рецидив SBTSUPPORT-61570)","x":-560,"y":-660,"width":429,"height":164},
+		{"id":"1f85a325c23c731a","type":"text","text":"Цикл: -\nПройден: -\nТесты: -\nОшибки выявлены по тестам цикла: -\n\nОтметки в комментариях: -\nСсылка на документ-основание: -","x":-543,"y":-920,"width":395,"height":195,"color":"1"}
+	],
+	"edges":[
+		{"id":"d683302d12027187","fromNode":"4b1dbe369af6821c","fromSide":"left","toNode":"b24ca7666ea5f721","toSide":"right","label":"in review"},
+		{"id":"696f944f9d26525f","fromNode":"4b1dbe369af6821c","fromSide":"left","toNode":"8bc6a2659be4e58d","toSide":"right","label":"in progress"},
+		{"id":"14f9acfeef8b9b57","fromNode":"4b1dbe369af6821c","fromSide":"left","toNode":"2730820421c6ca73","toSide":"right","label":"in progress"},
+		{"id":"9a045b4757606f01","fromNode":"4b1dbe369af6821c","fromSide":"right","toNode":"e21f254dbcdd6d5a","toSide":"left"},
+		{"id":"0fa519317c17f095","fromNode":"e21f254dbcdd6d5a","fromSide":"right","toNode":"77974448ea54f887","toSide":"left"},
+		{"id":"c967b14208c445e3","fromNode":"e21f254dbcdd6d5a","fromSide":"right","toNode":"202446d6cb86a36a","toSide":"left"},
+		{"id":"eab1bafb999c264b","fromNode":"e21f254dbcdd6d5a","fromSide":"right","toNode":"d4b38f4831bc2f96","toSide":"left"},
+		{"id":"b848cef99104be8f","fromNode":"202446d6cb86a36a","fromSide":"right","toNode":"088e7481d729255c","toSide":"left","label":"Ready for QA"},
+		{"id":"b544b779a1cf4169","fromNode":"77974448ea54f887","fromSide":"right","toNode":"01ac113bcb74edb0","toSide":"left","label":"Opened"},
+		{"id":"f00b9b476e4dc665","fromNode":"d4b38f4831bc2f96","fromSide":"right","toNode":"0f8bd88f721cc29a","toSide":"left","label":"Opened"},
+		{"id":"9221f2927d35f8ab","fromNode":"b24ca7666ea5f721","fromSide":"left","toNode":"6a85e7322d686e60","toSide":"right"},
+		{"id":"f18576b3d9bdf770","fromNode":"8bc6a2659be4e58d","fromSide":"left","toNode":"ca8bb65302d307db","toSide":"right"},
+		{"id":"b659320bb5c9ad79","fromNode":"2730820421c6ca73","fromSide":"left","toNode":"2fe37c26ade31b7a","toSide":"right"},
+		{"id":"945f3faa5fe999f2","fromNode":"4b1dbe369af6821c","fromSide":"left","toNode":"d91e2c0896910831","toSide":"right","label":"in progress"},
+		{"id":"871c37a278c7b32a","fromNode":"4b1dbe369af6821c","fromSide":"top","toNode":"5f014d3851f5d31a","toSide":"bottom"},
+		{"id":"41c3e1dedb72ed7a","fromNode":"5f014d3851f5d31a","fromSide":"top","toNode":"a3f40fd5bf69948f","toSide":"bottom","label":"Ready for QA"},
+		{"id":"808ea0eb24e720f2","fromNode":"a3f40fd5bf69948f","fromSide":"top","toNode":"1f85a325c23c731a","toSide":"bottom"}
+	]
+}

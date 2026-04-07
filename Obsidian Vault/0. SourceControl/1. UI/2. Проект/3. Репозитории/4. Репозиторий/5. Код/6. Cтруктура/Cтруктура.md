@@ -1,0 +1,10 @@
+#SC
+#UI
+#FE
+#project
+#repo
+#code
+#structure
+#lv6 
+#ivakadrov
+#aigmikhaylov

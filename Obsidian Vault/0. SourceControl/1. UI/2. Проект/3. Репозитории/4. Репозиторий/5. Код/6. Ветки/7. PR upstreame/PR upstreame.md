@@ -1,0 +1,12 @@
+#lv7
+#ПАО
+#SC
+#UI
+#FE
+#project
+#repo
+#code
+#branch
+#upstreame
+#aigmikhaylov
+#vselysova_dzo

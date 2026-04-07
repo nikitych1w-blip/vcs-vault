@@ -1,0 +1,14 @@
+#lv7 
+#ПАО
+#SC
+#UI
+#FE
+#project
+#repo
+#code
+#structure 
+#push
+#file 
+#ivakadrov
+#aigmikhaylov
+#vselysova_dzo

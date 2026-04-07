@@ -1,0 +1,13 @@
+#lv7 
+#ПАО
+#SC
+#UI
+#FE
+#project
+#repo
+#code
+#download 
+#ssh
+#ivakadrov
+#aigmikhaylov
+#OUT-Rakhmetullaev
