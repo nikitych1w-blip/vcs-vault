@@ -13,15 +13,15 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "Obsidian Vault/Чек-листы проверок/Процесс review.canvas",
+                "file": "Obsidian Vault/FAQ/Приоритеты и критичность/Draft критичность.canvas",
                 "viewState": {
-                  "x": 15.087336070208835,
-                  "y": 1060.0980806999946,
-                  "zoom": -1.2000000000000002
+                  "x": -39.29549777600842,
+                  "y": -1245.7703948489955,
+                  "zoom": -0.40000000000000013
                 }
               },
               "icon": "lucide-layout-dashboard",
-              "title": "Процесс review"
+              "title": "Draft критичность"
             }
           }
         ]
@@ -97,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Obsidian Vault/Чек-листы проверок/Процесс review.canvas",
+                "file": "Obsidian Vault/FAQ/Приоритеты и критичность/Draft критичность.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -107,7 +107,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Обратные ссылки для Процесс review"
+              "title": "Обратные ссылки для Draft критичность"
             }
           },
           {
@@ -116,12 +116,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Obsidian Vault/Чек-листы проверок/Процесс review.canvas",
+                "file": "Obsidian Vault/FAQ/Приоритеты и критичность/Draft критичность.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Исходящие ссылки из Процесс review"
+              "title": "Исходящие ссылки из Draft критичность"
             }
           },
           {
@@ -159,13 +159,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Obsidian Vault/Чек-листы проверок/Процесс review.canvas",
+                "file": "Obsidian Vault/FAQ/Приоритеты и критичность/Draft критичность.canvas",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Структура Процесс review"
+              "title": "Структура Draft критичность"
             }
           }
         ]
@@ -188,9 +188,14 @@
   },
   "active": "bdb5627a9a61886c",
   "lastOpenFiles": [
+    "Obsidian Vault/FAQ/Тестовый цикл/FAQ Как создать тестовый цикл?.canvas",
+    "Obsidian Vault/FAQ/Приоритеты и критичность/Draft критичность.canvas",
+    "Obsidian Vault/FAQ/Приоритеты и критичность",
+    "Obsidian Vault/FAQ/Тестовый набор/FAQ Как создать новый набор тестов в области «Кейсы»?.canvas",
+    "Obsidian Vault/FAQ/Связь с циклом/FAQ Как правильно связать тестовый цикл с задачей?.canvas",
+    "Obsidian Vault/Чек-листы проверок/Процесс review.canvas",
     "Obsidian Vault/Релизы/9.5.0.canvas",
     "Obsidian Vault/Релизы/9.6.0.canvas",
-    "Obsidian Vault/Чек-листы проверок/Процесс review.canvas",
     "Obsidian Vault/Релизы/Релизные задачи.canvas",
     "Obsidian Vault/Чек-листы проверок",
     "Obsidian Vault/Процессы непрерывной сборки.canvas",
