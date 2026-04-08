@@ -13,15 +13,15 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "Obsidian Vault/Процессы непрерывной сборки.canvas",
+                "file": "Obsidian Vault/Чек-листы проверок/Процесс review.canvas",
                 "viewState": {
-                  "x": 454.1884317011509,
-                  "y": -245.28280452069623,
-                  "zoom": -1.2273163309022745
+                  "x": 15.087336070208835,
+                  "y": 1060.0980806999946,
+                  "zoom": -1.2000000000000002
                 }
               },
               "icon": "lucide-layout-dashboard",
-              "title": "Процессы непрерывной сборки"
+              "title": "Процесс review"
             }
           }
         ]
@@ -97,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Obsidian Vault/Процессы непрерывной сборки.canvas",
+                "file": "Obsidian Vault/Чек-листы проверок/Процесс review.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -107,7 +107,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Обратные ссылки для Процессы непрерывной сборки"
+              "title": "Обратные ссылки для Процесс review"
             }
           },
           {
@@ -116,12 +116,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Obsidian Vault/Процессы непрерывной сборки.canvas",
+                "file": "Obsidian Vault/Чек-листы проверок/Процесс review.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Исходящие ссылки из Процессы непрерывной сборки"
+              "title": "Исходящие ссылки из Процесс review"
             }
           },
           {
@@ -159,13 +159,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Obsidian Vault/Процессы непрерывной сборки.canvas",
+                "file": "Obsidian Vault/Чек-листы проверок/Процесс review.canvas",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Структура Процессы непрерывной сборки"
+              "title": "Структура Процесс review"
             }
           }
         ]
@@ -188,16 +188,19 @@
   },
   "active": "bdb5627a9a61886c",
   "lastOpenFiles": [
+    "Obsidian Vault/Релизы/9.5.0.canvas",
+    "Obsidian Vault/Релизы/9.6.0.canvas",
+    "Obsidian Vault/Чек-листы проверок/Процесс review.canvas",
+    "Obsidian Vault/Релизы/Релизные задачи.canvas",
+    "Obsidian Vault/Чек-листы проверок",
+    "Obsidian Vault/Процессы непрерывной сборки.canvas",
     "Obsidian Vault/Текущая схема подготовки.canvas",
-    "Obsidian Vault/9.6.0.canvas",
+    "Obsidian Vault/hf 9.4.1.canvas",
+    "Obsidian Vault/data-sc.base",
     "Obsidian Vault/TQL/workflow_status для TQL.md",
     "Obsidian Vault/TQL/TQL сущности (атрибуты) TaskTracker.md",
     "Obsidian Vault/TQL/Готовые TQL.md",
-    "Obsidian Vault/9.5.0.canvas",
     "Obsidian Vault/TQL",
-    "Obsidian Vault/Процессы непрерывной сборки.canvas",
-    "graph.png",
-    "Obsidian Vault/data-sc.base",
-    "Obsidian Vault/hf 9.4.1.canvas"
+    "graph.png"
   ]
 }
