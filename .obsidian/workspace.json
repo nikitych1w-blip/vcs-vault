@@ -13,15 +13,15 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "Obsidian Vault/FAQ/Приоритеты и критичность/Draft критичность.canvas",
+                "file": "Obsidian Vault/Релизы/9.6.0.canvas",
                 "viewState": {
-                  "x": -39.29549777600842,
-                  "y": -1245.7703948489955,
-                  "zoom": -0.40000000000000013
+                  "x": 6176.812538178757,
+                  "y": 2473.3151971756733,
+                  "zoom": -0.19999999999999984
                 }
               },
               "icon": "lucide-layout-dashboard",
-              "title": "Draft критичность"
+              "title": "9.6.0"
             }
           }
         ]
@@ -97,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Obsidian Vault/FAQ/Приоритеты и критичность/Draft критичность.canvas",
+                "file": "Obsidian Vault/TQL/TQL сущности (атрибуты) TaskTracker.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -107,7 +107,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Обратные ссылки для Draft критичность"
+              "title": "Обратные ссылки для TQL сущности (атрибуты) TaskTracker"
             }
           },
           {
@@ -116,12 +116,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Obsidian Vault/FAQ/Приоритеты и критичность/Draft критичность.canvas",
+                "file": "Obsidian Vault/TQL/TQL сущности (атрибуты) TaskTracker.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Исходящие ссылки из Draft критичность"
+              "title": "Исходящие ссылки из TQL сущности (атрибуты) TaskTracker"
             }
           },
           {
@@ -159,13 +159,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Obsidian Vault/FAQ/Приоритеты и критичность/Draft критичность.canvas",
+                "file": "Obsidian Vault/TQL/TQL сущности (атрибуты) TaskTracker.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Структура Draft критичность"
+              "title": "Структура TQL сущности (атрибуты) TaskTracker"
             }
           }
         ]
@@ -188,24 +188,24 @@
   },
   "active": "bdb5627a9a61886c",
   "lastOpenFiles": [
-    "Obsidian Vault/FAQ/Тестовый цикл/FAQ Как создать тестовый цикл?.canvas",
-    "Obsidian Vault/FAQ/Приоритеты и критичность/Draft критичность.canvas",
-    "Obsidian Vault/FAQ/Приоритеты и критичность",
-    "Obsidian Vault/FAQ/Тестовый набор/FAQ Как создать новый набор тестов в области «Кейсы»?.canvas",
-    "Obsidian Vault/FAQ/Связь с циклом/FAQ Как правильно связать тестовый цикл с задачей?.canvas",
     "Obsidian Vault/Чек-листы проверок/Процесс review.canvas",
-    "Obsidian Vault/Релизы/9.5.0.canvas",
     "Obsidian Vault/Релизы/9.6.0.canvas",
+    "Obsidian Vault/FAQ/Тестовый набор/FAQ Как создать новый набор тестов в области «Кейсы»?.canvas",
     "Obsidian Vault/Релизы/Релизные задачи.canvas",
-    "Obsidian Vault/Чек-листы проверок",
-    "Obsidian Vault/Процессы непрерывной сборки.canvas",
-    "Obsidian Vault/Текущая схема подготовки.canvas",
-    "Obsidian Vault/hf 9.4.1.canvas",
-    "Obsidian Vault/data-sc.base",
-    "Obsidian Vault/TQL/workflow_status для TQL.md",
-    "Obsidian Vault/TQL/TQL сущности (атрибуты) TaskTracker.md",
+    "Obsidian Vault/Релизы/9.5.0.canvas",
     "Obsidian Vault/TQL/Готовые TQL.md",
-    "Obsidian Vault/TQL",
-    "graph.png"
+    "Obsidian Vault/TQL/TQL сущности (атрибуты) TaskTracker.md",
+    "Obsidian Vault/TQL/workflow_status для TQL.md",
+    "Obsidian Vault/Релизы/hf 9.4.1.canvas",
+    "Obsidian Vault/Draft-Текущая схема подготовки.canvas",
+    "Obsidian Vault/Draft-Процессы непрерывной сборки.canvas",
+    "Obsidian Vault/Draft передача в АТ новых и измененных API.canvas",
+    "Obsidian Vault/data-sc.base",
+    "graph.png",
+    "Obsidian Vault/FAQ/Приоритеты и критичность/Draft критичность.canvas",
+    "Obsidian Vault/FAQ/Тестовый цикл/FAQ Как создать тестовый цикл?.canvas",
+    "Obsidian Vault/FAQ/Приоритеты и критичность",
+    "Obsidian Vault/Чек-листы проверок",
+    "Obsidian Vault/TQL"
   ]
 }
