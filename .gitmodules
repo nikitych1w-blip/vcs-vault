@@ -1,0 +1,6 @@
+[submodule "knowledges/gitea"]
+	path = knowledges/gitea
+	url = https://gitea.com/gitea/docs.git
+[submodule "knowledges/git"]
+	path = knowledges/git
+	url = https://github.com/progit/progit
