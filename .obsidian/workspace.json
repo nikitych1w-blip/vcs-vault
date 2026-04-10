@@ -15,9 +15,9 @@
               "state": {
                 "file": "Obsidian Vault/Релизы/9.6.0.canvas",
                 "viewState": {
-                  "x": 6176.812538178757,
-                  "y": 2473.3151971756733,
-                  "zoom": -0.19999999999999984
+                  "x": 5395.648453968825,
+                  "y": 3370.883834680758,
+                  "zoom": -1.1446213597325414
                 }
               },
               "icon": "lucide-layout-dashboard",
@@ -81,7 +81,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 336.5
   },
   "right": {
     "id": "3c41087592533024",
@@ -188,22 +188,21 @@
   },
   "active": "bdb5627a9a61886c",
   "lastOpenFiles": [
-    "Obsidian Vault/Чек-листы проверок/Процесс review.canvas",
-    "Obsidian Vault/Релизы/9.6.0.canvas",
-    "Obsidian Vault/FAQ/Тестовый набор/FAQ Как создать новый набор тестов в области «Кейсы»?.canvas",
-    "Obsidian Vault/Релизы/Релизные задачи.canvas",
-    "Obsidian Vault/Релизы/9.5.0.canvas",
-    "Obsidian Vault/TQL/Готовые TQL.md",
-    "Obsidian Vault/TQL/TQL сущности (атрибуты) TaskTracker.md",
     "Obsidian Vault/TQL/workflow_status для TQL.md",
-    "Obsidian Vault/Релизы/hf 9.4.1.canvas",
+    "Obsidian Vault/TQL/TQL сущности (атрибуты) TaskTracker.md",
+    "Obsidian Vault/TQL/Готовые TQL.md",
+    "Obsidian Vault/Релизы/9.6.0.canvas",
+    "Obsidian Vault/Релизы/9.5.0.canvas",
     "Obsidian Vault/Draft-Текущая схема подготовки.canvas",
+    "Obsidian Vault/Релизы/hf 9.4.1.canvas",
+    "Obsidian Vault/Релизы/Релизные задачи.canvas",
+    "Obsidian Vault/Чек-листы проверок/Процесс review.canvas",
+    "Obsidian Vault/FAQ/Тестовый набор/FAQ Как создать новый набор тестов в области «Кейсы»?.canvas",
     "Obsidian Vault/Draft-Процессы непрерывной сборки.canvas",
     "Obsidian Vault/Draft передача в АТ новых и измененных API.canvas",
     "Obsidian Vault/data-sc.base",
     "graph.png",
     "Obsidian Vault/FAQ/Приоритеты и критичность/Draft критичность.canvas",
-    "Obsidian Vault/FAQ/Тестовый цикл/FAQ Как создать тестовый цикл?.canvas",
     "Obsidian Vault/FAQ/Приоритеты и критичность",
     "Obsidian Vault/Чек-листы проверок",
     "Obsidian Vault/TQL"
