@@ -6,7 +6,7 @@ TQL:
 | unit                      | Код                           | "=", "IN", "!=", "NOT IN", "OR", "AND"                       | unit = "INFT-5"                              |
 | suit                      | Тип задачи                    | "=", "IN", "!=", "NOT IN", "OR", "AND"                       | suit = "test_case"                           |
 | space                     | Пространство                  | "=", "IN", "!=", "NOT IN", "OR", "AND"                       | space IN ("INFT")                            |
-| summary                   | Название                      | "~", "!~"                                                    | summary ~ "Задача"                           |
+| summary                   | **Название**                  | "~", "!~"                                                    | summary ~ "Задача"                           |
 | description               | Описание                      | "~", "!~"                                                    | description ~ "Второй этап"                  |
 | estimate                  | Трудозатраты                  | "=", "IN", "!=", "NOT IN", "OR", "AND", ">", ">=", "<", "<=" | estimate > "10"                              |
 | story_points              | Относительная сложность       | "=", "IN", "!=", "NOT IN", "OR", "AND", ">", ">=", "<", "<=" | story_points > "10" AND story_points < "40"  |

@@ -11,17 +11,14 @@
             "id": "bdb5627a9a61886c",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "Obsidian Vault/Draft SBTSUPPORT.canvas",
-                "viewState": {
-                  "x": -4422.685078127519,
-                  "y": 1481.064183741441,
-                  "zoom": -0.40000000000000013
-                }
+                "file": "Obsidian Vault/QA/Кадров Иван/Кадров Иван.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-dashboard",
-              "title": "Draft SBTSUPPORT"
+              "icon": "lucide-file",
+              "title": "Кадров Иван"
             }
           }
         ]
@@ -188,19 +185,27 @@
   },
   "active": "bdb5627a9a61886c",
   "lastOpenFiles": [
-    "Obsidian Vault/Draft передача в АТ новых и измененных API.canvas",
-    "Obsidian Vault/data-sc.base",
+    "Obsidian Vault/TQL/Готовые TQL.md",
+    "Obsidian Vault/QA/Кадров Иван/Кадров Иван.md",
+    "Obsidian Vault/QA/Кадров Иван",
+    "Obsidian Vault/QA",
     "Obsidian Vault/TQL/TQL сущности (атрибуты) TaskTracker.md",
     "Obsidian Vault/TQL/workflow_status для TQL.md",
-    "Obsidian Vault/TQL/Готовые TQL.md",
-    "Obsidian Vault/Draft-Процессы непрерывной сборки.canvas",
+    "Obsidian Vault/Релизы/9.6.0/~Время QA в 9.6.0.md",
+    "Pasted image 20260420234652.png",
+    "Obsidian Vault/Релизы/Без названия.md",
+    "Obsidian Vault/Релизы/9.6.0",
+    "Obsidian Vault/Релизы/9.6.0/9.6.0.canvas",
+    "1.json",
     "Obsidian Vault/Draft-Текущая схема подготовки.canvas",
-    "Obsidian Vault/Draft SBTSUPPORT.canvas",
-    "Без названия.canvas",
-    "Obsidian Vault/Релизы/9.6.0.canvas",
     "Obsidian Vault/Релизы/9.5.0.canvas",
     "Obsidian Vault/Релизы/hf 9.4.1.canvas",
     "Obsidian Vault/Релизы/Релизные задачи.canvas",
+    "Obsidian Vault/Draft SBTSUPPORT.canvas",
+    "Obsidian Vault/Draft передача в АТ новых и измененных API.canvas",
+    "Obsidian Vault/data-sc.base",
+    "Obsidian Vault/Draft-Процессы непрерывной сборки.canvas",
+    "Без названия.canvas",
     "Obsidian Vault/Чек-листы проверок/Процесс review.canvas",
     "graph.png",
     "Obsidian Vault/FAQ/Приоритеты и критичность",
