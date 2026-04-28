@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Obsidian Vault/QA/Кадров Иван/Кадров Иван.md",
+                "file": "Obsidian Vault/TQL/TQL сущности (атрибуты) TaskTracker.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Кадров Иван"
+              "title": "TQL сущности (атрибуты) TaskTracker"
             }
           }
         ]
@@ -185,12 +185,12 @@
   },
   "active": "bdb5627a9a61886c",
   "lastOpenFiles": [
+    "Obsidian Vault/TQL/workflow_status для TQL.md",
+    "Obsidian Vault/TQL/TQL сущности (атрибуты) TaskTracker.md",
     "Obsidian Vault/TQL/Готовые TQL.md",
     "Obsidian Vault/QA/Кадров Иван/Кадров Иван.md",
     "Obsidian Vault/QA/Кадров Иван",
     "Obsidian Vault/QA",
-    "Obsidian Vault/TQL/TQL сущности (атрибуты) TaskTracker.md",
-    "Obsidian Vault/TQL/workflow_status для TQL.md",
     "Obsidian Vault/Релизы/9.6.0/~Время QA в 9.6.0.md",
     "Pasted image 20260420234652.png",
     "Obsidian Vault/Релизы/Без названия.md",

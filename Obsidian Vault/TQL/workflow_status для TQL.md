@@ -12,6 +12,6 @@ workflow_status TaskTracker для TQL поиска в Задачах:
 "QA": "Q_ymlStTGiWDtKMqTySr",
 "in review": "in_review",
 "Ready for QA": "RDFR_NiewJYNruxzlMLq"
-
+"Тестирование": "qa"
 }
 ]
