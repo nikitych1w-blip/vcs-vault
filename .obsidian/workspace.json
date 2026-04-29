@@ -11,14 +11,17 @@
             "id": "bdb5627a9a61886c",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "Obsidian Vault/TQL/TQL сущности (атрибуты) TaskTracker.md",
-                "mode": "source",
-                "source": false
+                "file": "Obsidian Vault/Релизы/GitOps зарисовки основных путей.canvas",
+                "viewState": {
+                  "x": 7862.039431432647,
+                  "y": -1027.6776410678185,
+                  "zoom": -1.6000000000000005
+                }
               },
-              "icon": "lucide-file",
-              "title": "TQL сущности (атрибуты) TaskTracker"
+              "icon": "lucide-layout-dashboard",
+              "title": "GitOps зарисовки основных путей"
             }
           }
         ]
@@ -185,15 +188,19 @@
   },
   "active": "bdb5627a9a61886c",
   "lastOpenFiles": [
+    "Obsidian Vault/Релизы/Баги.md",
+    "Obsidian Vault/Релизы/GitOps зарисовки основных путей.canvas",
+    "Pasted image 20260428123550.png",
+    "Obsidian Vault/QA/Кадров Иван/Кадров Иван.md",
+    "Pasted image 20260428123534.png",
+    "Pasted image 20260420234652.png",
+    "graph.png",
+    "Obsidian Vault/TQL/Готовые TQL.md",
     "Obsidian Vault/TQL/workflow_status для TQL.md",
     "Obsidian Vault/TQL/TQL сущности (атрибуты) TaskTracker.md",
-    "Obsidian Vault/TQL/Готовые TQL.md",
-    "Obsidian Vault/QA/Кадров Иван/Кадров Иван.md",
     "Obsidian Vault/QA/Кадров Иван",
     "Obsidian Vault/QA",
     "Obsidian Vault/Релизы/9.6.0/~Время QA в 9.6.0.md",
-    "Pasted image 20260420234652.png",
-    "Obsidian Vault/Релизы/Без названия.md",
     "Obsidian Vault/Релизы/9.6.0",
     "Obsidian Vault/Релизы/9.6.0/9.6.0.canvas",
     "1.json",
@@ -206,8 +213,6 @@
     "Obsidian Vault/data-sc.base",
     "Obsidian Vault/Draft-Процессы непрерывной сборки.canvas",
     "Без названия.canvas",
-    "Obsidian Vault/Чек-листы проверок/Процесс review.canvas",
-    "graph.png",
     "Obsidian Vault/FAQ/Приоритеты и критичность",
     "Obsidian Vault/Чек-листы проверок",
     "Obsidian Vault/TQL"
