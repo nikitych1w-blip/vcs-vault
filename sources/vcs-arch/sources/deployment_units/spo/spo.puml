@@ -1,0 +1,116 @@
+!definelong Ngam_Deployment_Node(id, container_id)
+Deployment_Node(id, "spo-ngam01", "Sberlinux") {
+    Container(container_id, "СУДИР/NGAM", "KeyCloak", "")
+}
+!enddefinelong
+
+!definelong Corax_Deployment_Node(id, container_id)
+Deployment_Node(id, "spo-corax01", "Sberlinux") {
+    Container(container_id, "Platform V Corax", "Kafka", "")
+}
+!enddefinelong
+
+!definelong SecMan_Deployment_Node(id, container_id)
+Deployment_Node(id, "spo-vault01", "Sberlinux") {
+    Container(container_id, "SecMan", "Hashicorp Vault", "")
+}
+!enddefinelong
+
+!definelong SMTP_Deployment_Node(id, container_id)
+Deployment_Node(id, "spo-smtp01", "Sberlinux") {
+    Container(container_id, "SMTP-сервер", "Any", "")
+}
+!enddefinelong
+
+!definelong LDAP_Deployment_Node(id, container_id)
+Deployment_Node(id, "spo-ldap01", "Microsoft Server") {
+    Container(container_id, "LDAP", "Microsoft Active Directory", "")
+}
+!enddefinelong
+
+!definelong Radish_Deployment_Node(id, container_id)
+Deployment_Node(id, "sc-radish01", "Sberlinux") {
+    ContainerDb(container_id, "Platform V Radish", "Valkey", "")
+}
+!enddefinelong
+
+!definelong IAMProxy_Deployment_Node(id, container_id)
+Deployment_Node(id, "sc-iamproxy01", "Sberlinux") {
+    Container(container_id, "Platform V IAM (IAM Proxy)", "OpenResty", "")
+}
+!enddefinelong
+
+!definelong Gitaly_Deployment_Node(id, container_id)
+Deployment_Node(id, "sc-gitaly01", "Sberlinux") {
+    ContainerDb(container_id, "Gitaly", "Golang", "")
+}
+!enddefinelong
+
+!definelong Pangolin_Deployment_Node(id, container_id)
+Deployment_Node(id, "sc-pangolin01", "Sberlinux") {
+    ContainerDb(container_id, "Platform V Pangolin", "PostgreSQL", "")
+}
+!enddefinelong
+
+!definelong Haproxy_Deployment_Node(id, container_id)
+Deployment_Node(id, "sc-haproxy01", "Sberlinux") {
+    Container(container_id, "HAproxy", "HAproxy", "")
+}
+!enddefinelong
+
+!definelong Ingress_Deployment_Node(id, container_id)
+Deployment_Node(id, "sc-ingress01", "K8S Pod") {
+    Container(container_id, "Ingress Controller", "Nginx", "")
+}
+!enddefinelong
+
+!definelong Istio_Ingress_Deployment_Node(id, container_id)
+Deployment_Node(id, "sc-ingress01", "K8S Pod") {
+    Container(container_id, "Platform V Synapse Service Mesh", "Envoy", "")
+}
+!enddefinelong
+
+!definelong Istio_Egress_Deployment_Node(id, container_id)
+Deployment_Node(id, "sc-egress01", "K8S Pod") {
+    Container(container_id, "Platform V Synapse Service Mesh", "Envoy", "")
+}
+!enddefinelong
+
+!definelong S3_Deployment_Node(id, container_id)
+Deployment_Node(id, "sc-s301", "Sberlinux") {
+    ContainerDb(container_id, "S3 Bucket", "Any", "")
+}
+!enddefinelong
+
+!definelong Gitaly_Cluster_Deployment_Node(id, praefect_lb_node)
+Deployment_Node(id, "sc-gitaly-cluster01", "Sberlinux") {
+    Deployment_Node("praefect_lb_id", "sc-praefect-syngx01", "Sberlinux") {
+        Container(praefect_lb_node, "Platform V Syngx", "Syngx", "")
+    }
+    Deployment_Node("praefect_id", "sc-praefect*** x3", "Sberlinux") {
+        Container("praefect_node", "Praefect", "Golang", "")
+    }
+    Deployment_Node("gitaly_id", "sc-gitaly*** x3", "Sberlinux") {
+        ContainerDb("gitaly_node", "Gitaly", "Golang", "")
+    }
+    Deployment_Node("pg_id", "sc-pangolin-praefect01", "Sberlinux") {
+        ContainerDb("pg_node", "Platform V Pangolin", "PostgreSQL", "")
+    }
+
+    Rel(praefect_lb_node, praefect_node, "GRPC")
+    Rel(praefect_node, pg_node, "TCP")
+    Rel(praefect_node, gitaly_node, "GRPC")
+}
+!enddefinelong
+
+!definelong FluentBit_K8S_Deployment_Node(id, container_id)
+Deployment_Node(id, "sc-fluentbit01", "K8S pod") {
+    Container(container_id, "FluentBit", "Daemon Set", "Scrape логов приложения")
+}
+!enddefinelong
+
+!definelong Prometheus_K8S_Deployment_Node(id, container_id)
+Deployment_Node(id, "sc-prometheus01", "K8S pod") {
+    Container(container_id, "Prometheus", "Prometheus", "Сбор метрик приложения")
+}
+!enddefinelong

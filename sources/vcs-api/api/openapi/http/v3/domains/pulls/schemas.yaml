@@ -1,0 +1,629 @@
+components:
+  schemas:
+    Label:
+      description: Метка
+      properties:
+        id:
+          description: Идентификатор метки
+          type: string
+      required:
+        - id
+      type: object
+    PRCreation:
+      description: Данные для создания нового PR
+      properties:
+        assignees:
+          description: Массив логинов назначенных пользователей
+          example:
+            - login1
+            - login2
+          items:
+            description: логин назначенного пользователя
+            maxLength: 40
+            minLength: 2
+            type: string
+          type: array
+        base:
+          description: Имя ветки куда вливаем
+          example: main
+          maxLength: 100
+          minLength: 2
+          type: string
+        body:
+          description: Описание PR
+          example: Описание PR
+          maxLength: 512
+          minLength: 2
+          type: string
+        due_date:
+          description: Предполагаемая дата исполнения PR
+          example: 12.05.2025
+          minLength: 1
+          type: string
+        head:
+          description: Имя вливаемой ветки
+          example: feature_branch
+          maxLength: 100
+          minLength: 2
+          type: string
+        labels:
+          description: Массив ID меток PR
+          example:
+            - 1
+            - 2
+          items:
+            description: ID метки PR
+            minimum: 1
+            type: integer
+          type: array
+        milestone:
+          description: Идентификатор ЭТАПА к которому привязывается PR
+          example: 4
+          minimum: 1
+          type: integer
+        reviewers:
+          description: Массив логинов ревьюеров
+          example:
+            - login1
+            - login2
+          items:
+            description: логин ревьюера
+            maxLength: 40
+            minLength: 2
+            type: string
+          type: array
+        title:
+          description: Заголовок PR
+          example: PR_title
+          maxLength: 100
+          minLength: 1
+          type: string
+      required:
+        - title
+        - head
+        - base
+      type: object
+    PRDeclineRequest:
+      additionalProperties: false
+      description: Параметры для отмены PR запроса
+      properties:
+        message:
+          description: Комментарий к отмене PR запроса
+          example: Task was rejected.
+          maxLength: 1000
+          nullable: true
+          type: string
+      type: object
+    PRInfo:
+      description: Информация о пулл-реквесте
+      properties:
+        assignees:
+          description: Назначенные пользователи
+          items:
+            type: string
+          type: array
+        base:
+          $ref: '../branches/schemas.yaml#/components/schemas/Branch'
+        body:
+          description: Описание
+          type: string
+        closed_at:
+          description: Дата закрытия
+          format: date-time
+          nullable: true
+          type: string
+        code_owners:
+          description: Владельцы кода
+          items:
+            $ref: '#/components/schemas/PRReviewInfo'
+          type: array
+        created_at:
+          description: Дата создания
+          format: date-time
+          type: string
+        diff_url:
+          description: URL diff
+          type: string
+        due_date:
+          description: Срок выполнения
+          format: date-time
+          nullable: true
+          type: string
+        head:
+          $ref: '../branches/schemas.yaml#/components/schemas/Branch'
+        html_url:
+          description: HTML URL
+          type: string
+        index:
+          description: Номер пулл-реквеста
+          format: int64
+          type: integer
+        labels:
+          description: Метки
+          items:
+            $ref: '#/components/schemas/Label'
+          type: array
+        merge_base:
+          description: Базовый коммит слияния
+          type: string
+        merge_commit_sha:
+          description: SHA коммита слияния
+          nullable: true
+          type: string
+        mergeable:
+          description: Возможно ли слияние
+          type: boolean
+        merged_at:
+          description: Дата слияния
+          format: date-time
+          nullable: true
+          type: string
+        merged_by:
+          description: Пользователь, выполнивший слияние
+          nullable: true
+          type: string
+        milestone:
+          description: Идентификатор вехи
+          format: int64
+          nullable: true
+          type: integer
+        patch_url:
+          description: URL patch
+          type: string
+        pr_creator:
+          description: Создатель
+          type: string
+        reviewers:
+          description: Ревьюеры
+          items:
+            $ref: '#/components/schemas/PRReviewInfo'
+          type: array
+        state:
+          description: Состояние
+          enum:
+            - open
+            - closed
+            - merged
+          type: string
+        title:
+          description: Заголовок
+          type: string
+        updated_at:
+          description: Дата обновления
+          format: date-time
+          type: string
+        url:
+          description: API URL
+          type: string
+      required:
+        - index
+        - title
+        - body
+        - state
+        - pr_creator
+        - head
+        - base
+        - mergeable
+        - assignees
+        - reviewers
+        - code_owners
+        - labels
+        - diff_url
+        - patch_url
+        - html_url
+        - url
+        - merge_base
+        - created_at
+        - updated_at
+      type: object
+    PRMerge:
+      additionalProperties: false
+      description: Параметры для слияния PR запроса
+      properties:
+        delete_branch_after_merge:
+          description: Удалять ли ветку после слияния
+          example: true
+          nullable: true
+          type: boolean
+        force_merge:
+          description: Принудительно выполнить слияние, игнорируя статусы CI/CD и правила защиты. По умолчанию false
+          example: false
+          nullable: true
+          type: boolean
+        head_commit_id:
+          description: SHA последнего коммита в ветке PR. Используется для проверки актуальности.
+          example: a1b2c3d4e5f6...
+          maxLength: 40
+          minLength: 1
+          nullable: true
+          type: string
+        merge_commit_id:
+          description: SHA коммита, который должен быть использован как merge commit. Если указан, то этот коммит будет результирующий. Контрольный параметр, подтверждающий, что слияние выполняется для конкретного состояния PR.
+          example: a1b2c3d4e5f6...
+          maxLength: 40
+          minLength: 1
+          nullable: true
+          type: string
+        merge_method:
+          description: 'Метод интеграции одной ветки в другую. Доступные значения: merge, squash, rebase, rebase-merge, manually-merged'
+          enum:
+            - merge
+            - squash
+            - rebase
+            - rebase-merge
+            - manually-merged
+          example: rebase
+          type: string
+        merge_when_checks_succeed:
+          description: Автоматически слить PR, когда все проверки пройдут. По умолчанию false
+          example: false
+          nullable: true
+          type: boolean
+        message:
+          description: Тело сообщения коммита, который будет создан при слиянии PR
+          example: A cubicularis deporto deprecator quas tamen ascit auditor auctor. Dens cinis contabesco usus cui crapula celer turbo.
+          maxLength: 1000
+          minLength: 1
+          nullable: true
+          type: string
+        title:
+          description: Заголовок коммита слияния. Если не указано — используется заголовок PR.
+          example: Fix login validation
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+        - merge_method
+      type: object
+
+    PRPatch:
+      description: Данные для обновления PR
+      properties:
+        assignees:
+          description: Массив логинов назначенных пользователей
+          nullable: true
+          example:
+            - login1
+            - login2
+          items:
+            description: логин назначенного пользователя
+            maxLength: 40
+            minLength: 2
+            type: string
+          type: array
+        body:
+          description: Описание PR
+          nullable: true
+          example: Описание PR
+          maxLength: 512
+          minLength: 2
+          type: string
+        due_date:
+          description: Предполагаемая дата исполнения PR
+          nullable: true
+          example: 12.05.2025
+          minLength: 1
+          type: string
+        labels:
+          description: Массив ID меток PR
+          nullable: true
+          example:
+            - 1
+            - 2
+          items:
+            description: ID метки PR
+            minimum: 1
+            type: integer
+          type: array
+        milestone:
+          description: Идентификатор ЭТАПА к которому привязывается PR
+          nullable: true
+          example: 4
+          minimum: 1
+          type: integer
+        reviewers:
+          description: Массив логинов ревьюеров
+          nullable: true
+          example:
+            - login1
+            - login2
+          items:
+            description: логин ревьюера
+            maxLength: 40
+            minLength: 2
+            type: string
+          type: array
+        title:
+          description: Заголовок PR
+          nullable: true
+          example: PR_title
+          maxLength: 100
+          minLength: 2
+          type: string
+      type: object
+    PRReviewInfo:
+      description: Информация о ревью
+      properties:
+        lastReviewedCommit:
+          description: SHA последнего проверенного коммита
+          nullable: true
+          type: string
+        status:
+          description: Статус ревью
+          enum:
+            - APPROVED
+            - COMMENTED
+            - PENDING
+          type: string
+        username:
+          description: Имя пользователя
+          type: string
+      required:
+        - username
+        - status
+      type: object
+
+    PRListItem:
+      description: Краткая информация о пулл-реквесте (для списков)
+      properties:
+        assignees:
+          description: Назначенные пользователи
+          items:
+            type: string
+          type: array
+        base:
+          $ref: '../branches/schemas.yaml#/components/schemas/Branch'
+        body:
+          description: Описание
+          type: string
+        closed_at:
+          description: Дата закрытия
+          format: date-time
+          type: string
+        code_owners:
+          description: Владельцы кода
+          items:
+            $ref: '#/components/schemas/PRReviewInfo'
+          type: array
+        created_at:
+          description: Дата создания
+          format: date-time
+          type: string
+        diff_url:
+          description: URL diff
+          type: string
+        due_date:
+          description: Срок выполнения
+          format: date-time
+          type: string
+        head:
+          $ref: '../branches/schemas.yaml#/components/schemas/Branch'
+        html_url:
+          description: HTML URL
+          type: string
+        index:
+          description: Номер пулл-реквеста
+          format: int64
+          type: integer
+        labels:
+          description: Имена меток
+          items:
+            type: string
+          type: array
+        merge_base:
+          description: Базовый коммит слияния
+          type: string
+        merge_commit_sha:
+          description: SHA коммита слияния
+          type: string
+        mergeable:
+          description: Возможно ли слияние
+          type: boolean
+        merged_at:
+          description: Дата слияния
+          format: date-time
+          type: string
+        merged_by:
+          description: Пользователь, выполнивший слияние
+          type: string
+        milestone:
+          description: Идентификатор вехи
+          format: int64
+          type: integer
+        patch_url:
+          description: URL patch
+          type: string
+        pr_creator:
+          description: Создатель
+          type: string
+        reviewers:
+          description: Ревьюеры
+          items:
+            $ref: '#/components/schemas/PRReviewInfo'
+          type: array
+        state:
+          description: Состояние
+          enum:
+            - open
+            - closed
+            - merged
+          type: string
+        title:
+          description: Заголовок
+          type: string
+        updated_at:
+          description: Дата обновления
+          format: date-time
+          type: string
+        url:
+          description: API URL
+          type: string
+      required:
+        - index
+        - title
+        - body
+        - state
+        - pr_creator
+        - head
+        - base
+        - mergeable
+        - assignees
+        - reviewers
+        - code_owners
+        - labels
+        - diff_url
+        - patch_url
+        - html_url
+        - url
+        - merge_base
+        - created_at
+        - updated_at
+      type: object
+    PullRequestListResponse:
+      description: Список пулл-реквестов с пагинацией
+      properties:
+        pagination:
+          $ref: '../../common/pagination.yaml#/components/schemas/Pagination'
+        pulls:
+          description: Список пулл-реквестов
+          items:
+            $ref: '#/components/schemas/PRListItem'
+          type: array
+      required:
+        - pagination
+        - pulls
+      type: object
+    DiffFileInfo:
+      description: Информация о файле в diff пулл-реквеста
+      type: object
+      required:
+        - filepath
+        - status
+        - additions
+        - deletions
+        - changes
+        - raw_url
+      properties:
+        filepath:
+          description: Путь к файлу
+          type: string
+        previous_name:
+          description: Предыдущее имя файла (при переименовании). Поле отсутствует если нет переименования
+          type: string
+        nodeType:
+          description: Тип узла
+          type: string
+        executable:
+          description: Является ли файл исполняемым. Поле отсутствует если не применимо
+          type: boolean
+        status:
+          description: Статус изменения файла (added, modified, deleted, renamed и т.д.)
+          type: string
+        additions:
+          description: Количество добавленных строк
+          type: integer
+        deletions:
+          description: Количество удалённых строк
+          type: integer
+        changes:
+          description: Общее количество изменённых строк
+          type: integer
+        raw_url:
+          description: URL для получения raw-содержимого файла
+          type: string
+        html_url:
+          description: HTML URL файла. Поле может отсутствовать
+          type: string
+
+    DiffFileInfoListResponse:
+      description: Список изменённых файлов с пагинацией
+      type: object
+      required:
+        - pagination
+        - files
+      properties:
+        pagination:
+          $ref: '../../common/pagination.yaml#/components/schemas/Pagination'
+        files:
+          description: Список изменённых файлов
+          type: array
+          items:
+            $ref: '#/components/schemas/DiffFileInfo'
+
+    PRCommitsResponse:
+      description: Список коммитов пулл-реквеста с пагинацией
+      type: object
+      required:
+        - pagination
+        - commits
+      properties:
+        pagination:
+          $ref: '../../common/pagination.yaml#/components/schemas/Pagination'
+        commits:
+          description: Список коммитов
+          type: array
+          items:
+            $ref: '../commits/schemas.yaml#/components/schemas/FileCommitFullInfo'
+
+    CommitPullRequestsResponse:
+      description: Список пулл-реквестов, связанных с коммитом
+      type: object
+      required:
+        - pagination
+        - pulls
+      properties:
+        pagination:
+          $ref: '../../common/pagination.yaml#/components/schemas/Pagination'
+        pulls:
+          description: Список пулл-реквестов
+          type: array
+          items:
+            $ref: '#/components/schemas/PRListItem'
+
+    IssueInfoResponse:
+      description: Задача из трекера задач, связанная с пулл-реквестом
+      type: object
+      required:
+        - code
+        - title
+        - status
+        - url
+        - priority
+      properties:
+        code:
+          description: Код задачи
+          type: string
+          example: SC-123
+        title:
+          description: Заголовок задачи
+          type: string
+          example: Ошибка 500 при изменении PR
+        status:
+          description: Статус задачи
+          type: string
+          example: Closed
+        url:
+          description: URL задачи в трекере
+          type: string
+          example: https://sc-example.com/units/all/unit/SC-123
+        priority:
+          description: Приоритет задачи
+          type: string
+          example: major
+
+    PRIssuesResponse:
+      description: Список задач пулл-реквеста с пагинацией
+      type: object
+      required:
+        - pagination
+        - issues
+      properties:
+        pagination:
+          $ref: '../../common/pagination.yaml#/components/schemas/Pagination'
+        issues:
+          description: Список задач
+          type: array
+          items:
+            $ref: '#/components/schemas/IssueInfoResponse'
+

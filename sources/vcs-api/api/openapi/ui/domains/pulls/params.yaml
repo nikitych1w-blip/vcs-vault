@@ -1,0 +1,27 @@
+components:
+  parameters:
+    index:
+      name: index
+      in: path
+      required: true
+      description: Индекс PR запроса, например 2 
+      schema:
+        type: integer
+      example: 2
+
+    user_id:
+      name: user_id
+      in: path
+      required: true
+      description: Уникальный идентификатор пользователя
+      schema:
+        type: integer
+      example: 2
+    comment_id:
+      name: comment_id
+      in: path
+      required: true
+      description: Идентификатор комментария PR.
+      schema:
+        type: integer
+        minimum: 1

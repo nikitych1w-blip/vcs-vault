@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b2a90881-53b5-467c-ae7f-56445999fbac" name="Changes" comment="Add submodule loader">
+      <change beforePath="$PROJECT_DIR$/.gitmodules" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.obsidian/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/.obsidian/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.obsidian/appearance.json" beforeDir="false" afterPath="$PROJECT_DIR$/.obsidian/appearance.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.obsidian/workspace.json" beforeDir="false" afterPath="$PROJECT_DIR$/.obsidian/workspace.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/.obsidian/app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/.obsidian/appearance.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/.obsidian/core-plugins.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/.obsidian/graph.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/.obsidian/workspace.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v1/3. repos/4. activities/activities.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v1/3. repos/4. archive/archive.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v1/3. repos/4. assignees/assignees.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v1/3. repos/4. branch_protections/branch_protections.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v1/3. repos/4. branches/branches.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v1/3. repos/4. commits/commits.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v1/3. repos/4. contents/contents.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v1/3. repos/4. forks/forks.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v1/3. repos/4. hooks/hooks.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v1/3. repos/4. languages/languages.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v1/3. repos/4. pulls/pulls.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v1/3. repos/4. raw/raw.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v1/3. repos/4. releases/releases.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v1/3. repos/4. repo/repo.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v1/3. repos/4. search/search.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v1/3. repos/4. tags/tags.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v1/3. repos/repos.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v1/v1.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v2/3. admin/4. privileges/privileges.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v2/3. admin/4. users/5. keys/keys.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v2/3. admin/4. users/5. users/users.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v2/3. admin/4. users/users.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v2/3. admin/admin.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v2/3. projects/4. create/create.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v2/3. projects/4. project_key/project_key.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v2/3. projects/4. repos/5. marks/6. codehub/codehub.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v2/3. projects/4. repos/5. marks/marks.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v2/3. projects/4. repos/5. metrics/metrics.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v2/3. projects/4. repos/5. repos_key/repos_key.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v2/3. projects/4. repos/5. reuse_metric/reuse_metric.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v2/3. projects/4. repos/repos.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v2/3. projects/projects.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v2/3. pulls/pulls.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v2/3. repos/4. webhooks/webhooks.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v2/3. repos/repos.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v2/3. tenants/tenants.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v2/v2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. Comments/4. Delete comment/Delete comment.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. Comments/4. Get Comment/Get Comment.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. Comments/4. Patch Comment/Patch Comment.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. Comments/4. Post Comment/Post Comment.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. Comments/Comments.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. file/4. change_file PUT/change_file PUT.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. file/4. create_file POST/create_file POST.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. file/4. delete_file POST/delete_file POST.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. file/4. get_file GET/get_file GET.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. file/4. get_file_info GET/get_file_info GET.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. file/file.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. archive/archive.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. branch_protections/branch_protections.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. branches/5. create_branch POST/6. create_branches POST auto/create_branches POST auto.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. branches/5. create_branch POST/create_branch POST.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. branches/5. delete_branch DELETE/delete_branch DELETE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. branches/5. get_branch GET/get_branch GET.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. branches/5. get_branches_list GET/get_branches_list GET.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. branches/branches.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. compare/5. commits/commits.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. compare/compare.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. create/create.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. default-branch/default-branch.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. delete/delete.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. external_metrics/external_metrics.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. get-repo/get-repo.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. pulls/5. GET commits_pulls/GET commits_pulls.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. pulls/5. GET pulls_commits/GET pulls_commits.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. pulls/5. GET pulls_files/GET pulls_files.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. pulls/5. GET/GET.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. pulls/5. change_PR PATCH/change_PR PATCH.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. pulls/5. create_PR POST/create_PR POST.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. pulls/5. decline_PR POST/decline_PR POST.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. pulls/5. diff/diff.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. pulls/5. get-pull/get-pull.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. pulls/5. merge_PR/merge_PR.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. pulls/5. Миграция PR/Миграция PR.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. pulls/pulls.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. review_settings/review_settings.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/4. sonar/sonar.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. repos/repos.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. user/4. keys/keys.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. user/4. tokens/tokens.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/3. user/user.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api v3/v3.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. access/5. projects/6. repos/repos.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. access/5. projects/projects.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. access/access.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. branches/5. Get branches/Get branches.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. branches/branches.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. projects/5. projects/6. branches/branches.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. projects/5. projects/6. browse/browse.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. projects/5. projects/6. metric/metric.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. projects/5. projects/6. search/search.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. projects/5. projects/6. topics/topics.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. projects/5. projects/projects.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. projects/5. repos/repos.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. projects/projects.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. pulls/5. DELETE subscribe/DELETE subscribe.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. pulls/5. GET attributes/GET attributes.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. pulls/5. GET labels/GET labels.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. pulls/5. GET members/GET members.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. pulls/5. GET milestones/GET milestones.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. pulls/5. GET template/GET template.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. pulls/5. PATCH attributes/PATCH attributes.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. pulls/5. POST pulls/POST pulls.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. pulls/5. POST subscribe/POST subscribe.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. pulls/5. Post bild/Post bild.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. pulls/5. Post state/Post state.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. pulls/pulls.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. tags/5. Get/Get.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. tags/5. Post/Post.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. tags/tags.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. users/5. GET users/GET users.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/4. users/users.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/3. v2/v2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web1/web1.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web2(Новый FE)/3. Мультитенантность/4. API/API.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web2(Новый FE)/3. Мультитенантность/Мультитенантность.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web2(Новый FE)/3. Репозиторий/Репозиторий.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. api web2(Новый FE)/web2(Новый FE).md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. git/3. archive/archive.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. git/3. archive/Кейсы/VCS-4397 Успешное получение архива репозитория по SSH/VCS-4397 Успешное получение архива репозитория по SSH.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. git/3. archive/Кейсы/Кейсы.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. git/3. clone/clone.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. git/3. clone/Кейсы/4638 Git Push HTTP Переключение на ветку отличную от ветки по умолчанию при инициализации репозитория/4638 Git Push HTTP Переключение на ветку отличную от ветки по умолчанию при инициализации репозитория.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. git/3. clone/Кейсы/Кейсы.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. git/3. fetch/fetch.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. git/3. hooks/hooks.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. git/3. pull/pull.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. git/3. reset/reset.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. git/3. revert/revert.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. git/3. tag/tag.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. git/git.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. kafka/3. create-repo-event/create-repo-event.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. kafka/3. elk/4. commit-event/commit-event.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. kafka/3. elk/4. pull-event/pull-event.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. kafka/3. elk/elk.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/2. kafka/kafka.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. API/API.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. CLI/CLI.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Дашборд/Дашборд.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Запросы на слияние/Запросы на слияние.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Обзор/Обзор.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Группы привилегий/4. Видимость/Видимость.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Группы привилегий/4. Добавить/Добавить.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Группы привилегий/4. Изменить/Изменить.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Группы привилегий/4. Удалить/Удалить.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Группы привилегий/Группы привилегий.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Настройки/4. Webhooks/Weebhooks.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Настройки/4. Аватар/Аватар.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Настройки/Настройки.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Новый репозиторий/Новый репозиторий.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Активность/Активность.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Запросы на слияние/6. Запрос на слияние/7. Закрытые/Закрытые.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Запросы на слияние/6. Запрос на слияние/7. Открытые/Открытые.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Запросы на слияние/6. Запрос на слияние/Запрос на слияние.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Запросы на слияние/6. Метки/7. Использовать/Использовать.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Запросы на слияние/6. Метки/Метки.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Запросы на слияние/6. Новый запрос на слияние/7. Переход на сравнение/Переход на сравнение.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Запросы на слияние/6. Новый запрос на слияние/Новый запрос на слияние.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Запросы на слияние/6. Этапы/7.  Закрыто/8. Список/Список.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Запросы на слияние/6. Этапы/7.  Закрыто/8. Фильтры/Фильтры.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Запросы на слияние/6. Этапы/7.  Закрыто/Закрыто.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Запросы на слияние/6. Этапы/7. Открыто/8. Список/Список.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Запросы на слияние/6. Этапы/7. Открыто/8. Фильтры/Фильтры.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Запросы на слияние/6. Этапы/7. Открыто/Открыто.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Запросы на слияние/6. Этапы/Этапы.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Запросы на слияние/Запросы на слияние.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Cтруктура/7. Push файлов/Push файлов.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Cтруктура/7. Редактирование файлов/Редактирование файлов.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Cтруктура/7. Создание первого файла/Создание первого файла.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Cтруктура/Cтруктура.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Pipeline status/7. Переход к сборке/Переход к сборке.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Pipeline status/7. Сборка/Сборка.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Pipeline status/7. Статус/Статус.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Pipeline status/Pipeline status.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Sonar/7. Метрики/Метрики.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Sonar/Sonar.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Ветки/7. PR upstreame/PR upstreame.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Ветки/7. Название/8. Ограничение по длине/Ограничение по длине.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Ветки/7. Название/8. По окончанию/По окончанию.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Ветки/7. Название/8. По символам/По символам.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Ветки/7. Название/Название.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Ветки/7. Создание/8. GIT CLI/GIT CLI.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Ветки/7. Создание/8. IDE/IDE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Ветки/7. Создание/8. WEB/WEB.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Ветки/7. Создание/Создание.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Ветки/7. Удаление/Удаление.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Ветки/Ветки.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Коммиты/7. Информация/Информация.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Коммиты/7. Коммит(сущность)/8. Откат/Откат.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Коммиты/7. Коммит(сущность)/8. Перенос/Перенос.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Коммиты/7. Коммит(сущность)/8. Создать ветку/Создать ветку.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Коммиты/7. Коммит(сущность)/8. Создать тег/Создать тег.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Коммиты/7. Коммит(сущность)/Коммит(сущность).md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Коммиты/7. Поиск/Поиск.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Коммиты/7. Счетчик/Счетчик.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Коммиты/7. Фильтры/Фильтры.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Коммиты/Коммиты.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Лицензии/7. Виджет/Виджет.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Лицензии/7. Добавление/Добавление.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Лицензии/7. Удаление/Удаление.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Лицензии/Лицензии.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Метки/7. Добавить/Добавить.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Метки/7. Создать/Создать.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Метки/7. Удалить/Удалить.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Метки/Метки.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Новый PR/7. Переход в сравнение/Переход в сравнение.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Новый PR/Новый PR.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Скачать/7. HTTPS/HTTPS.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Скачать/7. SSH/SSH.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Скачать/7. Архивы/Архивы.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Скачать/Скачать.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Теги/7. Добавить/Добавить.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Теги/7. Релизы/8. Создать/Создать.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Теги/7. Релизы/8. Удалить/Удалить.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Теги/7. Релизы/Релизы.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Теги/7. Создать/Создать.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Теги/7. Счетчик/Счетчик.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Теги/7. Удалить/Удалить.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Теги/Теги.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Флаги/7. Избранное/Избранное.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Флаги/7. Следить/Следить.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Флаги/7. Форкнуть/Форкнуть.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Флаги/Флаги.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Языки программирования/7. Плагин/Плагин.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/6. Языки программирования/Языки программирования.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Код/Код.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Настройки/6. Upstream/Upstream.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Настройки/6. Webhooks/7. Webhook/Webhook.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Настройки/6. Webhooks/7. Интеграция с Jenkins и Pipeliner/Интеграция с Jenkins и Pipeliner.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Настройки/6. Webhooks/Webhooks.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Настройки/6. Ветки/7. Ветка по умолчанию/Ветка по умолчанию.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Настройки/6. Ветки/7. Защита веток/Защита веток.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Настройки/6. Ветки/Ветки.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Настройки/6. Ключи развёртывания/Ключи развёртывания.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Настройки/6. Подключение к SonarQube/Подключение к SonarQube.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Настройки/6. Ревью/Ревью.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Настройки/6. Репозиторий/7. Code Owners/Code Owners.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Настройки/6. Репозиторий/7. Видимость/Видимость.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Настройки/6. Репозиторий/7. Настройки администратора/Настройки администратора.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Настройки/6. Репозиторий/7. Настройки подписи/Настройки подписи.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Настройки/6. Репозиторий/7. Основные параметры/Основные параметры.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Настройки/6. Репозиторий/7. Расширенные/Расширенные.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Настройки/6. Репозиторий/7. Удаление/Удаление.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Настройки/6. Репозиторий/Репозиторий.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Настройки/6. Теги/Теги.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Настройки/Настройки.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Создание/6. Видимость/Видимость.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Создание/6. Пересоздание/Пересоздание.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Создание/Создание.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Сравнение/Сравнение.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Страница сравнения/6. Сравнение по веткам/7. Diff/Diff.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Страница сравнения/6. Сравнение по веткам/7. Выбор файла/Выбор файла.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Страница сравнения/6. Сравнение по веткам/7. Опции/Опции.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Страница сравнения/6. Сравнение по веткам/7. Пробелы/Пробелы.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Страница сравнения/6. Сравнение по веткам/7. Создать  PR/Создать  PR.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Страница сравнения/6. Сравнение по веткам/Сравнение по веткам.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Страница сравнения/6. Сравнение по коммитам/Сравнение по коммитам.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Страница сравнения/6. Сравнение по тегам/Сравнение по тегам.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Страница сравнения/6. Фильтры/Фильтры.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Страница сравнения/Страница сравнения.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/5. Удаление/Удаление.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/4. Репозиторий/Репозиторий.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Репозитории/Репозитории.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Создание/4. Видимость/Видимость.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Создание/Создание.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Сортировка/Сортировка.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/3. Фильтры/Фильтры.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Проект/Проект.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Избранные/Избранные.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Настройки/4. Webhooks/Webhooks.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Настройки/4. Аккаунт/Аккаунт.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Настройки/4. Безопасность/Безопасность.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Настройки/4. Внешний вид/Внешний вид.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Настройки/4. Ключи SSH и GPG/Ключи SSH и GPG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Настройки/4. Приложения/5. Режим Oauth2-провайдера/Режим Oauth2-провайдера.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Настройки/4. Приложения/Приложения.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Настройки/4. Проекты/Проекты.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Настройки/4. Профиль/Профиль.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Настройки/4. Репозитории/Репозитории.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Настройки/Настройки.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Githooks/Githooks.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Webhooks/5. Добавить webhook/Добавить webhook.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Webhooks/Weebhooks.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Авторизация/5. Добавить новый источник/Добавить новый источник.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Авторизация/Авторизация.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Адреса эл. почты пользователей/Адреса эл. почты пользователей.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Конфигурация/Конфигурация.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Мониторинг/5. Задачи cron/Задачи cron.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Мониторинг/5. Очереди/6. Обзор/Обзор.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Мониторинг/5. Очереди/Очереди.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Мониторинг/5. Трассировки стека/Трассировки стека.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Мониторинг/Мониторинг.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Панель/Панель.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Пользователи/5. Создать нового пользователя/Создать нового пользователя.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Пользователи/Пользователи.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Приложения/Приложения.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Проекты/5. Новый проект/Новый проект.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Проекты/Проекты.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Репозитории/5. Не принятые репозитории/Не принятые репозитории.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Репозитории/Репозитории.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Системные уведомления/Системные уведомления.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/4. Тенанты/Тенанты.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Панель управления/Панель управления.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Подписки/Подписки.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Профиль/4. Активность/Активность.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Профиль/4. Избранные репозитории/Избранные репозитории.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Профиль/4. Репозитории/Репозитории.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/3. Профиль/Профиль.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Профиль и настройки/Профиль и настройки.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Уведомления/Уведомления.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/2. Этапы/Этапы.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. UI/UI.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. Общие механизмы/2. Аутентификация и авторизация/3. Аутентификация в API по access-токену/Аутентификация в API по access-токену.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. Общие механизмы/2. Аутентификация и авторизация/3. Аутентификация по JWT-токену/Аутентификация по JWT-токену.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. Общие механизмы/2. Аутентификация и авторизация/3. Аутентификация через LDAP/Аутентификация через LDAP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. Общие механизмы/2. Аутентификация и авторизация/3. Требования к учетным записям/Требования к учетным записям.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. Общие механизмы/2. Аутентификация и авторизация/Аутентификация и Авторизация.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. Общие механизмы/2. Боковое меню/Боковое меню.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. Общие механизмы/2. Выгрузка архивов/Выгрузка архивов.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. Общие механизмы/Общие механизмы.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/1. Ролевая модель/Ролевая модель.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/0. SourceControl/SourceControl.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/Draft SBTSUPPORT.canvas" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/Draft передача в АТ новых и измененных API.canvas" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/Draft-Процессы непрерывной сборки.canvas" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/Draft-Текущая схема подготовки.canvas" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/FAQ/Приоритеты и критичность/Draft критичность.canvas" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/FAQ/Связь с циклом/FAQ Как правильно связать тестовый цикл с задачей?.canvas" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/FAQ/Связь с циклом/Pasted image 20260402003915.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/FAQ/Связь с циклом/Pasted image 20260402004005.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/FAQ/Связь с циклом/Pasted image 20260402004043.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/FAQ/Связь с циклом/Pasted image 20260402004113.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/FAQ/Связь с циклом/Pasted image 20260402004205.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/FAQ/Связь с циклом/Pasted image 20260402004226.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/FAQ/Тестовый набор/FAQ Как создать новый набор тестов в области «Кейсы»?.canvas" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/FAQ/Тестовый набор/Pasted image 20260401150434.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/FAQ/Тестовый набор/Pasted image 20260401150859.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/FAQ/Тестовый набор/Pasted image 20260401150959.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/FAQ/Тестовый набор/Pasted image 20260401151209.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/FAQ/Тестовый набор/Pasted image 20260401151600.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/FAQ/Тестовый набор/Pasted image 20260401151657.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/FAQ/Тестовый цикл/FAQ Как создать тестовый цикл?.canvas" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/FAQ/Тестовый цикл/Pasted image 20260401181218.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/FAQ/Тестовый цикл/Pasted image 20260401181400.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/FAQ/Тестовый цикл/Pasted image 20260401181807.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/QA/Кадров Иван/Кадров Иван.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/TQL/TQL сущности (атрибуты) TaskTracker.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/TQL/workflow_status для TQL.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/TQL/Готовые TQL.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/data-sc.base" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/Релизы/9.5.0.canvas" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/Релизы/9.6.0/9.6.0.canvas" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/Релизы/9.6.0/~Время QA в 9.6.0.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/Релизы/GitOps зарисовки основных путей.canvas" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/Релизы/hf 9.4.1.canvas" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/Релизы/Баги.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/Релизы/Релизные задачи.canvas" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obsidian Vault/Чек-листы проверок/Процесс review.canvas" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pasted image 20260420234652.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pasted image 20260428123534.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pasted image 20260428123550.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/knowledges/sc/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/update-git.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/update-gitea.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/update-submodule.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/update-vcs-api.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/git/en/01-introduction/01-chapter1.markdown" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/git/en/02-git-basics/01-chapter2.markdown" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/git/en/03-git-branching/01-chapter3.markdown" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/git/en/04-git-server/01-chapter4.markdown" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/git/en/05-distributed-git/01-chapter5.markdown" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/git/en/06-git-tools/01-chapter6.markdown" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/git/en/07-customizing-git/01-chapter7.markdown" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/git/en/08-git-and-other-scms/01-chapter8.markdown" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources/git/en/09-git-internals/01-chapter9.markdown" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Тех. спринты/Карта действий.canvas" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" url="file://$USER_HOME$/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.0.darwin-arm64" />
+  <component name="Git.Rebase.Settings">
+    <option name="NEW_BASE" value="origin/main" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="3C7a0niRVmnlyyWWw6wVMHyehbj" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.GoLinterPluginOnboarding": "true",
+    "RunOnceActivity.GoLinterPluginStorageMigration": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "add-more-sources",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "/Users/smirnov.n.a/ghq/portal.works.prod.sbt/vcs/vcs-vault",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/scripts" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/scripts" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-f466f9b0953e-3d2cccfc42a2-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-252.26199.158" />
+        <option value="bundled-js-predefined-d6986cc7102b-9c94529fcfe0-JavaScript-GO-252.26199.158" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b2a90881-53b5-467c-ae7f-56445999fbac" name="Changes" comment="" />
+      <created>1775738842433</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1775738842433</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add submodule loader" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add submodule loader" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>

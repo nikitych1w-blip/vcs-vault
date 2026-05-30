@@ -1,0 +1,219 @@
+components:
+  schemas:
+    CommentBody:
+      description: Тело комментария
+      type: object
+      properties:
+        body:
+          description: Текст комментария
+          type: string
+          minLength: 1
+      required:
+        - body
+
+    CommentCommitSHA:
+      description: SHA коммита, к которому привязывается комментарий
+      type: object
+      properties:
+        commit_sha:
+          description: SHA коммита. Если не указан, вычисляется автоматически.
+          type: string
+          minLength: 40
+          maxLength: 40
+          nullable: true
+
+    ReviewType:
+      description: Статус ревью
+      type: string
+      enum:
+        - REQUEST_CHANGES
+        - APPROVED
+        - COMMENTED
+
+    FileVariant:
+      description: Вариант файла, к которому относится комментарий к коду
+      type: string
+      enum:
+        - PREVIOUS
+        - PROPOSED
+
+    CommentAuthor:
+      description: Автор комментария
+      type: object
+      required:
+        - name
+        - email
+      properties:
+        name:
+          description: Имя пользователя
+          type: string
+        email:
+          description: Email пользователя
+          type: string
+          format: email
+
+    CommentContext:
+      description: Контекст комментария
+      type: object
+      required:
+        - pull_request
+      properties:
+        file_variant:
+          $ref: '#/components/schemas/FileVariant'
+        line:
+          description: Номер строки в файле
+          type: integer
+          minimum: 1
+        filepath:
+          description: Путь к файлу
+          type: string
+          minLength: 1
+          maxLength: 1000
+        commit_sha:
+          description: SHA коммита, к которому относится комментарий
+          type: string
+          minLength: 40
+          maxLength: 40
+        pull_request:
+          description: Индекс пулл-реквеста
+          type: integer
+
+    Comment:
+      description: Комментарий к пулл-реквесту
+      type: object
+      required:
+        - id
+        - body
+        - author
+        - created_at
+        - updated_at
+        - official
+        - invalidated
+        - anchor_url
+        - context
+        - review_id
+        - type
+      properties:
+        id:
+          description: Идентификатор комментария
+          type: integer
+        body:
+          description: Текст комментария
+          type: string
+        author:
+          $ref: '#/components/schemas/CommentAuthor'
+        created_at:
+          description: Дата создания
+          type: string
+          format: date-time
+        updated_at:
+          description: Дата обновления
+          type: string
+          format: date-time
+        official:
+          description: Является ли комментарий официальным ревью
+          type: boolean
+        invalidated:
+          description: Является ли комментарий недействительным (устаревший код)
+          type: boolean
+        anchor_url:
+          description: URL привязки комментария к коду
+          type: string
+        context:
+          $ref: '#/components/schemas/CommentContext'
+        review_id:
+          description: Идентификатор ревью
+          type: integer
+        type:
+          $ref: '#/components/schemas/ReviewType'
+
+    CommentListResponse:
+      description: Список комментариев с пагинацией
+      type: object
+      required:
+        - comments
+        - pagination
+      properties:
+        comments:
+          description: Список комментариев
+          type: array
+          items:
+            $ref: '#/components/schemas/Comment'
+        pagination:
+          $ref: '../../common/pagination.yaml#/components/schemas/Pagination'
+
+    PRSimpleCommentCreateOptions:
+      description: Параметры для создания простого комментария к PR
+      allOf:
+        - $ref: '#/components/schemas/CommentBody'
+        - $ref: '#/components/schemas/CommentCommitSHA'
+        - type: object
+          properties:
+            reply_to:
+              description: ID комментария, на который отправляется ответ
+              type: integer
+              format: int64
+              minimum: 1
+              nullable: true
+
+    PRReviewCommentCreateOptions:
+      description: Параметры для создания ревью к PR
+      allOf:
+        - $ref: '#/components/schemas/CommentBody'
+        - $ref: '#/components/schemas/CommentCommitSHA'
+        - type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/ReviewType'
+          required:
+            - type
+
+    PRCodeCommentCreateOptions:
+      description: Параметры для создания комментария к коду в PR
+      allOf:
+        - $ref: '#/components/schemas/CommentBody'
+        - $ref: '#/components/schemas/CommentCommitSHA'
+        - type: object
+          properties:
+            file_variant:
+              $ref: '#/components/schemas/FileVariant'
+            filepath:
+              description: Путь к файлу
+              type: string
+              minLength: 1
+              maxLength: 1000
+            line:
+              description: Номер строки в файле
+              type: integer
+              minimum: 1
+            review_id:
+              description: Идентификатор ревью, к которому относится комментарий
+              type: integer
+              format: int64
+              minimum: 1
+              nullable: true
+          required:
+            - file_variant
+            - filepath
+            - line
+
+    PRCommentCreateOptions:
+      description: >-
+        Параметры создания комментария к PR. Если передан `type`, создаётся ревью;
+        если передан хотя бы один из `file_variant`, `filepath`, `line`, создаётся
+        комментарий к коду; иначе создаётся простой комментарий.
+      oneOf:
+        - $ref: '#/components/schemas/PRSimpleCommentCreateOptions'
+        - $ref: '#/components/schemas/PRReviewCommentCreateOptions'
+        - $ref: '#/components/schemas/PRCodeCommentCreateOptions'
+
+    CommentUpdate:
+      description: Параметры обновления комментария
+      type: object
+      required:
+        - body
+      properties:
+        body:
+          description: Новый текст комментария
+          type: string
+          minLength: 1

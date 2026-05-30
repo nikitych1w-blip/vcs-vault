@@ -1,0 +1,68 @@
+ProjectsCreate:
+  post:
+    tags: [projects]
+    summary: Create project
+    operationId: v2CreateProject
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/CreateProjectRequest'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/ProjectCreateResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+ProjectInfo:
+  get:
+    tags: [projects]
+    summary: Get project info
+    operationId: v2GetProject
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/TenantKey'
+      - $ref: '../../common/params.yaml#/components/parameters/ProjectKey'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/ProjectGetResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+ProjectKey:
+  get:
+    tags: [projects]
+    summary: Get project key
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/TenantKey'
+      - $ref: '../../common/params.yaml#/components/parameters/ProjectName'
+    operationId: v2GetProjectKey
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/ProjectKeyResponse'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

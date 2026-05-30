@@ -1,0 +1,22 @@
+components:
+  schemas:
+    Pagination:
+      type: object
+      description: Объект, представляющий информацию о пагинации
+      properties:
+        current_page:
+          type: integer
+          description: Текущая страница
+          example: 1
+        per_page:
+          type: integer
+          description: Число элементов на одной странице
+          example: 30
+        total_pages:
+          type: integer
+          description: Всего страниц
+          example: 10
+        total_items:
+          type: integer
+          description: Общее количество элементов
+          example: 250

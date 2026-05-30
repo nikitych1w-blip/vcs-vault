@@ -1,0 +1,8 @@
+!definelong Service_SC(id, name, description)
+Container(id, name, "Go", description, $tags="service")
+!enddefinelong
+
+!definelong Handler_Service_SC(id, name, description)
+Container(id, name, "Go", description, $tags="handler")
+!enddefinelong
+

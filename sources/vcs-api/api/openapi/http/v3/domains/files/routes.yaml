@@ -1,0 +1,181 @@
+RepoRawFile:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+    - $ref: '../../common/params.yaml#/components/parameters/Path'
+  get:
+    tags:
+      - files
+    summary: Get raw file contents
+    operationId: v3GetFileRaw
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/FileRawResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+    parameters:
+      - description: Название коммита/ветки/тэга (например, main, v1.2.0, a1b2c3d). По умолчанию — основная ветка.
+        in: query
+        name: ref
+        schema:
+          type: string
+RepoFileInfo:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+    - $ref: '../../common/params.yaml#/components/parameters/Path'
+  get:
+    tags:
+      - files
+    summary: Get file info
+    operationId: v3GetFileInfo
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/FileInfoResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+    parameters:
+      - description: Название коммита/ветки/тэга (например, main, v1.2.0, a1b2c3d). По умолчанию — основная ветка репозитория.
+        in: query
+        name: ref
+        schema:
+          type: string
+      - description: Номер страницы. Если не указан — подразумевается первая страница. При запросе по пути к файлу параметр игнорируется.
+        in: query
+        name: page
+        schema:
+          type: integer
+      - description: Максимальное количество элементов, возвращаемых в списке. Если не указано — по умолчанию максимальное количество элементов списка. При запросе по пути к файлу параметр игнорируется.
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: |-
+          Список полей файла для сортировки через запятую. Поддерживаемые поля: name, updated_at, size, type.
+
+          После имени поля можно указать порядок:
+          - :asc — по возрастанию,
+          - :desc — по убыванию.
+          Если порядок не указан, используется :asc.
+
+          Если параметр sort не передан, сервер применяет сортировку по умолчанию:
+          type:asc,name:asc.
+
+          Ограничения:
+          - Максимум 3 поля.
+          - Общая длина не более 100 символов.
+        in: query
+        name: sort
+        schema:
+          type: string
+RepoFileCreate:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+  post:
+    tags:
+      - files
+    summary: Create file
+    operationId: v3CreateFile
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/CreateFileRequest'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/FileCreateResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+RepoFileUpdate:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+  put:
+    tags:
+      - files
+    summary: Update file
+    operationId: v3UpdateFile
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/UpdateFileRequest'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/FileUpdateResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+RepoFileDelete:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+  post:
+    tags:
+      - files
+    summary: Delete file
+    operationId: v3DeleteFile
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/DeleteFileRequest'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/FileDeleteResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

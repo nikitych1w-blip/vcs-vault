@@ -1,0 +1,125 @@
+@startuml
+
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+!include ./../../../../../sources/component_units/sc.puml
+!include ./../../../../../sources/component_units/service.puml
+!include ./../../../../../sources/component_units/interface.puml
+!include ./../../../../../sources/component_units/styles.puml
+!include ./../../../../../sources/component_units/external_storages/gitaly.puml
+!include ./../../../../../sources/component_units/external_storages/redis.puml
+!include ./../../../../../sources/component_units/external_storages/postgresql.puml
+
+title Диаграмма взаимодействия для индексации кода (SC + Platform V Radish + Platform V Pangolin + Gitaly)
+
+set_styles()
+
+System_Boundary(sc, "SC Backend") {
+    SC_Component_App(sc_app)
+
+    Interface_SC(indexer_service, "Code Indexer", "Индексация кода репозиториев")
+    Interface_SC(search_service,  "Code Search", "Поиск по коду")
+
+    Implementation_SC(postgres_indexer, "PostgresIndexer", "Реализация индексации через PostgreSQL с pg_trgm")
+    note right of postgres_indexer
+        Использует конфигурационные параметры из app.ini
+        [indexer]
+        ISSUE_INDEXER_TYPE
+        STARTUP_TIMEOUT
+        REPO_INDEXER_ENABLED
+        REPO_INDEXER_TYPE
+        REPO_INDEXER_INCLUDE
+        REPO_INDEXER_EXCLUDE
+        MAX_FILE_SIZE
+        REPO_INDEXER_BATCH_SIZE
+    endnote
+
+    Handler_Service_SC(search_handler,  "SearchHandler", "Обработчик запросов поиска")
+
+    Service_SC(queue_manager,   "Manager", "Менеджер работы с очередями")
+    Interface_SC(worker_pool,     "WorkerPoolQueue", "Структура для работы очереди")
+    Implementation_SC(queue_redis,     "baseRedis", "Очереди в Redis")
+    note right of queue_redis
+        Использует конфигурационные параметры из app.ini
+        [queue]
+        TYPE
+        DATADIR
+        LENGTH
+        BATCH_LENGTH
+        QUEUE_NAME
+        SET_NAME
+        MAX_WORKERS
+    endnote
+
+    Implementation_SC(db_engine,       "xorm.Engine", "ORM для работы с PostgreSQL")
+
+    Interface_SC(manager,   "Manager", "Менеджер работы с клиентами")
+    Implementation_SC(redis_manager,   "RedisManager", "Менеджер работы с клиентами Redis")
+    note right of redis_manager
+        Использует конфигурационные параметры из app.ini
+        [queue]
+        REDIS_PING_RETRY_COUNT
+        REDIS_PING_RETRY_INTERVAL
+        REDIS_SCHEME
+        REDIS_ADDR
+        REDIS_ADDRS
+        REDIS_HOST
+        REDIS_PORT
+        REDIS_SOCKET
+        REDIS_DB
+        REDIS_USERNAME
+        REDIS_PASSWORD
+        REDIS_CLIENT_NAME
+        REDIS_TIMEOUT
+        REDIS_DIAL_TIMEOUT
+        REDIS_READ_TIMEOUT
+        REDIS_WRITE_TIMEOUT
+        REDIS_POOL_SIZE
+        REDIS_MIN_IDLE_CONNS
+        REDIS_POOL_TIMEOUT
+        REDIS_IDLE_TIMEOUT
+        REDIS_MAX_RETRIES
+        REDIS_MIN_RETRY_BACKOFF
+        REDIS_MAX_RETRY_BACKOFF
+        REDIS_MAX_REDIRECTS
+        REDIS_READ_ONLY
+        REDIS_ROUTE_BY_LATENCY
+        REDIS_ROUTE_RANDOMLY
+        REDIS_MASTER_NAME
+        REDIS_SENTINEL_USERNAME
+        REDIS_SENTINEL_PASSWORD
+        REDIS_SKIP_VERIFY
+        REDIS_INSECURE_SKIP_VERIFY
+    endnote
+}
+
+Gitaly_App(gitaly)
+PostgreSQL_Component(postgre)
+Redis_Component(redis_storage)
+
+Rel(sc_app, indexer_service, "Запуск индексации")
+Rel(sc_app, search_handler, "Поиск по коду")
+
+
+Rel(indexer_service, postgres_indexer, "Запуск из очереди реализация через PostgreSQL")
+Rel(search_service, postgres_indexer, "Поиск через PostgreSQL")
+Rel(search_handler, search_service, "Использует")
+
+Rel(indexer_service, queue_manager, "Добавление задачи в очередь")
+Rel(queue_manager, worker_pool, "Создает")
+Rel(worker_pool, queue_redis, "Реализация redis-очереди")
+
+
+Rel(postgres_indexer, gitaly, "Получение содержимого файлов", "gRPC: GetBlob, FindChangedPaths")
+
+' --- Доступ к PostgreSQL через xorm ---
+
+Rel(postgres_indexer, db_engine, "Использует xorm.Engine")
+Rel(queue_redis, manager, "Работа с очередями")
+Rel(manager, redis_manager, "Получает redis-клиент")
+Rel(redis_manager, redis_storage, "Создаёт и использует redis.UniversalClient", "go-redis/v9")
+
+Rel(db_engine, postgre, "SQL запросы к индексу и метаданным", "pgx driver")
+
+@enduml
+

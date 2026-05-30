@@ -1,0 +1,18 @@
+ui:
+  baseUrl: 'https://sc-iam.dev.pd04.pvw.sbt/ssd/tools/{{ config:sc.name }}/'
+  proxiedBaseUrl: '{{ config:ui.baseUrl }}'
+sc:
+  admin:
+    name: '{{ vault:sourcecontrol/at/sc-iam/admin:username }}'
+    password: '{{ vault:sourcecontrol/at/sc-iam/admin:password }}'
+  users:
+    - name: '{{ vault:sourcecontrol/at/sc-iam/user-1:username }}'
+      password: '{{ vault:sourcecontrol/at/sc-iam/user-1:password }}'
+    - name: '{{ vault:sourcecontrol/at/sc-iam/user-2:username }}'
+      password: '{{ vault:sourcecontrol/at/sc-iam/user-2:password }}'
+    - name: '{{ vault:sourcecontrol/at/sc-iam/user-3:username }}'
+      password: '{{ vault:sourcecontrol/at/sc-iam/user-3:password }}'
+    - name: '{{ vault:sourcecontrol/at/sc-iam/user-4:username }}'
+      password: '{{ vault:sourcecontrol/at/sc-iam/user-4:password }}'
+    - name: '{{ vault:sourcecontrol/at/sc-iam/user-5:username }}'
+      password: '{{ vault:sourcecontrol/at/sc-iam/user-5:password }}'

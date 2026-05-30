@@ -1,0 +1,10 @@
+components:
+  parameters:
+    topics:
+      name: topics
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Список топиков через запятую соответствующих паттерну ^[a-z0-9][a-z0-9-]*$
+        и количество символов одного топика больше или равно 35. Общее число топиков не должно превышать 25

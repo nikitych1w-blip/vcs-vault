@@ -1,0 +1,2007 @@
+{
+  "info": {
+    "_postman_id": "bc5beced-f818-4ed8-a389-6903ea4399a9",
+    "name": "PR",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "Create",
+      "item": [
+        {
+          "name": "api/v3",
+          "item": [
+            {
+              "name": "Create PR with filling only required fields in body",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"title\": \"PR_testing\",\r\n  \"head\": \"10\",\r\n  \"base\": \"11\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/pulls",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v3_prefix}}",
+                    "repos",
+                    "{{sc_api_mock_tenant_id}}",
+                    "{{sc_api_mock_project_name}}",
+                    "{{sc_api_mock_repository_name}}",
+                    "pulls"
+                  ]
+                },
+                "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_testing\",\r\n  \"head\": \"10\",\r\n  \"base\": \"11\"\r\n}'"
+              },
+              "response": []
+            },
+            {
+              "name": "Create PR with filling all fields in body",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"title\": \"PR_test\",\r\n  \"head\": \"15\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/pulls",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v3_prefix}}",
+                    "repos",
+                    "{{sc_api_mock_tenant_id}}",
+                    "{{sc_api_mock_project_name}}",
+                    "{{sc_api_mock_repository_name}}",
+                    "pulls"
+                  ]
+                },
+                "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Negative API",
+      "item": [
+        {
+          "name": "[Negative] Title > 100 symbols",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"gfrqbdpagaunfxcijboqthfyablikcdwiynkjrraysemlqaslwzhwqtmctqaajyfxjrcttulvzqldnuzwspqjlhtoeoifmcjoqxyp\",\r\n  \"head\": \"15\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/pulls",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_v3_prefix}}",
+                "repos",
+                "{{sc_api_mock_tenant_id}}",
+                "{{sc_api_mock_project_name}}",
+                "{{sc_api_mock_repository_name}}",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Title 1 symbol",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"r\",\r\n  \"head\": \"25\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/pulls",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_v3_prefix}}",
+                "repos",
+                "{{sc_api_mock_tenant_id}}",
+                "{{sc_api_mock_project_name}}",
+                "{{sc_api_mock_repository_name}}",
+                "pulls"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Title empty",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"\",\r\n  \"head\": \"15\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/pulls",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_v3_prefix}}",
+                "repos",
+                "{{sc_api_mock_tenant_id}}",
+                "{{sc_api_mock_project_name}}",
+                "{{sc_api_mock_repository_name}}",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Title already exists",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_test\",\r\n  \"head\": \"16\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/pulls",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_v3_prefix}}",
+                "repos",
+                "{{sc_api_mock_tenant_id}}",
+                "{{sc_api_mock_project_name}}",
+                "{{sc_api_mock_repository_name}}",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Head > 100 symbols",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_test\",\r\n  \"head\": \"gfrqbdpagaunfxcijboqthfyablikcdwiynkjrraysemlqaslwzhwqtmctqaajyfxjrcttulvzqldnuzwspqjlhtoeoifmcjoqxyp\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/pulls",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_v3_prefix}}",
+                "repos",
+                "{{sc_api_mock_tenant_id}}",
+                "{{sc_api_mock_project_name}}",
+                "{{sc_api_mock_repository_name}}",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Head 1 symbol",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_test\",\r\n  \"head\": \"g\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/pulls",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_v3_prefix}}",
+                "repos",
+                "{{sc_api_mock_tenant_id}}",
+                "{{sc_api_mock_project_name}}",
+                "{{sc_api_mock_repository_name}}",
+                "pulls"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Head already exists",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_test\",\r\n  \"head\": \"\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/pulls",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_v3_prefix}}",
+                "repos",
+                "{{sc_api_mock_tenant_id}}",
+                "{{sc_api_mock_project_name}}",
+                "{{sc_api_mock_repository_name}}",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Head required invalid symbols",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_test\",\r\n  \"head\": \"/?:@\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/pulls",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_v3_prefix}}",
+                "repos",
+                "{{sc_api_mock_tenant_id}}",
+                "{{sc_api_mock_project_name}}",
+                "{{sc_api_mock_repository_name}}",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Head with .lock",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_test\",\r\n  \"head\": \"test.lock\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/pulls",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_v3_prefix}}",
+                "repos",
+                "{{sc_api_mock_tenant_id}}",
+                "{{sc_api_mock_project_name}}",
+                "{{sc_api_mock_repository_name}}",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Base > 100 symbols",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_test\",\r\n  \"head\": \"15\",\r\n  \"base\": \"gfrqbdpagaunfxcijboqthfyablikcdwiynkjrraysemlqaslwzhwqtmctqaajyfxjrcttulvzqldnuzwspqjlhtoeoifmcjoqxyp\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/pulls",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_v3_prefix}}",
+                "repos",
+                "{{sc_api_mock_tenant_id}}",
+                "{{sc_api_mock_project_name}}",
+                "{{sc_api_mock_repository_name}}",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Base 1 symbol",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_test\",\r\n  \"head\": \"15\",\r\n  \"base\": \"g\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/pulls",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_v3_prefix}}",
+                "repos",
+                "{{sc_api_mock_tenant_id}}",
+                "{{sc_api_mock_project_name}}",
+                "{{sc_api_mock_repository_name}}",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Base empty",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_test\",\r\n  \"head\": \"15\",\r\n  \"base\": \"\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/pulls",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_v3_prefix}}",
+                "repos",
+                "{{sc_api_mock_tenant_id}}",
+                "{{sc_api_mock_project_name}}",
+                "{{sc_api_mock_repository_name}}",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Base required invalid symbols",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_test\",\r\n  \"head\": \"15\",\r\n  \"base\": \"/*@/.~\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/pulls",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_v3_prefix}}",
+                "repos",
+                "{{sc_api_mock_tenant_id}}",
+                "{{sc_api_mock_project_name}}",
+                "{{sc_api_mock_repository_name}}",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Base with .lock",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_test\",\r\n  \"head\": \"15\",\r\n  \"base\": \"test.lock\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/pulls",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_v3_prefix}}",
+                "repos",
+                "{{sc_api_mock_tenant_id}}",
+                "{{sc_api_mock_project_name}}",
+                "{{sc_api_mock_repository_name}}",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Base required non-existing name",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_test\",\r\n  \"head\": \"15\",\r\n  \"base\": \"testim\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Head > 512 symbols",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_test\",\r\n  \"head\": \"15\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"elmwkqoajrflvhkllzihbbndezwvaduccpmudhixvvljpghpfrtlhvddrhpsbtxwvxaanivjnbmvbnwfwaiajocgskpztskizpncohimosiltwzgqwvazrnifkobptbsznjjbpwmphkqaclwjrzppuztuowoydxsusohzmqpxljocvqzgpxcjezqynmpcoyichbqjlhkmhiyhxvopqcomfuxsrjhegwyiphuseqhbnwuhuyywvejhnldlwiyuzcqduofxohlqiqxrjspqseyqyzxdfijykftusrcfixksjotvkhygnvegafckrslzwnegahmlawmywqcecscoxdqhnjhixeuqqhtaduwaxfjsgeymbtoqitmcuqnrzadpxbpiqwnkfhpbumjropyqaabhuybysnkhlbinefhryzuyszusbykzoydvwlokwqdbvloyldlnaccymimkerghfxqvkbyjtrgcqlcfudkropnrjkowrrbaxrrfumtjivuaqhgn\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Head 1 symbol",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_test4456\",\r\n  \"head\": \"29\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"g\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Assigness > 40 symbols",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_test\",\r\n  \"head\": \"15\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"nbyyspqbdzgwfknurexoqpmhnhwpnzuhsqkjkop-we\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Assigness 1 symbol",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_test\",\r\n  \"head\": \"15\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"n\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Assigness required non-existing login",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_test0\",\r\n  \"head\": \"17\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"user_1_test78954\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Reviewers with invalid",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"test_pr\",\r\n  \"head\": \"test22\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [ \r\n\"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n   \r\n  ],\r\n  \"reviewers\": [\r\n     \"!!sa_vcs_user18!!\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Reviewers > 40 symbols",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"test_pr\",\r\n  \"head\": \"test22\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [ \r\n\"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n   \r\n  ],\r\n  \"reviewers\": [\r\n     \"nbyyspqbdzgwfknurexoqpmhnhwpnzuhsqkjkopwe\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Reviewers 1 symbol",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"test_pr\",\r\n  \"head\": \"test22\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [ \r\n\"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n   \r\n  ],\r\n  \"reviewers\": [\r\n     \"n\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Reviewers required non-existing login",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"test_pr\",\r\n  \"head\": \"23\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [ \r\n\"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n   \r\n  ],\r\n  \"reviewers\": [\r\n     \"user_1_test78455\",\r\n     \"user_2_test78455\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Login with invalid",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"test_pr\",\r\n  \"head\": \"23\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [ \r\n\"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n   \r\n  ],\r\n  \"reviewers\": [\r\n     \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    0,999\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Labels with invalid",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"test_pr\",\r\n  \"head\": \"23\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [ \r\n\"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n   \r\n  ],\r\n  \"reviewers\": [\r\n     \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    999\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Milestone with invalid",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"test_pr\",\r\n  \"head\": \"test22\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [ \r\n\"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n   \r\n  ],\r\n  \"reviewers\": [\r\n     \"sa_vcs_user20\"\r\n  ],\r\n  \"labels\": [\r\n    1\r\n  ],\r\n  \"milestone\": 0.999,\r\n  \"due_date\": \"12.05.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Due date invalid format",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"test_pr456\",\r\n  \"head\": \"33\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [ \r\n\"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n   \r\n  ],\r\n  \"reviewers\": [\r\n     \"sa_vcs_user20\"\r\n  ],\r\n  \"labels\": [\r\n    1\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.24.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Tenant_UUID non-existing",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"test_pr456\",\r\n  \"head\": \"33\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [ \r\n\"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n   \r\n  ],\r\n  \"reviewers\": [\r\n     \"sa_vcs_user20\"\r\n  ],\r\n  \"labels\": [\r\n    1\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.12.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96028d/ift1/1000/pulls",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96028d",
+                "ift1",
+                "1000",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Project_name non-existing",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"test_pr456\",\r\n  \"head\": \"33\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [ \r\n\"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n   \r\n  ],\r\n  \"reviewers\": [\r\n     \"sa_vcs_user20\"\r\n  ],\r\n  \"labels\": [\r\n    1\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.12.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift123/1000/pulls",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift123",
+                "1000",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Negative] Repo_name non-existing",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"test_pr456\",\r\n  \"head\": \"33\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [ \r\n\"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n   \r\n  ],\r\n  \"reviewers\": [\r\n     \"sa_vcs_user20\"\r\n  ],\r\n  \"labels\": [\r\n    1\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.12.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/100000000/pulls",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "100000000",
+                "pulls"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/pulls' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_test123\",\r\n  \"head\": \"14\",\r\n  \"base\": \"test1\",\r\n  \"body\": \"PR for testing new functional\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    1,\r\n    2\r\n  ],\r\n  \"milestone\": 3,\r\n  \"due_date\": \"12.05.2025\"\r\n}'"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

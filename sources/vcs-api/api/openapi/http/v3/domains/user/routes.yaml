@@ -1,0 +1,50 @@
+UserTokens:
+  post:
+    tags:
+      - user
+    summary: Create personal token
+    operationId: v3CreateUserToken
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/UserTokenCreate'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/UserTokenCreatedResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+UserKeys:
+  post:
+    tags:
+      - user
+    summary: Add SSH key to user
+    operationId: v3CreateUserKey
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/UserKeyCreate'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/UserKeyCreatedResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

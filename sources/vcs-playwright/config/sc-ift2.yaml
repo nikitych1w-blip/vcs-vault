@@ -1,0 +1,4 @@
+sc:
+  name: sc-ift2
+  ssh:
+    port: 7012

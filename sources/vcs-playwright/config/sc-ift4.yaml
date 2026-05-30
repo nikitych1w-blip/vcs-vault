@@ -1,0 +1,4 @@
+sc:
+  name: sc-ift4
+  ssh:
+    port: 7014

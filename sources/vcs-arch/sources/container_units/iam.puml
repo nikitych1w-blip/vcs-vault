@@ -1,0 +1,4 @@
+!definelong IAM_SC_App(id)
+Container(id, "IAM Proxy", "OpenResty", "Аутентификация пользователя", $tags="app")
+!enddefinelong
+

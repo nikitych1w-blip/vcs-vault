@@ -1,0 +1,4 @@
+package: generic
+output: models/events/v1/generic/initiator_user.gen.go
+generate:
+  models: true

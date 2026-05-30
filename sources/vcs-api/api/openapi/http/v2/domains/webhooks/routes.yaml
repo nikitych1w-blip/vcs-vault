@@ -1,0 +1,80 @@
+RepoWebhooks:
+  get:
+    tags: [webhooks]
+    summary: Get webhook by id
+    operationId: v2GetWebhook
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/TenantKey'
+      - $ref: '../../common/params.yaml#/components/parameters/ProjectKey'
+      - $ref: '../../common/params.yaml#/components/parameters/RepoKey'
+      - $ref: '../../common/params.yaml#/components/parameters/WebhookID'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/WebhookGetResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  post:
+    tags: [webhooks]
+    summary: Create webhook
+    operationId: v2CreateWebhook
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/TenantKey'
+      - $ref: '../../common/params.yaml#/components/parameters/ProjectKey'
+      - $ref: '../../common/params.yaml#/components/parameters/RepoKey'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/CreateHookOption'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/WebhookCreateResponse'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '422':
+        description: Unprocessable Entity
+        content:
+          application/json:
+            schema:
+              $ref: '../../common/errors.yaml#/components/schemas/ErrorResponse'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  delete:
+    tags: [webhooks]
+    summary: Delete webhook
+    operationId: v2DeleteWebhook
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/TenantKey'
+      - $ref: '../../common/params.yaml#/components/parameters/ProjectKey'
+      - $ref: '../../common/params.yaml#/components/parameters/RepoKey'
+      - $ref: '../../common/params.yaml#/components/parameters/WebhookID'
+    responses:
+      '204':
+        $ref: './responses.yaml#/components/responses/WebhookDeleteResponse'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

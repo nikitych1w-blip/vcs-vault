@@ -1,0 +1,67 @@
+RepoPrUpstream:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+  get:
+    tags:
+      - prupstream
+    summary: Get PR upstream settings
+    operationId: v3GetPrUpstreamSettings
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PRUpstreamGetResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  post:
+    tags:
+      - prupstream
+    summary: Create PR upstream settings
+    operationId: v3CreatePrUpstreamSettings
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRUpstreamSettingsCreate'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PRUpstreamCreateResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  delete:
+    tags:
+      - prupstream
+    summary: Delete PR upstream settings
+    operationId: v3DeletePrUpstreamSettings
+    responses:
+      '204':
+        $ref: './responses.yaml#/components/responses/PRUpstreamDeleteResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

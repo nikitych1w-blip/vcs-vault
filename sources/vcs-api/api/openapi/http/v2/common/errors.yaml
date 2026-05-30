@@ -1,0 +1,107 @@
+components:
+  responses:
+    BadRequest:
+      description: Некорректный запрос
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            type: null
+            title: Некорректный запрос
+            detail: Проверьте корректность переданных данных.
+            validation:
+              - field: name
+                error: Имя должно содержать от 1 до 50 символов.
+
+    Unauthorized:
+      description: Требуется аутентификация
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            type: null
+            title: Требуется аутентификация
+            detail: Токен доступа отсутствует или недействителен.
+
+    Forbidden:
+      description: Доступ запрещён
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            type: null
+            title: Доступ запрещён
+            detail: Недостаточно прав для выполнения операции.
+
+    NotFound:
+      description: Ресурс не найден
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            type: null
+            title: Ресурс не найден
+            detail: Запрашиваемый ресурс не существует.
+
+    Conflict:
+      description: Конфликт данных
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            type: null
+            title: Конфликт данных
+            detail: Ресурс с такими параметрами уже существует.
+
+    ServerError:
+      description: Ошибка сервера
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            type: null
+            title: Ошибка сервера
+            detail: Произошла внутренняя ошибка. Повторите запрос позже.
+
+  schemas:
+    ErrorResponse:
+      description: Формат ответа об ошибке
+      type: object
+      required:
+        - type
+        - title
+        - detail
+      properties:
+        type:
+          description: URI типа ошибки (временно null)
+          type: string
+          nullable: true
+          example: null
+        title:
+          description: Краткое название ошибки
+          type: string
+          example: Некорректный запрос
+        detail:
+          description: Подробное описание ошибки
+          type: string
+          example: Проверьте корректность переданных данных.
+        validation:
+          description: Массив ошибок валидации (если есть)
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                description: Имя поля, в котором произошла ошибка
+                type: string
+                example: name
+              error:
+                description: Описание ошибки для конкретного поля
+                type: string
+                example: Значение указано некорректно.

@@ -1,0 +1,711 @@
+{
+  "info": {
+    "_postman_id": "bd4e3be6-041f-4d6f-8b3c-67e5c373cd87",
+    "name": "SourceControl UI API Users",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Инфо о текущем (аутентифицированном) пользователе",
+          "request": {
+            "url": {
+              "path": [
+                "user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [],
+              "raw": "{{baseUrl}}/user"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "name": "Данные пользователя/организации",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/user"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3275,\n  \"login\": \"string\",\n  \"lower_name\": \"string\",\n  \"full_name\": \"string\",\n  \"visibility\": \"private\",\n  \"restricted\": true,\n  \"prohibit\": false,\n  \"is_admin\": false,\n  \"active\": true,\n  \"language\": \"ru-RU\",\n  \"created\": \"1951-02-01T04:15:35.192Z\",\n  \"starred_repos_count\": 875,\n  \"followers_count\": 7466,\n  \"following_count\": 4063,\n  \"avatar_url\": \"string\",\n  \"description\": \"string\",\n  \"email\": \"string\",\n  \"last_login\": \"2019-09-11T10:26:47.206Z\",\n  \"location\": \"string\",\n  \"website\": \"string\",\n  \"has_password\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/user"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/user"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещен",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/user"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/user"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/user"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Получить список пользователей репозитория",
+          "request": {
+            "description": "Возвращает список пользователей, имеющих доступ к репозиторию. Поддерживается поиск по логину, ФИО и email. Пагинация через page и limit.",
+            "url": {
+              "path": [
+                "repos",
+                ":project_name",
+                ":repo_name",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Поисковая строка для поиска"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>",
+                  "description": "Страница при постраничной навигации"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<string>",
+                  "description": "Количество элементов списка постраничной навигации"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project_name",
+                  "description": "(Required) Имя проекта"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_name",
+                  "description": "(Required) Название репозитория"
+                }
+              ],
+              "raw": "{{baseUrl}}/repos/:project_name/:repo_name/users?q=<string>&page=<string>&limit=<string>"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "name": "Список пользователей репозитория (с пагинацией)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":project_name",
+                    ":repo_name",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "frontend"
+                    },
+                    {
+                      "key": "page",
+                      "value": "2"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_name",
+                      "description": "(Required) Название репозитория"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:project_name/:repo_name/users?q=frontend&page=2&limit=10"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 2713,\n      \"username\": \"johndoe\",\n      \"full_name\": \"Иван Петров\",\n      \"avatar_url\": \"https://example.ru/ssd/tools/sc-example/prefix/avatars/5cb88b4bc892cf46294d7584afae435b42ee18e4c602602db8d335f94f18ef79?size=56\"\n    },\n    {\n      \"id\": 6893,\n      \"username\": \"johndoe\",\n      \"full_name\": \"Иван Петров\",\n      \"avatar_url\": \"https://example.ru/ssd/tools/sc-example/prefix/avatars/5cb88b4bc892cf46294d7584afae435b42ee18e4c602602db8d335f94f18ef79?size=56\"\n    }\n  ],\n  \"pagination\": {\n    \"current_page\": 1,\n    \"per_page\": 30,\n    \"total_pages\": 10,\n    \"total_items\": 250,\n    \"next_page\": 2,\n    \"previous_page\": null,\n    \"first_item\": 1,\n    \"last_item\": 30\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":project_name",
+                    ":repo_name",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "frontend"
+                    },
+                    {
+                      "key": "page",
+                      "value": "2"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_name",
+                      "description": "(Required) Название репозитория"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:project_name/:repo_name/users?q=frontend&page=2&limit=10"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":project_name",
+                    ":repo_name",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "frontend"
+                    },
+                    {
+                      "key": "page",
+                      "value": "2"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_name",
+                      "description": "(Required) Название репозитория"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:project_name/:repo_name/users?q=frontend&page=2&limit=10"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещен",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":project_name",
+                    ":repo_name",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "frontend"
+                    },
+                    {
+                      "key": "page",
+                      "value": "2"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_name",
+                      "description": "(Required) Название репозитория"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:project_name/:repo_name/users?q=frontend&page=2&limit=10"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":project_name",
+                    ":repo_name",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "frontend"
+                    },
+                    {
+                      "key": "page",
+                      "value": "2"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_name",
+                      "description": "(Required) Название репозитория"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:project_name/:repo_name/users?q=frontend&page=2&limit=10"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":project_name",
+                    ":repo_name",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "frontend"
+                    },
+                    {
+                      "key": "page",
+                      "value": "2"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_name",
+                      "description": "(Required) Название репозитория"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:project_name/:repo_name/users?q=frontend&page=2&limit=10"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  }
+}

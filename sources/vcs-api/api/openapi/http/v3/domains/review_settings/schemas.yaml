@@ -1,0 +1,127 @@
+components:
+  schemas:
+    ReviewSettings:
+      type: object
+      required:
+        - review_settings
+      properties:
+        review_settings:
+          type: array
+          description: Список настроек ревью для веток
+          items:
+            $ref: "#/components/schemas/BranchReviewSetting"
+
+    ReviewSettingsRequest:
+      type: object
+      required:
+        - branch_name
+        - approval_settings
+        - merge_restrictions
+        - merge_settings
+        - status_checks
+      properties:
+        branch_name:
+          type: string
+          description: Название ветки, к которой применяются настройки (например, "*")
+        approval_settings:
+          $ref: "#/components/schemas/ApprovalSettings"
+        merge_restrictions:
+          $ref: "#/components/schemas/MergeRestrictions"
+        merge_settings:
+          $ref: "#/components/schemas/MergeSettings"
+        status_checks:
+          $ref: "#/components/schemas/StatusChecks"
+
+    BranchReviewSetting:
+      type: object
+      required:
+        - branch_name
+        - approval_settings
+        - merge_restrictions
+        - merge_settings
+        - status_checks
+      properties:
+        branch_name:
+          type: string
+          description: Название ветки, к которой применяются настройки (например, "*")
+        approval_settings:
+          $ref: "#/components/schemas/ApprovalSettings"
+        merge_restrictions:
+          $ref: "#/components/schemas/MergeRestrictions"
+        merge_settings:
+          $ref: "#/components/schemas/MergeSettings"
+        status_checks:
+          $ref: "#/components/schemas/StatusChecks"
+
+    ApprovalSettings:
+      type: object
+      required:
+        - require_default_reviewers
+        - default_reviewers
+      properties:
+        require_default_reviewers:
+          type: boolean
+          description: Назначать ли ревьюеров по умолчанию
+        default_reviewers:
+          type: array
+          description: Список наборов ревьюеров по умолчанию
+          items:
+            $ref: "#/components/schemas/DefaultReviewerSet"
+
+    DefaultReviewerSet:
+      type: object
+      required:
+        - default_reviewers_list
+        - required_approvals_count
+      properties:
+        default_reviewers_list:
+          type: array
+          description: Список ревьюеров по умолчанию
+          items:
+            type: string
+        required_approvals_count:
+          type: integer
+          description: Минимальное количество необходимых аппрувов
+
+    MergeRestrictions:
+      type: object
+      properties:
+        block_on_official_review_requests:
+          type: boolean
+          description: Блокировать слияние, если есть запросы на официальное ревью
+        block_on_outdated_branch:
+          type: boolean
+          description: Блокировать слияние, если ветка отстаёт от основной
+        block_on_rejected_reviews:
+          type: boolean
+          description: Блокировать слияние при наличии отклонённых ревью
+        dismiss_stale_approvals:
+          type: boolean
+          description: Сбрасывать аппрувы при новых изменениях
+        require_sonarqube_quality_gate:
+          type: boolean
+          description: Требовать прохождения SonarQube Quality Gate
+
+    MergeSettings:
+      type: object
+      properties:
+        require_merge_whitelist:
+          type: boolean
+          description: Требовать белый список на слияние
+        merge_whitelist_usernames:
+          type: array
+          description: Список пользователей, которым разрешено слияние
+          items:
+            type: string
+
+    StatusChecks:
+      type: object
+      properties:
+        enable_status_check:
+          type: boolean
+          description: Включить проверку CI статусов
+        status_check_contexts:
+          type: array
+          description: Список обязательных CI проверок
+          items:
+            type: string

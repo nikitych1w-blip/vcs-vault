@@ -1,0 +1,216 @@
+ProjectRepos:
+  parameters:
+    - $ref: ../../common/params.yaml#/components/parameters/Tenant
+    - $ref: ../../common/params.yaml#/components/parameters/Project
+  get:
+    tags:
+      - repos
+    summary: List repositories in project
+    operationId: v3ListRepositories
+    parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+        description: Номер страницы
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 20
+          minimum: 1
+          maximum: 100
+        description: Количество элементов на странице
+      - name: q
+        in: query
+        schema:
+          type: string
+        description: Поисковый запрос
+      - name: sort
+        in: query
+        schema:
+          type: string
+        description: Сортировка (name, created_at, updated_at, stars, forks)
+    responses:
+      '200':
+        $ref: ./responses.yaml#/components/responses/RepositoriesListResponse
+      '400':
+        $ref: ../../common/errors.yaml#/components/responses/BadRequest
+      '401':
+        $ref: ../../common/errors.yaml#/components/responses/Unauthorized
+      '403':
+        $ref: ../../common/errors.yaml#/components/responses/Forbidden
+      '404':
+        $ref: ../../common/errors.yaml#/components/responses/NotFound
+      '500':
+        $ref: ../../common/errors.yaml#/components/responses/ServerError
+  post:
+    tags:
+      - repos
+    summary: Create repository in project
+    operationId: v3CreateRepository
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas.yaml#/components/schemas/RepoCreate
+    responses:
+      '201':
+        $ref: ./responses.yaml#/components/responses/RepositoryCreateResponse
+      '400':
+        $ref: ../../common/errors.yaml#/components/responses/BadRequest
+      '401':
+        $ref: ../../common/errors.yaml#/components/responses/Unauthorized
+      '403':
+        $ref: ../../common/errors.yaml#/components/responses/Forbidden
+      '404':
+        $ref: ../../common/errors.yaml#/components/responses/NotFound
+      '409':
+        $ref: ../../common/errors.yaml#/components/responses/Conflict
+      '500':
+        $ref: ../../common/errors.yaml#/components/responses/ServerError
+Repo:
+  parameters:
+    - $ref: ../../common/params.yaml#/components/parameters/Tenant
+    - $ref: ../../common/params.yaml#/components/parameters/Project
+    - $ref: ../../common/params.yaml#/components/parameters/Repo
+  get:
+    tags:
+      - repos
+    summary: Get repository
+    operationId: v3GetRepository
+    responses:
+      '200':
+        $ref: ./responses.yaml#/components/responses/RepositoryGetResponse
+      '400':
+        $ref: ../../common/errors.yaml#/components/responses/BadRequest
+      '401':
+        $ref: ../../common/errors.yaml#/components/responses/Unauthorized
+      '403':
+        $ref: ../../common/errors.yaml#/components/responses/Forbidden
+      '404':
+        $ref: ../../common/errors.yaml#/components/responses/NotFound
+      '500':
+        $ref: ../../common/errors.yaml#/components/responses/ServerError
+  delete:
+    tags:
+      - repos
+    summary: Delete repository
+    operationId: v3DeleteRepository
+    responses:
+      '204':
+        $ref: ./responses.yaml#/components/responses/RepositoryDeleteResponse
+      '400':
+        $ref: ../../common/errors.yaml#/components/responses/BadRequest
+      '401':
+        $ref: ../../common/errors.yaml#/components/responses/Unauthorized
+      '403':
+        $ref: ../../common/errors.yaml#/components/responses/Forbidden
+      '404':
+        $ref: ../../common/errors.yaml#/components/responses/NotFound
+      '500':
+        $ref: ../../common/errors.yaml#/components/responses/ServerError
+RepoSystemLabel:
+  parameters:
+    - $ref: ../../common/params.yaml#/components/parameters/Tenant
+    - $ref: ../../common/params.yaml#/components/parameters/Project
+    - $ref: ../../common/params.yaml#/components/parameters/Repo
+    - $ref: ../../common/params.yaml#/components/parameters/SystemLabel
+  get:
+    tags:
+      - repos
+    summary: Получение значения системной метки репозитория
+    description: Возвращает текущее значение указанной системной метки для репозитория
+    operationId: getSystemLabel
+    responses:
+      '200':
+        $ref: ./responses.yaml#/components/responses/RepoSystemLabelGetResponse
+      '400':
+        $ref: ../../common/errors.yaml#/components/responses/BadRequest
+      '401':
+        $ref: ../../common/errors.yaml#/components/responses/Unauthorized
+      '403':
+        $ref: ../../common/errors.yaml#/components/responses/Forbidden
+      '404':
+        $ref: ../../common/errors.yaml#/components/responses/NotFound
+      '500':
+        $ref: ../../common/errors.yaml#/components/responses/ServerError
+  put:
+    tags:
+      - repos
+    summary: Установка значения системной метки репозитория
+    description: Устанавливает значение для указанной системной метки репозитория. В текущей версии поддерживается только метка `tier0`
+    operationId: setSystemLabel
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas.yaml#/components/schemas/LabelValue
+    responses:
+      '201':
+        $ref: ./responses.yaml#/components/responses/RepoSystemLabelSetResponse
+      '400':
+        $ref: ../../common/errors.yaml#/components/responses/BadRequest
+      '401':
+        $ref: ../../common/errors.yaml#/components/responses/Unauthorized
+      '403':
+        $ref: ../../common/errors.yaml#/components/responses/Forbidden
+      '404':
+        $ref: ../../common/errors.yaml#/components/responses/NotFound
+      '500':
+        $ref: ../../common/errors.yaml#/components/responses/ServerError
+RepoDefaultBranch:
+  parameters:
+    - $ref: ../../common/params.yaml#/components/parameters/Tenant
+    - $ref: ../../common/params.yaml#/components/parameters/Project
+    - $ref: ../../common/params.yaml#/components/parameters/Repo
+  put:
+    tags:
+      - repos
+    summary: Set default branch
+    operationId: v3SetDefaultBranch
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ./schemas.yaml#/components/schemas/SetDefaultBranchBody
+    responses:
+      '200':
+        $ref: ./responses.yaml#/components/responses/DefaultBranchResponse
+      '400':
+        $ref: ../../common/errors.yaml#/components/responses/BadRequest
+      '401':
+        $ref: ../../common/errors.yaml#/components/responses/Unauthorized
+      '403':
+        $ref: ../../common/errors.yaml#/components/responses/Forbidden
+      '404':
+        $ref: ../../common/errors.yaml#/components/responses/NotFound
+      '500':
+        $ref: ../../common/errors.yaml#/components/responses/ServerError
+RepoSubscription:
+  parameters:
+    - $ref: ../../common/params.yaml#/components/parameters/Tenant
+    - $ref: ../../common/params.yaml#/components/parameters/Project
+    - $ref: ../../common/params.yaml#/components/parameters/Repo
+  get:
+    tags:
+      - repos
+    summary: Get repository subscription settings for current user
+    operationId: v3GetRepoSubscription
+    responses:
+      '200':
+        $ref: ./responses.yaml#/components/responses/SubscriptionGetResponse
+      '400':
+        $ref: ../../common/errors.yaml#/components/responses/BadRequest
+      '401':
+        $ref: ../../common/errors.yaml#/components/responses/Unauthorized
+      '403':
+        $ref: ../../common/errors.yaml#/components/responses/Forbidden
+      '404':
+        $ref: ../../common/errors.yaml#/components/responses/NotFound
+      '500':
+        $ref: ../../common/errors.yaml#/components/responses/ServerError

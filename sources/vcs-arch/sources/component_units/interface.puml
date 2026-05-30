@@ -1,0 +1,7 @@
+!definelong Interface_SC(id, name, description)
+Container(id, name, "Go", description, $tags="interface")
+!enddefinelong
+
+!definelong Implementation_SC(id, name, description)
+Container(id, name, "Go", description, $tags="implementation")
+!enddefinelong

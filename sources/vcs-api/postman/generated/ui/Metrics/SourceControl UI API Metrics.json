@@ -1,0 +1,421 @@
+{
+  "info": {
+    "_postman_id": "bd4e3be6-041f-4d6f-8b3c-67e5c373cd87",
+    "name": "SourceControl UI API Metrics",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Metrics",
+      "item": [
+        {
+          "name": "Получение метрик проверки репозитория с помощью Sonarqube",
+          "request": {
+            "url": {
+              "path": [
+                "repos",
+                ":project_name",
+                ":repo_name",
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "branch",
+                  "value": "<string>",
+                  "description": "(Required) Название ветки (encoded)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project_name",
+                  "description": "(Required) Имя проекта"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_name",
+                  "description": "(Required) Название репозитория"
+                }
+              ],
+              "raw": "{{baseUrl}}/repos/:project_name/:repo_name/metrics?branch=<string>"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "name": "Результат проверки репозитория инструментом Sonarqube",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":project_name",
+                    ":repo_name",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_name",
+                      "description": "(Required) Название репозитория"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:project_name/:repo_name/metrics?branch=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sonarQubeStatus\": \"SUCCESS\",\n  \"analysedAt\": \"2025-11-20T06:16:25+03:00\",\n  \"sonarUrl\": \"https://dHDNKWR.qbylOTQqmLFdrQxxwUXoUHbQ1VMcd-xQN,e52SrR\",\n  \"sonarProjectKey\": \"git-id\",\n  \"metrics\": [\n    {\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"PERCENT\",\n      \"domain\": \"string\",\n      \"value\": \"string\",\n      \"aux_metric_key\": \"string\",\n      \"aux_metric_name\": \"string\",\n      \"aux_metric_type\": \"string\",\n      \"aux_metric_value\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"PERCENT\",\n      \"domain\": \"string\",\n      \"value\": \"string\",\n      \"aux_metric_key\": \"string\",\n      \"aux_metric_name\": \"string\",\n      \"aux_metric_type\": \"string\",\n      \"aux_metric_value\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":project_name",
+                    ":repo_name",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_name",
+                      "description": "(Required) Название репозитория"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:project_name/:repo_name/metrics?branch=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":project_name",
+                    ":repo_name",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_name",
+                      "description": "(Required) Название репозитория"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:project_name/:repo_name/metrics?branch=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещен",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":project_name",
+                    ":repo_name",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_name",
+                      "description": "(Required) Название репозитория"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:project_name/:repo_name/metrics?branch=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":project_name",
+                    ":repo_name",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_name",
+                      "description": "(Required) Название репозитория"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:project_name/:repo_name/metrics?branch=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":project_name",
+                    ":repo_name",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_name",
+                      "description": "(Required) Название репозитория"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:project_name/:repo_name/metrics?branch=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  }
+}

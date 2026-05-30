@@ -1,0 +1,196 @@
+openapi: 3.0.3
+info:
+  title: SourceControl Health API
+  description: Эндпоинты для проверки работоспособности сервиса и просмотра health-спеки.
+  version: 0.0.0-dev
+  license:
+    name: Internal Proprietary License
+    url: https://example.invalid/
+servers:
+  - url: /api
+security:
+  - authorizationHeaderToken: []
+  - basicHttpAuthentication: []
+  - accessToken: []
+paths:
+  /health:
+    get:
+      tags:
+        - system
+      summary: Health check эндпоинт сервиса
+      description: Возвращает текущий статус сервиса и его зависимостей (БД, кеш) в формате, совместимом со стандартом HCK-501/HCK-502 (STD-15)
+      operationId: systemHealthCheckHCK
+      security: []
+      responses:
+        '200':
+          $ref: '#/components/responses/HealthSuccessResponse'
+        '500':
+          $ref: '#/components/responses/HealthFailureResponse'
+  /swagger_health:
+    get:
+      tags:
+        - system
+      summary: Swagger UI для Health API
+      description: Отображает Swagger UI для health-спеки, публикуемой downstream как `/swagger.health.json`.
+      operationId: systemSwaggerHealthUI
+      responses:
+        '200':
+          $ref: '#/components/responses/SwaggerHealthUIResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  securitySchemes:
+    authorizationHeaderToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API tokens must be prepended with "token" followed by a space.
+    basicHttpAuthentication:
+      type: http
+      scheme: basic
+      description: Авторизация по логину и паролю
+    accessToken:
+      type: apiKey
+      in: query
+      name: access_token
+      description: API access token passed as a query parameter.
+  schemas:
+    ComponentStatus:
+      type: object
+      required:
+        - status
+        - time
+      properties:
+        status:
+          type: string
+          enum:
+            - pass
+            - warn
+            - fail
+          description: Статус результата проверки конкретного компонента
+          example: pass
+        time:
+          type: string
+          format: date-time
+          description: Время проверки в формате ISO8601
+          example: '2026-04-08T10:15:30Z'
+        output:
+          type: string
+          description: Дополнительная информация (для статусов fail или warn)
+    HealthResponse:
+      type: object
+      required:
+        - status
+        - description
+      properties:
+        status:
+          type: string
+          enum:
+            - pass
+            - warn
+            - fail
+          description: Итоговый статус сервиса
+          example: pass
+        description:
+          type: string
+          description: Человекочитаемое описание сервиса (имя приложения)
+          example: SourceControl
+        checks:
+          type: object
+          description: Детальные статусы проверяемых компонентов. Ключ - имя компонента (например database:ping или cache:ping), значение - массив объектов ComponentStatus.
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/ComponentStatus'
+    ErrorResponse:
+      description: Формат ответа об ошибке
+      type: object
+      required:
+        - type
+        - title
+        - detail
+      properties:
+        type:
+          description: URI типа ошибки (временно null)
+          type: string
+          nullable: true
+          example: null
+        title:
+          description: Краткое название ошибки
+          type: string
+          example: Ошибка сервера
+        detail:
+          description: Подробное описание ошибки
+          type: string
+          example: Произошла внутренняя ошибка. Повторите запрос позже.
+  responses:
+    HealthSuccessResponse:
+      description: Сервис работоспособен (status = pass или warn)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HealthResponse'
+          example:
+            status: pass
+            description: SourceControl
+            checks:
+              database:ping:
+                - status: pass
+                  time: '2026-04-08T10:15:30Z'
+              cache:ping:
+                - status: pass
+                  time: '2026-04-08T10:15:30Z'
+    HealthFailureResponse:
+      description: Сервис недоступен (status = fail)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HealthResponse'
+          example:
+            status: fail
+            description: SourceControl
+            checks:
+              database:ping:
+                - status: fail
+                  time: '2026-04-08T10:15:30Z'
+                  output: Database connection timed out.
+    SwaggerHealthUIResponse:
+      description: HTML-страница Swagger UI для health-спеки
+      content:
+        text/html:
+          schema:
+            type: string
+    Unauthorized:
+      description: Требуется аутентификация
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            type: null
+            title: Требуется аутентификация
+            detail: Токен доступа отсутствует или недействителен.
+    Forbidden:
+      description: Доступ запрещён
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            type: null
+            title: Доступ запрещён
+            detail: Недостаточно прав для выполнения операции.
+    ServerError:
+      description: Ошибка сервера
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            type: null
+            title: Ошибка сервера
+            detail: Произошла внутренняя ошибка. Повторите запрос позже.

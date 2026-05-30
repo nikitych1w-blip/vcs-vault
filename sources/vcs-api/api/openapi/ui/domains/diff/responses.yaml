@@ -1,0 +1,27 @@
+components:
+  responses:
+    DiffCommitsListResponse:
+      description: Список коммитов между рефами
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/DiffCommitsList'
+    DiffFileResponse:
+          description: Diff изменений в файле
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/components/schemas/DiffFile'
+    DiffTreeResponse:
+          description: Дерево измененных файлов
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/components/schemas/TreeNode'
+    FileChunkResponse:
+          description: Содержимое файла по диапазону строк
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/components/schemas/FileChunk'
+

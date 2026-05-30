@@ -1,0 +1,30 @@
+# Лежит не в таргетном месте, необходимо переместить, когда будет понимание куда класть и куда генерить
+# Команда для генерации: oapi-codegen -generate types -config api/openapi/producers/v1/generic/initiator_user.cfg.yaml api/openapi/producers/v1/generic/initiator_user.yaml
+openapi: 3.0.0
+info:
+  title: Metadata of event
+  version: 1.0.0
+
+paths:
+  /:
+    get:
+      description: Fake endpoint to create a repository event
+      responses:
+        200:
+          description: Fake response to create a repository event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InitiatorUser'
+
+components:
+  schemas:
+    InitiatorUser:
+      description: Metadata
+      type: object
+      properties:
+        id:
+          type: string
+          description: User id
+      required:
+        - id

@@ -1,0 +1,30 @@
+components:
+  responses:
+    BranchProtectionListResponse:
+      description: Список правил защиты веток
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: './schemas.yaml#/components/schemas/BranchProtectionBody'
+    BranchProtectionResponse:
+      description: Правило защиты ветки
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/BranchProtectionBody'
+    BranchProtectionCreatedResponse:
+      description: Правило защиты ветки успешно создано
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/BranchProtectionBody'
+    BranchProtectionUpdatedResponse:
+      description: Правило защиты ветки успешно обновлено
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/BranchProtectionBody'
+    BranchProtectionDeletedResponse:
+      description: Правило защиты ветки успешно удалено

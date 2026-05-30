@@ -1,0 +1,140 @@
+RepoPullComments:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+    - $ref: '../../common/params.yaml#/components/parameters/PullRequestIndex'
+  get:
+    tags:
+      - comments
+    summary: List comments on pull request
+    operationId: v3GetPRComments
+    parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+        description: Номер страницы
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 30
+          minimum: 1
+          maximum: 100
+        description: Количество элементов на странице
+      - name: sort
+        in: query
+        schema:
+          type: string
+          enum:
+            - created_at
+            - updated_at
+        description: >
+          Сортировка по полю. Допустимые значения: created_at, updated_at.
+      - name: state
+        in: query
+        schema:
+          type: string
+        description: Фильтр по состоянию комментария
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/CommentListResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  post:
+    tags:
+      - comments
+    summary: Add comment to pull request
+    operationId: v3AddPRComment
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRCommentCreateOptions'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/CommentCreateResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+RepoPullComment:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+    - $ref: '../../common/params.yaml#/components/parameters/PullRequestIndex'
+    - $ref: '../../common/params.yaml#/components/parameters/CommentId'
+  get:
+    tags:
+      - comments
+    summary: Get a single comment
+    operationId: v3GetPRComment
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/CommentGetResponse'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  patch:
+    tags:
+      - comments
+    summary: Update comment
+    operationId: v3UpdatePRComment
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/CommentUpdate'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/CommentUpdateResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  delete:
+    tags:
+      - comments
+    summary: Delete comment
+    operationId: v3DeletePRComment
+    responses:
+      '204':
+        $ref: './responses.yaml#/components/responses/CommentDeleteResponse'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

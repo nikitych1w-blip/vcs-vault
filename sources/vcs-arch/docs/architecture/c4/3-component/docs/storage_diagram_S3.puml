@@ -1,0 +1,46 @@
+@startuml Services
+
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+!include ./../../../../../sources/component_units/sc.puml
+!include ./../../../../../sources/component_units/service.puml
+!include ./../../../../../sources/component_units/interface.puml
+!include ./../../../../../sources/component_units/styles.puml
+!include ./../../../../../sources/component_units/external_storages/s3.puml
+
+title Диаграмма взаимодействия SourceControl c Managed S3
+
+set_styles()
+
+System_Boundary(sc, "SС Backend") {
+    SC_Component_App(sc_app)
+
+
+    Service_SC(archive_service, "Archive Service", "Сервис для работы с архивами")
+    Service_SC(avatar_service, "Avatar Service", "Сервис для работы с аватарами пользователя и репозиториев")
+    Service_SC(attachment_service, "Attachment Service",  "Сервис для работы с вложениями")
+    Service_SC(temp_service, "Temp Service", "Сервис для работы с временными загрузками")
+
+    Interface_SC(storage_int, "Object Storage", "Интерфейс для работы с хранилищем статики")
+    Implementation_SC(s3_impl, "Object Storage S3", "Работа с S3 хранилищем статики")
+}
+
+S3_Component(s3_storage)
+
+' Service usage
+Rel(sc_app, archive_service, "Работа с архивами")
+Rel(sc_app, avatar_service, "Работа с аватарами")
+Rel(sc_app, attachment_service, "Работа с вложениями")
+Rel(sc_app, temp_service, "Работа с временными загружаемыми файлами")
+
+Rel(storage_int, s3_impl, "Обращение к хранилищу")
+Rel(s3_impl, s3_storage, "Обращение к S3", "minio-go/v7")
+
+'S3 usage
+Rel(archive_service, storage_int, "Запрос архивов")
+Rel(avatar_service, storage_int, "Запрос аватаров")
+Rel(attachment_service, storage_int, "Запрос вложений")
+Rel(temp_service, storage_int, "Сохранение временных загружаемых файлами")
+
+
+@enduml

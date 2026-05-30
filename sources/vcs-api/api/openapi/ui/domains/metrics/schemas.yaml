@@ -1,0 +1,77 @@
+components:
+  schemas:
+    Metrics:
+      type: object
+      required:
+        - sonarQubeStatus
+        - analysedAt
+        - sonarUrl
+        - sonarProjectKey
+        - metrics
+      properties:
+        sonarQubeStatus:
+          type: string
+          description: Общий статус анализа безопасности кода
+          enum: [SUCCESS, WARNING, ERROR, NONE]
+          example: SUCCESS
+        analysedAt:
+          type: string
+          format: date-time
+          description: Дата проведения анализа
+          example: '2025-11-20T06:16:25+03:00'
+        sonarUrl:
+          type: string
+          description: Путь до прогона сонара
+          format: uri
+        sonarProjectKey:
+          type: string
+          description: Дата проведения анализа
+          example: 'git-id'
+        metrics:
+          type: array
+          description: Список инструментов для сканирования кода и их результаты
+          items:
+            $ref: '#/components/schemas/MetricsItem'
+
+    MetricsItem:
+      type: object
+      required:
+        - key
+        - name
+        - type
+        - domain
+        - value
+        - aux_metric_key
+        - aux_metric_name
+        - aux_metric_type
+        - aux_metric_value
+      properties:
+        key:
+          type: string
+          description: Ключ метрики
+        name:
+          type: string
+          description: Название метрики
+        type:
+          type: string
+          description: Тип метрики
+          enum: [INT, BOOL, PERCENT, FLOAT, RATING]
+          example: PERCENT
+        domain:
+          type: string
+          description: Домен метрики
+        value:
+          type: string
+          description: Значение метрики
+        aux_metric_key:
+          type: string
+          description: Ключ aux метрики
+        aux_metric_name:
+          type: string
+          description: Название aux метрики
+        aux_metric_type:
+          type: string
+          description: Тип aux метрики
+        aux_metric_value:
+          type: string
+          description: Значение aux метрики

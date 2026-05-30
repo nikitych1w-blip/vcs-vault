@@ -1,0 +1,63 @@
+# Лежит не в таргетном месте, необходимо переместить, когда будет понимание куда класть и куда генерить
+# Команда для генерации: oapi-codegen -generate types -config api/openapi/producers/v1/generic/context.cfg.yaml api/openapi/producers/v1/generic/context.yaml
+openapi: 3.0.0
+info:
+  title: Context of event
+  version: 1.0.0
+
+paths:
+  /:
+    get:
+      description: Fake endpoint to create a repository event
+      responses:
+        200:
+          description: Fake response to create a repository event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Context'
+
+components:
+  schemas:
+    Context:
+      type: object
+      description: Context
+      properties:
+        tenant_id:
+          type: string
+          description: Tenant ID
+        event_id:
+          type: string
+          description: Event ID
+        event_code:
+          type: string
+          enum:
+            - OPENED
+            - REOPENED
+            - DECLINED
+            - COMMENTED
+            - REVIEWED
+            - APPROVED
+            - UNAPPROVED
+            - MERGED
+            - UPDATED
+            - DELETED
+            - RESCOPED_FROM
+            - RESCOPED_TO
+          description: Event code
+        entity_type:
+          type: string
+          description: Entity type
+          enum:
+            - PULL REQUEST
+        event_createTs:
+          type: string
+          format: timestamp
+          description: Event create timestamp in UTC
+      required:
+        - tenant_id
+        - event_id
+        - event_code
+        - entity_type
+        - event_createTs
+

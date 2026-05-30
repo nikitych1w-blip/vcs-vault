@@ -1,0 +1,19 @@
+components:
+  responses:
+    UserTokenCreatedResponse:
+      description: Токен успешно создан
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/UserTokenCreated'
+      headers:
+        Location:
+          description: URL созданного ресурса
+          schema:
+            type: string
+    UserKeyCreatedResponse:
+      description: SSH-ключ успешно добавлен
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/UserKey'

@@ -1,0 +1,179 @@
+components:
+  schemas:
+    Group:
+      type: string
+      enum:
+        - owner
+        - manager
+        - writer
+        - reader
+      description: |
+        Группы доступа:
+        - owner — Владелец проекта или репозитория. Полный доступ, включая управление правами и настройками.
+        - manager — Менеджер. Полный доступ к содержимому, но без возможности изменения владельца или удаления проекта/репозитория.
+        - writer — Разработчик. Ограниченный доступ, может редактировать содержимое, но не настройки.
+        - reader — Читатель. Только просмотр содержимого.
+
+    ProjectAction:
+      type: string
+      enum:
+        - can_edit_project_settings
+        - can_manage_privileges
+        - can_manage_teams
+        - can_create_repo
+      description: |
+        Доступные действия с проектом:
+        - can_edit_project_settings — Пользователь может редактировать настройки проекта.
+        - can_manage_privileges — Пользователь может управлять правами доступа других пользователей.
+        - can_manage_teams — Пользователь может управлять командами проекта.
+        - can_create_repo — Пользователь может создавать репозитории в рамках проекта.
+
+    RepoAction:
+      type: string
+      enum:
+        - can_edit_repo_settings
+        - can_create_branch
+        - can_delete_branch
+        - can_switch_default_branch
+        - can_manage_pr
+        - can_restore_branch
+      description: |
+        Доступные действия с репозиторием:
+        - can_edit_repo_settings — Пользователь может редактировать настройки репозитория.
+        - can_create_branch — Пользователь может создавать новые ветки.
+        - can_delete_branch — Пользователь может удалять ветки.
+        - can_switch_default_branch - Пользователь может сменить ветку по умолчанию
+        - can_manage_pr - Пользователь может создавать, редактировать и удалять ПР
+        - can_restore_branch - Пользователь может восстановить удаленную ветку
+
+    IsAdmin:
+      type: object
+      properties:
+        is_admin:
+          type: boolean
+          description: Является ли пользователь администратором
+          example: true
+      required:
+        - is_admin
+
+    ProjectAccess:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/IsAdmin'
+        - $ref: '#/components/schemas/ProjectAccessBody'
+
+    RepoAccess:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/IsAdmin'
+        - $ref: '#/components/schemas/RepoAccessBody'
+
+    AccessProjectsPayload:
+      type: object
+      properties:
+        projects:
+          type: array
+          items:
+            type: string
+          description: 'Список ID проектов'
+          example:
+            - '13'
+            - '14'
+      required:
+        - projects
+
+    AccessReposPayload:
+      type: object
+      properties:
+        repos:
+          type: array
+          items:
+            type: string
+          description: Список ID репозиториев
+          example:
+            - '13'
+            - '14'
+      required:
+        - repos
+
+    RepoAccessBody:
+      type: object
+      description: Информация о доступе к репозиторию
+      properties:
+        repo_id:
+          type: string
+          description: Уникальный идентификатор репозитория
+          example: '13'
+        repo_name:
+          type: string
+          description: Название репозитория
+          example: 'myrepo'
+        group:
+          $ref: '#/components/schemas/Group'
+          description: Группа доступа пользователя к репозиторию
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/RepoAction'
+          description: Список действий, доступных пользователю в рамках репозитория
+          example:
+            - 'can_edit_repo_settings'
+            - 'can_delete_branch'
+      required:
+        - repo_id
+        - repo_name
+        - group
+
+    ProjectAccessBody:
+      type: object
+      description: Информация о доступе к проекту
+      properties:
+        project_id:
+          type: string
+          description: Уникальный идентификатор проекта
+          example: '13'
+        project_name:
+          type: string
+          description: Название проекта
+          example: 'myproject'
+        group:
+          $ref: '#/components/schemas/Group'
+          description: Группа доступа пользователя к проекту
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectAction'
+          description: Список действий, доступных пользователю в рамках проекта
+          example:
+            - 'can_edit_project_settings'
+            - 'can_manage_teams'
+      required:
+        - actions
+        - project_name
+        - project_id
+
+    ReposListAccess:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/IsAdmin'
+        - type: object
+          properties:
+            repos:
+              type: array
+              items:
+                $ref: '#/components/schemas/RepoAccessBody'
+          required:
+            - repos
+
+    ProjectListAccess:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/IsAdmin'
+        - type: object
+          properties:
+            projects:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProjectAccessBody'
+          required:
+            - projects

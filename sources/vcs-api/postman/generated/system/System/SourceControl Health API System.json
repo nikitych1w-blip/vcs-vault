@@ -1,0 +1,286 @@
+{
+  "info": {
+    "_postman_id": "04fa1d74-b1cb-4460-86f5-f9a92a8b0d95",
+    "name": "SourceControl Health API System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Эндпоинты для проверки работоспособности сервиса и просмотра health-спеки."
+  },
+  "item": [
+    {
+      "name": "System",
+      "item": [
+        {
+          "name": "Health check эндпоинт сервиса",
+          "request": {
+            "description": "Возвращает текущий статус сервиса и его зависимостей (БД, кеш) в формате, совместимом со стандартом HCK-501/HCK-502 (STD-15)",
+            "url": {
+              "path": [
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [],
+              "raw": "{{baseUrl}}/health"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "name": "Сервис работоспособен (status = pass или warn)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/health"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"pass\",\n  \"description\": \"SourceControl\",\n  \"checks\": {\n    \"database:ping\": [\n      {\n        \"status\": \"pass\",\n        \"time\": \"2026-04-08T10:15:30Z\"\n      }\n    ],\n    \"cache:ping\": [\n      {\n        \"status\": \"pass\",\n        \"time\": \"2026-04-08T10:15:30Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Сервис недоступен (status = fail)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/health"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"fail\",\n  \"description\": \"SourceControl\",\n  \"checks\": {\n    \"database:ping\": [\n      {\n        \"status\": \"fail\",\n        \"time\": \"2026-04-08T10:15:30Z\",\n        \"output\": \"Database connection timed out.\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Swagger UI для Health API",
+          "request": {
+            "description": "Отображает Swagger UI для health-спеки, публикуемой downstream как `/swagger.health.json`.",
+            "url": {
+              "path": [
+                "swagger_health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [],
+              "raw": "{{baseUrl}}/swagger_health"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "name": "HTML-страница Swagger UI для health-спеки",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "swagger_health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/swagger_health"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "swagger_health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/swagger_health"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "swagger_health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/swagger_health"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "swagger_health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/swagger_health"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  }
+}

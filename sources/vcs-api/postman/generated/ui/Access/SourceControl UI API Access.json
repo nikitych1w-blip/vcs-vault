@@ -1,0 +1,1607 @@
+{
+  "info": {
+    "_postman_id": "bd4e3be6-041f-4d6f-8b3c-67e5c373cd87",
+    "name": "SourceControl UI API Access",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Access",
+      "item": [
+        {
+          "name": "Получить права доступа к конкретному проекту",
+          "request": {
+            "description": "Возвращает информацию о правах пользователя на конкретный проект по его имени",
+            "url": {
+              "path": [
+                "access",
+                "projects",
+                ":project_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project_name",
+                  "description": "(Required) Имя проекта"
+                }
+              ],
+              "raw": "{{baseUrl}}/access/projects/:project_name"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "name": "Доступы для проекта",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects",
+                    ":project_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/access/projects/:project_name"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"actions\": [\n    \"can_edit_project_settings\",\n    \"can_manage_teams\"\n  ],\n  \"is_admin\": true,\n  \"project_id\": \"13\",\n  \"project_name\": \"myproject\",\n  \"group\": \"manager\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects",
+                    ":project_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/access/projects/:project_name"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects",
+                    ":project_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/access/projects/:project_name"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещен",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects",
+                    ":project_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/access/projects/:project_name"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects",
+                    ":project_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/access/projects/:project_name"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects",
+                    ":project_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/access/projects/:project_name"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Получить права доступа к списку проектов",
+          "request": {
+            "description": "Возвращает информацию о правах пользователя на несколько проектов по их Name",
+            "url": {
+              "path": [
+                "access",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [],
+              "raw": "{{baseUrl}}/access/projects"
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"projects\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Доступы для списка проектов",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/access/projects"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projects\": [\n    \"13\",\n    \"14\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"is_admin\": true,\n  \"projects\": [\n    {\n      \"actions\": [\n        \"can_edit_project_settings\",\n        \"can_manage_teams\"\n      ],\n      \"project_name\": \"myproject\",\n      \"project_id\": \"13\",\n      \"group\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    {\n      \"actions\": [\n        \"can_edit_project_settings\",\n        \"can_manage_teams\"\n      ],\n      \"project_name\": \"myproject\",\n      \"project_id\": \"13\",\n      \"group\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/access/projects"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projects\": [\n    \"13\",\n    \"14\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/access/projects"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projects\": [\n    \"13\",\n    \"14\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещен",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/access/projects"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projects\": [\n    \"13\",\n    \"14\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/access/projects"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projects\": [\n    \"13\",\n    \"14\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/access/projects"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projects\": [\n    \"13\",\n    \"14\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Получить права доступа ко всем репозиториям",
+          "request": {
+            "description": "Возвращает информацию о правах пользователя на несколько репозиториев",
+            "url": {
+              "path": [
+                "access",
+                "repos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [],
+              "raw": "{{baseUrl}}/access/repos"
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repos\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Доступы для списка репозиториев",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/access/repos"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repos\": [\n    \"13\",\n    \"14\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"is_admin\": true,\n  \"repos\": [\n    {\n      \"repo_id\": \"13\",\n      \"repo_name\": \"myrepo\",\n      \"group\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"actions\": [\n        \"can_edit_repo_settings\",\n        \"can_delete_branch\"\n      ]\n    },\n    {\n      \"repo_id\": \"13\",\n      \"repo_name\": \"myrepo\",\n      \"group\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"actions\": [\n        \"can_edit_repo_settings\",\n        \"can_delete_branch\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/access/repos"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repos\": [\n    \"13\",\n    \"14\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/access/repos"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repos\": [\n    \"13\",\n    \"14\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещен",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/access/repos"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repos\": [\n    \"13\",\n    \"14\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/access/repos"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repos\": [\n    \"13\",\n    \"14\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/access/repos"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repos\": [\n    \"13\",\n    \"14\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Получить права доступа к конкретному репозиторию",
+          "request": {
+            "description": "Возвращает информацию о правах пользователя на конкретный репозиторий по его имени",
+            "url": {
+              "path": [
+                "access",
+                "projects",
+                ":project_name",
+                "repos",
+                ":repo_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project_name",
+                  "description": "(Required) Имя проекта"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_name",
+                  "description": "(Required) Название репозитория"
+                }
+              ],
+              "raw": "{{baseUrl}}/access/projects/:project_name/repos/:repo_name"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "name": "Доступы для репозитория",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects",
+                    ":project_name",
+                    "repos",
+                    ":repo_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_name",
+                      "description": "(Required) Название репозитория"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/access/projects/:project_name/repos/:repo_name"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"group\": \"manager\",\n  \"is_admin\": true,\n  \"repo_id\": \"13\",\n  \"repo_name\": \"myrepo\",\n  \"actions\": [\n    \"can_edit_repo_settings\",\n    \"can_delete_branch\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects",
+                    ":project_name",
+                    "repos",
+                    ":repo_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_name",
+                      "description": "(Required) Название репозитория"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/access/projects/:project_name/repos/:repo_name"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects",
+                    ":project_name",
+                    "repos",
+                    ":repo_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_name",
+                      "description": "(Required) Название репозитория"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/access/projects/:project_name/repos/:repo_name"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещен",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects",
+                    ":project_name",
+                    "repos",
+                    ":repo_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_name",
+                      "description": "(Required) Название репозитория"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/access/projects/:project_name/repos/:repo_name"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects",
+                    ":project_name",
+                    "repos",
+                    ":repo_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_name",
+                      "description": "(Required) Название репозитория"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/access/projects/:project_name/repos/:repo_name"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects",
+                    ":project_name",
+                    "repos",
+                    ":repo_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_name",
+                      "description": "(Required) Название репозитория"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/access/projects/:project_name/repos/:repo_name"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Получить права доступа к списку репозиториев проекта",
+          "request": {
+            "description": "Возвращает информацию о правах пользователя на все репозитории в рамках проекта",
+            "url": {
+              "path": [
+                "access",
+                "projects",
+                ":project_name",
+                "repos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project_name",
+                  "description": "(Required) Имя проекта"
+                }
+              ],
+              "raw": "{{baseUrl}}/access/projects/:project_name/repos"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "name": "Доступы для списка репозиториев",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects",
+                    ":project_name",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/access/projects/:project_name/repos"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"is_admin\": true,\n  \"repos\": [\n    {\n      \"repo_id\": \"13\",\n      \"repo_name\": \"myrepo\",\n      \"group\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"actions\": [\n        \"can_edit_repo_settings\",\n        \"can_delete_branch\"\n      ]\n    },\n    {\n      \"repo_id\": \"13\",\n      \"repo_name\": \"myrepo\",\n      \"group\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"actions\": [\n        \"can_edit_repo_settings\",\n        \"can_delete_branch\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects",
+                    ":project_name",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/access/projects/:project_name/repos"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects",
+                    ":project_name",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/access/projects/:project_name/repos"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещен",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects",
+                    ":project_name",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/access/projects/:project_name/repos"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects",
+                    ":project_name",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/access/projects/:project_name/repos"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "projects",
+                    ":project_name",
+                    "repos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_name",
+                      "description": "(Required) Имя проекта"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/access/projects/:project_name/repos"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"null\",\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Ошибка в имени\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  }
+}

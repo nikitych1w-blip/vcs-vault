@@ -1,0 +1,11 @@
+!definelong Gitaly_App(id)
+System_Boundary(external_storage, "External Storages") {
+    System_Boundary(gitaly_inst, "Gitaly Instance") {
+        Container(id, "Gitaly Server", "Go", "Хранилище для работы с git репозиториями", $tags="app")
+        Container(gitalyHooks, "Серверные Git хуки", "Go", "pre-receive / post-receive / proc-receive")
+        ContainerDb(repoStorage, "Хранилище репозиториев", "SSD", "Git репозитории")
+    }
+}
+Rel(gitaly, repoStorage, "Чтение/запись git-объектов")
+Rel(gitaly, gitalyHooks, "Запуск серверных хуков")
+!enddefinelong

@@ -1,0 +1,16 @@
+components:
+  responses:
+    WebhookGetResponse:
+      description: Информация о вебхуке
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/Hook'
+    WebhookCreateResponse:
+      description: Вебхук создан
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/Hook'
+    WebhookDeleteResponse:
+      description: Вебхук удалён

@@ -1,0 +1,382 @@
+RepoPulls:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+  get:
+    tags:
+      - pulls
+    summary: List pull requests
+    operationId: v3ListPullRequests
+    parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+        description: Номер страницы
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 20
+          minimum: 1
+          maximum: 100
+        description: Количество элементов на странице
+      - name: state
+        in: query
+        schema:
+          type: string
+          enum: [open, closed, all]
+          default: open
+        description: Фильтр по состоянию
+      - name: sort
+        in: query
+        schema:
+          type: string
+        description: Сортировка (created_at, updated_at, due_date)
+      - name: milestone
+        in: query
+        schema:
+          type: integer
+          format: int64
+        description: Фильтр по вехе
+      - name: labels
+        in: query
+        schema:
+          type: string
+        description: Фильтр по меткам (через запятую)
+      - name: target_branch
+        in: query
+        schema:
+          type: string
+        description: Фильтр по целевой ветке
+      - name: author
+        in: query
+        schema:
+          type: string
+        description: Фильтр по автору
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PullRequestListResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  post:
+    tags:
+      - pulls
+    summary: Create pull request
+    operationId: v3CreatePullRequest
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRCreation'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/PullRequestCreateResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+RepoPull:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+    - $ref: '../../common/params.yaml#/components/parameters/PullRequestIndex'
+  get:
+    tags:
+      - pulls
+    summary: Get pull request
+    operationId: v3GetPullRequest
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PullRequestGetResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  patch:
+    tags:
+      - pulls
+    summary: Update pull request
+    operationId: v3UpdatePullRequest
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRPatch'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PullRequestUpdateResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+RepoPullFiles:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+    - $ref: '../../common/params.yaml#/components/parameters/PullRequestIndex'
+  get:
+    tags:
+      - pulls
+    summary: List changed files in pull request
+    operationId: v3GetPRFiles
+    parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+        description: Номер страницы
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 20
+          minimum: 10
+          maximum: 100
+        description: Количество элементов на странице
+      - name: sort
+        in: query
+        schema:
+          type: string
+          default: 'filepath:asc'
+        description: >
+          Сортировка. Формат: field:direction.
+          Допустимые поля: filepath, status.
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PullRequestFilesResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+RepoPullCommits:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+    - $ref: '../../common/params.yaml#/components/parameters/PullRequestIndex'
+  get:
+    tags:
+      - pulls
+    summary: List commits in pull request
+    operationId: v3GetPRCommits
+    parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+        description: Номер страницы
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 20
+          minimum: 10
+          maximum: 100
+        description: Количество элементов на странице
+      - name: sort
+        in: query
+        schema:
+          type: string
+          default: 'created:asc'
+        description: >
+          Сортировка. Формат: field:direction.
+          Допустимое поле: created.
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PullRequestCommitsResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+RepoPullDiff:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+    - $ref: '../../common/params.yaml#/components/parameters/PullRequestIndex'
+  get:
+    tags:
+      - pulls
+    summary: Download pull request diff or patch
+    operationId: v3PullRequestDiff
+    parameters:
+      - name: diffType
+        in: query
+        schema:
+          type: string
+          enum: [diff, patch]
+          default: diff
+        description: Формат вывода (diff или patch)
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PullRequestDiffResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+RepoPullMerge:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+    - $ref: '../../common/params.yaml#/components/parameters/PullRequestIndex'
+  post:
+    tags:
+      - pulls
+    summary: Merge pull request
+    operationId: v3MergePullRequest
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRMerge'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PullRequestMergeResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+RepoPullIssues:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+    - $ref: '../../common/params.yaml#/components/parameters/PullRequestIndex'
+  get:
+    tags:
+      - pulls
+    summary: Get linked task tracker issues for a pull request
+    operationId: v3GetPRIssues
+    parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        description: Номер страницы
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 20
+          minimum: 10
+          maximum: 100
+        description: Количество элементов на странице
+      - name: sort
+        in: query
+        schema:
+          type: string
+          default: 'code:asc'
+        description: >
+          Список полей задачи для сортировки через запятую.
+          Поддерживаемые поля: code, status, title, priority.
+          После имени поля можно указать порядок: :asc или :desc.
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PRIssuesGetResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+RepoPullDecline:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+    - $ref: '../../common/params.yaml#/components/parameters/PullRequestIndex'
+  post:
+    tags:
+      - pulls
+    summary: Decline pull request
+    operationId: v3DeclinePullRequest
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PullRequestDeclineResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRDeclineRequest'
+      required: true

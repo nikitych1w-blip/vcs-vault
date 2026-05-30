@@ -1,0 +1,1265 @@
+{
+  "info": {
+    "_postman_id": "c5a68a06-dfbd-42a8-a2b2-8faafc4a68d6",
+    "name": "SourceControl API v2 Webhooks",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "SourceControl REST API v2"
+  },
+  "item": [
+    {
+      "name": "Webhooks",
+      "description": "Webhooks",
+      "item": [
+        {
+          "name": "Get webhook by id",
+          "request": {
+            "url": {
+              "path": [
+                "repos",
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_key",
+                  "value": "<string>",
+                  "description": "(Required) Tenant key"
+                },
+                {
+                  "disabled": false,
+                  "key": "project_key",
+                  "value": "<string>",
+                  "description": "(Required) Project key"
+                },
+                {
+                  "disabled": false,
+                  "key": "repo_key",
+                  "value": "<string>",
+                  "description": "(Required) Repository key"
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<long>",
+                  "description": "(Required) Webhook ID"
+                }
+              ],
+              "variable": [],
+              "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>&id=<long>"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "name": "Информация о вебхуке",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>&id=<long>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2808,\n  \"config\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"events\": [\n    \"string\",\n    \"string\"\n  ],\n  \"authorization_header\": \"string\",\n  \"active\": false,\n  \"branch_filter\": \"string\",\n  \"updated_at\": \"1977-04-14T15:45:15.968Z\",\n  \"created_at\": \"2023-03-07T09:59:47.621Z\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>&id=<long>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных.\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Имя должно содержать от 1 до 50 символов.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>&id=<long>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>&id=<long>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>&id=<long>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ресурс не найден\",\n  \"detail\": \"Запрашиваемый ресурс не существует.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>&id=<long>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Create webhook",
+          "request": {
+            "url": {
+              "path": [
+                "repos",
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_key",
+                  "value": "<string>",
+                  "description": "(Required) Tenant key"
+                },
+                {
+                  "disabled": false,
+                  "key": "project_key",
+                  "value": "<string>",
+                  "description": "(Required) Project key"
+                },
+                {
+                  "disabled": false,
+                  "key": "repo_key",
+                  "value": "<string>",
+                  "description": "(Required) Repository key"
+                }
+              ],
+              "variable": [],
+              "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>"
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"config\": {\n    \"content_type\": \"<string>\",\n    \"url\": \"<string>\",\n    \"secret\": \"<string>\"\n  },\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"branch_filter\": \"<string>\",\n  \"authorization_header\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Вебхук создан",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"config\": {\n    \"content_type\": \"<string>\",\n    \"url\": \"<string>\",\n    \"secret\": \"<string>\"\n  },\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"branch_filter\": \"<string>\",\n  \"authorization_header\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2643,\n  \"config\": {\n    \"key_0\": \"string\"\n  },\n  \"events\": [\n    \"string\",\n    \"string\"\n  ],\n  \"authorization_header\": \"string\",\n  \"active\": false,\n  \"branch_filter\": \"string\",\n  \"updated_at\": \"1979-05-27T02:22:45.193Z\",\n  \"created_at\": \"2019-11-30T05:50:01.025Z\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"config\": {\n    \"content_type\": \"<string>\",\n    \"url\": \"<string>\",\n    \"secret\": \"<string>\"\n  },\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"branch_filter\": \"<string>\",\n  \"authorization_header\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных.\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Имя должно содержать от 1 до 50 символов.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"config\": {\n    \"content_type\": \"<string>\",\n    \"url\": \"<string>\",\n    \"secret\": \"<string>\"\n  },\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"branch_filter\": \"<string>\",\n  \"authorization_header\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"config\": {\n    \"content_type\": \"<string>\",\n    \"url\": \"<string>\",\n    \"secret\": \"<string>\"\n  },\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"branch_filter\": \"<string>\",\n  \"authorization_header\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"config\": {\n    \"content_type\": \"<string>\",\n    \"url\": \"<string>\",\n    \"secret\": \"<string>\"\n  },\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"branch_filter\": \"<string>\",\n  \"authorization_header\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ресурс не найден\",\n  \"detail\": \"Запрашиваемый ресурс не существует.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Конфликт данных",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"config\": {\n    \"content_type\": \"<string>\",\n    \"url\": \"<string>\",\n    \"secret\": \"<string>\"\n  },\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"branch_filter\": \"<string>\",\n  \"authorization_header\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Конфликт данных\",\n  \"detail\": \"Ресурс с такими параметрами уже существует.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"config\": {\n    \"content_type\": \"<string>\",\n    \"url\": \"<string>\",\n    \"secret\": \"<string>\"\n  },\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"branch_filter\": \"<string>\",\n  \"authorization_header\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных.\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Значение указано некорректно.\"\n    },\n    {\n      \"field\": \"name\",\n      \"error\": \"Значение указано некорректно.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"config\": {\n    \"content_type\": \"<string>\",\n    \"url\": \"<string>\",\n    \"secret\": \"<string>\"\n  },\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"branch_filter\": \"<string>\",\n  \"authorization_header\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Delete webhook",
+          "request": {
+            "url": {
+              "path": [
+                "repos",
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_key",
+                  "value": "<string>",
+                  "description": "(Required) Tenant key"
+                },
+                {
+                  "disabled": false,
+                  "key": "project_key",
+                  "value": "<string>",
+                  "description": "(Required) Project key"
+                },
+                {
+                  "disabled": false,
+                  "key": "repo_key",
+                  "value": "<string>",
+                  "description": "(Required) Repository key"
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<long>",
+                  "description": "(Required) Webhook ID"
+                }
+              ],
+              "variable": [],
+              "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>&id=<long>"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "name": "Вебхук удалён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>&id=<long>"
+                },
+                "method": "DELETE"
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>&id=<long>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных.\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Имя должно содержать от 1 до 50 символов.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>&id=<long>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>&id=<long>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE"
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>&id=<long>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ресурс не найден\",\n  \"detail\": \"Запрашиваемый ресурс не существует.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/repos/webhooks?tenant_key=<string>&project_key=<string>&repo_key=<string>&id=<long>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE"
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  }
+}

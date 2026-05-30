@@ -1,0 +1,71 @@
+{
+  "info": {
+    "_postman_id": "9b74330c-6c0f-4ed0-ac6e-39009a80f5fa",
+    "name": "Archive",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "Получение архива",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/{{tenant}}/{{project1}}/{{repo1}}/archive?sha=dbb0795fd14012b3cf14a7690d126a3d42e5e2cc",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-ift1",
+            "api",
+            "v3",
+            "repos",
+            "{{tenant}}",
+            "{{project1}}",
+            "{{repo1}}",
+            "archive"
+          ],
+          "query": [
+            {
+              "key": "sha",
+              "value": "dbb0795fd14012b3cf14a7690d126a3d42e5e2cc"
+            }
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    }
+  ]
+}

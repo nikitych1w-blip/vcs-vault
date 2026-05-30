@@ -1,0 +1,8 @@
+components:
+  responses:
+    TemplateResponse:
+      description: Шаблон PR успешно получен
+      content:
+        text/plain:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/Template'

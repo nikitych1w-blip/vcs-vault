@@ -1,0 +1,43 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","x":0,"y":-140,"width":2240,"height":100,"text":"# Роадмап: работа над тестовой моделью SourceControl"},
+		{"id":"g1","type":"group","x":0,"y":0,"width":340,"height":460,"label":"Фаза 1 — Онбординг","color":"5"},
+		{"id":"n1_1","type":"text","x":20,"y":60,"width":300,"height":80,"text":"Прочитать FAQ\n`docs/FAQ.md`"},
+		{"id":"n1_2","type":"text","x":20,"y":160,"width":300,"height":80,"text":"Изучить терминологию\n`FAQ/dictionary.md`"},
+		{"id":"n1_3","type":"text","x":20,"y":260,"width":300,"height":80,"text":"Открыть vault в Obsidian\n`docs/test-model`"},
+		{"id":"n1_4","type":"text","x":20,"y":360,"width":300,"height":80,"text":"Изучить Graph View\nи топологию коллекции"},
+		{"id":"g2","type":"group","x":380,"y":0,"width":340,"height":460,"label":"Фаза 2 — Структура","color":"4"},
+		{"id":"n2_1","type":"text","x":400,"y":60,"width":300,"height":80,"text":"Открыть `INDEX.md`\nпройти уровни lv0 → lv2"},
+		{"id":"n2_2","type":"text","x":400,"y":160,"width":300,"height":80,"text":"Разобраться с тегами\n`#lv`, `#SC`, `#UI`, `#api`"},
+		{"id":"n2_3","type":"text","x":400,"y":260,"width":300,"height":80,"text":"Фильтровать по тегу\nдля нужной области"},
+		{"id":"n2_4","type":"text","x":400,"y":360,"width":300,"height":80,"text":"Найти листовые узлы\n(без дочерних файлов)"},
+		{"id":"g3","type":"group","x":760,"y":0,"width":340,"height":460,"label":"Фаза 3 — Анализ покрытия","color":"3"},
+		{"id":"n3_1","type":"text","x":780,"y":60,"width":300,"height":80,"text":"Инвентаризировать узлы\nпо приоритетным разделам"},
+		{"id":"n3_2","type":"text","x":780,"y":160,"width":300,"height":80,"text":"Выявить пробелы\nнепокрытые области"},
+		{"id":"n3_3","type":"text","x":780,"y":260,"width":300,"height":80,"text":"Расставить статусы\n`missing` / `partial` / `covered`"},
+		{"id":"n3_4","type":"text","x":780,"y":360,"width":300,"height":80,"text":"Приоритизировать\nпо критичности функций"},
+		{"id":"g4","type":"group","x":1140,"y":0,"width":340,"height":460,"label":"Фаза 4 — Написание тест-кейсов","color":"2"},
+		{"id":"n4_1","type":"text","x":1160,"y":60,"width":300,"height":80,"text":"Писать тест-кейсы\nпо листовым узлам"},
+		{"id":"n4_2","type":"text","x":1160,"y":160,"width":300,"height":80,"text":"Привязать к TMS\n`tms: TC-XXXX` в frontmatter"},
+		{"id":"n4_3","type":"text","x":1160,"y":260,"width":300,"height":80,"text":"Обновить статус узла\n`status: covered`"},
+		{"id":"n4_4","type":"text","x":1160,"y":360,"width":300,"height":80,"text":"Покрывать priority-first\nкритичное → остальное"},
+		{"id":"g5","type":"group","x":1520,"y":0,"width":340,"height":460,"label":"Фаза 5 — Контроль покрытия","color":"6"},
+		{"id":"n5_1","type":"text","x":1540,"y":60,"width":300,"height":80,"text":"Dataview-запрос\nузлы `missing` и `partial`"},
+		{"id":"n5_2","type":"text","x":1540,"y":160,"width":300,"height":80,"text":"Ревью тест-кейсов\nна актуальность"},
+		{"id":"n5_3","type":"text","x":1540,"y":260,"width":300,"height":80,"text":"Метрика покрытия\ncovered / total"},
+		{"id":"n5_4","type":"text","x":1540,"y":360,"width":300,"height":80,"text":"Подтвердить покрытие\nперед релизом"},
+		{"id":"g6","type":"group","x":1900,"y":0,"width":340,"height":460,"label":"Фаза 6 — Поддержка","color":"1"},
+		{"id":"n6_1","type":"text","x":1920,"y":60,"width":300,"height":80,"text":"Отслеживать изменения\nв продукте"},
+		{"id":"n6_2","type":"text","x":1920,"y":160,"width":300,"height":80,"text":"Добавлять новые узлы\nпри релизах"},
+		{"id":"n6_3","type":"text","x":1920,"y":260,"width":300,"height":80,"text":"Актуализировать\nтест-кейсы и статусы"},
+		{"id":"n6_4","type":"text","x":1920,"y":360,"width":300,"height":80,"text":"Удалять устаревшие узлы\n(помечены «удалить раздел»)"}
+	],
+	"edges":[
+		{"id":"e1_2","fromNode":"g1","fromSide":"right","toNode":"g2","toSide":"left"},
+		{"id":"e2_3","fromNode":"g2","fromSide":"right","toNode":"g3","toSide":"left"},
+		{"id":"e3_4","fromNode":"g3","fromSide":"right","toNode":"g4","toSide":"left"},
+		{"id":"e4_5","fromNode":"g4","fromSide":"right","toNode":"g5","toSide":"left"},
+		{"id":"e5_6","fromNode":"g5","fromSide":"right","toNode":"g6","toSide":"left"},
+		{"id":"e6_3","fromNode":"g6","fromSide":"bottom","toNode":"g3","toSide":"bottom","label":"новый релиз"}
+	]
+}

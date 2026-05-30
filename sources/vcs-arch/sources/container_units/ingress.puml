@@ -1,0 +1,4 @@
+!definelong Ingress_K8S_App(id)
+Container(id, "Ingress", "k8s", "LB", $tags="app")
+!enddefinelong
+

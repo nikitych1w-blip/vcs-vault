@@ -1,0 +1,4 @@
+!definelong Gitea_Component_App(id)
+Container(id, "Gitea", "Go", "Точка входа для всех операций", $tags="app")
+!enddefinelong
+

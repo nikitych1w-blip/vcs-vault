@@ -1,0 +1,11 @@
+!definelong Person_Deployment_Node(id, container_id)
+Deployment_Node(id, "Пользователь", "Browser") {
+    Container(container_id, "Web Browser", "Sberbrowser", "")
+}
+!enddefinelong
+
+!definelong GitCli_Deployment_Node(id, container_id)
+Deployment_Node(id, "Пользователь", "Git Cli") {
+    Container(container_id, "Git Cli", "Git Cli", "")
+}
+!enddefinelong

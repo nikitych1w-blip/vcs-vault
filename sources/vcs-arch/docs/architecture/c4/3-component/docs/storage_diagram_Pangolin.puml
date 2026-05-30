@@ -1,0 +1,40 @@
+@startuml Services
+
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+!include ./../../../../../sources/component_units/sc.puml
+!include ./../../../../../sources/component_units/service.puml
+!include ./../../../../../sources/component_units/interface.puml
+!include ./../../../../../sources/component_units/styles.puml
+!include ./../../../../../sources/component_units/external_storages/postgresql.puml
+
+title Диаграмма взаимодействия SourceControl c Platform V Pangolin
+
+set_styles()
+
+System_Boundary(sc, "SC Backend") {
+    SC_Component_App(sc_app)
+
+    Service_SC(repo_db_service, "Repo Service", "Сервис для работы с репозиториями")
+    Service_SC(user_db_service, "User Service", "Сервис для работы с пользователями")
+    Service_SC(casbin_db_service, "Casbin Service", "Сервис для работы с ролевой моделью")
+    Service_SC(index_db_service, "Index Service", "Сервис для работы с индексами")
+}
+
+PostgreSQL_Component(postgre_storage)
+
+' Service usage
+Rel(sc_app, repo_db_service, "Работа с репозиториями")
+Rel(sc_app, user_db_service, "Работа с пользователями")
+Rel(sc_app, casbin_db_service, "Работа с ролевой моделью")
+Rel(sc_app, index_db_service, "Работа с с индексами")
+
+'PostgreSQL usage
+Rel(repo_db_service, postgre_storage, "Запрос репозиториев", "xorm")
+Rel(user_db_service, postgre_storage, "Запрос пользователей или проектов", "xorm")
+Rel(casbin_db_service, postgre_storage, "Запрос политик", "gorm")
+Rel(index_db_service, postgre_storage, "Запрос индексов", "xorm")
+
+
+
+@enduml

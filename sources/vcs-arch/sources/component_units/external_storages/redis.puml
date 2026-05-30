@@ -1,0 +1,23 @@
+!definelong Redis_Component(input_id)
+System_Boundary(external_storage, "External Storages") {
+    Container(input_id, "Platform V Radish", "Redis", "Shared cache")
+
+    ContainerDb(redis_queue, "Очереди", "Shared", "Очереди системы")
+    ContainerDb(redis_sessions, "Сессии", "Shared", "Сессии пользователей")
+    ContainerDb(redis_tenant_org, "Проекты тенантов", "Shared", "Связка тенантов и проектов")
+    ContainerDb(redis_casbin, "Casbin", "Shared", "Результаты вычислений Casbin политик")
+    ContainerDb(redis_mail_params, "Mail Params", "Shared", "Настройки для сервиса отправки сообсщений")
+    ContainerDb(redis_avatar_hash, "Avatar Hash", "Shared", "Хэши аватаров")
+    ContainerDb(redis_commits_count, "Commits Count", "Shared", "Количество коммитов репозитория")
+}
+
+'Redis relationships
+Rel(redis_storage, redis_queue, "Запрос к очередям системы")
+Rel(redis_storage, redis_sessions, "Запрос к сессиям пользователей")
+Rel(redis_storage, redis_tenant_org, "Запрос связки проекта и тенанта")
+Rel(redis_storage, redis_casbin, "Запрос вычисленных политик")
+Rel(redis_storage, redis_mail_params, "Запрос параметров для отправки сообщений")
+Rel(redis_storage, redis_avatar_hash, "Получение хэша аватара")
+Rel(redis_storage, redis_commits_count, "Получение колличества коммитов")
+
+!enddefinelong

@@ -1,0 +1,20 @@
+components:
+  responses:
+    ProjectCreateResponse:
+      description: Проект создан
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/Project'
+    ProjectGetResponse:
+      description: Информация о проекте
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/Project'
+    ProjectKeyResponse:
+      description: Ключ проекта
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/ProjectKey'

@@ -1,0 +1,227 @@
+components:
+  schemas:
+    BranchCreatePayload:
+      type: object
+      required:
+        - name
+        - source
+      properties:
+        name:
+          type: string
+          description: Имя новой ветки
+          example: 'feature/new-ui'
+        source:
+          type: string
+          description: Имя родительской ветки
+          example: 'main'
+      description: Тело с названием новой ветки и родительской ветки
+
+    BranchRenamePayload:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Имя новой ветки
+          example: 'feature/new-ui'
+      description: Тело с названием новой ветки и родительской ветки
+
+    Commit:
+      type: object
+      properties:
+        hash:
+          type: string
+          description: Хэш коммита
+          example: 'abc1234'
+        title:
+          type: string
+          description: Заголовок коммита
+          example: 'Update dependencies'
+        created_at:
+          type: string
+          format: date-time
+          description: Дата создания коммита
+          example: '2025-04-05T14:30:00Z'
+      required:
+        - hash
+        - title
+        - created_at
+
+    AssignedPullRequest:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Номер pull request
+          example: 'PR-123'
+        title:
+          type: string
+          description: Заголовок pull request
+          example: 'Fix bug in login flow'
+        description:
+          type: string
+          description: Описание pull request
+          example: 'This PR fixes a bug in the login flow and updates some dependencies.'
+        target_branch:
+          type: string
+          description: Целевая ветка
+          example: 'main'
+        created_at:
+          type: string
+          format: date-time
+          description: Дата создания pull request
+          example: '2025-04-05T14:30:00Z'
+        status:
+          $ref: '#/components/schemas/PullRequestStatus'
+      required:
+        - number
+        - title
+        - description
+        - target_branch
+        - created_at
+        - status
+
+    PullRequestStatus:
+      description: Статус запроса на слияние
+      type: object
+      properties:
+        is_cancelled:
+          description: Отменен ли запрос на слияние
+          type: boolean
+          example: false
+        is_merged:
+          description: Объединен ли запрос на слияние
+          type: boolean
+          example: false
+      required:
+        - is_cancelled
+        - is_merged
+
+    Status:
+      description: Статус ветки
+      type: object
+      properties:
+        is_deleted:
+          description: Удалена ли ветка
+          type: boolean
+          example: false
+        is_from_default:
+          description: Отведена ли ветка от дефолтной
+          type: boolean
+          example: true
+        deleted_by:
+          description: Кем удалена ветка
+          type: string
+          example: 'Aleksandr'
+        deleted_by_name:
+          description: Логин пользователя, удалившего ветку
+          type: string
+          example: ivanov.i.i
+      required:
+        - is_deleted
+        - is_from_default
+
+    Protection:
+      description: Правила защиты веток
+      type: object
+      properties:
+        is_enabled:
+          description: Включена ли защита ветки
+          type: boolean
+          example: true
+        is_user_can_delete:
+          description: Доступно ли пользователю удаление ветки
+          type: boolean
+          example: false
+        is_user_can_force_push:
+          description: Доступно ли пользователю force push ветки
+          type: boolean
+          example: false
+        is_user_can_push:
+          description: Доступно ли пользователю push ветки
+          type: boolean
+          example: false
+      required:
+        - is_enabled
+        - is_user_can_delete
+        - is_user_can_force_push
+        - is_user_can_push
+
+    Diff:
+      type: object
+      properties:
+        ahead:
+          type: integer
+          description: Число коммитов впереди
+          example: 3
+        behind:
+          type: integer
+          description: Число коммитов позади
+          example: 1
+      required:
+        - ahead
+        - behind
+
+    ShortBranchInfo:
+      type: object
+      description: Краткая информация о ветке
+      properties:
+        name:
+          type: string
+          description: Имя ветки
+          example: main
+        sha:
+          type: string
+          description: SHA ветки
+          example: a1b2c3d4e5f678901234567890abcdef12345678
+      required:
+        - name
+        - sha
+
+    Branch:
+      type: object
+      description: Информация о ветке
+      required:
+        - name
+        - commit
+        - diff
+        - status
+        - protection
+      properties:
+        name:
+          type: string
+          description: Имя ветки. Является уникальным значением идентифицирующим ветку в репозитории
+          example: 'main'
+        commit:
+          $ref: '#/components/schemas/Commit'
+          nullable: true
+          description: Информация о последнем коммите
+        pull_request:
+          $ref: '#/components/schemas/AssignedPullRequest'
+          description: Информация о последнем pull request
+        status:
+          $ref: '#/components/schemas/Status'
+        diff:
+          $ref: '#/components/schemas/Diff'
+          nullable: true
+          description: Разница с другой веткой
+        protection:
+          $ref: '#/components/schemas/Protection'
+
+    BranchList:
+      type: object
+      properties:
+        pagination:
+          $ref: '../../common/pagination.yaml#/components/schemas/Pagination'
+        default_branch:
+          $ref: '#/components/schemas/Branch'
+        data:
+          description: Список веток проекта
+          type: array
+          items:
+            $ref: '#/components/schemas/Branch'
+      required:
+        - pagination
+        - data
+        - default_branch

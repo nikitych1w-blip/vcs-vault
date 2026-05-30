@@ -1,0 +1,977 @@
+{
+  "info": {
+    "_postman_id": "c5a68a06-dfbd-42a8-a2b2-8faafc4a68d6",
+    "name": "SourceControl API v2 Projects",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "SourceControl REST API v2"
+  },
+  "item": [
+    {
+      "name": "Projects",
+      "description": "Управление проектами",
+      "item": [
+        {
+          "name": "Create project",
+          "request": {
+            "url": {
+              "path": [
+                "projects",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [],
+              "raw": "{{baseUrl}}/projects/create"
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenant_key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"project_key\": \"<string>\",\n  \"visibility\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Проект создан",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/projects/create"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenant_key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"project_key\": \"<string>\",\n  \"visibility\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3699,\n  \"name\": \"string\",\n  \"project_key\": \"string\",\n  \"visibility\": 5627,\n  \"uri\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/projects/create"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenant_key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"project_key\": \"<string>\",\n  \"visibility\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных.\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Имя должно содержать от 1 до 50 символов.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/projects/create"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenant_key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"project_key\": \"<string>\",\n  \"visibility\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/projects/create"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenant_key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"project_key\": \"<string>\",\n  \"visibility\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/projects/create"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenant_key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"project_key\": \"<string>\",\n  \"visibility\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ресурс не найден\",\n  \"detail\": \"Запрашиваемый ресурс не существует.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Конфликт данных",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/projects/create"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenant_key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"project_key\": \"<string>\",\n  \"visibility\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Конфликт данных\",\n  \"detail\": \"Ресурс с такими параметрами уже существует.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/projects/create"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenant_key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"project_key\": \"<string>\",\n  \"visibility\": \"<integer>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Get project info",
+          "request": {
+            "url": {
+              "path": [
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_key",
+                  "value": "<string>",
+                  "description": "(Required) Tenant key"
+                },
+                {
+                  "disabled": false,
+                  "key": "project_key",
+                  "value": "<string>",
+                  "description": "(Required) Project key"
+                }
+              ],
+              "variable": [],
+              "raw": "{{baseUrl}}/projects?tenant_key=<string>&project_key=<string>"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "name": "Информация о проекте",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/projects?tenant_key=<string>&project_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3699,\n  \"name\": \"string\",\n  \"project_key\": \"string\",\n  \"visibility\": 5627,\n  \"uri\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/projects?tenant_key=<string>&project_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных.\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Имя должно содержать от 1 до 50 символов.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/projects?tenant_key=<string>&project_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/projects?tenant_key=<string>&project_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/projects?tenant_key=<string>&project_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ресурс не найден\",\n  \"detail\": \"Запрашиваемый ресурс не существует.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/projects?tenant_key=<string>&project_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Get project key",
+          "request": {
+            "url": {
+              "path": [
+                "projects",
+                "projectkey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenant_key",
+                  "value": "<string>",
+                  "description": "(Required) Tenant key"
+                },
+                {
+                  "disabled": false,
+                  "key": "project_name",
+                  "value": "<string>",
+                  "description": "(Required) Project name"
+                }
+              ],
+              "variable": [],
+              "raw": "{{baseUrl}}/projects/projectkey?tenant_key=<string>&project_name=<string>"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "name": "Ключ проекта",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    "projectkey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/projects/projectkey?tenant_key=<string>&project_name=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"project_key\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    "projectkey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/projects/projectkey?tenant_key=<string>&project_name=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных.\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Имя должно содержать от 1 до 50 символов.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    "projectkey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/projects/projectkey?tenant_key=<string>&project_name=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    "projectkey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/projects/projectkey?tenant_key=<string>&project_name=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    "projectkey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/projects/projectkey?tenant_key=<string>&project_name=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ресурс не найден\",\n  \"detail\": \"Запрашиваемый ресурс не существует.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    "projectkey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/projects/projectkey?tenant_key=<string>&project_name=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  }
+}

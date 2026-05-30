@@ -1,0 +1,98 @@
+components:
+  schemas:
+    PRUpstreamSettings:
+      properties:
+        branches:
+          description: Список веток, для которых будет запускаться PRUpstream
+          example:
+            - main
+            - develop
+            - feature/*
+          items:
+            type: string
+          type: array
+        created_at:
+          description: Дата и время создания настроек
+          example: "2025-04-05T14:30:00Z"
+          format: date-time
+          type: string
+        id:
+          description: Уникальный идентификатор настроек
+          example: 456
+          format: int64
+          type: integer
+        project_identifier:
+          description: Идентификатор проекта
+          example: my-project
+          type: string
+        repo_identifier:
+          description: Идентификатор репозитория
+          example: my-repo
+          type: string
+        tenant_identifier:
+          description: Идентификатор тенанта
+          example: my-tenant
+          type: string
+        tracker_project_key:
+          description: Ключ проекта в системе ведения задач
+          example: PROJ-123
+          type: string
+      required:
+        - id
+        - branches
+        - tracker_project_key
+        - tenant_identifier
+        - project_identifier
+        - repo_identifier
+        - created_at
+      type: object
+    PRUpstreamSettingsCreate:
+      additionalProperties: false
+      properties:
+        branches:
+          description: Список веток, для которых будет запускаться PRUpstream
+          example:
+            - main
+            - develop
+            - feature/*
+          items:
+            type: string
+          type: array
+        tracker_project_key:
+          description: Ключ проекта в системе ведения задач
+          example: PROJ-123
+          maxLength: 255
+          type: string
+      required:
+        - branches
+        - tracker_project_key
+      type: object
+    PRUpstreamSettingsResponse:
+      properties:
+        branches:
+          items:
+            type: string
+          type: array
+        created_at:
+          format: date-time
+          type: string
+        id:
+          format: int64
+          type: integer
+        project_identifier:
+          type: string
+        repo_identifier:
+          type: string
+        tenant_identifier:
+          type: string
+        tracker_project_key:
+          type: string
+      required:
+        - id
+        - branches
+        - tracker_project_key
+        - tenant_identifier
+        - project_identifier
+        - repo_identifier
+        - created_at
+      type: object

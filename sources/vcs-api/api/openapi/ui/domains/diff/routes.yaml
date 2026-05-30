@@ -1,0 +1,108 @@
+DiffCommits:
+  get:
+    summary: Получить список коммитов между рефами (ветка/тег/коммит)
+    tags:
+      - Diff
+    operationId: GetDiffCommits
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/from_ref'
+      - $ref: './params.yaml#/components/parameters/to_ref'
+      - $ref: './params.yaml#/components/parameters/sort'
+      - $ref: '../../common/params.yaml#/components/parameters/page'
+      - $ref: '../../common/params.yaml#/components/parameters/limit'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/DiffCommitsListResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+DiffFile:
+  get:
+    summary: Получить изменения в файле между рефами (ветка/тег/коммит)
+    description: Возвращает набор изменений в файле между двумя референсами git-репозитория в формате git-diff
+    tags:
+      - Diff
+    operationId: GetDiffFile
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/from_ref'
+      - $ref: './params.yaml#/components/parameters/to_ref'
+      - $ref: './params.yaml#/components/parameters/file_path'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/DiffFileResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+DiffTree:
+  get:
+    summary: Получить дерево измененных файлов между рефами (ветка/тег/коммит)
+    description: Возвращает дерево измененных  файлов между двумя референсами git-репозитория
+    tags:
+      - Diff
+    operationId: GetDiffTree
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/from_ref'
+      - $ref: './params.yaml#/components/parameters/to_ref'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/DiffTreeResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+FileChunk:
+    get:
+      summary: Получение содержимого файла по диапазону строк
+      description: Возвращает указанный диапазон строк из файла в указанной ветке
+      tags:
+        - Diff
+      operationId: GetFileChunk
+      parameters:
+        - $ref: '../../common/params.yaml#/components/parameters/project_name'
+        - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+        - $ref: './params.yaml#/components/parameters/branch'
+        - $ref: './params.yaml#/components/parameters/file_path'
+        - $ref: './params.yaml#/components/parameters/from_line'
+        - $ref: './params.yaml#/components/parameters/to_line'
+      responses:
+        '200':
+          $ref: './responses.yaml#/components/responses/FileChunkResponse'
+        '400':
+          $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+        '403':
+          $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+        '404':
+          $ref: '../../common/errors.yaml#/components/responses/NotFound'
+        '500':
+          $ref: '../../common/errors.yaml#/components/responses/ServerError'

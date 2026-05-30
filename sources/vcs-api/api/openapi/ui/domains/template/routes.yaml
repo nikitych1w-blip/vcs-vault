@@ -1,0 +1,27 @@
+RepoTemplate:
+  get:
+    summary: Получить шаблон для создания Pull Request
+    description: Возвращает шаблон описания для Pull Request в формате plain text
+    tags:
+      - Template
+    operationId: GetPullRequestTemplate
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+    responses:
+      '200':
+        description: Шаблон PR успешно получен
+        content:
+          text/plain:
+            schema:
+              $ref: './schemas.yaml#/components/schemas/Template'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

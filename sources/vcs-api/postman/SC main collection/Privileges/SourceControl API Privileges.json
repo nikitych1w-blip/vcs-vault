@@ -1,0 +1,682 @@
+{
+  "info": {
+    "_postman_id": "0de3a52f-0f25-481b-b652-f3380bf19c68",
+    "name": "Privileges",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "api/v3",
+      "item": [
+        {
+          "name": "Repository",
+          "item": [
+            {
+              "name": "Get Privileges",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "followRedirects": true,
+                "disableUrlEncoding": false,
+                "disableCookies": false
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "sa_vcs_admin9",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "sa_vcs_admin9",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3UlhJemQ1Zjk0dUVqaUUtZW0xVG1iNXNvU3JpMmYzTTVNTnVVakkxRjFzIn0.eyJleHAiOjE3NjI0MTczMzgsImlhdCI6MTc2MjQxNzAzOCwiYXV0aF90aW1lIjoxNzYyNDE0NTY2LCJqdGkiOiI5MjExMTU5NS00N2IwLTQ0ZjQtODY4Yi03OGY0MTk1YjhiM2QiLCJpc3MiOiJodHRwczovL2Rldi5wZDA0LnB2dy5zYnQvYXV0aC9yZWFsbXMvSUZUIiwiYXVkIjpbInRlc3Q6cHJvamVjIiwidGVzdDpjdXN0b20xIiwidGVzdDpjdXN0b20yIiwidGVzdDppZnQxMiIsInRlc3Q6aWZ0MSIsInRlc3Q6aWZ0MnJvbCIsInRlc3Q6dGVhbSIsInRlc3Q6cHJpdmlsIiwidGVzdDpnaXV0dHI2IiwidGVzdDprZXkxMTEiLCJ0ZXN0OmplbmtpbnMiLCJ0ZXN0IiwidGVzdDp0ZXN0dXBwZSIsInRlc3Q6aWZ0M3JlZ3IiLCJ0ZXN0OnRwYXBpIiwidGVzdDp0ZXN0NzMxMSIsInRlc3Q6aWZ0M25ldyIsInRlc3Q6YWRtaW41IiwidGVzdDprZXluYW1lIiwidGVzdDp0ZWEiLCJ0ZXN0OmplbmtpbnNyIiwidGVzdDppZnQ0enhjIiwidGVzdDpwcml2aWxpZyIsInRlc3Q6aWZ0M2FtIiwidGVzdDp0ZXN0ZGVtbyIsInRlc3Q6aWZ0Mm1mZSIsImFjY291bnQiXSwic3ViIjoiN2U1OWUxZGItNmMxNS00Mjk4LWIzYmYtMDkzODdiMjcxZTIyIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoib25ld29yay1sb2dpbiIsIm5vbmNlIjoiNGM4MmJkYzgyMDE2YTQzMzc5ZGU4ZjViNTk5NTg5OTgiLCJzZXNzaW9uX3N0YXRlIjoiZmUxYzhhNzgtNjBhMC00MTBlLWJiMzEtNjg5ZWM1YjMxOWZhIiwiYWNyIjoiMCIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWlmdCIsInNjX2FkbWluIiwic2NfdXNlciIsIlNTRF9VU0VSIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7InRlc3Q6cHJvamVjIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6Y3VzdG9tMSI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0OmN1c3RvbTIiOnsicm9sZXMiOlsicHJvamVjdF9jb29yZGluYXRvciJdfSwidGVzdDppZnQxMiI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0OmlmdDEiOnsicm9sZXMiOlsicHJvamVjdF9jb29yZGluYXRvciJdfSwidGVzdDppZnQycm9sIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6dGVhbSI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0OnByaXZpbCI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0OmdpdXR0cjYiOnsicm9sZXMiOlsid3JpdGVyIl19LCJ0ZXN0OmtleTExMSI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0OmplbmtpbnMiOnsicm9sZXMiOlsicHJvamVjdF9jb29yZGluYXRvciJdfSwidGVzdCI6eyJyb2xlcyI6WyJvcmdhbml6YXRpb25fY29vcmRpbmF0b3IiXX0sInRlc3Q6dGVzdHVwcGUiOnsicm9sZXMiOlsicHJvamVjdF9jb29yZGluYXRvciJdfSwidGVzdDppZnQzcmVnciI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0OnRwYXBpIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6dGVzdDczMTEiOnsicm9sZXMiOlsicHJvamVjdF9jb29yZGluYXRvciJdfSwidGVzdDppZnQzbmV3Ijp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6YWRtaW41Ijp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6a2V5bmFtZSI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0OnRlYSI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0OmplbmtpbnNyIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6aWZ0NHp4YyI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0OnByaXZpbGlnIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6aWZ0M2FtIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6dGVzdGRlbW8iOnsicm9sZXMiOlsicHJvamVjdF9jb29yZGluYXRvciJdfSwidGVzdDppZnQybWZlIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSBvcGVuaWQiLCJzaWQiOiJmZTFjOGE3OC02MGEwLTQxMGUtYmIzMS02ODllYzViMzE5ZmEiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwib3JnYW5pemF0aW9uIjoic2J0IiwibmFtZSI6InNhX3Zjc19hZG1pbjUgc2FfdmNzX2FkbWluNSIsImdyb3VwcyI6WyJkZWZhdWx0LXJvbGVzLWlmdCIsInNjX2FkbWluIiwic2NfdXNlciIsIlNTRF9VU0VSIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzYV92Y3NfYWRtaW41IiwiZ2l2ZW5fbmFtZSI6InNhX3Zjc19hZG1pbjUiLCJmYW1pbHlfbmFtZSI6InNhX3Zjc19hZG1pbjUiLCJlbWFpbCI6InNhX3Zjc19hZG1pbjVAbG9jYWwubG9jYWwiLCJhdXRob3JpdGllcyI6WyJST0xFX3Byb2plY3RfY29vcmRpbmF0b3IiLCJST0xFX3Byb2plY3RfY29vcmRpbmF0b3IiLCJST0xFX3Byb2plY3RfY29vcmRpbmF0b3IiLCJST0xFX3Byb2plY3RfY29vcmRpbmF0b3IiLCJST0xFX3Byb2plY3RfY29vcmRpbmF0b3IiLCJST0xFX3Byb2plY3RfY29vcmRpbmF0b3IiLCJST0xFX3Byb2plY3RfY29vcmRpbmF0b3IiLCJST0xFX3Byb2plY3RfY29vcmRpbmF0b3IiLCJST0xFX3dyaXRlciIsIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfb3JnYW5pemF0aW9uX2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9tYW5hZ2UtYWNjb3VudCIsIlJPTEVfdmlldy1wcm9maWxlIiwiUk9MRV9tYW5hZ2UtYWNjb3VudC1saW5rcyJdfQ.WYn7b4L6SUvEhZa09WnQD_zQRQOeuJbDBJ2e-NMYm-U8TH6q1cVLIyT-BPrJSkHX5nqqHQLuSveMeXl3arDOAeetW0DaPLEHKZYfYmN3qgqTWzwKNccDzuRR35iTuFT3idtU-XuFPL3ZH_GwGpq7UoHt2WkocsnioS0cuc0UGKfzE--gugkOWp2uHr8gGYq07SOr2YhWuxZuhMZ0Bib0-jcGke1cnh1d1JuOQU4IgpnGOXTV6ey6NpWshQXjmIIQ-kZOr7CD6_f2fmRUDTrhaOKZ6Dv2WvjA_Q3wWsUzua6hboWkhqWK1mASHKYJ0Smuib8B1H_Bw8y2lm-7t6qOAA",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/privileges?username=sa_vcs_admin9",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v3_prefix}}",
+                    "repos",
+                    "{{sc_api_mock_tenant_id}}",
+                    "{{sc_api_mock_project_name}}",
+                    "{{sc_api_mock_repository_name}}",
+                    "privileges"
+                  ],
+                  "query": [
+                    {
+                      "key": "username",
+                      "value": "sa_vcs_admin9"
+                    },
+                    {
+                      "key": "group",
+                      "value": "owner",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Grant Privileges ",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "followRedirects": true,
+                "disableUrlEncoding": false,
+                "disableCookies": false
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apply_privilege_groups\": {\n    \"grant\": [\n      {\n        \"user_name\": \"sa_vcs_admin9\",\n        \"privilege_group\": \"owner\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/privileges",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v3_prefix}}",
+                    "repos",
+                    "{{sc_api_mock_tenant_id}}",
+                    "{{sc_api_mock_project_name}}",
+                    "{{sc_api_mock_repository_name}}",
+                    "privileges"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Revoke Privileges",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "followRedirects": true,
+                "disableUrlEncoding": false,
+                "disableCookies": false
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apply_privilege_groups\": {\n    \"revoke\": [\n      {\n\t\t    \"user_name\": \"sa_vcs_admin9\",\n\t\t    \"privilege_group\": \"owner\"\n\t    }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/privileges",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v3_prefix}}",
+                    "repos",
+                    "{{sc_api_mock_tenant_id}}",
+                    "{{sc_api_mock_project_name}}",
+                    "{{sc_api_mock_repository_name}}",
+                    "privileges"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Project",
+          "item": [
+            {
+              "name": "Get Privileges",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "followRedirects": true,
+                "disableUrlEncoding": false,
+                "disableCookies": false
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "token 3f75061d9cc6ccc5e20b22b468915d6b83b0f08c"
+                  }
+                ],
+                "url": {
+                  "raw": "/{{sc_api_api_v3_prefix}}/projects/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/privileges?group=reader",
+                  "path": [
+                    "{{sc_api_api_v3_prefix}}",
+                    "projects",
+                    "{{sc_api_mock_tenant_id}}",
+                    "{{sc_api_mock_project_name}}",
+                    "privileges"
+                  ],
+                  "query": [
+                    {
+                      "key": "username",
+                      "value": "sa_vcs_admin9",
+                      "disabled": true
+                    },
+                    {
+                      "key": "group",
+                      "value": "reader"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Grant Privileges",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "followRedirects": true,
+                "disableUrlEncoding": false,
+                "disableCookies": false
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3UlhJemQ1Zjk0dUVqaUUtZW0xVG1iNXNvU3JpMmYzTTVNTnVVakkxRjFzIn0.eyJleHAiOjE3NjE5MDQwNDEsImlhdCI6MTc2MTkwMzc0MSwiYXV0aF90aW1lIjoxNzYxODkzODMwLCJqdGkiOiJmMjliZDU1Yi1kMDk1LTQyM2QtODBhYi0yODc4ZDRhODllMzYiLCJpc3MiOiJodHRwczovL2Rldi5wZDA0LnB2dy5zYnQvYXV0aC9yZWFsbXMvSUZUIiwiYXVkIjpbInRlc3Q6cHJvamVjIiwidGVzdDpjdXN0b20xIiwidGVzdDpjdXN0b20yIiwidGVzdDppZnQxMiIsInRlc3Q6ODcwdnAiLCJ0ZXN0OmlmdDEiLCJ0ZXN0OnRlYW0iLCJ0ZXN0OnByaXZpbCIsInRlc3Q6Z2l1dHRyNiIsInRlc3Q6a2V5MTExIiwidGVzdDpqZW5raW5zIiwidGVzdCIsInRlc3Q6dGVzdHVwcGUiLCJ0ZXN0OmlmdDNyZWdyIiwidGVzdDpwcm9iYTE5IiwidGVzdDp0cGFwaSIsInRlc3Q6dGVzdDczMTEiLCJ0ZXN0OmlmdDNuZXciLCJ0ZXN0OmFkbWluNSIsInRlc3Q6c2N2cCIsInRlc3Q6a2V5bmFtZSIsInRlc3Q6dGVhIiwidGVzdDpqZW5raW5zciIsInRlc3Q6aWZ0NHp4YyIsInRlc3Q6c2NpZnQxIiwidGVzdDp0ZXN0ZGVtbyIsInRlc3Q6aWZ0Mm1mZSIsImFjY291bnQiXSwic3ViIjoiN2U1OWUxZGItNmMxNS00Mjk4LWIzYmYtMDkzODdiMjcxZTIyIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoib25ld29yay1sb2dpbiIsIm5vbmNlIjoiMDgwMDc3ZTBiMWUwM2EwZGEwYmFhNjZmODNlMTY4M2MiLCJzZXNzaW9uX3N0YXRlIjoiYzY1MmNlZjktMzI0OC00MGU0LTliYjctZGI2ZWRmOGMzNjUzIiwiYWNyIjoiMCIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWlmdCIsInNjX2FkbWluIiwic2NfdXNlciIsIlNTRF9VU0VSIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7InRlc3Q6cHJvamVjIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6Y3VzdG9tMSI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0OmN1c3RvbTIiOnsicm9sZXMiOlsicHJvamVjdF9jb29yZGluYXRvciJdfSwidGVzdDppZnQxMiI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0Ojg3MHZwIjp7InJvbGVzIjpbIm93bmVyIl19LCJ0ZXN0OmlmdDEiOnsicm9sZXMiOlsicHJvamVjdF9jb29yZGluYXRvciJdfSwidGVzdDp0ZWFtIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6cHJpdmlsIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6Z2l1dHRyNiI6eyJyb2xlcyI6WyJ3cml0ZXIiXX0sInRlc3Q6a2V5MTExIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6amVua2lucyI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0Ijp7InJvbGVzIjpbIm9yZ2FuaXphdGlvbl9jb29yZGluYXRvciJdfSwidGVzdDp0ZXN0dXBwZSI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0OmlmdDNyZWdyIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6cHJvYmExOSI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0OnRwYXBpIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6dGVzdDczMTEiOnsicm9sZXMiOlsicHJvamVjdF9jb29yZGluYXRvciJdfSwidGVzdDppZnQzbmV3Ijp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6YWRtaW41Ijp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6c2N2cCI6eyJyb2xlcyI6WyJvd25lciJdfSwidGVzdDprZXluYW1lIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6dGVhIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6amVua2luc3IiOnsicm9sZXMiOlsicHJvamVjdF9jb29yZGluYXRvciJdfSwidGVzdDppZnQ0enhjIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6c2NpZnQxIjp7InJvbGVzIjpbImRldm9wcyJdfSwidGVzdDp0ZXN0ZGVtbyI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0OmlmdDJtZmUiOnsicm9sZXMiOlsicHJvamVjdF9jb29yZGluYXRvciJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIG9wZW5pZCIsInNpZCI6ImM2NTJjZWY5LTMyNDgtNDBlNC05YmI3LWRiNmVkZjhjMzY1MyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJvcmdhbml6YXRpb24iOiJzYnQiLCJuYW1lIjoic2FfdmNzX2FkbWluNSBzYV92Y3NfYWRtaW41IiwiZ3JvdXBzIjpbImRlZmF1bHQtcm9sZXMtaWZ0Iiwic2NfYWRtaW4iLCJzY191c2VyIiwiU1NEX1VTRVIiLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIl0sInByZWZlcnJlZF91c2VybmFtZSI6InNhX3Zjc19hZG1pbjUiLCJnaXZlbl9uYW1lIjoic2FfdmNzX2FkbWluNSIsImZhbWlseV9uYW1lIjoic2FfdmNzX2FkbWluNSIsImVtYWlsIjoic2FfdmNzX2FkbWluNUBsb2NhbC5sb2NhbCIsImF1dGhvcml0aWVzIjpbIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfb3duZXIiLCJST0xFX3Byb2plY3RfY29vcmRpbmF0b3IiLCJST0xFX3Byb2plY3RfY29vcmRpbmF0b3IiLCJST0xFX3Byb2plY3RfY29vcmRpbmF0b3IiLCJST0xFX3dyaXRlciIsIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfb3JnYW5pemF0aW9uX2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9vd25lciIsIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfZGV2b3BzIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9tYW5hZ2UtYWNjb3VudCIsIlJPTEVfdmlldy1wcm9maWxlIiwiUk9MRV9tYW5hZ2UtYWNjb3VudC1saW5rcyJdfQ.QuoLE2M_QiAmHi2mBO2_VGmihBkJP0IsCsWAwvs_doFZ7IvXmxOG3ukAe8JllayC6R_lnqGuXrM1M5JsD-lQ_4BnoW0dOk7YUyyLkiHt1qGnoyH2fZBG0VpubWVBLE3BdQ4QxbgN2NdDWrvsMF3FrjuoNYm4-5k3LU3eS_RkJmZ3w82Gt-FfXmTAMr_3MLEK9aOMZkfpZEpvZbqrfm4lC-eRwRSMMdYzjMnRwH552oPjD-KaHG38PrKjE1MWuy4rjhKduDwmoIYEfjep36Ib7zFKMLi5klCBMdoEO_56KjxrIiuwnVH70tWwIwk6KOjW8pK9tQnnWDit6y02r3xRIA"
+                  },
+                  {
+                    "key": "Bearer",
+                    "value": "",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apply_privilege_groups\": {\n    \"grant\": [\n      {\n        \"user_name\": \"sa_vcs_admin7\",\n        \"privilege_group\": \"owner\"\n      },\n      {\n        \"user_name\": \"sa_vcs_admin7\",\n        \"privilege_group\": \"manager\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/projects/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/privileges",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v3_prefix}}",
+                    "projects",
+                    "{{sc_api_mock_tenant_id}}",
+                    "{{sc_api_mock_project_name}}",
+                    "privileges"
+                  ],
+                  "query": [
+                    {
+                      "key": "username",
+                      "value": "",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Revoke Privileges",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "followRedirects": true,
+                "disableUrlEncoding": false,
+                "disableCookies": false
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ3UlhJemQ1Zjk0dUVqaUUtZW0xVG1iNXNvU3JpMmYzTTVNTnVVakkxRjFzIn0.eyJleHAiOjE3NjE5MDQwNDEsImlhdCI6MTc2MTkwMzc0MSwiYXV0aF90aW1lIjoxNzYxODkzODMwLCJqdGkiOiJmMjliZDU1Yi1kMDk1LTQyM2QtODBhYi0yODc4ZDRhODllMzYiLCJpc3MiOiJodHRwczovL2Rldi5wZDA0LnB2dy5zYnQvYXV0aC9yZWFsbXMvSUZUIiwiYXVkIjpbInRlc3Q6cHJvamVjIiwidGVzdDpjdXN0b20xIiwidGVzdDpjdXN0b20yIiwidGVzdDppZnQxMiIsInRlc3Q6ODcwdnAiLCJ0ZXN0OmlmdDEiLCJ0ZXN0OnRlYW0iLCJ0ZXN0OnByaXZpbCIsInRlc3Q6Z2l1dHRyNiIsInRlc3Q6a2V5MTExIiwidGVzdDpqZW5raW5zIiwidGVzdCIsInRlc3Q6dGVzdHVwcGUiLCJ0ZXN0OmlmdDNyZWdyIiwidGVzdDpwcm9iYTE5IiwidGVzdDp0cGFwaSIsInRlc3Q6dGVzdDczMTEiLCJ0ZXN0OmlmdDNuZXciLCJ0ZXN0OmFkbWluNSIsInRlc3Q6c2N2cCIsInRlc3Q6a2V5bmFtZSIsInRlc3Q6dGVhIiwidGVzdDpqZW5raW5zciIsInRlc3Q6aWZ0NHp4YyIsInRlc3Q6c2NpZnQxIiwidGVzdDp0ZXN0ZGVtbyIsInRlc3Q6aWZ0Mm1mZSIsImFjY291bnQiXSwic3ViIjoiN2U1OWUxZGItNmMxNS00Mjk4LWIzYmYtMDkzODdiMjcxZTIyIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoib25ld29yay1sb2dpbiIsIm5vbmNlIjoiMDgwMDc3ZTBiMWUwM2EwZGEwYmFhNjZmODNlMTY4M2MiLCJzZXNzaW9uX3N0YXRlIjoiYzY1MmNlZjktMzI0OC00MGU0LTliYjctZGI2ZWRmOGMzNjUzIiwiYWNyIjoiMCIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWlmdCIsInNjX2FkbWluIiwic2NfdXNlciIsIlNTRF9VU0VSIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7InRlc3Q6cHJvamVjIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6Y3VzdG9tMSI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0OmN1c3RvbTIiOnsicm9sZXMiOlsicHJvamVjdF9jb29yZGluYXRvciJdfSwidGVzdDppZnQxMiI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0Ojg3MHZwIjp7InJvbGVzIjpbIm93bmVyIl19LCJ0ZXN0OmlmdDEiOnsicm9sZXMiOlsicHJvamVjdF9jb29yZGluYXRvciJdfSwidGVzdDp0ZWFtIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6cHJpdmlsIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6Z2l1dHRyNiI6eyJyb2xlcyI6WyJ3cml0ZXIiXX0sInRlc3Q6a2V5MTExIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6amVua2lucyI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0Ijp7InJvbGVzIjpbIm9yZ2FuaXphdGlvbl9jb29yZGluYXRvciJdfSwidGVzdDp0ZXN0dXBwZSI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0OmlmdDNyZWdyIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6cHJvYmExOSI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0OnRwYXBpIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6dGVzdDczMTEiOnsicm9sZXMiOlsicHJvamVjdF9jb29yZGluYXRvciJdfSwidGVzdDppZnQzbmV3Ijp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6YWRtaW41Ijp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6c2N2cCI6eyJyb2xlcyI6WyJvd25lciJdfSwidGVzdDprZXluYW1lIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6dGVhIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6amVua2luc3IiOnsicm9sZXMiOlsicHJvamVjdF9jb29yZGluYXRvciJdfSwidGVzdDppZnQ0enhjIjp7InJvbGVzIjpbInByb2plY3RfY29vcmRpbmF0b3IiXX0sInRlc3Q6c2NpZnQxIjp7InJvbGVzIjpbImRldm9wcyJdfSwidGVzdDp0ZXN0ZGVtbyI6eyJyb2xlcyI6WyJwcm9qZWN0X2Nvb3JkaW5hdG9yIl19LCJ0ZXN0OmlmdDJtZmUiOnsicm9sZXMiOlsicHJvamVjdF9jb29yZGluYXRvciJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIG9wZW5pZCIsInNpZCI6ImM2NTJjZWY5LTMyNDgtNDBlNC05YmI3LWRiNmVkZjhjMzY1MyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJvcmdhbml6YXRpb24iOiJzYnQiLCJuYW1lIjoic2FfdmNzX2FkbWluNSBzYV92Y3NfYWRtaW41IiwiZ3JvdXBzIjpbImRlZmF1bHQtcm9sZXMtaWZ0Iiwic2NfYWRtaW4iLCJzY191c2VyIiwiU1NEX1VTRVIiLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIl0sInByZWZlcnJlZF91c2VybmFtZSI6InNhX3Zjc19hZG1pbjUiLCJnaXZlbl9uYW1lIjoic2FfdmNzX2FkbWluNSIsImZhbWlseV9uYW1lIjoic2FfdmNzX2FkbWluNSIsImVtYWlsIjoic2FfdmNzX2FkbWluNUBsb2NhbC5sb2NhbCIsImF1dGhvcml0aWVzIjpbIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfb3duZXIiLCJST0xFX3Byb2plY3RfY29vcmRpbmF0b3IiLCJST0xFX3Byb2plY3RfY29vcmRpbmF0b3IiLCJST0xFX3Byb2plY3RfY29vcmRpbmF0b3IiLCJST0xFX3dyaXRlciIsIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfb3JnYW5pemF0aW9uX2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9vd25lciIsIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfcHJvamVjdF9jb29yZGluYXRvciIsIlJPTEVfZGV2b3BzIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9wcm9qZWN0X2Nvb3JkaW5hdG9yIiwiUk9MRV9tYW5hZ2UtYWNjb3VudCIsIlJPTEVfdmlldy1wcm9maWxlIiwiUk9MRV9tYW5hZ2UtYWNjb3VudC1saW5rcyJdfQ.QuoLE2M_QiAmHi2mBO2_VGmihBkJP0IsCsWAwvs_doFZ7IvXmxOG3ukAe8JllayC6R_lnqGuXrM1M5JsD-lQ_4BnoW0dOk7YUyyLkiHt1qGnoyH2fZBG0VpubWVBLE3BdQ4QxbgN2NdDWrvsMF3FrjuoNYm4-5k3LU3eS_RkJmZ3w82Gt-FfXmTAMr_3MLEK9aOMZkfpZEpvZbqrfm4lC-eRwRSMMdYzjMnRwH552oPjD-KaHG38PrKjE1MWuy4rjhKduDwmoIYEfjep36Ib7zFKMLi5klCBMdoEO_56KjxrIiuwnVH70tWwIwk6KOjW8pK9tQnnWDit6y02r3xRIA",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apply_privilege_groups\": {\n    \"revoke\": [\n      {\n        \"user_name\": \"sa_vcs_admin7\",\n        \"privilege_group\": \"owner\"\n      },\n      {\n        \"user_name\": \"sa_vcs_admin8\",\n        \"privilege_group\": \"writer\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/projects/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/privileges",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v3_prefix}}",
+                    "projects",
+                    "{{sc_api_mock_tenant_id}}",
+                    "{{sc_api_mock_project_name}}",
+                    "privileges"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Grant Privileges",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function() {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token_bearer_jwt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n   \"apply_privilege_groups\": {\n      \"grant\": [\n            {\n                \"user_key\": \"{{sc_api_mock_user_key}}\",\n                \"privilege_groups\": [\n                    {\n                        \"tenant_key\": \"{{sc_api_mock_tenant_key}}\",\n                        \"project_key\": \"{{sc_api_mock_project_key}}\",\n                        \"privilege_group\": \"manager\"\n                    }\n                ]\n            }\n        ]\n   } \n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v2_prefix}}/admin/privileges",
+          "host": [
+            "{{sc_api_ift_stand_url_external}}"
+          ],
+          "path": [
+            "{{sc_api_api_v2_prefix}}",
+            "admin",
+            "privileges"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Privileges",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function() {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token_bearer_jwt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "[\n    {\n        \"tenant_key\": \"{{sc_api_mock_tenant_key}}\",\n        \"project_key\": \"{{sc_api_mock_project_key}}\",\n        \"user_key\": \"{{sc_api_mock_user_key}}\"\n    }\n]",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v2_prefix}}/admin/privileges",
+          "host": [
+            "{{sc_api_ift_stand_url_external}}"
+          ],
+          "path": [
+            "{{sc_api_api_v2_prefix}}",
+            "admin",
+            "privileges"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Revoke Privileges",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function() {",
+              "    pm.response.to.have.status(201);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token_bearer_jwt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n   \"apply_privilege_groups\": {\n      \"revoke\": [\n            {\n                \"user_key\": \"{{sc_api_mock_user_key}}\",\n                \"privilege_groups\": [\n                    {\n                    \"tenant_key\": \"{{sc_api_mock_tenant_key}}\",\n                    \"project_key\": \"{{sc_api_mock_project_key}}\",\n                    \"privilege_group\": \"manager\"\n                    }\n                ]\n            }\n        ]\n   }\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v2_prefix}}/admin/privileges",
+          "host": [
+            "{{sc_api_ift_stand_url_external}}"
+          ],
+          "path": [
+            "{{sc_api_api_v2_prefix}}",
+            "admin",
+            "privileges"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Grant And Revoke",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function() {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token_bearer_jwt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n   \"apply_privilege_groups\": {\n    \"revoke\": [\n        {\n            \"user_key\": \"{{sc_api_mock_user_key}}\",\n            \"privilege_groups\": [\n                {\n                    \"tenant_key\": \"{{sc_api_mock_tenant_key}}\",\n                    \"project_key\": \"{{sc_api_mock_project_key}}\",\n                    \"privilege_group\": \"manager\"\n                }\n                ]\n            }\n      ],\n      \"grant\": [\n         {\n            \"user_key\": \"{{sc_api_mock_user_key}}\",\n            \"privilege_groups\": [\n               {\n                    \"tenant_key\": \"{{sc_api_mock_tenant_key}}\",\n                    \"project_key\": \"{{sc_api_mock_project_key}}\",\n                    \"privilege_group\": \"manager\"\n                }\n            ]\n         }\n      ]\n   }\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v2_prefix}}/admin/privileges",
+          "host": [
+            "{{sc_api_ift_stand_url_external}}"
+          ],
+          "path": [
+            "{{sc_api_api_v2_prefix}}",
+            "admin",
+            "privileges"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

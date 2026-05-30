@@ -1,0 +1,271 @@
+components:
+  schemas:
+    CreateUserRequest:
+      type: object
+      additionalProperties: false
+      description: Запрос создания пользователя
+      required: [user_key, name, email]
+      properties:
+        user_key:
+          type: string
+          description: User login name (будет приведён к lower-case на сервере)
+          maxLength: 40
+        name:
+          type: string
+          description: Display name
+          maxLength: 40
+        email:
+          type: string
+          format: email
+          description: User email
+        full_name:
+          type: string
+          description: Full name
+        created_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Время создания (опционально; если не задано — сервер поставит текущее)
+        visibility:
+          type: string
+          description: Visibility mode
+          enum: ["", public, limited, private]
+        restricted:
+          type: boolean
+          nullable: true
+          description: Is restricted user
+
+    CreateUserResponse:
+      type: object
+      additionalProperties: false
+      description: Ответ создания пользователя
+      required: [id, user_key, name, email]
+      properties:
+        id:
+          type: integer
+          format: int64
+        user_key:
+          type: string
+        name:
+          type: string
+        full_name:
+          type: string
+        email:
+          type: string
+          format: email
+
+    UserInfoResponse:
+      type: object
+      additionalProperties: false
+      description: Информация о пользователе
+      required: [id, user_key, login_name, email, visibility]
+      properties:
+        id:
+          type: integer
+          format: int64
+        user_key:
+          type: string
+        login_name:
+          type: string
+          description: Отображаемое имя пользователя
+        full_name:
+          type: string
+        email:
+          type: string
+          format: email
+        visibility:
+          type: integer
+          format: int32
+          description: Уровень видимости пользователя
+
+    CreateSSHKeyRequest:
+      type: object
+      additionalProperties: false
+      description: Запрос добавления SSH ключа
+      required: [title, key]
+      properties:
+        title:
+          type: string
+          description: SSH key title
+          maxLength: 50
+        key:
+          type: string
+          description: SSH public key
+
+    CreateSSHKeyResponse:
+      type: object
+      additionalProperties: false
+      description: Ответ добавления SSH ключа
+      required: [id, fingerprint, key_type]
+      properties:
+        id:
+          type: integer
+          format: int64
+        fingerprint:
+          type: string
+        key_type:
+          type: string
+
+    PrivilegeRequest:
+      type: object
+      additionalProperties: false
+      description: Элемент запроса получения привилегий
+      required: [tenant_key, project_key, user_key]
+      properties:
+        tenant_key:
+          type: string
+        project_key:
+          type: string
+        user_key:
+          type: string
+
+    GetPrivilegesRequest:
+      type: array
+      description: Запрос получения привилегий
+      items:
+        $ref: "#/components/schemas/PrivilegeRequest"
+
+    PrivilegeGroup:
+      type: object
+      additionalProperties: false
+      description: Группа привилегий
+      required: [tenant_key, project_key, privilege_group]
+      properties:
+        tenant_key:
+          type: string
+        project_key:
+          type: string
+        privilege_group:
+          type: string
+
+    PrivilegeGroupAssignment:
+      type: object
+      additionalProperties: false
+      description: Назначения привилегий для пользователя
+      required: [user_key, privilege_groups]
+      properties:
+        user_key:
+          type: string
+        privilege_groups:
+          type: array
+          items:
+            $ref: "#/components/schemas/PrivilegeGroup"
+
+    ApplyPrivilegesRequest:
+      type: object
+      additionalProperties: false
+      description: Запрос применения привилегий
+      required: [apply_privilege_groups]
+      properties:
+        apply_privilege_groups:
+          type: object
+          additionalProperties: false
+          required: [grant, revoke]
+          properties:
+            grant:
+              type: array
+              items:
+                $ref: "#/components/schemas/PrivilegeGroupAssignment"
+            revoke:
+              type: array
+              items:
+                $ref: "#/components/schemas/PrivilegeGroupAssignment"
+
+    PrivilegeGroupErr:
+      type: object
+      additionalProperties: false
+      description: Ошибка назначения или отзыва привилегии
+      required: [tenant_key, project_key, privilege_group, error]
+      properties:
+        tenant_key:
+          type: string
+        project_key:
+          type: string
+        privilege_group:
+          type: string
+        error:
+          type: string
+
+    PrivilegeGroupAssignmentErr:
+      type: object
+      additionalProperties: false
+      description: Ошибка привилегий по пользователю
+      required: [user_key, privilege_groups]
+      properties:
+        user_key:
+          type: string
+        privilege_groups:
+          type: array
+          items:
+            $ref: "#/components/schemas/PrivilegeGroupErr"
+
+    ApplyPrivilegesResponse:
+      type: object
+      additionalProperties: false
+      description: Ответ применения привилегий
+      required: [applied_status, errors]
+      properties:
+        applied_status:
+          type: object
+          additionalProperties: false
+          required: [granted, revoked]
+          properties:
+            granted:
+              type: array
+              items:
+                $ref: "#/components/schemas/PrivilegeGroupAssignment"
+            revoked:
+              type: array
+              items:
+                $ref: "#/components/schemas/PrivilegeGroupAssignment"
+        errors:
+          type: object
+          additionalProperties: false
+          properties:
+            grant:
+              type: array
+              items:
+                $ref: "#/components/schemas/PrivilegeGroupAssignmentErr"
+            revoke:
+              type: array
+              items:
+                $ref: "#/components/schemas/PrivilegeGroupAssignmentErr"
+
+    PrivilegeGroupGrant:
+      type: object
+      additionalProperties: false
+      description: Выданные привилегии
+      required: [tenant_key, project_key, privilege_group]
+      properties:
+        tenant_key:
+          type: string
+        project_key:
+          type: string
+        privilege_group:
+          type: array
+          items:
+            type: string
+
+    PrivilegeGroupAssignmentGrant:
+      type: object
+      additionalProperties: false
+      description: Выданные привилегии по пользователю
+      required: [user_key, privilege_groups]
+      properties:
+        user_key:
+          type: string
+        privilege_groups:
+          type: array
+          items:
+            $ref: "#/components/schemas/PrivilegeGroupGrant"
+
+    ResponsePrivilegesGet:
+      type: object
+      additionalProperties: false
+      description: Ответ получения привилегий
+      required: [granted]
+      properties:
+        granted:
+          type: array
+          items:
+            $ref: "#/components/schemas/PrivilegeGroupAssignmentGrant"

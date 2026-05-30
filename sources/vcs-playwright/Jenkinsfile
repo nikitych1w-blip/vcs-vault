@@ -1,0 +1,173 @@
+pipeline {
+    agent {
+        node {
+            label params.JENKINS_NODE
+        }
+    }
+    options {
+        ansiColor('xterm')
+        buildDiscarder(logRotator(daysToKeepStr: '7', numToKeepStr: '15'))
+        timestamps()
+        copyArtifactPermission('*')
+    }
+    environment {
+        VAULT_ENABLED = 'true'
+        VAULT_SKIP_VERIFY = 'true'
+        VAULT_HOST = 'https://vault.dev.pd04.pvw.sbt'
+        VAULT_NAMESPACE = 'root'
+        VAULT_MOUNT_POINT = 'pd04-ift'
+        VAULT_KV_VERSION = '2'
+        NODE_TLS_REJECT_UNAUTHORIZED = '0'
+        ALLURE_ATTACH_ONLY_ON_FAILURE = 'true'
+        ALLURE_HISTORY_ARCHIVE = 'allure-history.tar.gz'
+    }
+    parameters {
+        choice(name: 'STAND', choices: ['sc-vp', 'sc-ift1', 'sc-ift2', 'sc-ift3', 'sc-ift4'], description: 'Стенд')
+        choice(name: 'TYPE', choices: ['ow', 'standalone'], description: 'Точка входа')
+        choice(name: 'BROWSER', choices: ['chromium', 'firefox', 'webkit'], description: 'Браузер')
+        string(name: 'TAGS', defaultValue: '--grep ".*"', description: 'Выражение для фильтрации тестов по тегам (используются регулярные выражения grep и grep-invert)')
+        text(name: 'ENVS', defaultValue: '', description: 'Дополнительные параметры окружения (например, для переопределения параметров в конфиге)')
+        string(name: 'WORKERS', defaultValue: '50%', description: 'Количество параллельных исполнителей (или процент от CPU)', trim: true)
+        string(name: 'GIT_BRANCH', defaultValue: 'develop', description: 'Ветка в git репозитории', trim: true)
+        string(name: 'GIT_CREDS', defaultValue: 'sa_sbt_cd_vcs_ssh', description: 'ID credentials для доступа к репозиторию', trim: true)
+        string(name: 'GIT_REPO', defaultValue: 'ssh://git@portal.works.prod.sbt:7999/vcs/vcs-playwright.git', description: 'Адрес git репозитория с тестами для клонирования по ssh', trim: true)
+        string(name: 'VAULT_CREDS', defaultValue: 'tuz_secman_approle', description: 'ID credentials для доступа к Secman (approle)', trim: true)
+        string(name: 'OW_CREDS', defaultValue: 'sa_sbt_cd_vcs', description: 'ID credentias для авторизации в OW (AC21) и остальных инструментах в контуре', trim: true)
+        string(name: 'DOCKER_IMAGE', defaultValue: 'portal.works.prod.sbt:8999/sbt_docker/ci90000624_gitru/vcs-pw:1.57.0-13', description: 'Docker образ c Node.js и Playwright браузерами', trim: true)
+        string(name: 'DOCKER_REGISTRY', defaultValue: 'https://portal.works.prod.sbt:8999', description: 'Адрес docker registry', trim: true)
+        string(name: 'JENKINS_NODE', defaultValue: 'pvw-sbtws-pd04-dev', description: 'Метка агента, на котором выполняется задача', trim: true)
+    }
+    stages {
+        stage('Очистка') {
+            steps {
+                script {
+                    currentBuild.displayName = "${params.STAND} / ${params.BROWSER} / ${params.GIT_BRANCH} / #${env.BUILD_NUMBER}"
+                }
+                cleanWs()
+            }
+        }
+        stage('Создание директории Allure') {
+            steps {
+                script {
+                    // В контейнере процесс запускается от имени root, поэтому удалять файлы после прогона jenkins не может
+                    env.HOST_UID  = sh(script: 'id -u', returnStdout: true).trim()
+                    env.HOST_GID = sh(script: 'id -g', returnStdout: true).trim()
+                    allureFolder = "$WORKSPACE/allure-results"
+                    allureHistoryFolder = "$allureFolder/history"
+                }
+                sh "mkdir -p $allureHistoryFolder"
+                script {
+                    // Копируем history из предыдущего успешного билда (если доступно)
+                    try {
+                        copyArtifacts projectName: env.JOB_NAME, filter: env.ALLURE_HISTORY_ARCHIVE, target: 'prevBuild', selector: lastWithArtifacts()
+                        historyArchive = "prevBuild/$ALLURE_HISTORY_ARCHIVE"
+                        sh "tar -xzvf $historyArchive -C \"$allureHistoryFolder\""
+                    } catch (e) {
+                        echo e.toString()
+                        echo "Нет данных для восстановления (либо нет артефактов, либо прав — copyArtifactPermission)"
+                    }
+                }
+            }
+        }
+        stage('Клонируем репозиторий') {
+            steps {
+                dir('tests') {
+                    checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: params.GIT_BRANCH]],
+                        doGenerateSubmoduleConfigurations: false,
+                        extensions: [
+                            [$class: 'CloneOption', depth: 1, noTags: true, shallow: true]
+                        ],
+                        submoduleCfg: [],
+                        userRemoteConfigs: [[credentialsId: params.GIT_CREDS, url: params.GIT_REPO ]]
+                    ])
+                }
+            }
+        }
+        stage('Запускаем тесты внутри контейнера') {
+            agent {
+                docker {
+                    image params.DOCKER_IMAGE
+                    registryUrl params.DOCKER_REGISTRY
+                    registryCredentialsId params.OW_CREDS
+                    reuseNode true
+                    args """--user=0 \
+                    --add-host='ift.pd04.pvw.sbt:10.128.32.100' \
+                    --add-host='dev.pd04.pvw.sbt:10.128.32.100' \
+                    --add-host='sc-ift1.ift.pd04.pvw.sbt:10.128.32.100' \
+                    --add-host='sc-ift2.ift.pd04.pvw.sbt:10.128.32.100' \
+                    --add-host='sc-ift3.ift.pd04.pvw.sbt:10.128.32.100' \
+                    --add-host='sc-ift4.ift.pd04.pvw.sbt:10.128.32.100' \
+                    --add-host='sc-vp.ift.pd04.pvw.sbt:10.128.32.100' \
+                    --add-host='sc-demo1.dev.pd04.pvw.sbt:10.128.32.100' \
+                    --add-host='sc-demo2.dev.pd04.pvw.sbt:10.128.32.100' \
+                    --add-host='sc-dev1.dev.pd04.pvw.sbt:10.128.32.100' \
+                    --add-host='sc-dev2.dev.pd04.pvw.sbt:10.128.32.100' \
+                    --add-host='sc-dev3.dev.pd04.pvw.sbt:10.128.32.100' \
+                    --add-host='sc-dev4.dev.pd04.pvw.sbt:10.128.32.100' \
+                    --add-host='vault.dev.pd04.pvw.sbt:10.128.32.100'
+                    """
+                }
+            }
+            steps {
+                script {
+                    workdir = '/app'
+                }
+                sh "cp -r tests/* $workdir/"
+                withCredentials([usernamePassword(credentialsId: params.VAULT_CREDS, usernameVariable: 'VAULT_ROLE_ID', passwordVariable: 'VAULT_SECRET_ID')]) {
+                  withCredentials([usernamePassword(credentialsId: params.OW_CREDS, usernameVariable: 'OW_USERNAME', passwordVariable: 'OW_PASSWORD')]) {
+                    script {
+                      def exitCode = sh(
+                            script: """cd $workdir && \
+                                VCS_CONFIG=config/common.yaml,config/${params.TYPE}.yaml,config/${params.STAND}.yaml \
+                                VAULT_ROLE_ID=$VAULT_ROLE_ID \
+                                VAULT_SECRET_ID=\${VAULT_SECRET_ID} \
+                                TEST_CULTURE_USERNAME=$OW_USERNAME \
+                                TEST_CULTURE_PASSWORD=\${OW_PASSWORD} \
+                                ${params.ENVS.replaceAll('\n', ' ').trim()} \
+                                npx playwright test \
+                                --project=${params.BROWSER} \
+                                --workers=${params.WORKERS} \
+                                ${params.TAGS}
+                            """,
+                            returnStatus: true
+                        )
+                        handleTestResult(exitCode)
+                    }
+                  }
+                }
+            }
+            post {
+                always {
+                    sh "chown -R $HOST_UID:$HOST_GID $workdir/allure-results || true"
+                    sh "cp -pr $workdir/allure-results/* $allureFolder || true"
+                }
+            }
+        }
+    }
+    post {
+        always {
+            allure([commandline: 'allure-2.36.0', includeProperties: false, reportBuildPolicy: 'ALWAYS', results: [[path: allureFolder]]])
+            sh "tar -czvf $ALLURE_HISTORY_ARCHIVE -C allure-report/history ."
+            archiveArtifacts artifacts: env.ALLURE_HISTORY_ARCHIVE, fingerprint: true, allowEmptyArchive: true
+            cleanWs disableDeferredWipeout: true, deleteDirs: true
+        }
+    }
+}
+
+def handleTestResult(int exitCode) {
+    switch (exitCode) {
+        case 0:
+            echo '✅ Тесты пройдены успешно.'
+            break
+        case 1:
+            echo '⚠️ Тесты выполнены, но некоторые провалены.'
+            currentBuild.result = 'UNSTABLE'
+            break
+        default:
+            echo "❗ Неизвестный код ошибки: ${exitCode}"
+            currentBuild.result = 'FAILURE'
+            break
+    }
+}

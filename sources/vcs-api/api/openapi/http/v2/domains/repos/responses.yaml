@@ -1,0 +1,24 @@
+components:
+  responses:
+    RepoGetResponse:
+      description: Информация о репозитории
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/Repo'
+    RepoCreateResponse:
+      description: Репозиторий создан
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/Repo'
+    RepoCodehubMarkSetResponse:
+      description: Метка CodeHub установлена
+    RepoCodehubMarkDeleteResponse:
+      description: Метка CodeHub удалена
+    RepoKeyResponse:
+      description: Ключ репозитория
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/RepoKey'

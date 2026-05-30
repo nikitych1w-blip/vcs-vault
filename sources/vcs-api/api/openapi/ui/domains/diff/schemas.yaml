@@ -1,0 +1,317 @@
+components:
+  schemas:
+    CommitAuthor:
+      type: object
+      properties:
+        login:
+          type: string
+          description: Логин автора
+          example: ivanov.i.i
+        full_name:
+          type: string
+          description: Полное имя автора
+          example: Иванов Иван Иванович
+        email:
+          type: string
+          description: Email автора
+          example: ivanov.i.i@company.com
+        avatar_url:
+          type: string
+          description: Ссылка на аватар автора
+          example: 'https://git.company.com/avatar/ivanov.i.i'
+      required:
+        - login
+        - full_name
+        - email
+
+    TaskPriority:
+      type: string
+      enum:
+        - critical
+        - blocker
+        - major
+        - trivial
+        - minor
+      description: Приоритет задачи
+      example: major
+
+    TaskStatus:
+      type: string
+      enum:
+        - todo
+        - need_info
+        - in_progress
+        - in_review
+        - need_test
+        - testing
+        - need_merge
+        - done
+        - cancelled
+        - other
+      description: Статус задачи
+      example: need_test
+
+    RelatedTask:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Ключ задачи (например, PROJ-123)
+          example: PROJ-456
+        priority:
+          $ref: '#/components/schemas/TaskPriority'
+          description: Приоритет задачи
+        status:
+          $ref: '#/components/schemas/TaskStatus'
+          description: Статус задачи
+      required:
+        - key
+        - priority
+        - status
+
+    CommitStatus:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Описание статуса
+          example: 'Build is running'
+        context:
+          type: string
+          description: Контекст проверки (например, CI/CD система)
+          example: 'jenkins/build'
+        status:
+          type: string
+          enum:
+            - pending
+            - success
+            - error
+            - warning
+            - failure
+          description: Статус проверки
+          example: pending
+        url:
+          type: string
+          description: Ссылка на подробную информацию о статусе
+          example: 'https://ci.company.com/job/123'
+      required:
+        - context
+        - status
+
+    CommitStatusList:
+      type: object
+      properties:
+        sha:
+          type: string
+          description: Хэш коммита
+          example: abc123def456ghi789
+        statuses:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommitStatus'
+          description: Список статусов коммита
+      required:
+        - sha
+        - statuses
+
+    DiffCommit:
+      type: object
+      description: Коммит в контексте diff между рефами
+      properties:
+        sha:
+          type: string
+          description: Хэш коммита
+          example: abc123def456ghi789
+        summary:
+          type: string
+          description: Краткое описание коммита (первая строка сообщения)
+          example: 'PROJ-123: Add new feature implementation'
+        message:
+          type: string
+          description: Полное сообщение коммита
+          example: "PROJ-123: Add new feature implementation\n\n- Added new API endpoint\n- Updated documentation"
+        author:
+          $ref: '#/components/schemas/CommitAuthor'
+          description: Автор коммита
+        related_tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelatedTask'
+          description: Список связанных задач из сообщения коммита
+        created_at:
+          type: string
+          format: date-time
+          description: Время создания коммита
+          example: '2024-01-15T10:30:00Z'
+        statuses:
+          $ref: '#/components/schemas/CommitStatusList'
+          description: Статус коммита
+      required:
+        - sha
+        - summary
+        - message
+        - author
+        - created_at
+        - related_tasks
+        - statuses
+
+    DiffCommitsList:
+      type: object
+      properties:
+        pagination:
+          $ref: '../../common/pagination.yaml#/components/schemas/Pagination'
+        meta:
+          type: object
+          properties:
+            from_ref:
+              type: string
+              description: Исходный реф
+              example: feature/new-feature
+            to_ref:
+              type: string
+              description: Целевой реф
+              example: develop
+            commits_count:
+              type: integer
+              description: Количество коммитов между рефами
+              example: 5
+            files_count:
+              type: integer
+              description: Количество измененных файлов
+              example: 12
+          required:
+            - from_ref
+            - to_ref
+            - commits_count
+            - files_count
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiffCommit'
+          description: Список коммитов между рефами
+      required:
+        - meta
+        - data
+        - pagination
+
+    DiffFile:
+      type: object
+      properties:
+        filepath:
+          type: string
+          description: Путь к файлу
+        additions:
+          type: integer
+          description: Количество добавленных строк
+        deletions:
+          type: integer
+          description: Количество удаленных строк
+        diff:
+          type: string
+          description: Git-diff содержание изменений
+        old_filename:
+          type: string
+          description: Предыдущее имя файла (для переименований)
+        binary:
+          type: boolean
+          description: Является ли файл бинарным
+        total_lines:
+          type: integer
+          description: Общее количество строк в файле
+          example: 150
+        file_url:
+          type: string
+          description: Путь до файла
+      required:
+        - filepath
+        - additions
+        - deletions
+        - diff
+        - binary
+        - total_lines
+        - file_url
+
+    FileNode:
+      type: object
+      description: Узел, представляющий файл
+      properties:
+        name:
+          type: string
+          description: Имя файла
+          example: 'README.md'
+        type:
+          type: string
+          enum: [file]
+          description: Тип узла (всегда "file" для файла)
+        path:
+          type: string
+          description: Полный путь к файлу
+          example: 'src/utils/README.md'
+      required:
+        - name
+        - type
+        - path
+        - change_type
+
+    TreeNode:
+      type: object
+      description: Узел, представляющий директорию с вложенными элементами
+      properties:
+        name:
+          type: string
+          description: Имя директории
+          example: 'src'
+        type:
+          type: string
+          enum: [directory, file]
+          description: Тип узла
+        path:
+          type: string
+          description: Полный путь к директории
+          example: 'src'
+        old_path:
+          type: string
+          description: Предыдущий путь файла (только для переименованных файлов)
+          example: 'src/utils/old_readme.md'
+        change_type:
+          type: string
+          enum: [added, modified, deleted, renamed]
+          description: Тип изменения файла
+          example: 'modified'
+        items:
+          type: array
+          description: Список элементов внутри директории (могут быть файлами или поддиректориями)
+          items:
+            $ref: '#/components/schemas/TreeNode'
+      required:
+        - name
+        - type
+        - path
+
+    FileChunk:
+      type: object
+      description: Содержимое файла в указанном диапазоне строк
+      properties:
+        lines:
+          type: array
+          description: Массив строк с номерами и содержимым
+          items:
+            $ref: '#/components/schemas/LineContent'
+      required:
+        - lines
+
+    LineContent:
+      type: object
+      description: Строка файла с номером и содержимым
+      properties:
+        line_number:
+          type: integer
+          description: Номер строки
+          example: 10
+        content:
+          type: string
+          description: Содержимое строки
+          example: 'def calculate_sum(a, b):'
+      required:
+        - line_number
+        - content

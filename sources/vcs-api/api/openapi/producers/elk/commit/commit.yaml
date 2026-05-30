@@ -1,0 +1,175 @@
+# Команда для генерации: oapi-codegen -generate types -config api/openapi/producers/elk/commit/commit.cfg.yaml api/openapi/producers/elk/commit/commit.yaml
+openapi: 3.0.0
+info:
+  title: Kafka contracts
+  version: 1.0.0
+
+paths:
+  /:
+    get:
+      description: Fake endpoint to create a commit event
+      responses:
+        200:
+          description: Fake response to create a commit event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GitCommitEvent'
+
+components:
+  schemas:
+    GitCommitEvent:
+      description: Git commit event
+      type: object
+      properties:
+        metadata:
+          $ref: './generic/meta.yaml#/components/schemas/Metadata'
+        context:
+          $ref: './generic/context.yaml#/components/schemas/Context'
+        payload:
+          $ref: '#/components/schemas/CommitInfo'
+        initiator_user:
+          $ref: '#/components/schemas/InitiatorUser'
+      required:
+        - metadata
+        - context
+        - payload
+        - initiator_user
+    InitiatorUser:
+      type: object
+      description: Initiator user
+      properties:
+        id:
+          type: string
+          description: User id
+      required:
+        - id
+    CommitInfo:
+      type: object
+      description: Модель инфы о коммите для отправки в Кафка
+      properties:
+        sc_commit_author_name:
+          type: string
+          description: Автор коммита (ФИО)
+          example: "Иван Иванов"
+        sc_commit_dttm:
+          type: string
+          description: Дата и время коммита
+          example: "2024-03-20T09:59:31.000Z"
+        sc_commit_author_email:
+          type: string
+          format: string
+          description: Email автора
+          example: "nsbyvaltsev@sberbank.ru"
+        sc_uid:
+          type: string
+          description: Уникальный идентификатор коммита
+          example: "6c5dd61aca64c5d86dded6dccecbe99c"
+        sc_inserted_row_cnt:
+          type: integer
+          description: Количество вставленных строк
+          example: 6
+        sc_deleted_row_cnt:
+          type: integer
+          description: Количество удаленных строк
+          example: 0
+        sc_source_file_language_name:
+          type: string
+          description: Язык исходного файла
+          example: "XML"
+          nullable: true
+        sc_project_name:
+          type: string
+          description: Название проекта
+          example: "20144432"
+        sc_project_domain_name:
+          type: string
+          description: Домен проекта
+          example: "sigma"
+          nullable: true
+        sc_repository_name:
+          type: string
+          description: Название репозитория
+          example: "bootcamp-marketplace-fork"
+        sc_file_path:
+          type: string
+          description: Путь к файлу
+          example: "Jenkinsfile"
+        sc_commit_sha:
+          type: string
+          description: SHA хэш коммита
+          example: "fcc95b66b646863196dd13fb73367640109df723"
+        sc_merge_bool:
+          type: boolean
+          description: Флаг, является ли коммит merge-коммитом
+          example: false
+          nullable: true
+        sc_file_extension_type_list:
+          type: string
+          description: Расширение файла
+          example: "xml"
+        sc_parent_commit_sha:
+          type: string
+          description: SHA-1 родительского коммита
+          example: "4ce1088a9fd8b68a189b6c85a835fb1d5bc11e6f"
+        sc_commit_message_txt:
+          type: string
+          description: Сообщение коммита
+          example: "[INDAI-320] - delete technic prompts"
+        sc_url:
+          type: string
+          format: uri
+          description: URL системы SourceControl
+          example: "https://sc-ci.sber.ru/sc"
+        sbertrack_issue_url:
+          type: string
+          format: uri
+          description: Ссылка на задачу в Sbertrack
+          example: "https://sbertrack.sberbank.ru/swtr/units/current/unit/DATALAKE-110?space=DATALAKE&tenant=default"
+          nullable: true
+        sc_commit_author_login:
+          type: string
+          description: Логин автора коммита
+          example: "18741847"
+        sc_branch_name:
+          type: string
+          description: Название ветки
+          example: "feature/INDAI-320-delete-prompts"
+        sc_parent_commit_id_list:
+          type: array
+          items:
+            type: string
+          description: Список родительских коммитов (SHA-1), от которых сделан этот коммит
+          example:
+            - "4ce1088a9fd8b68a189b6c85a835fb1d5bc11e6f"
+            - "a9c27f5a48be25b1a381b40e6ed9e8f17b7a8f2d"
+        sc_modified_file_list:
+          type: array
+          items:
+            type: string
+          description: Список файлов, затронутых изменениями
+          example:
+            - "src/main/java/App.java"
+            - "README.md"
+      required:
+        - sc_commit_author_name
+        - sc_commit_dttm
+        - sc_commit_author_email
+        - sc_uid
+        - sc_inserted_row_cnt
+        - sc_deleted_row_cnt
+        - sc_source_file_language_name
+        - sc_project_name
+        - sc_repository_name
+        - sc_file_path
+        - sc_commit_sha
+        - sc_file_extension_type_list
+        - sc_parent_commit_sha
+        - sc_commit_message_txt
+        - sc_url
+        - sc_commit_author_login
+        - sc_branch_name
+        - sc_parent_commit_id_list
+        - sc_modified_file_list
+
+

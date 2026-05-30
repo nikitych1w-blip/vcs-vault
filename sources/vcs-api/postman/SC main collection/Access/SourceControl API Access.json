@@ -1,0 +1,304 @@
+{
+  "info": {
+    "_postman_id": "6882c1de-eaef-40b5-840a-8846f57dd1c3",
+    "name": "Access",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "Read",
+      "item": [
+        {
+          "name": "Get Project Access",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has valid access structure\", function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('is_admin');",
+                  "    pm.expect(response).to.have.property('project_id');",
+                  "    pm.expect(response).to.have.property('project_name');",
+                  "    pm.expect(response).to.have.property('group');",
+                  "    pm.expect(response).to.have.property('actions');",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/access/projects/{{sc_api_mock_project_name}}",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_web_v2_prefix}}",
+                "access",
+                "projects",
+                "{{sc_api_mock_project_name}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Projects Access List",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has valid access list structure\", function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('is_admin');",
+                  "    pm.expect(response).to.have.property('projects');",
+                  "    pm.expect(response.projects).to.be.an('array');",
+                  "    if (response.projects.length > 0) {",
+                  "        pm.expect(response.projects[0]).to.have.property('project_id');",
+                  "        pm.expect(response.projects[0]).to.have.property('group');",
+                  "    }",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"projects\": [\"{{sc_api_mock_project_name\"]\n}"
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/access/projects",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_web_v2_prefix}}",
+                "access",
+                "projects"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Repos Access List",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has valid repos access structure\", function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('is_admin');",
+                  "    pm.expect(response).to.have.property('repos');",
+                  "    pm.expect(response.repos).to.be.an('array');",
+                  "    if (response.repos.length > 0) {",
+                  "        pm.expect(response.repos[0]).to.have.property('repo_id');",
+                  "        pm.expect(response.repos[0]).to.have.property('group');",
+                  "    }",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repos\": [\"{{sc_api_mock_project_name}}\"]\n}"
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/access/repos",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_web_v2_prefix}}",
+                "access",
+                "repos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Repo Access",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has valid repo access structure\", function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('is_admin');",
+                  "    pm.expect(response).to.have.property('repo_id');",
+                  "    pm.expect(response).to.have.property('repo_name');",
+                  "    pm.expect(response).to.have.property('group');",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/access/projects/{{sc_api_mock_project_name}}/repos/{{sc_api_mock_repository_name}}",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_web_v2_prefix}}",
+                "access",
+                "projects",
+                "{{sc_api_mock_project_name}}",
+                "repos",
+                "{{sc_api_mock_repository_name}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Project Repos Access List",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has valid repos access structure\", function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('is_admin');",
+                  "    pm.expect(response).to.have.property('repos');",
+                  "    pm.expect(response.repos).to.be.an('array');",
+                  "    if (response.repos.length > 0) {",
+                  "        pm.expect(response.repos[0]).to.have.property('repo_id');",
+                  "        pm.expect(response.repos[0]).to.have.property('group');",
+                  "    }",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/access/projects/{{sc_api_mock_project_name}}/repos",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_web_v2_prefix}}",
+                "access",
+                "projects",
+                "{{sc_api_mock_project_name}}",
+                "repos"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

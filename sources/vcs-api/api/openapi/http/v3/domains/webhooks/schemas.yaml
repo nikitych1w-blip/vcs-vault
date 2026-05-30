@@ -1,0 +1,229 @@
+components:
+  schemas:
+    Webhook:
+      type: object
+      required:
+        - id
+        - active
+        - config
+        - created_at
+        - updated_at
+        - events
+      properties:
+        id:
+          type: integer
+          description: ID вебхука
+          example: 12345
+        active:
+          type: boolean
+          description: Флаг активности
+          example: true
+        authorization_header:
+          type: string
+          description: Заголовок авторизации (если есть)
+          example: "Bearer token123"
+        config:
+          $ref: '#/components/schemas/WebhookConfig'
+        created_at:
+          type: string
+          format: date-time
+          description: Дата создания
+          example: "2024-01-15T10:30:00Z"
+        updated_at:
+          type: string
+          format: date-time
+          description: Дата обновления
+        events:
+          type: array
+          description: Список событий для вебхука
+          items:
+            $ref: '#/components/schemas/RepositoryEvents'
+        branch_filter:
+          type: string
+          description: Фильтр веток для событий, указанный в виде glob-шаблона
+          example: "master, release*"
+  
+    WebhookConfig:
+      type: object
+      description: Конфигурация вебхука
+      required:
+        - url
+        - http_method
+        - content_type
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL-адрес для отправки webhook
+          example: "https://example.com/webhook"
+        http_method:
+          type: string
+          description: HTTP метод для запроса
+          enum:
+            - POST
+            - GET
+          default: POST
+          example: "POST"
+        content_type:
+          type: string
+          description: Тип содержимого отправляемых данных
+          enum:
+            - application/json
+            - application/x-www-form-urlencoded
+          default: application/json
+          example: "application/json"
+        secret:
+          type: string
+          description: Секретный ключ для подписи webhook (опционально)
+          example: "your-secret-key-here"
+          minLength: 1
+          maxLength: 256
+
+    WebhookPayload:
+      type: object
+      description: Данные для создания вебхука      
+      required:
+        - active
+        - config
+        - events
+      properties:
+        active:
+          type: boolean
+          description: Флаг активности вебхука
+          example: true
+        authorization_header:
+          type: string
+          description: Заголовок авторизации (если есть)
+          example: "Bearer token123"
+        config:
+          $ref: '#/components/schemas/WebhookConfigPayload'
+        events:
+          type: array
+          description: Список событий для вебхука
+          items:
+            $ref: '#/components/schemas/RepositoryEvents'
+          minItems: 1
+        branch_filter:
+          type: string
+          description: Фильтр веток для событий, указанный в виде glob-шаблона
+          example: "master, release*"
+
+    RepositoryEvents:
+      type: string
+      enum:
+        # Repository events
+        - create
+        - delete
+        - fork
+        - push
+        - repository
+        - release
+        - package
+        - rebuild
+        - wiki
+        # Issue events
+        - issues
+        - issue_assign
+        - issue_label
+        - issue_milestone
+        - issue_comment
+        # Pull request events
+        - pull_request
+        - pull_request_assign
+        - pull_request_label
+        - pull_request_milestone
+        - pull_request_comment
+        - pull_request_review
+        - pull_request_review_approved
+        - pull_request_review_rejected
+        - pull_request_review_comment
+        - pull_request_sync
+
+    WebhookConfigPayload:
+      type: object
+      description: Конфигурация вебхука 
+      required:
+        - url
+        - http_method
+        - content_type
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL-адрес для отправки webhook
+          example: "https://example.com/webhook"
+        http_method:
+          type: string
+          description: HTTP метод для запроса
+          enum:
+            - POST
+            - GET
+          example: "POST"
+        content_type:
+          type: string
+          description: Тип содержимого отправляемых данных
+          enum:
+            - application/json
+            - application/x-www-form-urlencoded
+          example: "application/json"
+        secret:
+          type: string
+          description: Секретный ключ для подписи webhook (опционально)
+          example: "your-secret-key-here"
+          minLength: 1
+          maxLength: 256 
+
+    WebhookUpdatePayload:
+      type: object
+      description: Данные для частичного обновления вебхука      
+      properties:
+        active:
+          type: boolean
+          description: Флаг активности вебхука
+          example: true
+        authorization_header:
+          type: string
+          description: Заголовок авторизации (если есть)
+          example: "Bearer token123"
+        config:
+          $ref: '#/components/schemas/WebhookUpdateConfigPayload'
+        events:
+          type: array
+          description: Список событий для вебхука
+          items:
+            $ref: '#/components/schemas/RepositoryEvents'
+        branch_filter:
+          type: string
+          description: Фильтр веток для событий, указанный в виде glob-шаблона
+          example: "master, release*"
+
+
+    WebhookUpdateConfigPayload:
+      type: object
+      description: Конфигурация вебхука 
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL-адрес для отправки webhook
+          example: "https://example.com/webhook"
+        http_method:
+          type: string
+          description: HTTP метод для запроса
+          enum:
+            - POST
+            - GET
+          example: "POST"
+        content_type:
+          type: string
+          description: Тип содержимого отправляемых данных
+          enum:
+            - application/json
+            - application/x-www-form-urlencoded
+          example: "application/json"
+        secret:
+          type: string
+          description: Секретный ключ для подписи webhook (опционально)
+          example: "your-secret-key-here"
+          minLength: 1
+          maxLength: 256

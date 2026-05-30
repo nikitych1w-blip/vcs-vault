@@ -1,0 +1,19 @@
+components:
+  securitySchemes:
+    authorizationHeaderToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API tokens must be prepended with "token" followed by a space.
+
+    basicHttpAuthentication:
+      type: http
+      scheme: basic
+      description: Авторизация по логину и паролю
+
+    accessToken:
+      type: apiKey
+      in: query
+      name: access_token
+      description: API access token passed as a query parameter.
+

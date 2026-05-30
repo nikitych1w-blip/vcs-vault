@@ -1,0 +1,81 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Deployment.puml
+!include ./../../../../../sources/deployment_units/spo/spo.puml
+!include ./../../../../../sources/deployment_units/sc/sc.puml
+!include ./../../../../../sources/deployment_units/actor/actor.puml
+
+'!include ./../../../../../sources/C4_Deployment.puml
+' Верхний уровень (сегменты)
+
+AddElementTag("fallback", $bgColor="#c0c0c0")
+AddRelTag("fallback", $textColor="#c0c0c0", $lineColor="#438DD5")
+WithoutPropertyHeader()
+
+Deployment_Node(segment0, "Компьютер пользователя", "Any") {
+    Person_Deployment_Node(vm_user, user)
+}
+
+Deployment_Node(segment, "Периметр решения", "VM/K8S") {
+    Deployment_Node(segment2, "Необязательное СПО", "VM/K8S", $tags="fallback") {
+        Ngam_Deployment_Node(vm_spo4, ngam)
+        Corax_Deployment_Node(vm_spo5, corax)
+        SecMan_Deployment_Node(vm_spo6, secman)
+        SMTP_Deployment_Node(vm_spo7, smtp)
+        LDAP_Deployment_Node(vm_spo8, ldap)
+
+    }
+    Deployment_Node(segment1, "Автоматизированная система SourceControl", "VM/K8S") {
+        Deployment_Node(segment5, "Platform V DropApp", "K8S") {
+            Deployment_Node(segment9, "Необязательное СПО") {
+                Istio_Ingress_Deployment_Node(k8s_ingress, ingress)
+            }
+            Deployment_Node(segment10, "Необязательное СПО") {
+                Istio_Egress_Deployment_Node(k8s_egress, egress)
+            }
+            SourceControlFE_K8S_Deployment_Node(vm_product, fe)
+            SourceControlCore_Vault_Alog_K8S_Deployment_Node(vm_product1, core, vault_agent, alog)
+        }
+        Deployment_Node(segment7, "Обязательное СПО", "VM") {
+            IAMProxy_Deployment_Node(vm_spo, proxy)
+            Haproxy_Deployment_Node(vm_spo3, haproxy)
+
+        }
+        Deployment_Node(segment6, "Обязательное СПО", "VM") {
+            Gitaly_Deployment_Node(vm_spo1, gitaly)
+            Pangolin_Deployment_Node(vm_spo2, pangolin)
+            Radish_Deployment_Node(vm_spo10, redis)
+            S3_Deployment_Node(vm_spo11, s3)
+            Radish_Deployment_Node(vm_spo10, redis)
+        }
+    }
+}
+
+Rel(user, proxy, "HTTPS", "v1.2")
+Rel(user, haproxy, "HTTPS", "v1.2")
+Rel(user, haproxy, "TCP")
+
+
+Rel(core, egress, "TCP/HTTPS/GRPC")
+Rel(vault_agent, egress, "HTTPS")
+Rel(alog, egress, "TCP")
+
+Rel(egress, pangolin, "TCP")
+Rel(egress, gitaly, "GRPC")
+Rel(egress, secman, "HTTPS", "v1.2")
+Rel(egress, corax, "TCP")
+Rel(egress, smtp, "SMTP")
+Rel(egress, ldap, "LDAP")
+Rel(egress, redis, "TCP")
+Rel(egress, s3, "HTTPS", "v1.2")
+
+Rel(proxy, ingress, "HTTPS", "v1.2")
+Rel(proxy, ngam, "HTTPS", "v1.2")
+
+Rel(haproxy, ingress, "TCP")
+Rel(haproxy, ingress, "HTTPS", "v1.2")
+
+Rel(ingress, core, "HTTPS", "v1.2")
+Rel(ingress, fe, "HTTPS", "v1.2")
+
+SHOW_LEGEND()
+@enduml

@@ -1,0 +1,64 @@
+components:
+  responses:
+    RepositoriesListResponse:
+      description: Список репозиториев
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/RepositoriesResponse'
+    RepositoryCreateResponse:
+      description: Репозиторий создан
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/RepositoryV3'
+    RepositoryGetResponse:
+      description: Информация о репозитории
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/RepositoryV3'
+    RepoSystemLabelGetResponse:
+      description: Значение системной метки репозитория
+      headers:
+        X-Request-ID:
+          schema:
+            type: string
+            format: uuid
+          description: Уникальный идентификатор запроса
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/LabelValue'
+    RepoSystemLabelSetResponse:
+      description: Значение системной метки репозитория установлено
+      headers:
+        Location:
+          description: URL системной метки репозитория
+          schema:
+            type: string
+        X-Request-ID:
+          schema:
+            type: string
+            format: uuid
+          description: Уникальный идентификатор запроса
+    RepositoryDeleteResponse:
+      description: Репозиторий удалён
+    DefaultBranchResponse:
+      description: Ветка по умолчанию обновлена
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/DefaultBranchResult'
+    SubscriptionGetResponse:
+      description: Настройки отслеживания репозитория
+      headers:
+        X-Request-ID:
+          schema:
+            type: string
+            format: uuid
+          description: Уникальный идентификатор запроса
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/RepositorySubscription'

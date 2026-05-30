@@ -1,0 +1,4 @@
+sc:
+  name: sc-vp
+  ssh:
+    port: 7017

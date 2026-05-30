@@ -1,0 +1,10 @@
+components:
+  responses:
+    SwaggerRedirectResponse:
+      description: Редирект на Swagger UI
+      headers:
+        Location:
+          description: URL Swagger UI
+          schema:
+            type: string
+            example: /api/swagger_v3

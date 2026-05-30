@@ -1,0 +1,153 @@
+components:
+  responses:
+    BadRequest:
+      description: Некорректный запрос
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+          example:
+            type: null
+            status: 400
+            title: Некорректный запрос
+            detail: Обнаружены ошибки в переданных данных.
+            instance: /repos/tenant/project/repo/branches
+            validation:
+              - location: field
+                name: branch_name
+                error: Имя ветки не может быть пустым.
+                code: required_field
+
+    Unauthorized:
+      description: Требуется аутентификация
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+          example:
+            type: null
+            status: 401
+            title: Требуется аутентификация
+            detail: Токен доступа отсутствует или недействителен.
+            instance: /repos/tenant/project/repo
+
+    Forbidden:
+      description: Доступ запрещён
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+          example:
+            type: null
+            status: 403
+            title: Доступ запрещён
+            detail: Недостаточно прав для выполнения операции.
+            instance: /repos/tenant/project/repo
+
+    NotFound:
+      description: Ресурс не найден
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+          example:
+            type: null
+            status: 404
+            title: Ресурс не найден
+            detail: Запрашиваемый ресурс не существует.
+            instance: /repos/tenant/project/repo
+
+    Conflict:
+      description: Конфликт данных или бизнес-правил
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+          example:
+            type: null
+            status: 409
+            title: Конфликт данных
+            detail: Ресурс с такими параметрами уже существует.
+            instance: /repos/tenant/project/repo/branches
+
+    ServerError:
+      description: Ошибка сервера
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+          example:
+            type: null
+            status: 500
+            title: Ошибка сервера
+            detail: Произошла внутренняя ошибка. Повторите запрос позже.
+            instance: /repos/tenant/project/repo
+
+  schemas:
+    ProblemDetail:
+      description: Стандартный формат ответа об ошибке (RFC 9457)
+      type: object
+      required:
+        - type
+        - status
+        - title
+        - detail
+        - instance
+      properties:
+        type:
+          description: URI-идентификатор типа ошибки
+          type: string
+          format: uri
+          nullable: true
+          example: null
+        status:
+          description: HTTP статус код ошибки
+          type: integer
+          format: int32
+          minimum: 400
+          maximum: 599
+          example: 400
+        title:
+          description: Человекочитаемое краткое описание типа ошибки
+          type: string
+          example: Некорректный запрос
+        detail:
+          description: Конкретное сообщение об ошибке для текущего случая
+          type: string
+          example: Обнаружены ошибки в переданных данных.
+        instance:
+          description: URI, идентифицирующий данное конкретное возникновение ошибки
+          type: string
+          format: uri-reference
+          example: /repos/tenant/project/repo/branches
+        validation:
+          description: Массив ошибок валидации, null если ошибок валидации нет
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ValidationError'
+
+    ValidationError:
+      type: object
+      properties:
+        location:
+          description: Местоположение ошибки
+          type: string
+          enum:
+            - field
+            - param
+            - header
+          example: field
+        name:
+          description: Имя параметра/поля
+          type: string
+          example: branch_name
+        error:
+          description: Человекочитаемое сообщение об ошибке
+          type: string
+          example: Имя ветки не может быть пустым.
+        code:
+          description: Машиночитаемый код ошибки
+          type: string
+          example: required_field
+

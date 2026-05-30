@@ -1,0 +1,24 @@
+!definelong OW_PAO_App(id, proxy_id, etc_id)
+System_Boundary(id, "OW") {
+    Container(ow_app, "OW App", "Java", "Выдача привилегий, адаптеры, фронтенд", $tags="app")
+    Container(proxy_id, "OW Proxy WS", "OpenResty", "Маршрутизатор запросов", $tags="app")
+    Container(ow_host_app, "OW Host App", "React", "Сервис взаимодействия MFE", $tags="app")
+    Container(etc_id, "ETC ...", " ", "Другие маршрутизаторы", $tags="app")
+}
+
+Rel(proxy_id, ow_app, " ")
+Rel(proxy_id, ow_host_app, " ")
+Rel(proxy_id, etc_id, " ")
+!enddefinelong
+
+!definelong OW_SBT_App(id, proxy_id)
+System_Boundary(id, "OW") {
+    Container(ow_app, "OW App", "Java", "Выдача привилегий, адаптеры, фронтенд", $tags="app")
+    Container(proxy_id, "OW Proxy WS", "OpenResty", "Маршрутизатор запросов", $tags="app")
+    Container(ow_host_app, "OW Host App", "React", "Сервис взаимодействия MFE", $tags="app")
+}
+
+Rel(proxy_id, ow_app, " ")
+Rel(proxy_id, ow_host_app, " ")
+!enddefinelong
+

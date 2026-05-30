@@ -1,0 +1,80 @@
+components:
+  schemas:
+    AdditionalRestrictions:
+      description: Дополнительные ограничения
+      properties:
+        protected_file_patterns:
+          description: Шаблон защищённых файлов
+          type: string
+        unprotected_file_patterns:
+          description: Шаблон незащищённых файлов
+          type: string
+      type: object
+    BranchProtectionBody:
+      additionalProperties: false
+      description: Настройки защиты ветки
+      properties:
+        additional_restrictions:
+          $ref: '#/components/schemas/AdditionalRestrictions'
+        branch_name:
+          description: Имя ветки или шаблон
+          maxLength: 255
+          type: string
+        deletion_settings:
+          $ref: '#/components/schemas/DeletionSettings'
+        force_push_settings:
+          $ref: '#/components/schemas/ForcePushSettings'
+        push_settings:
+          $ref: '#/components/schemas/PushSettings'
+      required:
+        - branch_name
+        - push_settings
+        - force_push_settings
+        - deletion_settings
+        - additional_restrictions
+      type: object
+    DeletionSettings:
+      description: Настройки удаления ветки
+      properties:
+        allow_deletion_deploy_keys:
+          description: Разрешить удаление для deploy-ключей
+          type: boolean
+        branch_deletion_whitelist_usernames:
+          description: Пользователи с разрешением удаления
+          items:
+            type: string
+          type: array
+        require_deletion_whitelist:
+          description: Требовать белый список для удаления
+          type: boolean
+      type: object
+    ForcePushSettings:
+      description: Настройки force push
+      properties:
+        allow_force_push_deploy_keys:
+          description: Разрешить force push для deploy-ключей
+          type: boolean
+        force_push_whitelist_usernames:
+          description: Пользователи с разрешением force push
+          items:
+            type: string
+          type: array
+        require_force_push_whitelist:
+          description: Требовать белый список для force push
+          type: boolean
+      type: object
+    PushSettings:
+      description: Настройки push
+      properties:
+        allow_push_deploy_keys:
+          description: Разрешить push для deploy-ключей
+          type: boolean
+        push_whitelist_usernames:
+          description: Пользователи с разрешением push
+          items:
+            type: string
+          type: array
+        require_push_whitelist:
+          description: Требовать белый список для push
+          type: boolean
+      type: object

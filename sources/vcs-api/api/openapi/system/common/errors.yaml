@@ -1,0 +1,57 @@
+components:
+  responses:
+    Unauthorized:
+      description: Требуется аутентификация
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            type: null
+            title: Требуется аутентификация
+            detail: Токен доступа отсутствует или недействителен.
+
+    Forbidden:
+      description: Доступ запрещён
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            type: null
+            title: Доступ запрещён
+            detail: Недостаточно прав для выполнения операции.
+
+    ServerError:
+      description: Ошибка сервера
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            type: null
+            title: Ошибка сервера
+            detail: Произошла внутренняя ошибка. Повторите запрос позже.
+
+  schemas:
+    ErrorResponse:
+      description: Формат ответа об ошибке
+      type: object
+      required:
+        - type
+        - title
+        - detail
+      properties:
+        type:
+          description: URI типа ошибки (временно null)
+          type: string
+          nullable: true
+          example: null
+        title:
+          description: Краткое название ошибки
+          type: string
+          example: Ошибка сервера
+        detail:
+          description: Подробное описание ошибки
+          type: string
+          example: Произошла внутренняя ошибка. Повторите запрос позже.

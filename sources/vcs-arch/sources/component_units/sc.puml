@@ -1,0 +1,4 @@
+!definelong SC_Component_App(id)
+Container(id, "SС Core", "Go", "Точка входа для всех операций", $tags="app")
+!enddefinelong
+

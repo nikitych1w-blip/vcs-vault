@@ -1,0 +1,91 @@
+components:
+  schemas:
+    CommitListResponse:
+      description: Список коммитов с пагинацией
+      properties:
+        commits:
+          description: Список коммитов
+          items:
+            $ref: '#/components/schemas/FileCommitFullInfo'
+          type: array
+        pagination:
+          $ref: ../../common/pagination.yaml#/components/schemas/Pagination
+      required:
+        - pagination
+        - commits
+      type: object
+    CommitParentOrTreeInfo:
+      description: Информация о родительском коммите или дереве
+      properties:
+        created:
+          description: Дата создания
+          type: string
+        sha:
+          description: SHA объекта
+          type: string
+        url:
+          description: URL объекта
+          type: string
+      required:
+        - sha
+        - url
+        - created
+      type: object
+    CommitUserWithDateInfo:
+      description: Информация об авторе/коммиттере
+      properties:
+        date:
+          description: Дата
+          format: date-time
+          type: string
+        email:
+          description: Email пользователя
+          format: email
+          type: string
+        name:
+          description: Имя пользователя
+          type: string
+      required:
+        - name
+        - email
+        - date
+      type: object
+    FileCommitFullInfo:
+      description: Полная информация о коммите
+      properties:
+        author:
+          $ref: '#/components/schemas/CommitUserWithDateInfo'
+        committer:
+          $ref: '#/components/schemas/CommitUserWithDateInfo'
+        created:
+          description: Дата создания
+          format: date-time
+          type: string
+        html_url:
+          description: HTML URL коммита
+          type: string
+        message:
+          description: Сообщение коммита
+          type: string
+        parents:
+          description: Родительские коммиты
+          items:
+            $ref: '#/components/schemas/CommitParentOrTreeInfo'
+          type: array
+        sha:
+          description: SHA коммита
+          type: string
+        tree:
+          $ref: '#/components/schemas/CommitParentOrTreeInfo'
+        url:
+          description: API URL коммита
+          type: string
+      required:
+        - sha
+        - message
+        - url
+        - created
+        - author
+        - committer
+        - tree
+      type: object

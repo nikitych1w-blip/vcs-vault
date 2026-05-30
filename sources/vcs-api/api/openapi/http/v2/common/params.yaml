@@ -1,0 +1,74 @@
+components:
+  parameters:
+    TenantKey:
+      name: tenant_key
+      in: query
+      required: true
+      description: Tenant key
+      schema:
+        type: string
+
+    ProjectKey:
+      name: project_key
+      in: query
+      required: true
+      description: Project key
+      schema:
+        type: string
+
+    RepoKey:
+      name: repo_key
+      in: query
+      required: true
+      description: Repository key
+      schema:
+        type: string
+
+    UserKey:
+      name: user_key
+      in: query
+      required: true
+      description: User login name
+      schema:
+        type: string
+
+    ProjectName:
+      name: project_name
+      in: query
+      required: true
+      description: Project name
+      schema:
+        type: string
+
+    RepositoryName:
+      name: repository_name
+      in: query
+      required: true
+      description: Repository name
+      schema:
+        type: string
+
+    MetricKey:
+      name: metric
+      in: query
+      required: true
+      description: Metric key
+      schema:
+        type: string
+
+    SSHKeyTitle:
+      name: title
+      in: query
+      required: true
+      description: SSH key title
+      schema:
+        type: string
+
+    WebhookID:
+      name: id
+      in: query
+      required: true
+      description: Webhook ID
+      schema:
+        type: integer
+        format: int64

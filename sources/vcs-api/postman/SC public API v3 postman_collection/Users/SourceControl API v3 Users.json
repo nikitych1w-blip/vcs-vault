@@ -1,0 +1,132 @@
+{
+  "info": {
+    "_postman_id": "c391ac9c-d65a-4819-8a85-663ecaa4234c",
+    "name": "Users",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "Добавление токена",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"CI/CD pipeline token\",\r\n  \"scopes\": [\"repo:status\"]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-vp/api/v3/user/tokens",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-vp",
+            "api",
+            "v3",
+            "user",
+            "tokens"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Добавление SSH",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"user@example.com\",\r\n  \"key\": \"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKFSvHQlOhKpT+SVEeikEbpGj5UdN0xiZFUdVaW84CPA user@example.com\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-vp/api/v3/user/keys",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-vp",
+            "api",
+            "v3",
+            "user",
+            "keys"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    }
+  ]
+}

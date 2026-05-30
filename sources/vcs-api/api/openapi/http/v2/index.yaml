@@ -1,0 +1,91 @@
+openapi: 3.0.3
+info:
+  title: SourceControl API v2
+  description: SourceControl REST API v2
+  version: 0.0.0-dev
+  license:
+    name: Internal Proprietary License
+    url: https://example.invalid/
+
+servers:
+  - url: /api/v2
+
+security:
+  - authorizationHeaderToken: []
+  - basicHttpAuthentication: []
+  - accessToken: []
+
+tags:
+  - name: admin
+    description: Административные операции
+  - name: metrics
+    description: Метрики (internal/external)
+  - name: projects
+    description: Управление проектами
+  - name: repos
+    description: Управление репозиториями
+  - name: tenants
+    description: Управление тенантами
+  - name: webhooks
+    description: Webhooks
+
+paths:
+  /swagger:
+    $ref: "./domains/admin/routes.yaml#/Swagger"
+
+  /admin/users:
+    $ref: "./domains/admin/routes.yaml#/AdminUsers"
+  /admin/users/keys:
+    $ref: "./domains/admin/routes.yaml#/AdminUserKeys"
+  /admin/privileges:
+    $ref: "./domains/admin/routes.yaml#/AdminPrivileges"
+
+  /projects/create:
+    $ref: "./domains/projects/routes.yaml#/ProjectsCreate"
+  /projects:
+    $ref: "./domains/projects/routes.yaml#/ProjectInfo"
+  /projects/projectkey:
+    $ref: "./domains/projects/routes.yaml#/ProjectKey"
+
+  /tenants:
+    $ref: "./domains/tenants/routes.yaml#/Tenants"
+
+  /projects/repos:
+    $ref: "./domains/repos/routes.yaml#/ProjectsRepos"
+  /projects/repos/metrics:
+    $ref: "./domains/metrics/routes.yaml#/InternalMetrics"
+  /projects/repos/reuse_metric:
+    $ref: "./domains/metrics/routes.yaml#/ExternalMetrics"
+  /projects/repos/marks/codehub:
+    $ref: "./domains/repos/routes.yaml#/RepoMarksCodehub"
+  /projects/repos/repokey:
+    $ref: "./domains/repos/routes.yaml#/RepoKey"
+
+  /repos/webhooks:
+    $ref: "./domains/webhooks/routes.yaml#/RepoWebhooks"
+
+components:
+  schemas:
+    ErrorResponse:
+      $ref: "./common/errors.yaml#/components/schemas/ErrorResponse"
+
+  responses:
+    BadRequest:
+      $ref: "./common/errors.yaml#/components/responses/BadRequest"
+    Unauthorized:
+      $ref: "./common/errors.yaml#/components/responses/Unauthorized"
+    Forbidden:
+      $ref: "./common/errors.yaml#/components/responses/Forbidden"
+    NotFound:
+      $ref: "./common/errors.yaml#/components/responses/NotFound"
+    ServerError:
+      $ref: "./common/errors.yaml#/components/responses/ServerError"
+
+  securitySchemes:
+    authorizationHeaderToken:
+      $ref: "./common/security.yaml#/components/securitySchemes/authorizationHeaderToken"
+    basicHttpAuthentication:
+      $ref: "./common/security.yaml#/components/securitySchemes/basicHttpAuthentication"
+    accessToken:
+      $ref: "./common/security.yaml#/components/securitySchemes/accessToken"
+

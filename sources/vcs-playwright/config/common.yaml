@@ -1,0 +1,67 @@
+ui:
+  auth: keycloak
+  reactApiBaseUrl: '{{ config:ui.baseUrl }}react/apifront/'
+  responseTimeout: 20_000
+api:
+  baseUrl: 'https://{{ config:sc.name }}.ift.pd04.pvw.sbt'
+  basicAuthBaseUrl: '{{ config:ui.baseUrl }}'
+  timeout: 30_000
+  poll:
+    timeout: 10000
+    interval: 500
+sc:
+  tenant: test
+  tuz:
+    name: '{{ config:sc.localAdmin.name }}'
+    password: '{{ config:sc.localAdmin.password }}'
+  localAdmin:
+    name: '{{ vault:sourcecontrol/at/sc_admin_user:username }}'
+    password: '{{ vault:sourcecontrol/at/sc_admin_user:password }}'
+  ssh:
+    host: ift.pd04.pvw.sbt
+    user: git
+tt:
+  baseUrl: https://ift.pd04.pvw.sbt/swtr/g1
+  admin:
+    name: '{{ vault:sourcecontrol/at/ow/ift/coordinator:username }}'
+    password: '{{ vault:sourcecontrol/at/ow/ift/coordinator:password }}'
+  poll:
+    timeout: 25000
+    interval: 1000
+logging:
+  type: console
+  level: info
+kafka:
+  issuer: '{{ config:sc.name }}'
+  connection:
+    bootstrap.servers: 10.128.32.224:9092
+    client.id: vcs-pw
+    security.protocol: plaintext
+  consumer:
+    group.id: vcs-pw-consumer
+    auto.offset.reset: earliest
+  topics:
+    repos: ssd-events-k8s-ift-pd04
+    pulls: pull_stat
+    commits: commits_workflow
+  poll:
+    timeout: 10000
+    interval: 1000
+s3:
+  region: us-east-1
+  accessKeyId: '{{ vault:sourcecontrol/at/s3:access-key-id }}'
+  secretAccessKey: '{{ vault:sourcecontrol/at/s3:secret-access-key }}'
+  endpoint: http://10.128.32.153:9000
+  bucket: '{{ config:sc.name }}'
+  poll:
+    timeout: 5000
+    interval: 1000
+db:
+  url: '{{ vault:sourcecontrol/at/db/{{ config:sc.name }}:URL }}'
+  user:
+    name: '{{ vault:sourcecontrol/at/db/{{ config:sc.name }}:USER }}'
+    password: '{{ vault:sourcecontrol/at/db/{{ config:sc.name }}:PASSWD }}'
+  schema: '{{ vault:sourcecontrol/at/db/{{ config:sc.name }}:SCHEMA }}'
+  poll:
+    timeout: 7000
+    interval: 500

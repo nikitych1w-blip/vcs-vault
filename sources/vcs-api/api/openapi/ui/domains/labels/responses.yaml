@@ -1,0 +1,8 @@
+components:
+  responses:
+    LabelsListResponse:
+      description: Список меток (labels) репозитория
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PaginatedLabelsList'

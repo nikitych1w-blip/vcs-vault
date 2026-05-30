@@ -1,0 +1,106 @@
+@startuml Services
+
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+!include ./../../../../../sources/component_units/sc.puml
+!include ./../../../../../sources/component_units/service.puml
+!include ./../../../../../sources/component_units/interface.puml
+!include ./../../../../../sources/component_units/styles.puml
+!include ./../../../../../sources/component_units/external_storages/s3.puml
+
+title Детализированная диаграмма взаимодействия SourceControl c Managed S3
+
+set_styles()
+
+System_Boundary(sc, "SС Backend") {
+    SC_Component_App(sc_app)
+
+    Service_SC(archive_service, "Static Storage Archive Service", "Сервис для работы с архивами")
+    Service_SC(avatar_service, "Static Storage Avatar Service", "Сервис для работы с аватарами пользователя и репозиториев")
+    Service_SC(attachment_service, "Static Storage Attachment Service",  "Сервис для работы с вложениями")
+    Service_SC(temp_service, "Static Storage Temp Service", "Сервис для работы с временными загрузками")
+
+    Service_SC(storage_serv_metrics, "Storage Service with metrics", "Сервис для работы с хранилищем и сбором метрик")
+    Service_SC(static_storage_serv, "Static Storage Service", "Сервис для работы с хранилищем статических файлов")
+
+    Interface_SC(storage_int, "Object Storage", "Интерфейс для работы с хранилищем статики")
+    Implementation_SC(s3_impl, "Object Storage S3", "Работа с S3 хранилищем статики")
+
+    note left of s3_impl
+        Использует конфигурационные параметры из app.ini
+        [storage]
+        STORAGE_TYPE
+        S3_ENDPOINT
+        S3_ACCESS_KEY_ID
+        S3_SECRET_ACCESS_KEY
+        S3_BUCKET
+        S3_LOCATION
+        S3_USE_SSL
+        S3_CHECKSUM_ALGORITHM
+        SERVE_DIRECT
+
+        S3_MAX_IDLE_CONNS
+        S3_MAX_IDLE_CONNS_PER_HOST
+        S3_IDLE_CONN_TIMEOUT_IN_SECONDS
+        S3_DIAL_TIMEOUT_IN_SECONDS
+        S3_DIAL_KEEP_ALIVE_IN_SECONDS
+        S3_TLS_HANDSHAKE_TIMEOUT_IN_SECONDS
+        S3_EXPECT_CONTINUE_TIMEOUT_IN_SECONDS
+        S3_DISABLE_COMPRESSION
+        S3_RESPONSE_HEADER_TIMEOUT_IN_SECONDS
+        S3_MAX_CONNS_PER_HOST
+        S3_INSECURE_SKIP_VERIFY
+    endnote
+
+    Implementation_SC(local_impl, "Local Storage", "Работа с локальным хранилищем статики (only dev)")
+
+    note right of local_impl
+        Использует конфигурационные параметры из app.ini
+        [storage]
+        STORAGE_TYPE
+        BASE_PATH
+        TEMP_PATH
+    endnote
+
+    }
+
+S3_Component(s3_storage)
+
+System_Boundary(local, "Local File System") {
+    ContainerDb(local_attachments, "Вложения", "Local Disk/NFS", "Файлы из issues/PR")
+    ContainerDb(local_avatars, "Аватары", "Local Disk/NFS", "Изображения пользователей и репозиториев")
+    ContainerDb(local_archive, "Архивы", "Local Disk/NFS", "Архивы репозиториев")
+    ContainerDb(local_temp, "Временные файлы", "Local Disk/NFS", "Временные файлы при загрузке на SC")
+}
+
+' Service usage
+Rel(sc_app, archive_service, "Работа с архивами")
+Rel(sc_app, avatar_service, "Работа с аватарами")
+Rel(sc_app, attachment_service, "Работа с вложениями")
+Rel(sc_app, temp_service, "Работа с временными загружаемыми файлами")
+
+
+Rel(storage_int, s3_impl, "Обращение к хранилищу")
+Rel(storage_int, local_impl, "Обращение к хранилищу")
+
+Rel(storage_serv_metrics, storage_int, "Обращение к хранилиищу")
+
+Rel(static_storage_serv, storage_serv_metrics, "Реализация")
+
+
+'S3 usage
+Rel(archive_service, static_storage_serv, "Запрос архивов")
+Rel(avatar_service, static_storage_serv, "Запрос аватаров")
+Rel(attachment_service, static_storage_serv, "Запрос вложений")
+Rel(temp_service, static_storage_serv, "Сохранение временных загружаемых файлами")
+
+'Local usage
+Rel(local_impl, local_attachments, "Запрос к вложениям")
+Rel(local_impl, local_avatars, "Запрос аватаров")
+Rel(local_impl, local_archive, "Запрос архивов")
+Rel(local_impl, local_temp, "Сохранение временных загружаемых файлами")
+
+Rel(s3_impl, s3_storage, "Обращение к S3", "minio-go/v7")
+
+
+@enduml

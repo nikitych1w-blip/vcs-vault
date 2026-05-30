@@ -1,0 +1,29 @@
+RepoArchive:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+  get:
+    tags:
+      - archive
+    summary: Download repository archive
+    operationId: v3GetRepositoryArchive
+    parameters:
+      - $ref: './params.yaml#/components/parameters/archive_sha'
+      - $ref: './params.yaml#/components/parameters/archive_format'
+      - $ref: './params.yaml#/components/parameters/archive_prefix'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/ArchiveDownloadResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+      '503':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

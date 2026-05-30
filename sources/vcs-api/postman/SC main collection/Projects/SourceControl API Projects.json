@@ -1,0 +1,431 @@
+{
+  "info": {
+    "_postman_id": "65b13545-3d7e-4c36-a8a1-265379bf094d",
+    "name": "Projects",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "Create",
+      "item": [
+        {
+          "name": "api/v2",
+          "item": [
+            {
+              "name": "Create Project",
+              "protocolProfileBehavior": {
+                "disabledSystemHeaders": {}
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_bearer_jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenant_key\": \"{{sc_api_mock_tenant_key}}\",\n  \"name\": \"project_api_v2\",\n  \"project_key\": \"project_api_v2\",\n  \"description\": \"Текст для демо\",\n  \"visibility\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v2_prefix}}/projects/create",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v2_prefix}}",
+                    "projects",
+                    "create"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Read",
+      "item": [
+        {
+          "name": "api/v2",
+          "item": [
+            {
+              "name": "Get Project",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_bearer_jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{API_token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v2_prefix}}/projects?tenant_key={{sc_api_mock_tenant_key}}&project_key={{sc_api_mock_project_key}}",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v2_prefix}}",
+                    "projects"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "{{sc_api_mock_tenant_key}}"
+                    },
+                    {
+                      "key": "project_key",
+                      "value": "{{sc_api_mock_project_key}}"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Get Project Users (unimplemented)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has pagination and users data\", function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('pagination');",
+                  "    pm.expect(response).to.have.property('data');",
+                  "    pm.expect(response.data).to.be.an('array');",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}/users?q={{sc_api_mock_search_query}}&{{pagination_query_params}}",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_web_v2_prefix}}",
+                "projects",
+                "{{sc_api_mock_project_name}}",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "{{sc_api_mock_search_query}}"
+                },
+                {
+                  "key": "{{pagination_query_params}}",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Project By Name (unimplemented)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has valid project structure\", function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('id');",
+                  "    pm.expect(response).to.have.property('name');",
+                  "    pm.expect(response).to.have.property('full_name');",
+                  "    pm.expect(response).to.have.property('visibility');",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_web_v2_prefix}}",
+                "projects",
+                "{{sc_api_mock_project_name}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Project Repos (unimplemented)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has pagination and repos data\", function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('pagination');",
+                  "    pm.expect(response).to.have.property('data');",
+                  "    pm.expect(response.data).to.be.an('array');",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}/repos",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_web_v2_prefix}}",
+                "projects",
+                "{{sc_api_mock_project_name}}",
+                "repos"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Update",
+      "item": [
+        {
+          "name": "Follow Action",
+          "item": [
+            {
+              "name": "Follow",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 204 for subscribe\", function() {",
+                      "    pm.response.to.have.status(204);",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_bearer_jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}/follow",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_web_v2_prefix}}",
+                    "projects",
+                    "{{sc_api_mock_project_name}}",
+                    "follow"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Unfollow",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 204 for subscribe\", function() {",
+                      "    pm.response.to.have.status(204);",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_bearer_jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}/unfollow",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_web_v2_prefix}}",
+                    "projects",
+                    "{{sc_api_mock_project_name}}",
+                    "unfollow"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Delete",
+      "item": [
+        {
+          "name": "Delete Project",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful DELETE request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "org_key",
+                  "value": "{{sc_api_mock_tenant_key}}",
+                  "type": "text"
+                },
+                {
+                  "key": "project_key",
+                  "value": "{{sc_api_mock_project_key}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_internal_prefix}}/projects/delete",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_internal_prefix}}",
+                "projects",
+                "delete"
+              ]
+            },
+            "description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "sc_api_ift_stand_url_external",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}

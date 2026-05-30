@@ -1,0 +1,84 @@
+components:
+  parameters:
+    sort:
+        name: sort
+        in: query
+        required: false
+        description: >
+          Параметры сортировки. Паттерн ^[a-z_]+(:asc|:desc)?(,[a-z_]+(:asc|:desc)?){0,2}$. Например, {name}:asc, {name}:desc. Возможные значения name: update, name, stars, forks
+        schema:
+          type: string
+          pattern: '^[a-z_]+(:asc|:desc)?(,[a-z_]+(:asc|:desc)?){0,2}$'
+        example: name:asc,stars:desc
+    q:
+      name: q
+      in: query
+      required: false
+      description: Поисковая строка для поиска
+      schema:
+        type: string
+      example: 'frontend'
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: string
+        example: '30'
+      description: Сдвиг списка при постраничной навигации
+    page:
+      name: page
+      in: query
+      required: false
+      schema:
+        type: string
+        example: '2'
+      description: Страница при постраничной навигации
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: string
+        example: '10'
+      description: Количество элементов списка постраничной навигации
+    repo_name:
+      name: repo_name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Название репозитория
+      example: myrepo
+    project_name:
+      name: project_name
+      in: path
+      required: true
+      description: Имя проекта
+      schema:
+        type: string
+        example: Project
+    tenant_UUID:
+      name: tenant_UUID
+      in: path
+      required: true
+      description: UUID тенанта
+      schema:
+        type: string
+        example: 36b8f84d-df4e-4d49-b662-bcde71a8764f
+    user_id:
+      name: user_id
+      in: path
+      required: true
+      description: Идентификатор пользователя
+      schema:
+        type: number
+        example: 1230121
+    topics:
+      name: topics
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Список топиков через запятую соответствующих паттерну ^[a-z0-9][a-z0-9-]*$
+        и количество символов одного топика больше или равно 35. Общее число топиков не должно превышать 25

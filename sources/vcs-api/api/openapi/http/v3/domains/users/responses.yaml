@@ -1,0 +1,8 @@
+components:
+  responses:
+    UserInfoResponse:
+      description: Информация о пользователе
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/UserInfo'

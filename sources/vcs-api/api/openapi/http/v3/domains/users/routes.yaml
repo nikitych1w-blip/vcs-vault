@@ -1,0 +1,21 @@
+User:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Username'
+  get:
+    tags:
+      - users
+    summary: Get user
+    operationId: v3GetUser
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/UserInfoResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

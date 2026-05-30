@@ -1,0 +1,26 @@
+components:
+  responses:
+    BranchListResponse:
+      description: Список веток репозитория
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/BranchList'
+    BranchCreateResponse:
+      description: Успешное создание ветки
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/Branch'
+    BranchUpdateResponse:
+      description: Успешное обновление ветки
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/Branch'
+    BranchRestoreResponse:
+      description: Успешное восстановление ветки
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/Branch'

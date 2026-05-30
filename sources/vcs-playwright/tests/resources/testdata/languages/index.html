@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Page for Language Analysis</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>Тестовая страница</h1>
+        <p>Проверка корректности определения HTML</p>
+      </header>
+
+      <main class="content">
+        <h2>Добро пожаловать!</h2>
+        <p>Текст.</p>
+
+        <div class="features">
+          <h3>Особенности:</h3>
+          <ul>
+            <li>Семантическая HTML разметка</li>
+            <li>Современные CSS стили</li>
+            <li>JavaScript интерактивность</li>
+            <li>Поддержка мобильных устройств</li>
+          </ul>
+        </div>
+
+        <button class="button" onclick="showMessage()">Нажми меня!</button>
+        <div id="message"></div>
+      </main>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+      function showMessage() {
+        const messageDiv = document.getElementById('message');
+        messageDiv.innerHTML = '<p style="margin-top: 1rem; color: green;">Hello from inline JavaScript!</p>';
+      }
+    </script>
+  </body>
+</html>

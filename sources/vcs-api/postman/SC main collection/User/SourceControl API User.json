@@ -1,0 +1,317 @@
+{
+  "info": {
+    "_postman_id": "e7e45d38-27ee-4931-94e4-fd3ffe41938e",
+    "name": "User",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "User Tokens",
+      "item": [
+        {
+          "name": "Read",
+          "item": [
+            {
+              "name": "Get Tokens",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{sc_api_mock_user_password}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{sc_api_mock_user_name}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v1_prefix}}/users/{{sc_api_mock_user_name}}/tokens?{{pagination_query_params}}",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v1_prefix}}",
+                    "users",
+                    "{{sc_api_mock_user_name}}",
+                    "tokens"
+                  ],
+                  "query": [
+                    {
+                      "key": "{{pagination_query_params}}",
+                      "value": null
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Delete",
+          "item": [
+            {
+              "name": "Delete Token",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "{{sc_api_mock_user_password}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "{{sc_api_mock_user_name}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v1_prefix}}/users/{{sc_api_mock_user_name}}/tokens/{{sc_api_mock_user_token}}",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v1_prefix}}",
+                    "users",
+                    "{{sc_api_mock_user_name}}",
+                    "tokens",
+                    "{{sc_api_mock_user_token}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Create",
+          "item": [
+            {
+              "name": "Post Token",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{sc_api_mock_user_name}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\"name\": \"harry-potter-ch-token\",\n\"scopes\": [\"codehub\"]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v1_prefix}}/users/{{sc_api_mock_user_name}}/tokens",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v1_prefix}}",
+                    "users",
+                    "{{sc_api_mock_user_name}}",
+                    "tokens"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Create",
+      "item": [
+        {
+          "name": "Create User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 201\", function() {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_key\": \"{{sc_api_mock_user_key}}\",\n  \"name\": \"{{sc_api_mock_user_name}}\",\n  \"email\": \"{{sc_api_mock_user_name}}@mail.com\",\n  \"full_name\": \"{{sc_api_mock_user_name}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v2_prefix}}/admin/users",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_v2_prefix}}",
+                "admin",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Read",
+      "item": [
+        {
+          "name": "Get User Info",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has valid user structure\", function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('id');",
+                  "    pm.expect(response).to.have.property('login');",
+                  "    pm.expect(response).to.have.property('full_name');",
+                  "    pm.expect(response).to.have.property('is_admin');",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v1_prefix}}/user",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_v1_prefix}}",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v2_prefix}}/admin/users?user_key={{sc_api_mock_user_key}}",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_v2_prefix}}",
+                "admin",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": null,
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "user_key",
+                  "value": "{{sc_api_mock_user_key}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

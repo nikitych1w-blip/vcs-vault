@@ -1,0 +1,110 @@
+RepoBranchProtections:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+  get:
+    tags:
+      - branch_protections
+    summary: List branch protections
+    operationId: v3ListBranchProtections
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/BranchProtectionListResponse'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  post:
+    tags:
+      - branch_protections
+    summary: Create branch protection
+    operationId: v3CreateBranchProtection
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/BranchProtectionBody'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/BranchProtectionCreatedResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+RepoBranchProtection:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+    - $ref: '../../common/params.yaml#/components/parameters/WildcardPattern'
+  get:
+    tags:
+      - branch_protections
+    summary: Get branch protection
+    operationId: v3GetBranchProtection
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/BranchProtectionResponse'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  put:
+    tags:
+      - branch_protections
+    summary: Update branch protection
+    operationId: v3UpdateBranchProtection
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/BranchProtectionBody'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/BranchProtectionUpdatedResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  delete:
+    tags:
+      - branch_protections
+    summary: Delete branch protection
+    operationId: v3DeleteBranchProtection
+    responses:
+      '204':
+        $ref: './responses.yaml#/components/responses/BranchProtectionDeletedResponse'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

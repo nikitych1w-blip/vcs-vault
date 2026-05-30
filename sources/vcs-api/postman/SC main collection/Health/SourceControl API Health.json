@@ -1,0 +1,45 @@
+{
+  "info": {
+    "_postman_id": "49738b1d-7742-4d08-b11d-4e644f2cc27e",
+    "name": "Health",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "Get health check",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_internal_prefix}}/one_work/api/healthz",
+          "host": [
+            "{{sc_api_ift_stand_url_external}}"
+          ],
+          "path": [
+            "{{sc_api_api_internal_prefix}}",
+            "one_work",
+            "api",
+            "healthz"
+          ]
+        },
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+      },
+      "response": []
+    }
+  ]
+}

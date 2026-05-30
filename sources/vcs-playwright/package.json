@@ -1,0 +1,76 @@
+{
+  "name": "vcs-pw",
+  "version": "1.0.0",
+  "description": "TypeScript+Playwright-based framework",
+  "main": "index.js",
+  "type": "module",
+  "keywords": [
+    "qa",
+    "playwright"
+  ],
+  "author": "SberTech",
+  "license": "MIT",
+  "scripts": {
+    "test:ui": "npx playwright test --ui",
+    "test:debug": "npx playwright test --debug",
+    "test:trace": "npx playwright test --trace",
+    "allure": "rm -rf ./allure-report && npx allure generate --open",
+    "trace": "npx playwright show-trace",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
+    "prettier": "npx prettier . --check",
+    "prettier:fix": "npx prettier . --write",
+    "madge:circular": "npx madge --circular --extensions ts --ts-config tsconfig.json src/ tests/",
+    "submodule:update": "git submodule sync && git submodule update --remote",
+    "generate:zod": "npm rum submodule:update && rm -rf ./src/api/generated/types && npx openapi-ts",
+    "prepare": "npx husky"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "0.94.4",
+    "@types/js-yaml": "4.0.9",
+    "@types/lodash": "4.17.24",
+    "@types/node": "25.5.0",
+    "@types/pg": "8.20.0",
+    "@typescript-eslint/eslint-plugin": "8.57.1",
+    "@typescript-eslint/parser": "8.57.1",
+    "eslint": "10.1.0",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-filename-rules": "1.3.1",
+    "eslint-plugin-playwright": "2.10.1",
+    "husky": "9.1.7",
+    "lint-staged": "16.4.0",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "3.1014.0",
+    "@confluentinc/kafka-javascript": "1.8.2",
+    "@faker-js/faker": "10.4.0",
+    "@playwright/test": "1.57.0",
+    "@vcs/test-culture-playwright-reporter": "1.5.1",
+    "ajv": "8.18.0",
+    "ajv-errors": "3.0.0",
+    "ajv-formats": "3.0.1",
+    "allure-playwright": "3.6.0",
+    "date-fns": "4.1.0",
+    "dotenv": "17.3.1",
+    "lodash": "4.18.1",
+    "node-html-parser": "7.1.0",
+    "node-vault": "0.12.0",
+    "pg": "8.20.0",
+    "pino": "10.3.1",
+    "sharp": "0.34.5",
+    "simple-git": "3.33.0",
+    "ts-node": "10.9.2"
+  },
+  "overrides": {
+    "@confluentinc/kafka-javascript": {
+      "@mapbox/node-pre-gyp": "2.0.3"
+    },
+    "tar": "7.5.13",
+    "flatted": "3.4.2",
+    "picomatch": "4.0.4",
+    "axios": "1.15.0",
+    "follow-redirects": "1.16.0"
+  }
+}

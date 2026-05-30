@@ -1,27 +1,20 @@
 {
   "main": {
-    "id": "2dd963bf09c54cc6",
+    "id": "cd657e35580cd020",
     "type": "split",
     "children": [
       {
-        "id": "c58651c3bda741f8",
+        "id": "495998a6b7b0e424",
         "type": "tabs",
         "children": [
           {
-            "id": "bdb5627a9a61886c",
+            "id": "214510b09c7e4b85",
             "type": "leaf",
             "state": {
-              "type": "canvas",
-              "state": {
-                "file": "Тех. спринты/Карта действий.canvas",
-                "viewState": {
-                  "x": 342.5417834632441,
-                  "y": 71.15044957319486,
-                  "zoom": -0.9999999999999999
-                }
-              },
-              "icon": "lucide-layout-dashboard",
-              "title": "Карта действий"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
         ]
@@ -30,15 +23,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "8610d76a7b12406f",
+    "id": "6336570c06b4611a",
     "type": "split",
     "children": [
       {
-        "id": "f48c167a207d186f",
+        "id": "83aa7b90671e5e86",
         "type": "tabs",
         "children": [
           {
-            "id": "b3fff5e40ea04795",
+            "id": "b1f31625f43fbba0",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -47,11 +40,11 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Файловый менеджер"
+              "title": "Files"
             }
           },
           {
-            "id": "12b239f85ad13789",
+            "id": "8933e6bc78243c0a",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -64,40 +57,39 @@
                 "sortOrder": "alphabetical"
               },
               "icon": "lucide-search",
-              "title": "Поиск"
+              "title": "Search"
             }
           },
           {
-            "id": "7e75b8d0f029631a",
+            "id": "80055af0d5bd89ee",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
               "state": {},
               "icon": "lucide-bookmark",
-              "title": "Закладки"
+              "title": "Bookmarks"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 336.5
+    "width": 300
   },
   "right": {
-    "id": "3c41087592533024",
+    "id": "0ca01f31f8f64278",
     "type": "split",
     "children": [
       {
-        "id": "42a85fc04c059969",
+        "id": "818f305369d6a166",
         "type": "tabs",
         "children": [
           {
-            "id": "a46a6324710eb72a",
+            "id": "d718a1fe4be0d18f",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Obsidian Vault/TQL/TQL сущности (атрибуты) TaskTracker.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -107,25 +99,24 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Обратные ссылки для TQL сущности (атрибуты) TaskTracker"
+              "title": "Backlinks"
             }
           },
           {
-            "id": "026998eec82a814b",
+            "id": "090cc3deb7a55b03",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Obsidian Vault/TQL/TQL сущности (атрибуты) TaskTracker.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Исходящие ссылки из TQL сущности (атрибуты) TaskTracker"
+              "title": "Outgoing links"
             }
           },
           {
-            "id": "b4745c3c744fae96",
+            "id": "edef5f0bd6b6b2b5",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -136,11 +127,11 @@
                 "searchQuery": ""
               },
               "icon": "lucide-tags",
-              "title": "Теги"
+              "title": "Tags"
             }
           },
           {
-            "id": "5c867f0dd2d68480",
+            "id": "26b1f437a7b4036a",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -150,22 +141,21 @@
                 "searchQuery": ""
               },
               "icon": "lucide-archive",
-              "title": "Все свойства"
+              "title": "All properties"
             }
           },
           {
-            "id": "d6501f01ebca48e7",
+            "id": "5e727ce0cc3903b7",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Obsidian Vault/TQL/TQL сущности (атрибуты) TaskTracker.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Структура TQL сущности (атрибуты) TaskTracker"
+              "title": "Outline"
             }
           }
         ]
@@ -177,45 +167,65 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Меню быстрого перехода": false,
-      "graph:Граф": false,
-      "canvas:Создать новый холст": false,
-      "daily-notes:Сегодняшняя заметка": false,
-      "templates:Вставить шаблон": false,
-      "command-palette:Открыть палитру команд": false,
-      "bases:Создать новую базу": false
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "openapi-renderer:Open OpenAPI Entry View": false
     }
   },
-  "active": "bdb5627a9a61886c",
+  "active": "214510b09c7e4b85",
   "lastOpenFiles": [
-    "Obsidian Vault/Релизы/GitOps зарисовки основных путей.canvas",
-    "Obsidian Vault/Релизы/Релизные задачи.canvas",
-    "graph.png",
-    "Obsidian Vault/TQL/workflow_status для TQL.md",
-    "Obsidian Vault/TQL/TQL сущности (атрибуты) TaskTracker.md",
-    "Obsidian Vault/TQL/Готовые TQL.md",
-    "Тех. спринты/Карта действий.canvas",
-    "Тех. спринты",
-    "Obsidian Vault/Релизы/9.6.0/9.6.0.canvas",
-    "Obsidian Vault/Релизы/9.6.0/~Время QA в 9.6.0.md",
-    "Obsidian Vault/Релизы/Баги.md",
-    "Pasted image 20260428123550.png",
-    "Obsidian Vault/QA/Кадров Иван/Кадров Иван.md",
-    "Pasted image 20260428123534.png",
-    "Pasted image 20260420234652.png",
-    "Obsidian Vault/QA/Кадров Иван",
-    "Obsidian Vault/QA",
-    "Obsidian Vault/Релизы/9.6.0",
-    "1.json",
-    "Obsidian Vault/Draft-Текущая схема подготовки.canvas",
-    "Obsidian Vault/Релизы/9.5.0.canvas",
-    "Obsidian Vault/Релизы/hf 9.4.1.canvas",
-    "Obsidian Vault/Draft SBTSUPPORT.canvas",
-    "Obsidian Vault/Draft передача в АТ новых и измененных API.canvas",
-    "Obsidian Vault/data-sc.base",
-    "Obsidian Vault/Draft-Процессы непрерывной сборки.canvas",
-    "Obsidian Vault/FAQ/Приоритеты и критичность",
-    "Obsidian Vault/Чек-листы проверок",
-    "Obsidian Vault/TQL"
+    "faq/scenario-endpoint-to-test.md",
+    "README.md",
+    "vault/tmp/diagrams/vcs-vault-brain.drawio",
+    "vault/tmp/diagrams/user-stories.md",
+    "vault/tmp/diagrams/context-builder-spec.md",
+    "vault/tmp/diagrams/architecture-spec.md",
+    "vault/tmp/diagrams",
+    "vault/tmp",
+    "faq/index.md",
+    "faq/task-tracker.md",
+    "faq/sources/09-task-tracker.md",
+    "faq/sources/08-wiki-vcs.md",
+    "faq/sources/07-vcs-monitoring.md",
+    "faq/sources/06-vcs-sc.md",
+    "faq/sources/05-vcs-api.md",
+    "faq/sources/04-vcs-arch.md",
+    "faq/sources/03-vcs-playwright.md",
+    "faq/sources/02-gitea.md",
+    "faq/sources/01-git.md",
+    "faq/sources",
+    "faq/09-task-tracker.md",
+    "faq/08-wiki-vcs.md",
+    "faq/07-vcs-monitoring.md",
+    "faq/06-vcs-sc.md",
+    "faq/05-vcs-api.md",
+    "faq/04-vcs-arch.md",
+    "faq/03-vcs-playwright.md",
+    "faq/02-gitea.md",
+    "faq/01-git.md",
+    "faq/gitea.md",
+    "faq",
+    "vault.canvas",
+    "sources/wiki/SWTR/api.yaml",
+    "vault plan.canvas",
+    "sources/wiki/SWTR",
+    "sources/wiki",
+    "sources/vcs-playwright/tests/src/api/web/v2/projects/repos/pulls/template.spec.ts",
+    "sources/vcs-playwright/tests/src/api/web/v2/projects/repos/pulls/create-pull.spec.ts",
+    "sources/vcs-arch/docs/architecture/c4/3-component/images/storage_diagram_git_cli.png",
+    "sources/vcs-arch/docs/architecture/c4/3-component/images/storage_diagram_TelemetryCollector.png",
+    "sources/vcs-arch/docs/architecture/c4/3-component/images/storage_diagram_S3_detailed.png",
+    "sources/vcs-arch/docs/architecture/c4/3-component/images/storage_diagram_S3.png",
+    "sources/vcs-arch/docs/architecture/c4/3-component/images/storage_diagram_Radish_detailed.png",
+    "sources/vcs-arch/docs/architecture/c4/3-component/images/storage_diagram_Radish.png",
+    "sources/vcs-arch/docs/architecture/c4/3-component/images/storage_diagram_Pangolin.png",
+    "sources/vcs-arch/docs/architecture/c4/3-component/images/storage_diagram_Indexer_pangolin_detailed.png",
+    "sources/vcs-arch/docs/architecture/c4/3-component/images/storage_diagram_Corax.png",
+    "sources/vcs-arch/docs/architecture/c4/4-deployment/images/scheduler_diagram_docs.png"
   ]
 }

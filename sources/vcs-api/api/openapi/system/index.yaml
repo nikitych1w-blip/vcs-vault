@@ -1,0 +1,31 @@
+openapi: 3.0.3
+info:
+  title: SourceControl Health API
+  description: Эндпоинты для проверки работоспособности сервиса и просмотра health-спеки.
+  version: 0.0.0-dev
+  license:
+    name: Internal Proprietary License
+    url: https://example.invalid/
+
+servers:
+  - url: /api
+
+security:
+  - authorizationHeaderToken: []
+  - basicHttpAuthentication: []
+  - accessToken: []
+
+paths:
+  /health:
+    $ref: './domains/system/routes.yaml#/Health'
+  /swagger_health:
+    $ref: './domains/system/routes.yaml#/SwaggerHealth'
+
+components:
+  securitySchemes:
+    authorizationHeaderToken:
+      $ref: './common/security.yaml#/components/securitySchemes/authorizationHeaderToken'
+    basicHttpAuthentication:
+      $ref: './common/security.yaml#/components/securitySchemes/basicHttpAuthentication'
+    accessToken:
+      $ref: './common/security.yaml#/components/securitySchemes/accessToken'

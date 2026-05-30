@@ -1,0 +1,459 @@
+{
+  "info": {
+    "_postman_id": "0c05ef26-dfc4-42e1-b28a-3c77cb4ae606",
+    "name": "Repository",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "Create",
+      "item": [
+        {
+          "name": "Create Repo",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {}
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "fd0dd05456fbf23a802d089a8f4f13406373e7dad0db91127b51ab4eed05dd1e ",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"tenant_key\": \"{{sc_api_mock_tenant_key}}\",\n    \"project_key\": \"{{sc_api_mock_project_key}}\",\n    \"repository_key\": \"{{sc_api_mock_repository_key}}\",\n    \"name\": \"{{sc_api_mock_repository_name}}\",\n    \"default_branch\": \"master\",\n    \"description\": \"{{sc_api_mock_description}}\",\n    \"private\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v2_prefix}}/projects/repos",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_v2_prefix}}",
+                "projects",
+                "repos"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Read",
+      "item": [
+        {
+          "name": "api/v3",
+          "item": [
+            {
+              "name": "AllRepo",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{AdminAuthToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "page",
+                      "value": "",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "https://localhost/api/v3/repos/{{tenant_UUID}}/{{project_name}}",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "path": [
+                    "api",
+                    "v3",
+                    "repos",
+                    "{{tenant_UUID}}",
+                    "{{project_name}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "SingleRepo",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{AdminAuthToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "https://localhost/api/v3/repos/{{tenant_UUID}}/{{project_name}}/{{repo_name}}",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "path": [
+                    "api",
+                    "v3",
+                    "repos",
+                    "{{tenant_UUID}}",
+                    "{{project_name}}",
+                    "{{repo_name}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Get Repository Info",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has valid repo structure\", function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('id');",
+                  "    pm.expect(response).to.have.property('name');",
+                  "    pm.expect(response).to.have.property('full_name');",
+                  "    pm.expect(response).to.have.property('owner');",
+                  "    pm.expect(response).to.have.property('default_branch');",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}/repos/{{sc_api_mock_repository_name}}",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_web_v2_prefix}}",
+                "projects",
+                "{{sc_api_mock_project_name}}",
+                "repos",
+                "{{sc_api_mock_repository_name}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Repo",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v2_prefix}}/projects/repos?tenant_key={{sc_api_mock_tenant_key}}&project_key={{sc_api_mock_project_key}}&repo_key={{sc_api_mock_repository_key}}",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_v2_prefix}}",
+                "projects",
+                "repos"
+              ],
+              "query": [
+                {
+                  "key": "tenant_key",
+                  "value": "{{sc_api_mock_tenant_key}}"
+                },
+                {
+                  "key": "project_key",
+                  "value": "{{sc_api_mock_project_key}}"
+                },
+                {
+                  "key": "repo_key",
+                  "value": "{{sc_api_mock_repository_key}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Update",
+      "item": [
+        {
+          "name": "Favorite Actions",
+          "item": [
+            {
+              "name": "Add To Favorites",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201 for add favorite\", function() {",
+                      "    pm.response.to.have.status(201);",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_bearer_jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}/repos/{{sc_api_mock_repository_name}}/favorite",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_web_v2_prefix}}",
+                    "projects",
+                    "{{sc_api_mock_project_name}}",
+                    "repos",
+                    "{{sc_api_mock_repository_name}}",
+                    "favorite"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Remove From Favorites",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 204 for remove favorite\", function() {",
+                      "    pm.response.to.have.status(204);",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_bearer_jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}/repos/{{sc_api_mock_repository_name}}/favorite",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_web_v2_prefix}}",
+                    "projects",
+                    "{{sc_api_mock_project_name}}",
+                    "repos",
+                    "{{sc_api_mock_repository_name}}",
+                    "favorite"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Subscribe Actions",
+          "item": [
+            {
+              "name": "Subscribe",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201 for subscribe\", function() {",
+                      "    pm.response.to.have.status(201);",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_bearer_jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}/repos/{{sc_api_mock_repository_name}}/subscribe",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_web_v2_prefix}}",
+                    "projects",
+                    "{{sc_api_mock_project_name}}",
+                    "repos",
+                    "{{sc_api_mock_repository_name}}",
+                    "subscribe"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Unsubscribe",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 204 for unsubscribe\", function() {",
+                      "    pm.response.to.have.status(204);",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_bearer_jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}/repos/{{sc_api_mock_repository_name}}/subscribe",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_web_v2_prefix}}",
+                    "projects",
+                    "{{sc_api_mock_project_name}}",
+                    "repos",
+                    "{{sc_api_mock_repository_name}}",
+                    "subscribe"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

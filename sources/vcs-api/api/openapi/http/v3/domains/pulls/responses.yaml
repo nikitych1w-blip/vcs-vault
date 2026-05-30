@@ -1,0 +1,68 @@
+components:
+  responses:
+    PullRequestListResponse:
+      description: Список пулл-реквестов
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PullRequestListResponse'
+    PullRequestCreateResponse:
+      description: Пулл-реквест успешно создан
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRInfo'
+    PullRequestGetResponse:
+      description: Информация о пулл-реквесте
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRInfo'
+    PullRequestUpdateResponse:
+      description: Пулл-реквест обновлён
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRInfo'
+    PullRequestMergeResponse:
+      description: Пулл-реквест влит
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRInfo'
+    PullRequestDeclineResponse:
+      description: Пулл-реквест отклонён
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRInfo'
+    PullRequestFilesResponse:
+      description: Список изменённых файлов пулл-реквеста
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/DiffFileInfoListResponse'
+    PullRequestCommitsResponse:
+      description: Список коммитов пулл-реквеста
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRCommitsResponse'
+    PullRequestDiffResponse:
+      description: Diff или patch пулл-реквеста в текстовом формате
+      content:
+        text/plain:
+          schema:
+            type: string
+    CommitPullRequestsResponse:
+      description: Список пулл-реквестов, связанных с коммитом
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/CommitPullRequestsResponse'
+    PRIssuesGetResponse:
+      description: Список задач пулл-реквеста
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRIssuesResponse'

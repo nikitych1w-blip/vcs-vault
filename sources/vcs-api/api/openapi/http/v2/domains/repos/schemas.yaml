@@ -1,0 +1,95 @@
+components:
+  schemas:
+    Repo:
+      type: object
+      additionalProperties: false
+      description: Репозиторий
+      required: [id, tenant_key, project_key, repository_key, name, default_branch, private, uri]
+      properties:
+        id:
+          type: string
+        tenant_key:
+          type: string
+        project_key:
+          type: string
+        repository_key:
+          type: string
+        name:
+          type: string
+        default_branch:
+          type: string
+        private:
+          type: boolean
+        uri:
+          type: string
+
+    CreateRepoOptions:
+      type: object
+      additionalProperties: false
+      description: Запрос создания репозитория
+      required: [tenant_key, project_key, repository_key, name, private]
+      properties:
+        tenant_key:
+          type: string
+        project_key:
+          type: string
+        repository_key:
+          type: string
+          maxLength: 255
+        default_branch:
+          type: string
+          maxLength: 100
+          description: Если не задан — сервер подставит default branch
+        description:
+          type: string
+          maxLength: 255
+        name:
+          type: string
+          maxLength: 100
+        private:
+          type: boolean
+
+    RepoKey:
+      type: object
+      additionalProperties: false
+      description: Ключ репозитория
+      required: [repo_key]
+      properties:
+        repo_key:
+          type: string
+
+    SetMarkRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - tenant_key
+        - project_key
+        - repo_key
+      properties:
+        tenant_key:
+          type: string
+          description: Tenant key
+        project_key:
+          type: string
+          description: Project key
+        repo_key:
+          type: string
+          description: Repository key
+
+    DeleteMarkRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - tenant_key
+        - project_key
+        - repo_key
+      properties:
+        tenant_key:
+          type: string
+          description: Tenant key
+        project_key:
+          type: string
+          description: Project key
+        repo_key:
+          type: string
+          description: Repository key

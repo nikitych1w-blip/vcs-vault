@@ -1,0 +1,451 @@
+{
+  "info": {
+    "_postman_id": "a6ac392e-8e91-4eb5-b383-06bc090cf42f",
+    "name": "Tenants",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "Create",
+      "item": [
+        {
+          "name": "sbt/api/internal",
+          "item": [
+            {
+              "name": "Create Tenant",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Successful PUT request\", function () {",
+                      "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_bearer_jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "{{sc_api_mock_tenant_name}}",
+                      "type": "text"
+                    },
+                    {
+                      "key": "org_key",
+                      "value": "{{sc_api_mock_tenant_key}}",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_internal_prefix}}/tenants/create",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_internal_prefix}}",
+                    "tenants",
+                    "create"
+                  ]
+                },
+                "description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "api/v2",
+          "item": [
+            {
+              "name": "Create Tenant",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_bearer_jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"{{sc_api_mock_tenant_name}}\",\r\n  \"tenant_key\": \"{{sc_api_mock_tenant_key}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v2_prefix}}/tenants",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v2_prefix}}",
+                    "tenants"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Get",
+      "item": [
+        {
+          "name": "sbt/api/internal",
+          "item": [
+            {
+              "name": "Get Tenant",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_bearer_jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_internal_prefix}}/tenants/{{sc_api_mock_tenant_id}}",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_internal_prefix}}",
+                    "tenants",
+                    "{{sc_api_mock_tenant_id}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Default Tenant",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_bearer_jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_internal_prefix}}/tenants",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_internal_prefix}}",
+                    "tenants"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "api/v2",
+          "item": [
+            {
+              "name": "Get Tenant",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_bearer_jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v2_prefix}}/tenants?tenant_key={{sc_api_mock_tenant_key}}",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v2_prefix}}",
+                    "tenants"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenant_key",
+                      "value": "{{sc_api_mock_tenant_key}}"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Update",
+      "item": [
+        {
+          "name": "Activate Action",
+          "item": [
+            {
+              "name": "Activate Tenant",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Successful PUT request\", function () {",
+                      "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token_bearer_jwt}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                },
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_internal_prefix}}/tenants/{{sc_api_mock_tenant_id}}/activate",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_internal_prefix}}",
+                    "tenants",
+                    "{{sc_api_mock_tenant_id}}",
+                    "activate"
+                  ]
+                },
+                "description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+              },
+              "response": []
+            },
+            {
+              "name": "Deactivate Tenant",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Successful PUT request\", function () {",
+                      "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "{{sc_api_mock_tenant_name}}",
+                      "type": "text"
+                    },
+                    {
+                      "key": "org_key",
+                      "value": "{{sc_api_mock_tenant_key}}",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_internal_prefix}}/tenants/{{sc_api_mock_tenant_id}}/deactivate",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_internal_prefix}}",
+                    "tenants",
+                    "{{sc_api_mock_tenant_id}}",
+                    "deactivate"
+                  ]
+                },
+                "description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Edit tenant",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful PUT request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "{{sc_api_mock_tenant_name}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_internal_prefix}}/tenants/{{sc_api_mock_tenant_id}}/edit",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_internal_prefix}}",
+                "tenants",
+                "{{sc_api_mock_tenant_id}}",
+                "edit"
+              ]
+            },
+            "description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Delete",
+      "item": [
+        {
+          "name": "Delete tenant",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful PUT request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "{{sc_api_mock_tenant_name}}",
+                  "type": "text"
+                },
+                {
+                  "key": "org_key",
+                  "value": "{{sc_api_mock_tenant_key}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_internal_prefix}}/tenants/{{sc_api_mock_tenant_id}}/delete",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_internal_prefix}}",
+                "tenants",
+                "{{sc_api_mock_tenant_id}}",
+                "delete"
+              ]
+            },
+            "description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

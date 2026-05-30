@@ -1,0 +1,62 @@
+@startuml
+
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+!include ./../../../../../sources/component_units/sc.puml
+!include ./../../../../../sources/component_units/service.puml
+!include ./../../../../../sources/component_units/interface.puml
+!include ./../../../../../sources/component_units/styles.puml
+!include ./../../../../../sources/component_units/external_storages/redis.puml
+!include ./../../../../../sources/component_units/external_storages/postgresql.puml
+!include ./../../../../../sources/component_units/external_storages/gitaly.puml
+
+title Диаграмма взаимодействия для Git CLI (SC + Gitaly + Platform V Pangolin)
+
+set_styles()
+
+System_Boundary(sc, "SC Backend") {
+    SC_Component_App(sc_app)
+
+    Handler_Service_SC(webRouter, "Web-роутер", "HTTP endpoint'ы для Git Smart HTTP")
+    Handler_Service_SC(sshServer, "SSH сервер", "Обрабатывает git-upload-pack / git-receive-pack по SSH")
+    Handler_Service_SC(hooksApi, "Внутреннее API хуков", "Выполнение логики серверных хуков")
+
+    Service_SC(smartHTTP, "Git Smart HTTP Service", "Обрабатывает /info/refs, /git-upload-pack, /git-receive-pack")
+    Service_SC(gitalyClient, "Gitaly Service", "SmartHTTP + SSH RPC в Praefect/Gitaly")
+
+    Service_SC(preReceive, "Pre-Receive Service", "Производится проверка валидности изменений")
+    Service_SC(procReceive, "Proc-Receive Service", "Дополнительные проверки на этапе проливки изменений")
+    Service_SC(postReceive, "Post-Receive Service", "Устанавливает default branch и обновляет метаданные после push")
+}
+
+PostgreSQL_Component(postgre)
+
+Rel(sc_app, webRouter, "Smart HTTP: clone/fetch/push", "HTTPS")
+Rel(sc_app, sshServer, "SSH git-upload-pack / git-receive-pack", "SSH")
+Rel(sc_app, hooksApi, "Запуск серверных хуков", "HTTP (internal)")
+
+Rel(webRouter, smartHTTP, "Маршрутизирует Git Smart HTTP запросы")
+
+Rel(hooksApi, preReceive, "Выполнение логики pre-receive хука")
+Rel(hooksApi, procReceive, "Выполнение логики proc-receive хука")
+Rel(hooksApi, postReceive, "Выполнение логики post-receive хука")
+
+Rel(preReceive, postgre, "Получение данных для pre-receive хука", "xorm")
+Rel(procReceive, postgre, "Получение данных для proc-receive хука", "xorm")
+Rel(postReceive, postgre, "Обновление default branch и метаданных", "xorm")
+
+Gitaly_App(gitaly)
+Rel(gitalyHooks, sc_app, "Запрос на выполнение хуков", "HTTP (internal)")
+
+Rel(smartHTTP, gitalyClient, "Запрос (git-upload-pack / git-receive-pack) в Gitaly")
+Rel(sshServer, gitalyClient, "Запрос (git-upload-pack / git-receive-pack) в Gitaly")
+
+Rel(gitalyClient, gitaly, "Запрос git-upload-pack / git-receive-pack", "gRPC")
+
+
+Note left of gitalyClient
+  В метаданные отправляется gitaly-servers
+  для поддержки маршрутизации Praefect (Gitaly Cluster).
+end note
+
+@enduml

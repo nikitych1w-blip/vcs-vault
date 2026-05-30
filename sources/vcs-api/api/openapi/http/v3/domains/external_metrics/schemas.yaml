@@ -1,0 +1,70 @@
+components:
+  schemas:
+    SetExternalMetricRequest:
+      type: object
+      required:
+        - value
+        - text
+      properties:
+        value:
+          type: integer
+          format: int32
+          description: Значение метрики
+        text:
+          type: string
+          description: Подпись для метрики
+          maxLength: 255
+
+    ExternalMetric:
+      type: object
+      required:
+        - metric
+        - value
+        - text
+      properties:
+        metric:
+          type: string
+        value:
+          type: integer
+          format: int64
+        text:
+          type: string
+        tenant_identifier:
+          type: string
+        project_identifier:
+          type: string
+        repo_identifier:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+
+    ExternalMetrics:
+      type: object
+      properties:
+        downloads:
+          type: integer
+          format: int64
+          nullable: true
+        telemetry:
+          type: integer
+          format: int64
+          nullable: true
+        artifacts:
+          type: integer
+          format: int64
+          nullable: true
+        reuse:
+          type: integer
+          format: int64
+          nullable: true
+        labor_costs:
+          type: integer
+          format: int64
+          nullable: true
+        tenant_identifier:
+          type: string
+        project_identifier:
+          type: string
+        repo_identifier:
+          type: string

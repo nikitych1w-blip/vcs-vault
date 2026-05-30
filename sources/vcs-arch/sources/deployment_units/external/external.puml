@@ -1,0 +1,29 @@
+!definelong Widget_Deployment_Node(id, container_id)
+Deployment_Node(id, "ext-widget01", "Sberlinux") {
+    Container(container_id, "Виджет обратной связи", "React", "")
+}
+!enddefinelong
+
+!definelong TaskTracker_Deployment_Node(id, container_id)
+Deployment_Node(id, "ext-tasktracker01", "Sberlinux") {
+    Container(container_id, "Platform V TaskTracker", "Java", "")
+}
+!enddefinelong
+
+!definelong CodeScanner_Deployment_Node(id, container_id)
+Deployment_Node(id, "ext-codescanner01", "Sberlinux") {
+    Container(container_id, "Platform V CodeScanner", "Java", "")
+}
+!enddefinelong
+
+!definelong OneWork_Deployment_Node(id, container_id)
+Deployment_Node(id, "ext-onework01", "Sberlinux") {
+    Container(container_id, "Platform V OneWork", "Java", "")
+}
+!enddefinelong
+
+!definelong Jenkins_Deployment_Node(id, container_id)
+Deployment_Node(id, "ext-jenkins01", "Sberlinux") {
+    Container(container_id, "Jenkins", "Java", "")
+}
+!enddefinelong

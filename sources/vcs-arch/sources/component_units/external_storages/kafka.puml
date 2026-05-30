@@ -1,0 +1,13 @@
+!definelong Kafka_Component(input_id)
+System_Boundary(external_storage, "External Storages") {
+    Container(input_id, "Platform V Corax", "Kafka", "Message Broker")
+    ContainerDb(kafka_repo_topic, "repo_topic", "Topic", "Сообщения о создании репозитория")
+    ContainerDb(kafka_commit_topic, "commit_topic", "Topic", "Сообщения о коммитах")
+    ContainerDb(kafka_pr_topic, "pr_topic", "Topic", "Сообщения о запросах на слияние")
+}
+
+'Kafka relationships
+Rel(kafka_storage, kafka_repo_topic, "Получение сообщения о создании репозитория")
+Rel(kafka_storage, kafka_commit_topic, "Получение сообщения о коммитах")
+Rel(kafka_storage, kafka_pr_topic, "Получение сообщения о запросах на слияние")
+!enddefinelong

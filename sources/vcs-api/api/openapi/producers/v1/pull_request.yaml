@@ -1,0 +1,370 @@
+# Лежит не в таргетном месте, необходимо переместить, когда будет понимание куда класть и куда генерить
+# Команда для генерации: oapi-codegen -generate types -config api/openapi/producers/v1/pull_request.cfg.yaml api/openapi/producers/v1/pull_request.yaml
+
+openapi: 3.0.0
+info:
+  title: Kafka Pull Request Events Contract
+  version: 1.0.0
+  description: Контракт данных для отправки событий Pull Request в Kafka
+
+paths:
+  /:
+    get:
+      description: Fake endpoint to create a repository event
+      responses:
+        200:
+          description: Fake response to create a repository event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PullRequestEvent'
+
+
+components:
+  schemas:
+    PullRequestEvent:
+      description: Create repository event
+      type: object
+      properties:
+        metadata:
+          $ref: './generic/meta.yaml#/components/schemas/Metadata'
+        context:
+          $ref: './generic/context.yaml#/components/schemas/Context'
+        initiator_user:
+          $ref: './generic/initiator_user.yaml#/components/schemas/InitiatorUser'
+        payload:
+          $ref: '#/components/schemas/PullRequestPayload'
+      required:
+        - metadata
+        - context
+        - payload
+    PullRequestPayload:
+      type: object
+      properties:
+        sc_url:
+          type: string
+          description: URL Source Control репозитория
+          example: "https://stash.delta.sbrf.ru"
+          nullable: true
+
+        sc_pull_request_creation_dttm:
+          type: string
+          description: Дата и время создания пул-реквеста в формате ISO8601
+          example: "2024-05-31T12:32:41.490"
+          nullable: true
+
+        sbertrack_issue_url:
+          type: string
+          description: Ссылка на задачу Sbertrack
+          example: "https://sbertrack.sberbank.ru/..."
+          nullable: true
+
+        sc_pull_request_action_type:
+          type: string
+          description: Тип действия над PR (COMMENTED, MERGED, и др.)
+          enum: [OPENED, REOPENED, DECLINED, COMMENTED, REVIEWED, APPROVED, UNAPPROVED, MERGED, UPDATED, DELETED, RESCOPED_FROM, RESCOPED_TO]
+          example: "MERGED"
+          nullable: true
+
+        sc_pull_request_author_name:
+          type: string
+          description: ФИО автора пул-реквеста
+          example: "Кулаков Александр Олегович"
+          nullable: true
+
+        sc_pull_request_author_email:
+          type: string
+          description: Email автора
+          example: "aokulakov@sberbank.ru"
+          nullable: true
+
+        sc_pull_request_author_id:
+          type: integer
+          description: ID автора в SourceConrol
+          example: 4104381
+          nullable: true
+
+        sc_pull_request_author_login:
+          type: string
+          description: Логин автора (нижний регистр)
+          example: "18741847"
+          nullable: true
+
+        sc_comment_action_type:
+          type: string
+          description: Действие комментария (ADDED)
+          enum: [ADDED, EDITED, REPLIED]
+          example: "ADDED"
+          nullable: true
+
+        sc_pull_request_from_branch_name:
+          type: string
+          description: Название ветки, из которой выполнен PR
+          example: "NO-TASK/correct-deployment-yaml"
+          nullable: true
+
+        sc_pull_request_from_commit_sha:
+          type: string
+          description: SHA коммита "из" ветки
+          example: "382a94016159302aaa2f0d4fee9245f9f87090de"
+          nullable: true
+
+        sc_pull_request_from_repository_clone_url:
+          type: string
+          description: HTTP ссылка для клонирования репозитория "из"
+          example: "https://stash.sigma.sbrf.ru/scm/ci03317728/caldera-ui.git"
+          nullable: true
+
+        sc_pull_request_from_repository_id:
+          type: integer
+          description: ID репозитория "из"
+          example: 113841
+          nullable: true
+
+        sc_pull_request_from_repository_key:
+          type: string
+          description: Ключ репозитория "из"
+          example: "CI03317728/caldera-ui"
+          nullable: true
+
+        sc_pull_request_from_repository_name:
+          type: string
+          description: Имя репозитория "из"
+          example: "caldera-ui"
+          nullable: true
+
+        sc_pull_request_from_project_id:
+          type: integer
+          description: ID проекта "из"
+          example: 51198
+          nullable: true
+
+        sc_pull_request_from_project_name:
+          type: string
+          description: Название проекта "из"
+          example: "CI03317728"
+          nullable: true
+
+        sc_pull_request_from_ssh_clone_url:
+          type: string
+          description: SSH-ссылка для клонирования репозитория "из"
+          example: "ssh://git@stash.sigma.sbrf.ru:7999/ci03317728/caldera-ui.git"
+          nullable: true
+
+        sc_pull_request_order_number:
+          type: integer
+          description: Порядковый номер PR
+          example: 350
+          nullable: true
+
+        sc_merge_commit_sha:
+          type: string
+          description: SHA коммита при вливании (merge)
+          example: "5f33bcf572a9149bc565c443cda3e9749b43a309"
+          nullable: true
+
+        sc_pull_request_reviewer_list:
+          type: string
+          description: Общий список ревьюверов PR
+          example: "Зыкина Мария Валерьевна, Кондратьев Павел..., Томилов Кирилл Ильич"
+          nullable: true
+
+        sc_pull_request_approver_cnt:
+          type: integer
+          description: Количество ревьюверов, вынесших резолюцию APPROVED
+          example: 2
+          nullable: true
+
+        sc_pull_request_approver_name_list:
+          type: string
+          description: Список ревьюверов, вынесших резолюцию APPROVED
+          example: "Кондратьев Павел Вячеславович, Томилов Кирилл Ильич"
+          nullable: true
+
+        sc_pull_request_approver_email_list:
+          type: string
+          description: Email ревьюверов, вынесших резолюцию APPROVED
+          example: "pvykondratyev@sberbank.ru, tomilov.k.il@sberbank.ru"
+          nullable: true
+
+        sc_pull_request_approver_login_list:
+          type: string
+          description: Логины ревьюверов, вынесших резолюцию APPROVED (нижний регистр)
+          example: "14360868,19179966"
+          nullable: true
+
+        sc_pull_request_reviewer_email_list:
+          type: string
+          description: Общий список Email ревьюверов PR
+          example: "dv1shatrov@sberbank.ru, mvalzykina@sberbank.ru..."
+          nullable: true
+
+        sc_pull_request_reviewer_id_list:
+          type: string
+          description: Общий список ID ревьюверов PR
+          example: "4102062, 4111505, 4111912, 4113013, 4134683"
+          nullable: true
+
+        sc_reviewer_need_work_cnt:
+          type: integer
+          description: Количество ревьюверов с резолюцией NEEDS WORK
+          example: 0
+          nullable: true
+
+        sc_reviewer_need_work_name_list:
+          type: string
+          description: Список ФИО ревьюверов с резолюцией NEEDS WORK
+          example: "Бураченко Александр Викторович"
+          nullable: true
+
+        sc_reviewer_need_work_email_list:
+          type: string
+          description: Email ревьюверов с резолюцией NEEDS WORK
+          example: "avikburachenko@sberbank.ru"
+          nullable: true
+
+        sc_reviewer_need_work_login_list:
+          type: string
+          description: Логины ревьюверов с резолюцией NEEDS WORK (нижний регистр)
+          example: "21594265"
+          nullable: true
+
+        sc_pull_request_reviewer_login_list:
+          type: string
+          description: Общий список логинов ревьюверов PR (нижний регистр)
+          example: "14360868, 17699846, 21240748, shatrov-dv1..."
+          nullable: true
+
+        sc_unnaprover_cnt:
+          type: integer
+          description: Количество ревьюверов с резолюцией UNAPPROVED
+          example: 3
+          nullable: true
+
+        sc_unnaprover_name_list:
+          type: string
+          description: Список ФИО ревьюверов с резолюцией UNAPPROVED
+          example: "Зыкина Мария Валерьевна, Петров Владимир..., Шатров Дмитрий"
+          nullable: true
+
+        sc_unnaprover_email_list:
+          type: string
+          description: Email ревьюверов с резолюцией UNAPPROVED
+          example: "dv1shatrov@sberbank.ru, mvalzykina@sberbank.ru..."
+          nullable: true
+
+        sc_unnaprover_login_list:
+          type: string
+          description: Список логинов ревьюверов с резолюцией UNAPPROVED (нижний регистр)
+          example: "17699846, 21240748, shatrov-dv1"
+          nullable: true
+
+        sc_pull_request_state_type:
+          type: string
+          description: Статус PR (OPEN, MERGED, DECLINED)
+          enum: [OPEN, MERGED, DECLINED]
+          example: "MERGED"
+          nullable: true
+
+        sc_pull_request_name:
+          type: string
+          description: Название PR
+          example: "[AUTO] Release/0.176.0"
+          nullable: true
+
+        sc_pull_request_to_branch_name:
+          type: string
+          description: Название ветки, в которую выполнен PR
+          example: "MASTER_BRANCH"
+          nullable: true
+
+        sc_pull_request_to_commit_sha:
+          type: string
+          description: SHA коммита, в который влит PR
+          example: "142c3faf7f98ff282ac53b42c429303e6f379408"
+          nullable: true
+
+        sc_pull_request_to_repository_clone_url:
+          type: string
+          description: HTTP ссылка для клонирования репозитория "в"
+          example: "https://stash.delta.sbrf.ru/scm/pcap-cc360/mmb_ora.git"
+          nullable: true
+
+        sc_pull_request_to_branch_id:
+          type: string
+          description: ID ветки, в которую выполнен PR
+          example: "refs/heads/MASTER_BRANCH"
+          nullable: true
+
+        sc_pull_request_to_repository_id:
+          type: integer
+          description: ID репозитория "в"
+          example: 79430
+          nullable: true
+
+        sc_pull_request_to_repository_key:
+          type: string
+          description: Ключ репозитория "в"
+          example: "PCAP-CC360/mmb_ora"
+          nullable: true
+
+        sc_pull_request_to_repository_name:
+          type: string
+          description: Название репозитория "в"
+          example: "mmb_ora"
+          nullable: true
+
+        sc_pull_request_to_project_id:
+          type: integer
+          description: ID проекта "в"
+          example: 25026
+          nullable: true
+
+        sc_pull_request_to_project_name:
+          type: string
+          description: Название проекта "в"
+          example: "PCAP-CC360"
+          nullable: true
+
+        sc_pull_request_unique_id:
+          type: string
+          description: Уникальный ID PR (содержит проект, репо и номер PR)
+          example: "PCAP-CC360/mmb_ora#1164"
+          nullable: true
+
+        sc_pull_request_url:
+          type: string
+          description: URL на PR
+          example: "https://stash.delta.sbrf.ru/projects/PCAP-CC360/repos/mmb_ora/pull-requests/1164"
+          nullable: true
+
+        sc_pull_request_status_changer_name:
+          type: string
+          description: ФИО пользователя, изменившего статус PR
+          example: "DevSensei Auto Merge"
+          nullable: true
+
+        sc_pull_request_status_changer_email:
+          type: string
+          description: Email пользователя, изменившего статус PR
+          example: "devsensei-auto-merge@bitbucket.invalid"
+          nullable: true
+
+        sc_pull_request_status_changer_id:
+          type: integer
+          description: Внутренний ID пользователя
+          example: 4135312
+          nullable: true
+
+        sc_pull_request_status_changer_login:
+          type: string
+          description: Логин пользователя, изменившего статус PR (нижний регистр)
+          example: "devsensei-auto-merge-service-user"
+          nullable: true
+
+        sc_pull_request_version:
+          type: integer
+          description: Версия PR
+          example: 24
+          nullable: true
+

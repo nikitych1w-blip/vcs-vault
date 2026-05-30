@@ -1,0 +1,61 @@
+components:
+  parameters:
+    from_ref:
+      name: from_ref
+      in: query
+      required: true
+      description: Исходный реф (ветка/тег/коммит)
+      schema:
+        type: string
+      example: feature/new-feature
+    to_ref:
+      name: to_ref
+      in: query
+      required: true
+      description: Целевой реф (ветка/тег/коммит)
+      schema:
+        type: string
+      example: develop
+    sort:
+      name: sort
+      in: query
+      required: false
+      description: Параметры сортировки (created_at:asc, created_at:desc)
+      schema:
+        type: string
+        pattern: '^[a-z_]+(:asc|:desc)?$'
+        default: created_at:desc
+      example: created_at:asc
+    file_path:
+      name: file_path
+      in: query
+      required: true
+      description: Путь к файлу по которому нужно получить изменения
+      schema:
+        type: string
+      example: src/main/java/com/example/App.java
+    branch:
+      name: branch
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Название ветки
+      example: "main"
+    from_line:
+      name: from_line
+      in: query
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+      description: Номер начальной строки
+      example: 10
+    to_line:
+      name: to_line
+      in: query
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+      description: Номер конечной строки

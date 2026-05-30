@@ -1,0 +1,99 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Deployment.puml
+!include ./../../../../../sources/deployment_units/spo/spo.puml
+!include ./../../../../../sources/deployment_units/sc/sc.puml
+!include ./../../../../../sources/deployment_units/actor/actor.puml
+!include ./../../../../../sources/deployment_units/external/external.puml
+
+'!include ./../../../../sources/C4_Deployment.puml
+' Верхний уровень (сегменты)
+
+title "Схема: Cluster SourceControl + Cluster Gitaly в ПАО"
+
+
+AddElementTag("fallback", $bgColor="#c0c0c0")
+AddRelTag("fallback", $textColor="#c0c0c0", $lineColor="#438DD5")
+WithoutPropertyHeader()
+
+Deployment_Node(segment0, "Компьютер пользователя", "Any") {
+    Person_Deployment_Node(vm_user, user)
+    GitCli_Deployment_Node(vm_user1, gitcli)
+}
+
+Deployment_Node(segment, "Периметр решения", "VM/K8S") {
+    Deployment_Node(segment1, "Автоматизированная система SourceControl", "VM/K8S") {
+        Deployment_Node(segment5, "Platform V DropApp", "K8S") {
+            SourceControlFE_K8S_Deployment_Node(vm_product, fe)
+            'SourceControlCore_Vault_K8S_Deployment_Node(vm_product1, core, vault_agent)
+            SourceControlCore_Vault_Alog_K8S_Deployment_Node(vm_product1, core, vault_agent, alog)
+            Istio_Ingress_Deployment_Node(k8s_ingress, ingress)
+            Istio_Egress_Deployment_Node(k8s_egress, egress)
+            FluentBit_K8S_Deployment_Node(k8s_fluentbit, fluent)
+            Prometheus_K8S_Deployment_Node(k8s_prometheus, prometheus)
+        }
+        Deployment_Node(segment7, "Обязательное СПО", "VM") {
+            IAMProxy_Deployment_Node(vm_spo, proxy)
+            Haproxy_Deployment_Node(vm_spo3, haproxy)
+            Ngam_Deployment_Node(vm_spo4, "ngam")
+        }
+        Deployment_Node(segment6, "Обязательное СПО", "VM") {
+            Gitaly_Cluster_Deployment_Node(vm_spo1, praefect_lb)
+            Pangolin_Deployment_Node(vm_spo2, pangolin)
+            Radish_Deployment_Node(vm_spo10, redis)
+            S3_Deployment_Node(vm_spo11, s3)
+            LDAP_Deployment_Node(vm_spo8, ldap)
+        }
+    }
+    Deployment_Node(segment4, "Внешние системы", "VM/K8S") {
+         Widget_Deployment_Node(ext_vm1, widget)
+         TaskTracker_Deployment_Node(ext_vm2, tasktracker)
+         CodeScanner_Deployment_Node(ext_vm3, codescanner)
+         OneWork_Deployment_Node(ext_vm4, onework)
+         Jenkins_Deployment_Node(ext_vm5, jenkins)
+    }
+    Deployment_Node(segment2, "Необязательное внешнее СПО", "VM/K8S", $tags="fallback") {
+        Corax_Deployment_Node(vm_spo5, corax)
+        SecMan_Deployment_Node(vm_spo6, secman)
+        SMTP_Deployment_Node(vm_spo7, smtp)
+    }
+}
+
+Rel(user, onework, "HTTPS", "v1.2")
+Rel(user, proxy, "HTTPS", "v1.2")
+Rel(gitcli, haproxy, "HTTPS", "v1.2")
+Rel(gitcli, haproxy, "TCP")
+
+Rel(haproxy, ingress, "TCP")
+Rel(haproxy, ingress, "HTTPS", "v1.2")
+
+Rel(ingress, core, "HTTP", "v1.2")
+Rel(ingress, core, "TCP")
+Rel(ingress, fe, "HTTP", "v1.2")
+
+Rel(proxy, ingress, "HTTPS", "v1.2")
+Rel(proxy, ngam, "HTTPS", "v1.2")
+
+Rel(prometheus, core, "HTTP")
+
+Rel(core, egress, "TCP/HTTPS/GRPC")
+Rel(vault_agent, egress, "HTTPS")
+Rel(alog, egress, "TCP")
+Rel(egress, pangolin, "TCP")
+Rel(egress, praefect_lb, "GRPC")
+Rel(egress, secman, "HTTPS", "v1.2")
+Rel(egress, s3, "HTTPS", "v1.2")
+Rel(egress, corax, "TCP")
+Rel(egress, smtp, "SMTP")
+Rel(egress, ldap, "LDAP")
+Rel(egress, redis, "TCP")
+Rel(egress, widget, "HTTPS")
+Rel(egress, tasktracker, "MTLS", "v1.2")
+Rel(egress, codescanner, "HTTPS", "v1.2")
+Rel(core, jenkins, "HTTPS", "v1.2")
+
+
+
+
+
+SHOW_LEGEND()
+@enduml

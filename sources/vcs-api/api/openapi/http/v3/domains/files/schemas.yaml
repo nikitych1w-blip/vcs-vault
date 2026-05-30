@@ -1,0 +1,241 @@
+components:
+  schemas:
+    CreateFileRequest:
+      type: object
+      required:
+        - content
+        - filepath
+      properties:
+        content:
+          type: string
+          description: Base64-encoded file content
+        message:
+          type: string
+          description: Commit message
+        branch:
+          type: string
+          description: Branch name (defaults to repository default branch)
+        filepath:
+          type: string
+          description: File path relative to repository root
+
+    UpdateFileRequest:
+      type: object
+      required:
+        - content
+        - filepath
+        - sha
+      properties:
+        content:
+          type: string
+          description: Base64-encoded file content
+        message:
+          type: string
+          description: Commit message
+        branch:
+          type: string
+          description: Branch name (defaults to repository default branch)
+        from_path:
+          type: string
+          description: Source path to move/rename from (optional)
+        filepath:
+          type: string
+          description: Existing file path
+        sha:
+          type: string
+          description: Commit SHA
+
+    DeleteFileRequest:
+      type: object
+      required:
+        - filepath
+        - sha
+      properties:
+        sha:
+          type: string
+          description: Commit SHA
+        branch:
+          type: string
+          description: Branch name (defaults to repository default branch)
+        message:
+          type: string
+          description: Commit message
+        filepath:
+          type: string
+          description: Existing file path
+        signoff:
+          type: boolean
+          description: Add Signed-off-by to commit message
+
+    FileListResponse:
+      type: object
+      description: Пагинированный список файлов и каталогов (или один элемент при запросе к файлу)
+      required:
+        - pagination
+        - files
+      properties:
+        pagination:
+          $ref: '../../common/pagination.yaml#/components/schemas/Pagination'
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/Content'
+
+    Content:
+      type: object
+      description: Метаданные и содержимое файла/каталога
+      properties:
+        type:
+          type: string
+          description: 'Тип объекта: file, dir, symlink, submodule'
+        content:
+          type: string
+          description: Содержимое в base64; для каталогов может быть пустым
+        encoding:
+          type: string
+          description: Кодировка содержимого (обычно base64)
+        size:
+          type: integer
+          format: int64
+          description: Размер в байтах
+        path:
+          type: string
+        name:
+          type: string
+        sha:
+          type: string
+        last_commit_sha:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+        download_url:
+          type: string
+        git_url:
+          type: string
+        url:
+          type: string
+        html_url:
+          type: string
+        target:
+          type: string
+          description: Для symlink — целевой путь
+
+    FileResponse:
+      type: object
+      description: Результат операции с файлом (создание, обновление, удаление)
+      properties:
+        branch:
+          $ref: '#/components/schemas/Branch'
+        commit:
+          $ref: '#/components/schemas/FileRepoCommit'
+        content:
+          $ref: '#/components/schemas/Content'
+        verification:
+          $ref: '#/components/schemas/Verification'
+
+    Branch:
+      type: object
+      properties:
+        name:
+          type: string
+        protected:
+          type: boolean
+        protection_rules:
+          type: array
+          items:
+            type: string
+        commit:
+          $ref: '#/components/schemas/BranchCommitInfo'
+
+    BranchCommitInfo:
+      type: object
+      properties:
+        hash:
+          type: string
+        title:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+
+    FileRepoCommit:
+      type: object
+      properties:
+        author:
+          $ref: '#/components/schemas/PersonWithDate'
+        committer:
+          $ref: '#/components/schemas/PersonWithDate'
+        created:
+          type: string
+          format: date-time
+        parents:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommitParent'
+        sha:
+          type: string
+        message:
+          type: string
+        url:
+          type: string
+        html_url:
+          type: string
+        tree:
+          $ref: '#/components/schemas/GitRef'
+
+    PersonWithDate:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        date:
+          type: string
+
+    CommitParent:
+      type: object
+      properties:
+        created:
+          type: string
+          format: date-time
+        sha:
+          type: string
+        url:
+          type: string
+
+    GitRef:
+      type: object
+      properties:
+        created:
+          type: string
+          format: date-time
+        sha:
+          type: string
+        url:
+          type: string
+
+    Verification:
+      type: object
+      properties:
+        payload:
+          type: string
+        reason:
+          type: string
+        signature:
+          type: string
+        signer:
+          $ref: '#/components/schemas/Signer'
+        verified:
+          type: boolean
+
+    Signer:
+      type: object
+      properties:
+        email:
+          type: string
+        name:
+          type: string
+        username:
+          type: string

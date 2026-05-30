@@ -1,0 +1,22 @@
+components:
+  responses:
+    BranchListResponse:
+      description: Список веток репозитория с пагинацией
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/BranchListResponse'
+    BranchCreateResponse:
+      description: Ветка успешно создана
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/BranchItem'
+    BranchGetResponse:
+      description: Информация о ветке
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/Branch'
+    BranchDeleteResponse:
+      description: Ветка успешно удалена

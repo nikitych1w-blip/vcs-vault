@@ -1,0 +1,4 @@
+[submodule "spec"]
+	path = spec
+	url = ssh://git@portal.works.prod.sbt:7998/vcs/vcs-api.git
+	branch = master

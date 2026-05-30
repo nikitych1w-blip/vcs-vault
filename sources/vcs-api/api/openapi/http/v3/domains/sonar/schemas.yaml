@@ -1,0 +1,40 @@
+components:
+  schemas:
+    CreateOrUpdateSonarProjectRequest:
+      type: object
+      required:
+        - sonar_server_url
+        - sonar_project_key
+        - sonar_token
+      properties:
+        sonar_server_url:
+          type: string
+          description: URL of the SonarQube server
+          maxLength: 2048
+        sonar_project_key:
+          type: string
+          description: Unique project key in SonarQube
+          maxLength: 50
+        sonar_token:
+          type: string
+          description: Token used for authentication with SonarQube
+          minLength: 40
+          maxLength: 255
+
+    SonarSettingsResponse:
+      type: object
+      description: Настройки SonarQube для репозитория
+      required:
+        - sonar_server_url
+        - sonar_project_key
+        - sonar_token
+      properties:
+        sonar_server_url:
+          type: string
+          description: URL сервера SonarQube
+        sonar_project_key:
+          type: string
+          description: Ключ проекта в SonarQube
+        sonar_token:
+          type: string
+          description: Токен аутентификации SonarQube

@@ -1,0 +1,28 @@
+components:
+  responses:
+    CommentListResponse:
+      description: Список комментариев к пулл-реквесту
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/CommentListResponse'
+    CommentGetResponse:
+      description: Информация о комментарии
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/Comment'
+    CommentCreateResponse:
+      description: Комментарий создан
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/Comment'
+    CommentUpdateResponse:
+      description: Комментарий обновлён
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/Comment'
+    CommentDeleteResponse:
+      description: Комментарий удалён

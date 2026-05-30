@@ -1,0 +1,69 @@
+components:
+  responses:
+    PRResponse:
+      description: Информация о pull request
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRInfo'
+    PullCreateResponse:
+      description: Информация о созданном pull request
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRInfo'
+    PRMembersResponse:
+      description: Информация о пользователях, участвующих pull request
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRMembers'
+    PRLinkedTasksResponse:
+      description: Информация по связанным с pull request задачам
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRLinkedTasks'
+    PRAttributesResponse:
+      description: Информация по связанным с pull request атрибутам репозитория
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRAttributes'
+    PRTimeAttributesResponse:
+      description: Информация по связанным с pull request атрибутам времени
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRTimeAttributes'
+    PRBranchUpdateResponse:
+      description: Результат обновления head ветки PR из base
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/BranchUpdateResponse'
+
+    PRUpstreamInfoResponse:
+      description: Информация о PRUpstream для данного PR
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRUpstreamInfo'
+    PRCommentUpdateResponse:
+      description: Информация о комментарии PR
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - $ref: './schemas.yaml#/components/schemas/PRCommentInfo'
+              - $ref: './schemas.yaml#/components/schemas/PRReviewCommentInfo'
+              - $ref: './schemas.yaml#/components/schemas/PRCodeCommentInfo'
+    PRCommentCreateResponse:
+      description: Информация о созданном комментарии PR. При создании комментария-ревью всю сущность возвращать не требуется
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - $ref: './schemas.yaml#/components/schemas/PRCommentInfo'
+              - $ref: '../../common/success.yaml#/components/schemas/OperationSuccess'
+              - $ref: './schemas.yaml#/components/schemas/PRCodeCommentInfo'

@@ -1,0 +1,70 @@
+components:
+  schemas:
+    ApplyPrivilegeGroupsRequest:
+      type: object
+      required:
+        - apply_privilege_groups
+      properties:
+        apply_privilege_groups:
+          $ref: "#/components/schemas/PrivilegeGroupsOperations"
+
+    AppliedPrivilegeStatus:
+      type: object
+      properties:
+        applied_status:
+          type: object
+          properties:
+            granted:
+              type: array
+              items:
+                $ref: "#/components/schemas/UserPrivilege"
+            revoked:
+              type: array
+              items:
+                $ref: "#/components/schemas/UserPrivilege"
+            errors:
+              type: object
+              properties:
+                grant:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      user_name: { type: string }
+                      privilege_group: { type: string }
+                      error: { type: string }
+                revoke:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      user_name: { type: string }
+                      privilege_group: { type: string }
+                      error: { type: string }
+
+    UserPrivilege:
+      type: object
+      required:
+        - user_name
+        - privilege_group
+      properties:
+        user_name:
+          type: string
+          description: Имя пользователя
+          example: john.doe
+        privilege_group:
+          type: string
+          description: Назначенная группа привилегий
+          example: readers
+
+    PrivilegeGroupsOperations:
+      type: object
+      properties:
+        grant:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserPrivilege"
+        revoke:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserPrivilege"

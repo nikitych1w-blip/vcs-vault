@@ -1,0 +1,228 @@
+RepoWebhooksRoute:
+  parameters:
+  - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+  - $ref: '../../common/params.yaml#/components/parameters/Project'
+  - $ref: '../../common/params.yaml#/components/parameters/Repo'
+  get:
+    tags: [repos]
+    summary: Получить список вебхуков репозитория
+    description: Возвращает список вебхуков репозитория
+    operationId: v3GetRepoWebhooks
+    x-required-privilege: edit
+    x-internal: true
+    parameters:
+      - in: query
+        name: page
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+        required: false
+        description: Номер страницы (начинается с 1)
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100 
+          default: 30    
+        required: false
+        description: Количество элементов на странице                   
+    responses:
+      '200':
+        description: Список вебхуков успешно получен. Может быть пустым, если в репозитории нет вебхуков.       
+        headers: 
+          X-Request-ID:
+            $ref: '../../common/header.yaml#/headers/X-Request-ID'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pagination:
+                  $ref: '../../common/pagination.yaml#/components/schemas/Pagination'
+                webhooks:
+                  type: array
+                  items:
+                    $ref:  './schemas.yaml#/components/schemas/Webhook'
+      '400':
+        $ref: './errors.yaml#/components/responses/WebhooksBadRequest'
+      '401':
+        $ref: ../../common/errors.yaml#/components/responses/Unauthorized
+      '403':
+        $ref: './errors.yaml#/components/responses/WebhookForbidden'
+      '404':
+        $ref: './errors.yaml#/components/responses/WebhooksNotFound'
+      '500':
+        $ref: ../../common/errors.yaml#/components/responses/ServerError
+  post:
+    tags: [repos]
+    summary: Создать новый вебхук для репозитория
+    description: Создает новый вебхук в коллекции
+    operationId: v3CreateRepoWebhook
+    x-required-privilege: edit
+    x-internal: true
+    requestBody:
+      required: true
+      description: Данные для создания вебхука
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/WebhookPayload'
+    responses:
+      '201':
+        description: Вебхук успешно создан   
+        headers: 
+          Location:
+            schema:
+              type: string
+              format: uri
+            description: URL созданного ресурса
+          X-Request-ID:
+            $ref: '../../common/header.yaml#/headers/X-Request-ID'
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/components/schemas/Webhook' 
+      '400':
+        $ref: './errors.yaml#/components/responses/WebhookBadRequest'
+      '401':
+        $ref: ../../common/errors.yaml#/components/responses/Unauthorized
+      '403':
+        $ref: './errors.yaml#/components/responses/WebhookForbidden'
+      '404':
+        $ref: './errors.yaml#/components/responses/WebhookNotFound' 
+      '409':
+        $ref: ../../common/errors.yaml#/components/responses/Conflict
+      '500':
+        $ref: ../../common/errors.yaml#/components/responses/ServerError 
+
+RepoWebhookRoute:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+    - in: path
+      name: webhook_id
+      schema:
+        type: string
+        minLength: 1
+      required: true
+      description: "Уникальный идентификатор вебхука, например: `123`."                  
+  get:
+    tags: [repos]
+    summary: Получить конкретный вебхук репозитория по его идентификатору
+    description: Возвращает конкретный вебхук репозитория по его идентификатору
+    operationId: v3GetRepoWebhook
+    x-required-privilege: edit
+    x-internal: true
+    responses:
+      '200':
+        description: Вебхук успешно получен.    
+        headers: 
+          X-Request-ID:
+            $ref: '../../common/header.yaml#/headers/X-Request-ID'
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/components/schemas/Webhook'                 
+      '401':
+        $ref: ../../common/errors.yaml#/components/responses/Unauthorized
+      '403':
+        $ref: './errors.yaml#/components/responses/WebhookForbidden'
+      '404':
+        $ref: './errors.yaml#/components/responses/WebhookNotFound'
+      '500':
+        $ref: ../../common/errors.yaml#/components/responses/ServerError
+  patch:
+    tags: [repos]    
+    summary: Обновить вебхук частично
+    description: |
+      Частичное обновление вебхука. Только переданные поля будут обновлены.
+      Остальные поля останутся без изменений.
+    operationId: v3UpdateRepoWebhook
+    x-required-privilege: edit
+    x-internal: true
+    requestBody:
+      required: true
+      description: Данные для частичного обновления вебхука
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/WebhookUpdatePayload'
+    responses:
+      '200':
+        description: Элемент успешно обновлен   
+        headers: 
+          X-Request-ID:
+            $ref: '../../common/header.yaml#/headers/X-Request-ID'
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/components/schemas/Webhook' 
+      '400':
+        $ref: './errors.yaml#/components/responses/WebhookBadRequest' 
+      '401':
+        $ref: ../../common/errors.yaml#/components/responses/Unauthorized
+      '403':
+        $ref: './errors.yaml#/components/responses/WebhookForbidden'
+      '404':
+        $ref: './errors.yaml#/components/responses/WebhookNotFound' 
+      '500':
+        $ref: ../../common/errors.yaml#/components/responses/ServerError
+  delete:
+    tags: [repos]    
+    summary: Удалить вебхук
+    description: Удаляет вебхук по его идентификатору
+    operationId: v3DeleteRepoWebhook
+    x-required-privilege: edit
+    x-internal: true
+    responses:
+      '204':
+        description: Элемент успешно удален
+        headers: 
+          X-Request-ID:
+            $ref: '../../common/header.yaml#/headers/X-Request-ID'
+      '401':
+        $ref: ../../common/errors.yaml#/components/responses/Unauthorized
+      '403':
+        $ref: './errors.yaml#/components/responses/WebhookForbidden'
+      '404':
+        $ref: './errors.yaml#/components/responses/WebhookNotFound'  
+      '500':
+        $ref: ../../common/errors.yaml#/components/responses/ServerError
+RepoWebhookTestRoute:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+    - in: path
+      name: webhook_id
+      schema:
+        type: string
+        minLength: 1
+      required: true
+      description: "Уникальный идентификатор вебхука, например: `123`."    
+  post:
+    tags: [repos]    
+    summary: Тестовая отправка вебхука
+    description: >
+      Отправляет тестовый payload на настроенный URL для проверки 
+      доступности, авторизации и корректности конфигурации.
+    operationId: v3TestRepoWebhook
+    x-required-privilege: edit
+    x-internal: true
+    responses:
+      '204':
+        description: Тестовый запрос успешно поставлен в очередь/отправлен.           
+        headers: 
+          X-Request-ID:
+            $ref: '../../common/header.yaml#/headers/X-Request-ID'
+      '401':
+        $ref: ../../common/errors.yaml#/components/responses/Unauthorized
+      '403':
+        $ref: './errors.yaml#/components/responses/WebhookForbidden'
+      '404':
+        $ref: './errors.yaml#/components/responses/WebhookNotFound'
+      '500':
+        $ref: ../../common/errors.yaml#/components/responses/ServerError

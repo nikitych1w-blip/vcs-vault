@@ -1,0 +1,7 @@
+!definelong set_styles()
+AddElementTag("app", $legendText="app")
+AddElementTag("service", $legendText="service")
+AddElementTag("handler", $legendText="handler", $bgColor="lightSkyBlue", $fontColor="white")
+AddElementTag("interface", $shape=RoundedBoxShape(), $bgColor="CornflowerBlue", $fontColor="white", $legendText="interface")
+AddElementTag("implementation", $bgColor="CornflowerBlue", $legendText="implementation", $border)
+!enddefinelong

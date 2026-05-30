@@ -1,0 +1,40 @@
+components:
+  schemas:
+    MetricCounter:
+      type: object
+      additionalProperties: false
+      description: Ответ с внутренней метрикой
+      required: [value]
+      properties:
+        value:
+          type: integer
+          format: int32
+
+    ExternalMetric:
+      type: object
+      additionalProperties: false
+      description: Ответ с внешней метрикой
+      required: [value, text]
+      properties:
+        value:
+          type: integer
+          format: int32
+        text:
+          type: string
+
+    SetExternalMetricRequest:
+      type: object
+      additionalProperties: false
+      description: Запрос установки внешней метрики
+      required: [value, text]
+      properties:
+        value:
+          type: integer
+          format: int32
+        text:
+          type: string
+
+    DeleteExternalMetricRequest:
+      type: object
+      additionalProperties: false
+      description: Не используется (DELETE принимает query params)

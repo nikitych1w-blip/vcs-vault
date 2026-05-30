@@ -1,0 +1,41 @@
+components:
+  schemas:
+    Tenant:
+      type: object
+      additionalProperties: false
+      description: Тенант
+      required: [id, name, tenant_key]
+      properties:
+        id:
+          type: string
+          description: Tenant ID (UUID string)
+        name:
+          type: string
+        tenant_key:
+          type: string
+        is_active:
+          type: boolean
+          description: Активен ли тенант (присутствует в GET)
+
+    CreateTenantOptions:
+      type: object
+      additionalProperties: false
+      description: Запрос создания тенанта
+      required: [tenant_key, name]
+      properties:
+        tenant_key:
+          type: string
+          maxLength: 50
+        name:
+          type: string
+          maxLength: 50
+
+    DeleteTenantOptions:
+      type: object
+      additionalProperties: false
+      description: Запрос удаления тенанта
+      required: [tenant_key]
+      properties:
+        tenant_key:
+          type: string
+          maxLength: 50

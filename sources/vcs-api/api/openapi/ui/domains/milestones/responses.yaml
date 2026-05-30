@@ -1,0 +1,8 @@
+components:
+  responses:
+    MilestonesListResponse:
+      description: Список этапов (milestones) репозитория
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PaginatedMilestonesList'

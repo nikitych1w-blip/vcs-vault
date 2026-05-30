@@ -1,0 +1,16 @@
+components:
+  responses:
+    TenantGetResponse:
+      description: Информация о тенанте
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/Tenant'
+    TenantCreateResponse:
+      description: Тенант создан
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/Tenant'
+    TenantDeleteResponse:
+      description: Тенант удалён

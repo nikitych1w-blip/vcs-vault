@@ -1,0 +1,131 @@
+RepoBranches:
+  get:
+    summary: Получить список веток
+    tags:
+      - Branches
+    operationId: GetRepoBranches
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: '../../common/params.yaml#/components/parameters/q'
+      - $ref: '../../common/params.yaml#/components/parameters/page'
+      - $ref: '../../common/params.yaml#/components/parameters/limit'
+      - $ref: '../../common/params.yaml#/components/parameters/sort'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/BranchListResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+  post:
+    summary: Создать новую ветку
+    tags:
+      - Branches
+    operationId: CreateRepoBranch
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/BranchCreatePayload'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/BranchCreateResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+RepoBranch:
+  delete:
+    summary: Удалить ветку
+    tags:
+      - Branches
+    operationId: DeleteRepoBranch
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/branch_name'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/BranchUpdateResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+  put:
+    summary: Переименовать ветку
+    tags:
+      - Branches
+    operationId: RenameRepoBranch
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/branch_name'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/BranchRenamePayload'
+    responses:
+      '204':
+        $ref: '../../common/success.yaml#/components/responses/NoContent'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+RepoBranchRestore:
+  post:
+    summary: Восстановить ветку
+    tags:
+      - Branches
+    operationId: RestoreRepoBranch
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/branch_name'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/BranchRestoreResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

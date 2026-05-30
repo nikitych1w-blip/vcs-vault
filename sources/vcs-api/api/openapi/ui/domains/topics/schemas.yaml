@@ -1,0 +1,16 @@
+components:
+  schemas:
+    PaginatedTopicsList:
+      description: Пагинированный список топиков
+      type: object
+      properties:
+        pagination:
+          $ref: '../../common/pagination.yaml#/components/schemas/Pagination'
+        data:
+          description: Список топиков подходящих под поиск
+          type: array
+          items:
+            type: string
+      required:
+        - pagination
+        - data

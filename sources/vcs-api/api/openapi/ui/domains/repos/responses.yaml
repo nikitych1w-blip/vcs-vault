@@ -1,0 +1,62 @@
+components:
+  responses:
+    ReposListResponse:
+      description: Список репозиториев проекта
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/ReposList'
+    ReposShortListResponse:
+      description: Пагинированный список репозиториев (короткая информация)
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/ReposShortList'
+    RepoResponse:
+      description: Информация о репозитории
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/Repo'
+    BrowseRepoContentResponse:
+      description: Информация о содержимом репозитория
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/BrowseRepoContent'
+    RepoExternalMetricsResponse:
+      description: Получение внешних метрик репозитория
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/RepoExternalMetrics'
+    RepoRawFileResponse:
+      description: Получение raw файла репозитория (в формате base64)
+      content:
+        plain/text:
+          schema:
+            type: string
+    RepositorySubscriptionResponse:
+      description: Настройки отслеживания репозитория (создание/обновление)
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/RepositorySubscriptionResponse'
+    PutSubscription200:
+      description: Настройки отслеживания обновлены
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/RepositorySubscriptionResponse'
+    PutSubscription201:
+      description: Подписка создана
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/RepositorySubscriptionResponse'
+    BuildStatusResponse:
+      description: Информация по статусам проверок сборки 
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/BuildStatus'

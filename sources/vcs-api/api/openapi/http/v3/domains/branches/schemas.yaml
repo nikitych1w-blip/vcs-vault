@@ -1,0 +1,103 @@
+components:
+  schemas:
+    Branch:
+      description: Возвращаемая новая ветка
+      properties:
+        commit:
+          $ref: '#/components/schemas/shortCommitInfo'
+        name:
+          description: Имя ветки
+          example: main
+          type: string
+        protected:
+          description: Является ли ветка защищённой
+          example: true
+          type: boolean
+        protection_rules:
+          items:
+            description: Имена правил защиты, применённых к ветке. Не возвращается если protected False
+            example:
+              - '*'
+              - main
+            type: string
+          type: array
+      required:
+        - name
+        - protected
+        - commit
+      type: object
+
+    BranchCreation:
+      properties:
+        new_branch:
+          description: Имя новой ветки
+          example: new_branch_name
+          maxLength: 100
+          minLength: 1
+          type: string
+        parent_commit_SHA:
+          description: SHA родительского коммита
+          example: d94b5f7ec7c6d7602c78a5e9b8a5b8c94d093eda
+          maxLength: 40
+          minLength: 4
+          pattern: '^[0-9a-fA-F]{4,40}$'
+          type: string
+      required:
+        - new_branch
+        - parent_commit_SHA
+      type: object
+    BranchItem:
+      description: Информация о ветке
+      properties:
+        commit:
+          $ref: '#/components/schemas/shortCommitInfo'
+        name:
+          description: Название ветки
+          type: string
+        protected:
+          description: Защищена ли ветка
+          type: boolean
+        protection_rules:
+          description: Правила защиты ветки
+          items:
+            type: string
+          type: array
+      required:
+        - name
+        - protected
+        - commit
+      type: object
+    BranchListResponse:
+      description: Список веток репозитория с пагинацией
+      properties:
+        branches:
+          description: Список веток
+          items:
+            $ref: '#/components/schemas/BranchItem'
+          type: array
+        pagination:
+          $ref: ../../common/pagination.yaml#/components/schemas/Pagination
+      required:
+        - pagination
+        - branches
+      type: object
+    shortCommitInfo:
+      properties:
+        created_at:
+          description: Дата создания коммита
+          example: "2025-04-05T14:30:00Z"
+          format: date-time
+          type: string
+        hash:
+          description: Хэш коммита
+          example: abc1234
+          type: string
+        title:
+          description: Заголовок коммита
+          example: Update dependencies
+          type: string
+      required:
+        - hash
+        - title
+        - created_at
+      type: object

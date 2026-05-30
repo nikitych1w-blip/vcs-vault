@@ -1,0 +1,14 @@
+components:
+  responses:
+    RepoTagsListResponse:
+      description: Информация о тегах репозитория
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PaginatedRepoTagsList'
+    RepoTagCreateResponse:
+      description: Успешное создание тега
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/RepoTag'

@@ -1,0 +1,40 @@
+{
+  "name": "vcs-api",
+  "version": "1.0.0",
+  "description": "SourceControl OpenAPI specs and Postman collections for v2, v3, ui, and system.",
+  "main": "index.js",
+  "scripts": {
+    "api:http:lint": "make -C api/openapi/http lint",
+    "api:http:bundle": "make -C api/openapi/http bundle",
+    "api:http:build": "make -C api/openapi/http build",
+    "api:ui:lint": "redocly lint ./api/openapi/ui/index.yaml",
+    "api:ui:bundle": "redocly bundle ./api/openapi/ui/index.yaml -o ./api/openapi/ui/openapi_ui_bundle.yaml",
+    "api:ui:build": "npm run api:ui:lint && npm run api:ui:bundle",
+    "api:system:lint": "redocly lint ./api/openapi/system/index.yaml",
+    "api:system:bundle": "redocly bundle ./api/openapi/system/index.yaml -o ./api/openapi/system/openapi_system_bundle.yaml",
+    "api:system:build": "npm run api:system:lint && npm run api:system:bundle",
+    "api:build": "npm run api:http:build && npm run api:ui:build && npm run api:system:build",
+    "test:postman": "node --test ./scripts/postman-transform.test.mjs",
+    "postman:generate": "node ./scripts/generate-postman.mjs",
+    "postman:check": "npm run test:postman && npm run postman:generate && node ./scripts/check-postman-generated.mjs",
+    "postman:build": "npm run api:build && npm run postman:generate",
+    "api:compat:v2": "sc-api-compat check --spec api/openapi/http/v2/openapi_http_v2_bundle.yaml --base origin/master",
+    "api:compat:v3": "sc-api-compat check --spec api/openapi/http/v3/openapi_http_v3_bundle.yaml --base origin/master",
+    "api:compat:ui": "sc-api-compat check --spec api/openapi/ui/openapi_ui_bundle.yaml --base origin/master",
+    "api:compat": "npm run api:compat:v2 && npm run api:compat:v3 && npm run api:compat:ui"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@portal.works.prod.sbt:7998/vcs/vcs-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "@redocly/cli": "^2.25.4",
+    "openapi-to-postmanv2": "^6.0.0",
+    "yaml": "^2.8.3"
+  }
+}

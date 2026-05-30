@@ -1,0 +1,2254 @@
+{
+  "info": {
+    "_postman_id": "52383a0e-0bfd-4c5c-b7ab-ccafc50882c0",
+    "name": "SourceControl API v3 BranchProtection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "SourceControl REST API v3"
+  },
+  "item": [
+    {
+      "name": "BranchProtection",
+      "item": [
+        {
+          "name": "List branch protections",
+          "request": {
+            "url": {
+              "path": [
+                "repos",
+                ":tenant",
+                ":project",
+                ":repo",
+                "branch_protections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenant",
+                  "description": "(Required) Tenant identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project",
+                  "description": "(Required) Project identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo",
+                  "description": "(Required) Repository identifier"
+                }
+              ],
+              "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "name": "Список правил защиты веток",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"branch_name\": \"string\",\n    \"push_settings\": {\n      \"allow_push_deploy_keys\": false,\n      \"push_whitelist_usernames\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"require_push_whitelist\": false\n    },\n    \"force_push_settings\": {\n      \"allow_force_push_deploy_keys\": true,\n      \"force_push_whitelist_usernames\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"require_force_push_whitelist\": false\n    },\n    \"deletion_settings\": {\n      \"allow_deletion_deploy_keys\": false,\n      \"branch_deletion_whitelist_usernames\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"require_deletion_whitelist\": false\n    },\n    \"additional_restrictions\": {\n      \"protected_file_patterns\": \"string\",\n      \"unprotected_file_patterns\": \"string\"\n    }\n  },\n  {\n    \"branch_name\": \"string\",\n    \"push_settings\": {\n      \"allow_push_deploy_keys\": true,\n      \"push_whitelist_usernames\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"require_push_whitelist\": true\n    },\n    \"force_push_settings\": {\n      \"allow_force_push_deploy_keys\": false,\n      \"force_push_whitelist_usernames\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"require_force_push_whitelist\": true\n    },\n    \"deletion_settings\": {\n      \"allow_deletion_deploy_keys\": true,\n      \"branch_deletion_whitelist_usernames\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"require_deletion_whitelist\": true\n    },\n    \"additional_restrictions\": {\n      \"protected_file_patterns\": \"string\",\n      \"unprotected_file_patterns\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 401,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 403,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 404,\n  \"title\": \"Ресурс не найден\",\n  \"detail\": \"Запрашиваемый ресурс не существует.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 500,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Create branch protection",
+          "request": {
+            "url": {
+              "path": [
+                "repos",
+                ":tenant",
+                ":project",
+                ":repo",
+                "branch_protections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenant",
+                  "description": "(Required) Tenant identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project",
+                  "description": "(Required) Project identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo",
+                  "description": "(Required) Repository identifier"
+                }
+              ],
+              "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections"
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"branch_name\": \"<string>\",\n  \"push_settings\": {\n    \"allow_push_deploy_keys\": \"<boolean>\",\n    \"push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_push_whitelist\": \"<boolean>\"\n  },\n  \"force_push_settings\": {\n    \"allow_force_push_deploy_keys\": \"<boolean>\",\n    \"force_push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_force_push_whitelist\": \"<boolean>\"\n  },\n  \"deletion_settings\": {\n    \"allow_deletion_deploy_keys\": \"<boolean>\",\n    \"branch_deletion_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_deletion_whitelist\": \"<boolean>\"\n  },\n  \"additional_restrictions\": {\n    \"protected_file_patterns\": \"<string>\",\n    \"unprotected_file_patterns\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Правило защиты ветки успешно создано",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"push_settings\": {\n    \"allow_push_deploy_keys\": \"<boolean>\",\n    \"push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_push_whitelist\": \"<boolean>\"\n  },\n  \"force_push_settings\": {\n    \"allow_force_push_deploy_keys\": \"<boolean>\",\n    \"force_push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_force_push_whitelist\": \"<boolean>\"\n  },\n  \"deletion_settings\": {\n    \"allow_deletion_deploy_keys\": \"<boolean>\",\n    \"branch_deletion_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_deletion_whitelist\": \"<boolean>\"\n  },\n  \"additional_restrictions\": {\n    \"protected_file_patterns\": \"<string>\",\n    \"unprotected_file_patterns\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"branch_name\": \"<string>\",\n  \"push_settings\": {\n    \"allow_push_deploy_keys\": \"<boolean>\",\n    \"push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_push_whitelist\": \"<boolean>\"\n  },\n  \"force_push_settings\": {\n    \"allow_force_push_deploy_keys\": \"<boolean>\",\n    \"force_push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_force_push_whitelist\": \"<boolean>\"\n  },\n  \"deletion_settings\": {\n    \"allow_deletion_deploy_keys\": \"<boolean>\",\n    \"branch_deletion_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_deletion_whitelist\": \"<boolean>\"\n  },\n  \"additional_restrictions\": {\n    \"protected_file_patterns\": \"<string>\",\n    \"unprotected_file_patterns\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"push_settings\": {\n    \"allow_push_deploy_keys\": \"<boolean>\",\n    \"push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_push_whitelist\": \"<boolean>\"\n  },\n  \"force_push_settings\": {\n    \"allow_force_push_deploy_keys\": \"<boolean>\",\n    \"force_push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_force_push_whitelist\": \"<boolean>\"\n  },\n  \"deletion_settings\": {\n    \"allow_deletion_deploy_keys\": \"<boolean>\",\n    \"branch_deletion_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_deletion_whitelist\": \"<boolean>\"\n  },\n  \"additional_restrictions\": {\n    \"protected_file_patterns\": \"<string>\",\n    \"unprotected_file_patterns\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 400,\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Обнаружены ошибки в переданных данных.\",\n  \"instance\": \"/repos/tenant/project/repo/branches\",\n  \"validation\": [\n    {\n      \"location\": \"field\",\n      \"name\": \"branch_name\",\n      \"error\": \"Имя ветки не может быть пустым.\",\n      \"code\": \"required_field\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"push_settings\": {\n    \"allow_push_deploy_keys\": \"<boolean>\",\n    \"push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_push_whitelist\": \"<boolean>\"\n  },\n  \"force_push_settings\": {\n    \"allow_force_push_deploy_keys\": \"<boolean>\",\n    \"force_push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_force_push_whitelist\": \"<boolean>\"\n  },\n  \"deletion_settings\": {\n    \"allow_deletion_deploy_keys\": \"<boolean>\",\n    \"branch_deletion_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_deletion_whitelist\": \"<boolean>\"\n  },\n  \"additional_restrictions\": {\n    \"protected_file_patterns\": \"<string>\",\n    \"unprotected_file_patterns\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 401,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"push_settings\": {\n    \"allow_push_deploy_keys\": \"<boolean>\",\n    \"push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_push_whitelist\": \"<boolean>\"\n  },\n  \"force_push_settings\": {\n    \"allow_force_push_deploy_keys\": \"<boolean>\",\n    \"force_push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_force_push_whitelist\": \"<boolean>\"\n  },\n  \"deletion_settings\": {\n    \"allow_deletion_deploy_keys\": \"<boolean>\",\n    \"branch_deletion_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_deletion_whitelist\": \"<boolean>\"\n  },\n  \"additional_restrictions\": {\n    \"protected_file_patterns\": \"<string>\",\n    \"unprotected_file_patterns\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 403,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"push_settings\": {\n    \"allow_push_deploy_keys\": \"<boolean>\",\n    \"push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_push_whitelist\": \"<boolean>\"\n  },\n  \"force_push_settings\": {\n    \"allow_force_push_deploy_keys\": \"<boolean>\",\n    \"force_push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_force_push_whitelist\": \"<boolean>\"\n  },\n  \"deletion_settings\": {\n    \"allow_deletion_deploy_keys\": \"<boolean>\",\n    \"branch_deletion_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_deletion_whitelist\": \"<boolean>\"\n  },\n  \"additional_restrictions\": {\n    \"protected_file_patterns\": \"<string>\",\n    \"unprotected_file_patterns\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 404,\n  \"title\": \"Ресурс не найден\",\n  \"detail\": \"Запрашиваемый ресурс не существует.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Конфликт данных или бизнес-правил",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"push_settings\": {\n    \"allow_push_deploy_keys\": \"<boolean>\",\n    \"push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_push_whitelist\": \"<boolean>\"\n  },\n  \"force_push_settings\": {\n    \"allow_force_push_deploy_keys\": \"<boolean>\",\n    \"force_push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_force_push_whitelist\": \"<boolean>\"\n  },\n  \"deletion_settings\": {\n    \"allow_deletion_deploy_keys\": \"<boolean>\",\n    \"branch_deletion_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_deletion_whitelist\": \"<boolean>\"\n  },\n  \"additional_restrictions\": {\n    \"protected_file_patterns\": \"<string>\",\n    \"unprotected_file_patterns\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 409,\n  \"title\": \"Конфликт данных\",\n  \"detail\": \"Ресурс с такими параметрами уже существует.\",\n  \"instance\": \"/repos/tenant/project/repo/branches\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"push_settings\": {\n    \"allow_push_deploy_keys\": \"<boolean>\",\n    \"push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_push_whitelist\": \"<boolean>\"\n  },\n  \"force_push_settings\": {\n    \"allow_force_push_deploy_keys\": \"<boolean>\",\n    \"force_push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_force_push_whitelist\": \"<boolean>\"\n  },\n  \"deletion_settings\": {\n    \"allow_deletion_deploy_keys\": \"<boolean>\",\n    \"branch_deletion_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_deletion_whitelist\": \"<boolean>\"\n  },\n  \"additional_restrictions\": {\n    \"protected_file_patterns\": \"<string>\",\n    \"unprotected_file_patterns\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 500,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Get branch protection",
+          "request": {
+            "url": {
+              "path": [
+                "repos",
+                ":tenant",
+                ":project",
+                ":repo",
+                "branch_protections",
+                ":pattern"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenant",
+                  "description": "(Required) Tenant identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project",
+                  "description": "(Required) Project identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo",
+                  "description": "(Required) Repository identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pattern",
+                  "description": "(Required) Wildcard pattern (router uses `/*`)"
+                }
+              ],
+              "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections/:pattern"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "name": "Правило защиты ветки",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections",
+                    ":pattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pattern",
+                      "description": "(Required) Wildcard pattern (router uses `/*`)"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections/:pattern"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"branch_name\": \"<string>\",\n  \"push_settings\": {\n    \"allow_push_deploy_keys\": \"<boolean>\",\n    \"push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_push_whitelist\": \"<boolean>\"\n  },\n  \"force_push_settings\": {\n    \"allow_force_push_deploy_keys\": \"<boolean>\",\n    \"force_push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_force_push_whitelist\": \"<boolean>\"\n  },\n  \"deletion_settings\": {\n    \"allow_deletion_deploy_keys\": \"<boolean>\",\n    \"branch_deletion_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_deletion_whitelist\": \"<boolean>\"\n  },\n  \"additional_restrictions\": {\n    \"protected_file_patterns\": \"<string>\",\n    \"unprotected_file_patterns\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections",
+                    ":pattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pattern",
+                      "description": "(Required) Wildcard pattern (router uses `/*`)"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections/:pattern"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 401,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections",
+                    ":pattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pattern",
+                      "description": "(Required) Wildcard pattern (router uses `/*`)"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections/:pattern"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 403,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections",
+                    ":pattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pattern",
+                      "description": "(Required) Wildcard pattern (router uses `/*`)"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections/:pattern"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 404,\n  \"title\": \"Ресурс не найден\",\n  \"detail\": \"Запрашиваемый ресурс не существует.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections",
+                    ":pattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pattern",
+                      "description": "(Required) Wildcard pattern (router uses `/*`)"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections/:pattern"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 500,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Update branch protection",
+          "request": {
+            "url": {
+              "path": [
+                "repos",
+                ":tenant",
+                ":project",
+                ":repo",
+                "branch_protections",
+                ":pattern"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenant",
+                  "description": "(Required) Tenant identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project",
+                  "description": "(Required) Project identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo",
+                  "description": "(Required) Repository identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pattern",
+                  "description": "(Required) Wildcard pattern (router uses `/*`)"
+                }
+              ],
+              "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections/:pattern"
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"branch_name\": \"<string>\",\n  \"push_settings\": {\n    \"allow_push_deploy_keys\": \"<boolean>\",\n    \"push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_push_whitelist\": \"<boolean>\"\n  },\n  \"force_push_settings\": {\n    \"allow_force_push_deploy_keys\": \"<boolean>\",\n    \"force_push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_force_push_whitelist\": \"<boolean>\"\n  },\n  \"deletion_settings\": {\n    \"allow_deletion_deploy_keys\": \"<boolean>\",\n    \"branch_deletion_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_deletion_whitelist\": \"<boolean>\"\n  },\n  \"additional_restrictions\": {\n    \"protected_file_patterns\": \"<string>\",\n    \"unprotected_file_patterns\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Правило защиты ветки успешно обновлено",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections",
+                    ":pattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pattern",
+                      "description": "(Required) Wildcard pattern (router uses `/*`)"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections/:pattern"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"push_settings\": {\n    \"allow_push_deploy_keys\": \"<boolean>\",\n    \"push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_push_whitelist\": \"<boolean>\"\n  },\n  \"force_push_settings\": {\n    \"allow_force_push_deploy_keys\": \"<boolean>\",\n    \"force_push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_force_push_whitelist\": \"<boolean>\"\n  },\n  \"deletion_settings\": {\n    \"allow_deletion_deploy_keys\": \"<boolean>\",\n    \"branch_deletion_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_deletion_whitelist\": \"<boolean>\"\n  },\n  \"additional_restrictions\": {\n    \"protected_file_patterns\": \"<string>\",\n    \"unprotected_file_patterns\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"branch_name\": \"<string>\",\n  \"push_settings\": {\n    \"allow_push_deploy_keys\": \"<boolean>\",\n    \"push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_push_whitelist\": \"<boolean>\"\n  },\n  \"force_push_settings\": {\n    \"allow_force_push_deploy_keys\": \"<boolean>\",\n    \"force_push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_force_push_whitelist\": \"<boolean>\"\n  },\n  \"deletion_settings\": {\n    \"allow_deletion_deploy_keys\": \"<boolean>\",\n    \"branch_deletion_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_deletion_whitelist\": \"<boolean>\"\n  },\n  \"additional_restrictions\": {\n    \"protected_file_patterns\": \"<string>\",\n    \"unprotected_file_patterns\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections",
+                    ":pattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pattern",
+                      "description": "(Required) Wildcard pattern (router uses `/*`)"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections/:pattern"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"push_settings\": {\n    \"allow_push_deploy_keys\": \"<boolean>\",\n    \"push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_push_whitelist\": \"<boolean>\"\n  },\n  \"force_push_settings\": {\n    \"allow_force_push_deploy_keys\": \"<boolean>\",\n    \"force_push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_force_push_whitelist\": \"<boolean>\"\n  },\n  \"deletion_settings\": {\n    \"allow_deletion_deploy_keys\": \"<boolean>\",\n    \"branch_deletion_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_deletion_whitelist\": \"<boolean>\"\n  },\n  \"additional_restrictions\": {\n    \"protected_file_patterns\": \"<string>\",\n    \"unprotected_file_patterns\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 400,\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Обнаружены ошибки в переданных данных.\",\n  \"instance\": \"/repos/tenant/project/repo/branches\",\n  \"validation\": [\n    {\n      \"location\": \"field\",\n      \"name\": \"branch_name\",\n      \"error\": \"Имя ветки не может быть пустым.\",\n      \"code\": \"required_field\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections",
+                    ":pattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pattern",
+                      "description": "(Required) Wildcard pattern (router uses `/*`)"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections/:pattern"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"push_settings\": {\n    \"allow_push_deploy_keys\": \"<boolean>\",\n    \"push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_push_whitelist\": \"<boolean>\"\n  },\n  \"force_push_settings\": {\n    \"allow_force_push_deploy_keys\": \"<boolean>\",\n    \"force_push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_force_push_whitelist\": \"<boolean>\"\n  },\n  \"deletion_settings\": {\n    \"allow_deletion_deploy_keys\": \"<boolean>\",\n    \"branch_deletion_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_deletion_whitelist\": \"<boolean>\"\n  },\n  \"additional_restrictions\": {\n    \"protected_file_patterns\": \"<string>\",\n    \"unprotected_file_patterns\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 401,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections",
+                    ":pattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pattern",
+                      "description": "(Required) Wildcard pattern (router uses `/*`)"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections/:pattern"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"push_settings\": {\n    \"allow_push_deploy_keys\": \"<boolean>\",\n    \"push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_push_whitelist\": \"<boolean>\"\n  },\n  \"force_push_settings\": {\n    \"allow_force_push_deploy_keys\": \"<boolean>\",\n    \"force_push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_force_push_whitelist\": \"<boolean>\"\n  },\n  \"deletion_settings\": {\n    \"allow_deletion_deploy_keys\": \"<boolean>\",\n    \"branch_deletion_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_deletion_whitelist\": \"<boolean>\"\n  },\n  \"additional_restrictions\": {\n    \"protected_file_patterns\": \"<string>\",\n    \"unprotected_file_patterns\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 403,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections",
+                    ":pattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pattern",
+                      "description": "(Required) Wildcard pattern (router uses `/*`)"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections/:pattern"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"push_settings\": {\n    \"allow_push_deploy_keys\": \"<boolean>\",\n    \"push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_push_whitelist\": \"<boolean>\"\n  },\n  \"force_push_settings\": {\n    \"allow_force_push_deploy_keys\": \"<boolean>\",\n    \"force_push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_force_push_whitelist\": \"<boolean>\"\n  },\n  \"deletion_settings\": {\n    \"allow_deletion_deploy_keys\": \"<boolean>\",\n    \"branch_deletion_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_deletion_whitelist\": \"<boolean>\"\n  },\n  \"additional_restrictions\": {\n    \"protected_file_patterns\": \"<string>\",\n    \"unprotected_file_patterns\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 404,\n  \"title\": \"Ресурс не найден\",\n  \"detail\": \"Запрашиваемый ресурс не существует.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections",
+                    ":pattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pattern",
+                      "description": "(Required) Wildcard pattern (router uses `/*`)"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections/:pattern"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"push_settings\": {\n    \"allow_push_deploy_keys\": \"<boolean>\",\n    \"push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_push_whitelist\": \"<boolean>\"\n  },\n  \"force_push_settings\": {\n    \"allow_force_push_deploy_keys\": \"<boolean>\",\n    \"force_push_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_force_push_whitelist\": \"<boolean>\"\n  },\n  \"deletion_settings\": {\n    \"allow_deletion_deploy_keys\": \"<boolean>\",\n    \"branch_deletion_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"require_deletion_whitelist\": \"<boolean>\"\n  },\n  \"additional_restrictions\": {\n    \"protected_file_patterns\": \"<string>\",\n    \"unprotected_file_patterns\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 500,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Delete branch protection",
+          "request": {
+            "url": {
+              "path": [
+                "repos",
+                ":tenant",
+                ":project",
+                ":repo",
+                "branch_protections",
+                ":pattern"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenant",
+                  "description": "(Required) Tenant identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project",
+                  "description": "(Required) Project identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo",
+                  "description": "(Required) Repository identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pattern",
+                  "description": "(Required) Wildcard pattern (router uses `/*`)"
+                }
+              ],
+              "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections/:pattern"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "name": "Правило защиты ветки успешно удалено",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections",
+                    ":pattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pattern",
+                      "description": "(Required) Wildcard pattern (router uses `/*`)"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections/:pattern"
+                },
+                "method": "DELETE"
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections",
+                    ":pattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pattern",
+                      "description": "(Required) Wildcard pattern (router uses `/*`)"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections/:pattern"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 401,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections",
+                    ":pattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pattern",
+                      "description": "(Required) Wildcard pattern (router uses `/*`)"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections/:pattern"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE"
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 403,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections",
+                    ":pattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pattern",
+                      "description": "(Required) Wildcard pattern (router uses `/*`)"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections/:pattern"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 404,\n  \"title\": \"Ресурс не найден\",\n  \"detail\": \"Запрашиваемый ресурс не существует.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "branch_protections",
+                    ":pattern"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pattern",
+                      "description": "(Required) Wildcard pattern (router uses `/*`)"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/branch_protections/:pattern"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE"
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 500,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  }
+}

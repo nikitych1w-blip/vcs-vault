@@ -1,0 +1,12 @@
+!definelong Collector_Component(collector_id, collector_id_storage, collector_name, collector_desc, collector_storage_name, collector_storage_desc, collector_storage_rel_desc)
+System_Boundary(telemetryCollector, "Telemetry Collector") {
+        System_Boundary(collector_id+"_bound", collector_name) {
+            Container(collector_id, collector_name, "", collector_desc)
+    }
+}
+System_Boundary(external_storage, "External Storages") {
+    ContainerDb(collector_id_storage, collector_storage_name, collector_name, collector_storage_desc)
+}
+
+Rel(collector_id, collector_id_storage, collector_storage_rel_desc, "tcp/local storage")
+!enddefinelong

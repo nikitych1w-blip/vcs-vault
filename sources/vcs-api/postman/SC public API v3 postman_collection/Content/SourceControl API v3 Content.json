@@ -1,0 +1,329 @@
+{
+  "info": {
+    "_postman_id": "ffc6b3a8-11f0-41e4-9543-87dd9345a18f",
+    "name": "Content",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "Создание файла",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"filepath\": \"src/2/name2.txt\",\r\n  \"content\": \"a261f1b8a25d247c80a3d703081c9f3512158054\",\r\n  \"message\":\"1\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-vp/api/v3/repos/{{tenant}}/{{project}}/{{repo}}/contents/file/create",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-vp",
+            "api",
+            "v3",
+            "repos",
+            "{{tenant}}",
+            "{{project}}",
+            "{{repo}}",
+            "contents",
+            "file",
+            "create"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Обновление файла",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"filepath\": \"name2.txt\",\r\n  \"content\": \"a261f1b8a25d247c80a3d703081c9f3512158054\",\r\n  \"sha\": \"0fd90405fd2b1f285714b3a4673f7c502c7f4b\",//\"012096b12727fcc41a515d19287ecc86439cf5dd\",\r\n  \"message\":\"1\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-vp/api/v3/repos/{{tenant}}/{{project}}/{{repo}}/contents/file/update",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-vp",
+            "api",
+            "v3",
+            "repos",
+            "{{tenant}}",
+            "{{project}}",
+            "{{repo}}",
+            "contents",
+            "file",
+            "update"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Удаление файла",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"filepath\": \"src/name2.txt\",  \r\n  \"sha\": \"0fd90405fd2b1f285714b3a4673f7c502c7f4b\",//\"012096b12727fcc41a515d19287ecc86439cf5dd\",\r\n  \"message\":\"1\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-vp/api/v3/repos/{{tenant}}/{{project}}/{{repo}}/contents/file/delete",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-vp",
+            "api",
+            "v3",
+            "repos",
+            "{{tenant}}",
+            "{{project}}",
+            "{{repo}}",
+            "contents",
+            "file",
+            "delete"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Метаинформация по файлам",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-vp/api/v3/repos/{{tenant}}/{{project}}/{{repo}}/contents/src",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-vp",
+            "api",
+            "v3",
+            "repos",
+            "{{tenant}}",
+            "{{project}}",
+            "{{repo}}",
+            "contents",
+            "src"
+          ],
+          "query": [
+            {
+              "key": "ref",
+              "value": "01cc473193b43170452e73c0793a9f452bd26771",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Содержимое файла",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-vp/api/v3/repos/{{tenant}}/{{project}}/{{repo}}/raw/src/2/name2.txt",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-vp",
+            "api",
+            "v3",
+            "repos",
+            "{{tenant}}",
+            "{{project}}",
+            "{{repo}}",
+            "raw",
+            "src",
+            "2",
+            "name2.txt"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    }
+  ]
+}

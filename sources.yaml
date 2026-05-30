@@ -1,0 +1,90 @@
+sources:
+  # ── Public repositories ──────────────────────────────────────────────────────
+
+  - name: 01-git
+    description: Pro Git book (English, 1st edition)
+    type: git
+    url: https://github.com/progit/progit
+    path: sources/git
+    branch: master
+    sparse_checkout:
+      - /en/
+      - /figures/
+    post_process:
+      - type: rename_ext
+        dir: en
+        from: .markdown
+        to: .md
+      - type: replace_in_files
+        dir: en
+        glob: "*.md"
+        pattern: 'Insert \(18333fig([0-9]*)\)\.png'
+        replacement: '![](../../figures/18333fig${1}-tn.png)'
+
+  - name: 02-gitea
+    description: Gitea official documentation
+    type: git
+    url: https://gitea.com/gitea/docs.git
+    path: sources/gitea
+    sparse_checkout:
+      - /docs/
+
+  # ── Internal repositories (optional — require SSH access) ────────────────────
+  # Fill in the correct SSH URLs when access becomes available.
+
+  - name: 03-vcs-playwright
+    description: VCS end-to-end Playwright tests
+    type: git
+    url: git@<gitea-host>:vcs/vcs-playwright.git
+    path: sources/vcs-playwright
+    optional: true
+
+  - name: 04-vcs-arch
+    description: VCS architecture diagrams and docs (C4, PlantUML)
+    type: git
+    url: git@<gitea-host>:vcs/vcs-arch.git
+    path: sources/vcs-arch
+    optional: true
+
+  - name: 05-vcs-api
+    description: VCS API specs and Postman collections
+    type: git
+    url: git@<gitea-host>:vcs/vcs-api.git
+    path: sources/vcs-api
+    optional: true
+
+  - name: 06-vcs-sc
+    description: VCS source control core
+    type: git
+    url: git@<gitea-host>:vcs/vcs-sc.git
+    path: sources/vcs-sc
+    optional: true
+
+  - name: 07-vcs-monitoring
+    description: VCS monitoring dashboards (Grafana)
+    type: git
+    url: git@<gitea-host>:vcs/vcs-monitoring.git
+    path: sources/vcs-monitoring
+    optional: true
+
+  # ── Wiki sources ─────────────────────────────────────────────────────────────
+  # Requires SBERTRACK_TOKEN env var.
+  # Optional SBERTRACK_BASE overrides the default portal URL.
+
+  - name: 08-wiki-vcs
+    description: VCS internal wiki exported from SberTrack
+    type: wiki
+    space: VCS
+    path: sources/wiki/VCS
+    env:
+      token: SBERTRACK_TOKEN
+      base_url: SBERTRACK_BASE
+
+  - name: 09-task-tracker
+    description: Task tracker wiki exported from SberTrack
+    type: wiki
+    space: SWTR
+    path: sources/wiki/SWTR
+    env:
+      token: SBERTRACK_TOKEN
+      base_url: SBERTRACK_BASE

@@ -1,0 +1,27 @@
+@startuml
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+!include ./../../../../../sources/container_units/iam.puml
+!include ./../../../../../sources/container_units/sc.puml
+!include ./../../../../../sources/container_units/syngx.puml
+!include ./../../../../../sources/container_units/styles.puml
+
+title Схема Cluster ПАО (VM - SC - IAM)
+
+set_styles()
+
+' Уровень системы (System)
+Person(user, "Пользователь", "Использует систему через браузер")
+
+' Контейнеры внутри системы
+IAM_SC_App(iam)
+Syngx_SC_App(nginx)
+Cluster_SC_App(sc)
+
+
+' Отношения
+Rel(user, iam, " ")
+Rel(iam, nginx, " ")
+Rel(nginx, sc, " ")
+
+@enduml

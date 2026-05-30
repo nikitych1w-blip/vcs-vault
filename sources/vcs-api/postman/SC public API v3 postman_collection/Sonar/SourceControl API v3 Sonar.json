@@ -1,0 +1,367 @@
+{
+  "info": {
+    "_postman_id": "b85ab69d-fde6-4559-8284-29803a9e15ca",
+    "name": "Sonar",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "Получение настроек Sonar",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift2/api/v3/repos/a91a9521-eedd-4b52-b9d3-5a9676b95f37/ift2/qwe/sonar",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-ift2",
+            "api",
+            "v3",
+            "repos",
+            "a91a9521-eedd-4b52-b9d3-5a9676b95f37",
+            "ift2",
+            "qwe",
+            "sonar"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Добавление настроек Sonar",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"sonar_server_url\": \"http:\\\\12.ru\",  //URL сервера SonarQube\r\n  \"sonar_project_key\": \"bbb\", //ключ проекта в SonarQube\r\n  \"sonar_token\": \"cccbbbaaaqcccbbbaaaqcccbbbaaaqcccbbbaaaq\"       //токен для доступа к проекту в SonarQube\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift2/api/v3/repos/a91a9521-eedd-4b52-b9d3-5a9676b95f37/ift2/qwe/sonar",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-ift2",
+            "api",
+            "v3",
+            "repos",
+            "a91a9521-eedd-4b52-b9d3-5a9676b95f37",
+            "ift2",
+            "qwe",
+            "sonar"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": [
+        {
+          "name": "[Негативный] Добавление настроек Sonar",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"sonar_server_url\": \"http:\\\\1<n>2.ru\",  //URL сервера SonarQube\r\n  \"sonar_project_key\": \"qqww!234\", //ключ проекта в SonarQube\r\n  \"sonar_token\": \"cccbbbaaaqtyyqqwweerrttyyqqwweerrttyyqqwweerrttyyqqwweerrttyyqqwweerrttyyqqwweerrttyyqqwweerrttyy\"       //токен для доступа к проекту в SonarQube\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo/sonar",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo",
+                "sonar"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "Text",
+          "header": [
+            {
+              "key": "Server",
+              "value": "SynGX"
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 12 Dec 2025 13:54:47 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json;charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "208"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "max-age=0, private, must-revalidate, no-transform"
+            },
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "X-Request-Id",
+              "value": "310952b6-27c5-4b77-b95c-b32e3b29ae2a"
+            },
+            {
+              "key": "X-Proxy-Request-ID",
+              "value": "f87c7ca71a90f6d9431a018afdaf5f0d"
+            },
+            {
+              "key": "X-Proxy-Upstream",
+              "value": "backend_jct_ssd"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"Ошибка валидации\",\n    \"errors\": [\n        \"поле 'sonar_project_key' содержит недопустимые символы\"\n    ],\n    \"url\": \"https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/swagger\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Обновление настроек Sonar",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"sonar_server_url\": \"http:\\\\12.ru\",  //URL сервера SonarQube\r\n  \"sonar_project_key\": \"fff\", //ключ проекта в SonarQube\r\n  \"sonar_token\": \"cccbbbaaaqcccbbbaaaqcccbbbaaaqcccbbbaaaq\"       //токен для доступа к проекту в SonarQube\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift2/api/v3/repos/a91a9521-eedd-4b52-b9d3-5a9676b95f37/ift2/qwe/sonar",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-ift2",
+            "api",
+            "v3",
+            "repos",
+            "a91a9521-eedd-4b52-b9d3-5a9676b95f37",
+            "ift2",
+            "qwe",
+            "sonar"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Удаление настроек Sonar Copy",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo/sonar",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-ift1",
+            "api",
+            "v3",
+            "repos",
+            "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+            "api1",
+            "test_repo",
+            "sonar"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    }
+  ]
+}

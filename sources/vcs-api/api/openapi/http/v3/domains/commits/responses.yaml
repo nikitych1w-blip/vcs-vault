@@ -1,0 +1,8 @@
+components:
+  responses:
+    CommitListResponse:
+      description: Список коммитов с пагинацией
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/CommitListResponse'

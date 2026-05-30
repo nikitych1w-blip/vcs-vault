@@ -1,0 +1,38 @@
+components:
+  schemas:
+    NoContent:
+      description: Нет содержимого
+    OperationSuccess:
+      type: object
+      required:
+        - code
+        - message
+        - status
+      properties:
+        code:
+          type: integer
+          example: 200
+          description: Код HTTP-ответа
+        status:
+          type: string
+          example: "Ok"
+          description: Статус ответа
+        message:
+          type: string
+          example: "Статус операции"
+          description: Описание статуса операции
+
+
+  responses:
+    NoContent:
+      description: Нет содержимого
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/NoContent"
+    OperationSuccess:
+      description: Операция выполнена успешно
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/OperationSuccess"

@@ -1,0 +1,1545 @@
+openapi: 3.0.3
+info:
+  title: SourceControl API v2
+  description: SourceControl REST API v2
+  version: 0.0.0-dev
+  license:
+    name: Internal Proprietary License
+    url: https://example.invalid/
+servers:
+  - url: /api/v2
+security:
+  - authorizationHeaderToken: []
+  - basicHttpAuthentication: []
+  - accessToken: []
+tags:
+  - name: admin
+    description: Административные операции
+  - name: metrics
+    description: Метрики (internal/external)
+  - name: projects
+    description: Управление проектами
+  - name: repos
+    description: Управление репозиториями
+  - name: tenants
+    description: Управление тенантами
+  - name: webhooks
+    description: Webhooks
+paths:
+  /swagger:
+    get:
+      tags:
+        - admin
+      summary: Redirect to Swagger UI
+      description: В реализации делает redirect на настройку `API.SwaggerV2URL`.
+      operationId: v2SwaggerRedirect
+      responses:
+        '303':
+          $ref: '#/components/responses/SwaggerRedirectResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /admin/users:
+    get:
+      tags:
+        - admin
+      summary: Get user (admin)
+      operationId: v2AdminGetUser
+      parameters:
+        - $ref: '#/components/parameters/UserKey'
+      responses:
+        '200':
+          $ref: '#/components/responses/UserInfoResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      tags:
+        - admin
+      summary: Create user (admin)
+      operationId: v2AdminCreateUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/UserCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /admin/users/keys:
+    post:
+      tags:
+        - admin
+      summary: Add SSH key for user (admin)
+      operationId: v2AdminAddUserSSHKey
+      parameters:
+        - $ref: '#/components/parameters/UserKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSSHKeyRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/SSHKeyCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      tags:
+        - admin
+      summary: Delete SSH key for user (admin)
+      operationId: v2AdminDeleteUserSSHKey
+      parameters:
+        - $ref: '#/components/parameters/UserKey'
+        - $ref: '#/components/parameters/SSHKeyTitle'
+      responses:
+        '204':
+          $ref: '#/components/responses/SSHKeyDeleteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /admin/privileges:
+    get:
+      tags:
+        - admin
+      summary: Get privileges
+      operationId: v2AdminGetPrivileges
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetPrivilegesRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/PrivilegesGetResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      tags:
+        - admin
+      summary: Apply privileges
+      operationId: v2AdminApplyPrivileges
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplyPrivilegesRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/PrivilegesApplyResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /projects/create:
+    post:
+      tags:
+        - projects
+      summary: Create project
+      operationId: v2CreateProject
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/ProjectCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /projects:
+    get:
+      tags:
+        - projects
+      summary: Get project info
+      operationId: v2GetProject
+      parameters:
+        - $ref: '#/components/parameters/TenantKey'
+        - $ref: '#/components/parameters/ProjectKey'
+      responses:
+        '200':
+          $ref: '#/components/responses/ProjectGetResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /projects/projectkey:
+    get:
+      tags:
+        - projects
+      summary: Get project key
+      parameters:
+        - $ref: '#/components/parameters/TenantKey'
+        - $ref: '#/components/parameters/ProjectName'
+      operationId: v2GetProjectKey
+      responses:
+        '200':
+          $ref: '#/components/responses/ProjectKeyResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /tenants:
+    get:
+      tags:
+        - tenants
+      summary: Get tenant by key
+      parameters:
+        - $ref: '#/components/parameters/TenantKey'
+      operationId: v2GetTenantByKey
+      responses:
+        '200':
+          $ref: '#/components/responses/TenantGetResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      tags:
+        - tenants
+      summary: Create tenant
+      operationId: v2CreateTenant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantOptions'
+      responses:
+        '201':
+          $ref: '#/components/responses/TenantCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      tags:
+        - tenants
+      summary: Delete tenant
+      operationId: v2DeleteTenant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteTenantOptions'
+      responses:
+        '204':
+          $ref: '#/components/responses/TenantDeleteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /projects/repos:
+    get:
+      tags:
+        - repos
+      summary: Get repository by repo key
+      operationId: v2GetRepo
+      parameters:
+        - $ref: '#/components/parameters/RepoKey'
+        - $ref: '#/components/parameters/TenantKey'
+        - $ref: '#/components/parameters/ProjectKey'
+      responses:
+        '200':
+          $ref: '#/components/responses/RepoGetResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      tags:
+        - repos
+      summary: Create repo in tenant org project (v2)
+      operationId: v2CreateRepo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRepoOptions'
+      responses:
+        '201':
+          $ref: '#/components/responses/RepoCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /projects/repos/metrics:
+    get:
+      tags:
+        - metrics
+      summary: Get internal metric counter
+      operationId: v2GetInternalMetricCounter
+      parameters:
+        - $ref: '#/components/parameters/RepoKey'
+        - $ref: '#/components/parameters/TenantKey'
+        - $ref: '#/components/parameters/ProjectKey'
+        - $ref: '#/components/parameters/MetricKey'
+      responses:
+        '200':
+          $ref: '#/components/responses/InternalMetricResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /projects/repos/reuse_metric:
+    get:
+      tags:
+        - metrics
+      summary: Get external metric counter (reuse_metric)
+      operationId: v2GetExternalMetricCounter
+      parameters:
+        - $ref: '#/components/parameters/RepoKey'
+        - $ref: '#/components/parameters/TenantKey'
+        - $ref: '#/components/parameters/ProjectKey'
+      responses:
+        '200':
+          $ref: '#/components/responses/ExternalMetricResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      tags:
+        - metrics
+      summary: Set external metric counter (reuse_metric)
+      operationId: v2SetExternalMetricCounter
+      parameters:
+        - $ref: '#/components/parameters/RepoKey'
+        - $ref: '#/components/parameters/TenantKey'
+        - $ref: '#/components/parameters/ProjectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetExternalMetricRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/ExternalMetricSetResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      tags:
+        - metrics
+      summary: Delete external metric counter (reuse_metric)
+      operationId: v2DeleteExternalMetricCounter
+      parameters:
+        - $ref: '#/components/parameters/RepoKey'
+        - $ref: '#/components/parameters/TenantKey'
+        - $ref: '#/components/parameters/ProjectKey'
+      responses:
+        '200':
+          $ref: '#/components/responses/ExternalMetricDeleteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /projects/repos/marks/codehub:
+    post:
+      tags:
+        - repos
+      summary: Set CodeHub mark for repository
+      operationId: v2SetRepoCodehubMark
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetMarkRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/RepoCodehubMarkSetResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      tags:
+        - repos
+      summary: Delete CodeHub mark for repository
+      operationId: v2DeleteRepoCodehubMark
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteMarkRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/RepoCodehubMarkDeleteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /projects/repos/repokey:
+    get:
+      tags:
+        - repos
+      summary: Get repository key (repokey)
+      parameters:
+        - $ref: '#/components/parameters/TenantKey'
+        - $ref: '#/components/parameters/ProjectKey'
+        - $ref: '#/components/parameters/RepositoryName'
+      operationId: v2GetRepoKey
+      responses:
+        '200':
+          $ref: '#/components/responses/RepoKeyResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/webhooks:
+    get:
+      tags:
+        - webhooks
+      summary: Get webhook by id
+      operationId: v2GetWebhook
+      parameters:
+        - $ref: '#/components/parameters/TenantKey'
+        - $ref: '#/components/parameters/ProjectKey'
+        - $ref: '#/components/parameters/RepoKey'
+        - $ref: '#/components/parameters/WebhookID'
+      responses:
+        '200':
+          $ref: '#/components/responses/WebhookGetResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      tags:
+        - webhooks
+      summary: Create webhook
+      operationId: v2CreateWebhook
+      parameters:
+        - $ref: '#/components/parameters/TenantKey'
+        - $ref: '#/components/parameters/ProjectKey'
+        - $ref: '#/components/parameters/RepoKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateHookOption'
+      responses:
+        '201':
+          $ref: '#/components/responses/WebhookCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      tags:
+        - webhooks
+      summary: Delete webhook
+      operationId: v2DeleteWebhook
+      parameters:
+        - $ref: '#/components/parameters/TenantKey'
+        - $ref: '#/components/parameters/ProjectKey'
+        - $ref: '#/components/parameters/RepoKey'
+        - $ref: '#/components/parameters/WebhookID'
+      responses:
+        '204':
+          $ref: '#/components/responses/WebhookDeleteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  schemas:
+    ErrorResponse:
+      description: Формат ответа об ошибке
+      type: object
+      required:
+        - type
+        - title
+        - detail
+      properties:
+        type:
+          description: URI типа ошибки (временно null)
+          type: string
+          nullable: true
+          example: null
+        title:
+          description: Краткое название ошибки
+          type: string
+          example: Некорректный запрос
+        detail:
+          description: Подробное описание ошибки
+          type: string
+          example: Проверьте корректность переданных данных.
+        validation:
+          description: Массив ошибок валидации (если есть)
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                description: Имя поля, в котором произошла ошибка
+                type: string
+                example: name
+              error:
+                description: Описание ошибки для конкретного поля
+                type: string
+                example: Значение указано некорректно.
+    UserInfoResponse:
+      type: object
+      additionalProperties: false
+      description: Информация о пользователе
+      required:
+        - id
+        - user_key
+        - login_name
+        - email
+        - visibility
+      properties:
+        id:
+          type: integer
+          format: int64
+        user_key:
+          type: string
+        login_name:
+          type: string
+          description: Отображаемое имя пользователя
+        full_name:
+          type: string
+        email:
+          type: string
+          format: email
+        visibility:
+          type: integer
+          format: int32
+          description: Уровень видимости пользователя
+    CreateUserRequest:
+      type: object
+      additionalProperties: false
+      description: Запрос создания пользователя
+      required:
+        - user_key
+        - name
+        - email
+      properties:
+        user_key:
+          type: string
+          description: User login name (будет приведён к lower-case на сервере)
+          maxLength: 40
+        name:
+          type: string
+          description: Display name
+          maxLength: 40
+        email:
+          type: string
+          format: email
+          description: User email
+        full_name:
+          type: string
+          description: Full name
+        created_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Время создания (опционально; если не задано — сервер поставит текущее)
+        visibility:
+          type: string
+          description: Visibility mode
+          enum:
+            - ''
+            - public
+            - limited
+            - private
+        restricted:
+          type: boolean
+          nullable: true
+          description: Is restricted user
+    CreateUserResponse:
+      type: object
+      additionalProperties: false
+      description: Ответ создания пользователя
+      required:
+        - id
+        - user_key
+        - name
+        - email
+      properties:
+        id:
+          type: integer
+          format: int64
+        user_key:
+          type: string
+        name:
+          type: string
+        full_name:
+          type: string
+        email:
+          type: string
+          format: email
+    CreateSSHKeyRequest:
+      type: object
+      additionalProperties: false
+      description: Запрос добавления SSH ключа
+      required:
+        - title
+        - key
+      properties:
+        title:
+          type: string
+          description: SSH key title
+          maxLength: 50
+        key:
+          type: string
+          description: SSH public key
+    CreateSSHKeyResponse:
+      type: object
+      additionalProperties: false
+      description: Ответ добавления SSH ключа
+      required:
+        - id
+        - fingerprint
+        - key_type
+      properties:
+        id:
+          type: integer
+          format: int64
+        fingerprint:
+          type: string
+        key_type:
+          type: string
+    PrivilegeRequest:
+      type: object
+      additionalProperties: false
+      description: Элемент запроса получения привилегий
+      required:
+        - tenant_key
+        - project_key
+        - user_key
+      properties:
+        tenant_key:
+          type: string
+        project_key:
+          type: string
+        user_key:
+          type: string
+    GetPrivilegesRequest:
+      type: array
+      description: Запрос получения привилегий
+      items:
+        $ref: '#/components/schemas/PrivilegeRequest'
+    PrivilegeGroupGrant:
+      type: object
+      additionalProperties: false
+      description: Выданные привилегии
+      required:
+        - tenant_key
+        - project_key
+        - privilege_group
+      properties:
+        tenant_key:
+          type: string
+        project_key:
+          type: string
+        privilege_group:
+          type: array
+          items:
+            type: string
+    PrivilegeGroupAssignmentGrant:
+      type: object
+      additionalProperties: false
+      description: Выданные привилегии по пользователю
+      required:
+        - user_key
+        - privilege_groups
+      properties:
+        user_key:
+          type: string
+        privilege_groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/PrivilegeGroupGrant'
+    ResponsePrivilegesGet:
+      type: object
+      additionalProperties: false
+      description: Ответ получения привилегий
+      required:
+        - granted
+      properties:
+        granted:
+          type: array
+          items:
+            $ref: '#/components/schemas/PrivilegeGroupAssignmentGrant'
+    PrivilegeGroup:
+      type: object
+      additionalProperties: false
+      description: Группа привилегий
+      required:
+        - tenant_key
+        - project_key
+        - privilege_group
+      properties:
+        tenant_key:
+          type: string
+        project_key:
+          type: string
+        privilege_group:
+          type: string
+    PrivilegeGroupAssignment:
+      type: object
+      additionalProperties: false
+      description: Назначения привилегий для пользователя
+      required:
+        - user_key
+        - privilege_groups
+      properties:
+        user_key:
+          type: string
+        privilege_groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/PrivilegeGroup'
+    ApplyPrivilegesRequest:
+      type: object
+      additionalProperties: false
+      description: Запрос применения привилегий
+      required:
+        - apply_privilege_groups
+      properties:
+        apply_privilege_groups:
+          type: object
+          additionalProperties: false
+          required:
+            - grant
+            - revoke
+          properties:
+            grant:
+              type: array
+              items:
+                $ref: '#/components/schemas/PrivilegeGroupAssignment'
+            revoke:
+              type: array
+              items:
+                $ref: '#/components/schemas/PrivilegeGroupAssignment'
+    PrivilegeGroupErr:
+      type: object
+      additionalProperties: false
+      description: Ошибка назначения или отзыва привилегии
+      required:
+        - tenant_key
+        - project_key
+        - privilege_group
+        - error
+      properties:
+        tenant_key:
+          type: string
+        project_key:
+          type: string
+        privilege_group:
+          type: string
+        error:
+          type: string
+    PrivilegeGroupAssignmentErr:
+      type: object
+      additionalProperties: false
+      description: Ошибка привилегий по пользователю
+      required:
+        - user_key
+        - privilege_groups
+      properties:
+        user_key:
+          type: string
+        privilege_groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/PrivilegeGroupErr'
+    ApplyPrivilegesResponse:
+      type: object
+      additionalProperties: false
+      description: Ответ применения привилегий
+      required:
+        - applied_status
+        - errors
+      properties:
+        applied_status:
+          type: object
+          additionalProperties: false
+          required:
+            - granted
+            - revoked
+          properties:
+            granted:
+              type: array
+              items:
+                $ref: '#/components/schemas/PrivilegeGroupAssignment'
+            revoked:
+              type: array
+              items:
+                $ref: '#/components/schemas/PrivilegeGroupAssignment'
+        errors:
+          type: object
+          additionalProperties: false
+          properties:
+            grant:
+              type: array
+              items:
+                $ref: '#/components/schemas/PrivilegeGroupAssignmentErr'
+            revoke:
+              type: array
+              items:
+                $ref: '#/components/schemas/PrivilegeGroupAssignmentErr'
+    CreateProjectRequest:
+      type: object
+      additionalProperties: false
+      description: Запрос создания проекта
+      required:
+        - tenant_key
+        - name
+        - project_key
+        - visibility
+      properties:
+        tenant_key:
+          type: string
+        name:
+          type: string
+          maxLength: 40
+        project_key:
+          type: string
+          maxLength: 50
+        description:
+          type: string
+          maxLength: 255
+        visibility:
+          type: integer
+          format: int32
+          description: Уровень видимости
+    Project:
+      type: object
+      additionalProperties: false
+      description: Проект
+      required:
+        - id
+        - name
+        - project_key
+        - visibility
+        - uri
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        project_key:
+          type: string
+        visibility:
+          type: integer
+          format: int32
+          description: Уровень видимости
+        uri:
+          type: string
+    ProjectKey:
+      type: object
+      additionalProperties: false
+      description: Ключ проекта
+      required:
+        - project_key
+      properties:
+        project_key:
+          type: string
+    Tenant:
+      type: object
+      additionalProperties: false
+      description: Тенант
+      required:
+        - id
+        - name
+        - tenant_key
+      properties:
+        id:
+          type: string
+          description: Tenant ID (UUID string)
+        name:
+          type: string
+        tenant_key:
+          type: string
+        is_active:
+          type: boolean
+          description: Активен ли тенант (присутствует в GET)
+    CreateTenantOptions:
+      type: object
+      additionalProperties: false
+      description: Запрос создания тенанта
+      required:
+        - tenant_key
+        - name
+      properties:
+        tenant_key:
+          type: string
+          maxLength: 50
+        name:
+          type: string
+          maxLength: 50
+    DeleteTenantOptions:
+      type: object
+      additionalProperties: false
+      description: Запрос удаления тенанта
+      required:
+        - tenant_key
+      properties:
+        tenant_key:
+          type: string
+          maxLength: 50
+    Repo:
+      type: object
+      additionalProperties: false
+      description: Репозиторий
+      required:
+        - id
+        - tenant_key
+        - project_key
+        - repository_key
+        - name
+        - default_branch
+        - private
+        - uri
+      properties:
+        id:
+          type: string
+        tenant_key:
+          type: string
+        project_key:
+          type: string
+        repository_key:
+          type: string
+        name:
+          type: string
+        default_branch:
+          type: string
+        private:
+          type: boolean
+        uri:
+          type: string
+    CreateRepoOptions:
+      type: object
+      additionalProperties: false
+      description: Запрос создания репозитория
+      required:
+        - tenant_key
+        - project_key
+        - repository_key
+        - name
+        - private
+      properties:
+        tenant_key:
+          type: string
+        project_key:
+          type: string
+        repository_key:
+          type: string
+          maxLength: 255
+        default_branch:
+          type: string
+          maxLength: 100
+          description: Если не задан — сервер подставит default branch
+        description:
+          type: string
+          maxLength: 255
+        name:
+          type: string
+          maxLength: 100
+        private:
+          type: boolean
+    MetricCounter:
+      type: object
+      additionalProperties: false
+      description: Ответ с внутренней метрикой
+      required:
+        - value
+      properties:
+        value:
+          type: integer
+          format: int32
+    ExternalMetric:
+      type: object
+      additionalProperties: false
+      description: Ответ с внешней метрикой
+      required:
+        - value
+        - text
+      properties:
+        value:
+          type: integer
+          format: int32
+        text:
+          type: string
+    SetExternalMetricRequest:
+      type: object
+      additionalProperties: false
+      description: Запрос установки внешней метрики
+      required:
+        - value
+        - text
+      properties:
+        value:
+          type: integer
+          format: int32
+        text:
+          type: string
+    SetMarkRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - tenant_key
+        - project_key
+        - repo_key
+      properties:
+        tenant_key:
+          type: string
+          description: Tenant key
+        project_key:
+          type: string
+          description: Project key
+        repo_key:
+          type: string
+          description: Repository key
+    DeleteMarkRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - tenant_key
+        - project_key
+        - repo_key
+      properties:
+        tenant_key:
+          type: string
+          description: Tenant key
+        project_key:
+          type: string
+          description: Project key
+        repo_key:
+          type: string
+          description: Repository key
+    RepoKey:
+      type: object
+      additionalProperties: false
+      description: Ключ репозитория
+      required:
+        - repo_key
+      properties:
+        repo_key:
+          type: string
+    Hook:
+      type: object
+      additionalProperties: false
+      description: Вебхук
+      required:
+        - id
+        - config
+        - events
+        - authorization_header
+        - active
+        - branch_filter
+        - updated_at
+        - created_at
+      properties:
+        id:
+          type: integer
+          format: int64
+        type:
+          type: string
+          description: Hook type (может отсутствовать, т.к. omitempty)
+        config:
+          type: object
+          additionalProperties:
+            type: string
+          description: Hook config (map)
+        events:
+          type: array
+          items:
+            type: string
+        authorization_header:
+          type: string
+        active:
+          type: boolean
+        branch_filter:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+    CreateHookOptionConfig:
+      type: object
+      additionalProperties: false
+      required:
+        - content_type
+        - url
+      properties:
+        content_type:
+          type: string
+        url:
+          type: string
+        secret:
+          type: string
+    CreateHookOption:
+      type: object
+      additionalProperties: false
+      description: Запрос создания вебхука
+      required:
+        - config
+        - events
+      properties:
+        config:
+          $ref: '#/components/schemas/CreateHookOptionConfig'
+        events:
+          type: array
+          items:
+            type: string
+        branch_filter:
+          type: string
+        authorization_header:
+          type: string
+        active:
+          type: boolean
+          nullable: true
+          description: Если не задано — сервер считает true
+  responses:
+    BadRequest:
+      description: Некорректный запрос
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            type: null
+            title: Некорректный запрос
+            detail: Проверьте корректность переданных данных.
+            validation:
+              - field: name
+                error: Имя должно содержать от 1 до 50 символов.
+    Unauthorized:
+      description: Требуется аутентификация
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            type: null
+            title: Требуется аутентификация
+            detail: Токен доступа отсутствует или недействителен.
+    Forbidden:
+      description: Доступ запрещён
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            type: null
+            title: Доступ запрещён
+            detail: Недостаточно прав для выполнения операции.
+    NotFound:
+      description: Ресурс не найден
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            type: null
+            title: Ресурс не найден
+            detail: Запрашиваемый ресурс не существует.
+    ServerError:
+      description: Ошибка сервера
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            type: null
+            title: Ошибка сервера
+            detail: Произошла внутренняя ошибка. Повторите запрос позже.
+    SwaggerRedirectResponse:
+      description: Redirect to Swagger UI
+      headers:
+        Location:
+          schema:
+            type: string
+          description: URL Swagger UI
+    UserInfoResponse:
+      description: Информация о пользователе
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserInfoResponse'
+    UserCreateResponse:
+      description: Пользователь создан
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateUserResponse'
+    Conflict:
+      description: Конфликт данных
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            type: null
+            title: Конфликт данных
+            detail: Ресурс с такими параметрами уже существует.
+    SSHKeyCreateResponse:
+      description: SSH ключ добавлен
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateSSHKeyResponse'
+    SSHKeyDeleteResponse:
+      description: SSH ключ удалён
+    PrivilegesGetResponse:
+      description: Список привилегий
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponsePrivilegesGet'
+    PrivilegesApplyResponse:
+      description: Привилегии применены
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApplyPrivilegesResponse'
+    ProjectCreateResponse:
+      description: Проект создан
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Project'
+    ProjectGetResponse:
+      description: Информация о проекте
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Project'
+    ProjectKeyResponse:
+      description: Ключ проекта
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProjectKey'
+    TenantGetResponse:
+      description: Информация о тенанте
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Tenant'
+    TenantCreateResponse:
+      description: Тенант создан
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Tenant'
+    TenantDeleteResponse:
+      description: Тенант удалён
+    RepoGetResponse:
+      description: Информация о репозитории
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Repo'
+    RepoCreateResponse:
+      description: Репозиторий создан
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Repo'
+    InternalMetricResponse:
+      description: Значение внутренней метрики
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MetricCounter'
+    ExternalMetricResponse:
+      description: Значение внешней метрики
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ExternalMetric'
+    ExternalMetricSetResponse:
+      description: Внешняя метрика установлена
+    ExternalMetricDeleteResponse:
+      description: Внешняя метрика удалена
+    RepoCodehubMarkSetResponse:
+      description: Метка CodeHub установлена
+    RepoCodehubMarkDeleteResponse:
+      description: Метка CodeHub удалена
+    RepoKeyResponse:
+      description: Ключ репозитория
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RepoKey'
+    WebhookGetResponse:
+      description: Информация о вебхуке
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Hook'
+    WebhookCreateResponse:
+      description: Вебхук создан
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Hook'
+    WebhookDeleteResponse:
+      description: Вебхук удалён
+  securitySchemes:
+    authorizationHeaderToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API tokens must be prepended with "token" followed by a space.
+    basicHttpAuthentication:
+      type: http
+      scheme: basic
+      description: Авторизация по логину и паролю
+    accessToken:
+      type: apiKey
+      in: query
+      name: access_token
+      description: API access token passed as a query parameter.
+  parameters:
+    UserKey:
+      name: user_key
+      in: query
+      required: true
+      description: User login name
+      schema:
+        type: string
+    SSHKeyTitle:
+      name: title
+      in: query
+      required: true
+      description: SSH key title
+      schema:
+        type: string
+    TenantKey:
+      name: tenant_key
+      in: query
+      required: true
+      description: Tenant key
+      schema:
+        type: string
+    ProjectKey:
+      name: project_key
+      in: query
+      required: true
+      description: Project key
+      schema:
+        type: string
+    ProjectName:
+      name: project_name
+      in: query
+      required: true
+      description: Project name
+      schema:
+        type: string
+    RepoKey:
+      name: repo_key
+      in: query
+      required: true
+      description: Repository key
+      schema:
+        type: string
+    MetricKey:
+      name: metric
+      in: query
+      required: true
+      description: Metric key
+      schema:
+        type: string
+    RepositoryName:
+      name: repository_name
+      in: query
+      required: true
+      description: Repository name
+      schema:
+        type: string
+    WebhookID:
+      name: id
+      in: query
+      required: true
+      description: Webhook ID
+      schema:
+        type: integer
+        format: int64

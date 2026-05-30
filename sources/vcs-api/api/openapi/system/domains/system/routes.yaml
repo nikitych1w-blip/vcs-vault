@@ -1,0 +1,30 @@
+Health:
+  get:
+    tags:
+      - system
+    summary: Health check эндпоинт сервиса
+    description: Возвращает текущий статус сервиса и его зависимостей (БД, кеш) в формате, совместимом со стандартом HCK-501/HCK-502 (STD-15)
+    operationId: systemHealthCheckHCK
+    security: []
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/HealthSuccessResponse'
+      '500':
+        $ref: './responses.yaml#/components/responses/HealthFailureResponse'
+
+SwaggerHealth:
+  get:
+    tags:
+      - system
+    summary: Swagger UI для Health API
+    description: Отображает Swagger UI для health-спеки, публикуемой downstream как `/swagger.health.json`.
+    operationId: systemSwaggerHealthUI
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/SwaggerHealthUIResponse'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

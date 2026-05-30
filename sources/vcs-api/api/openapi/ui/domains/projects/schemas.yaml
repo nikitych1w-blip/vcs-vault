@@ -1,0 +1,45 @@
+components:
+  schemas:
+    Project:
+      type: object
+      properties:
+        is_following:
+          type: boolean
+        avatar_url:
+          type: string
+          description: Ссылка на аватар
+        description:
+          type: string
+        full_name:
+          type: string
+        id:
+          type: integer
+          format: int64
+        location:
+          type: string
+        name:
+          type: string
+        repos_count:
+          type: integer
+          description: Количество репозиториев в проекте
+          example: 99
+        visibility:
+          type: string
+          enum:
+            - limited
+            - private
+        website:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    UsersPaginationList:
+      type: object
+      properties:
+        pagination:
+            $ref: '../../common/pagination.yaml#/components/schemas/Pagination'
+        data:
+          description: Список пользователей проекта
+          type: array
+          items:
+            $ref: '../users/schemas.yaml#/components/schemas/UsersList'

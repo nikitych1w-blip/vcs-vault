@@ -1,0 +1,115 @@
+RepoPrivileges:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+  get:
+    tags:
+      - privileges
+    summary: Get repo privileges
+    operationId: v3GetRepoPrivileges
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PrivilegeListResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+    parameters:
+      - description: Фильтр по имени пользователя
+        in: query
+        name: username
+        schema:
+          type: string
+      - description: Фильтр по группе привилегий
+        in: query
+        name: group
+        schema:
+          type: string
+  post:
+    tags:
+      - privileges
+    summary: Apply repo privileges
+    operationId: v3ApplyRepoPrivileges
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/ApplyPrivilegeGroupsRequest'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/ApplyPrivilegesResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+ProjectPrivileges:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+  get:
+    tags:
+      - privileges
+    summary: Get project privileges
+    operationId: v3GetProjectPrivileges
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PrivilegeListResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+    parameters:
+      - description: Фильтр по имени пользователя
+        in: query
+        name: username
+        schema:
+          type: string
+      - description: Фильтр по группе привилегий
+        in: query
+        name: group
+        schema:
+          type: string
+  post:
+    tags:
+      - privileges
+    summary: Apply project privileges
+    operationId: v3ApplyProjectPrivileges
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/ApplyPrivilegeGroupsRequest'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/ApplyPrivilegesResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

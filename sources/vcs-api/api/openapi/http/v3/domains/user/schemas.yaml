@@ -1,0 +1,95 @@
+components:
+  schemas:
+
+    UserKey:
+      properties:
+        created_at:
+          format: date-time
+          type: string
+        fingerprint:
+          type: string
+        id:
+          format: int64
+          type: integer
+        key:
+          type: string
+        read_only:
+          type: boolean
+        title:
+          type: string
+        user_login:
+          type: string
+      required:
+        - id
+        - title
+        - key
+        - fingerprint
+        - read_only
+        - user_login
+        - created_at
+      type: object
+    UserKeyCreate:
+      properties:
+        key:
+          description: SSH публичный ключ
+          type: string
+        read_only:
+          description: Создать ключ только для чтения
+          type: boolean
+        title:
+          description: Название ключа
+          type: string
+      required:
+        - title
+        - key
+      type: object
+    UserTokenCreate:
+      additionalProperties: false
+      properties:
+        name:
+          description: Уникальное человекочитаемое имя токена
+          example: CI/CD pipeline token
+          maxLength: 100
+          minLength: 1
+          type: string
+        scopes:
+          description: Список разрешённых прав доступа (scopes) для токена
+          example:
+            - repo:read
+            - user:profile
+          items:
+            example: repo:read
+            pattern: ^[a-z_]+:[a-z_]+
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+        - name
+        - scopes
+      type: object
+    UserTokenCreated:
+      properties:
+        created_at:
+          format: date-time
+          type: string
+        id:
+          format: int64
+          type: integer
+        name:
+          type: string
+        scopes:
+          items:
+            type: string
+          type: array
+        sha1:
+          type: string
+        token_last_eight:
+          type: string
+      required:
+        - id
+        - name
+        - scopes
+        - sha1
+        - token_last_eight
+        - created_at
+      type: object

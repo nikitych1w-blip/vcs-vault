@@ -1,0 +1,878 @@
+components:
+  schemas:
+    PRInfo:
+      type: object
+      description: Информация по PR
+      properties:
+        base:
+          $ref: '../../domains/branches/schemas.yaml#/components/schemas/ShortBranchInfo'
+          description: Информация о целевой ветке (куда мержится)
+        body:
+          type: object
+          description: Тело PR и информация о его вложениях
+          nullable: true
+          properties:
+            description:
+              type: string
+              description: Тело PR
+              example: "This PR fixes the email validation bug on the login page."
+            attachments:
+              type: array
+              items:
+                type: string
+                format: uuid
+              description: Массив UUID загруженных файлов (полученных через метод загрузки)
+              example:
+                - "123e4567-e89b-12d3-a456-426614174000"
+                - "987fcdeb-51a2-43c7-9d8e-123456789abc"
+        closed_at:
+          type: string
+          format: date-time
+          description: Время закрытия (если закрыт)
+          nullable: true
+          example: "2019-08-24T14:15:22Z"
+        created_at:
+          type: string
+          format: date-time
+          description: Время создания
+          example: "2019-08-24T14:15:22Z"
+        head:
+          $ref: '../../domains/branches/schemas.yaml#/components/schemas/ShortBranchInfo'
+          description: Информация о исходной ветке (откуда мержится)
+        index:
+          type: integer
+          format: int64
+          description: Индекс PR
+          example: 42
+        mergeable:
+          type: boolean
+          description: Признак отсутствия конфликтов у PR
+        merge_info:
+          type: object
+          description: Информация о слиянии (заполняется только если PR слит)
+          nullable: true
+          properties:
+            merged_at:
+              type: string
+              format: date-time
+              example: "2019-08-24T14:15:22Z"
+              description: Время слияния (если слит)
+            merged_by:
+              $ref: '../../domains/users/schemas.yaml#/components/schemas/ShortUserInfo'
+              description: Пользователь, который смержил pull request
+            merge_base:
+              $ref: '../branches/schemas.yaml#/components/schemas/Commit'
+              description: SHA хеш последнего общего коммита (merge base)
+            merge_commit_sha:
+              $ref: '../branches/schemas.yaml#/components/schemas/Commit'
+              description: SHA коммита слияния (если слит)
+          required:
+            - merged_at
+            - merged_by
+            - merge_base
+            - merge_commit_sha
+        pr_creator:
+          $ref: '../users/schemas.yaml#/components/schemas/ShortUserInfo'
+          description: Автора pull request'а
+        state:
+          type: string
+          enum:
+            - open
+            - closed
+            - merged
+          description: Состояние PR
+          example: "open"
+        title:
+          type: string
+          description: Заголовок PR
+          example: "Fix login validation"
+        updated_at:
+          type: string
+          format: date-time
+          description: Время последнего обновления
+          example: "2019-08-24T14:15:22Z"
+        commits_count:
+          type: integer
+          format: int64
+          description: Общее количество коммитов в pull request
+          example: 3
+          minimum: 0
+        changed_files_count:
+          type: integer
+          format: int64
+          description: Количество файлов, изменённых в pull request
+          example: 5
+          minimum: 0
+        is_watching:
+          type: boolean
+          description: Флаг, показывающий подписался ли пользователь на уведомления по pull request
+          example: true
+        url:
+          type: string
+          description: API-ссылка на этот PR
+          example: "https://example.com/owner/repo/pulls/42"
+        discuss_count:
+          type: integer
+          format: int64
+          description: Общее количество обсуждений в pull request (подсчитываются комментарии к PR)
+          example: 3
+          minimum: 0
+        is_locked:
+          type: boolean
+          description: Флаг ограничения обсуждения (true = комментарии заблокированы)
+          example: false
+          default: false
+      required:
+        - title
+        - body
+        - state
+        - created_at
+        - updated_at
+        - closed_at
+        - pr_creator
+        - base
+        - head
+        - index
+        - url
+        - merge_info
+        - mergeable
+        - commits_count
+        - changed_files_count
+        - is_watching
+        - is_locked
+        - discuss_count
+
+    PRAttributes:
+      type: object
+      description: Связанные с PR атрибуты репозитория (метки и этап)
+      properties:
+        labels:
+          type: array
+          items:
+            $ref: '../labels/schemas.yaml#/components/schemas/Label'
+          description: Список лейблов, назначенных на pull request
+        milestone:
+          nullable: true
+          type: object
+          description: Этап, назначенный в pull request
+          allOf:
+            - $ref: '../milestones/schemas.yaml#/components/schemas/Milestone'
+      required:
+        - labels
+        - milestone
+
+    PRLinkedTasks:
+      type: object
+      description: Информация по связанным с PR задачам
+      properties:
+        pagination:
+          $ref: '../../common/pagination.yaml#/components/schemas/Pagination'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PullTask'
+      required:
+        - pagination
+        - data
+
+    PRMembers:
+      type: object
+      description: Информация по пользователям, участвующим PR
+      properties:
+        reviewers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PRReviewInfo'
+          description: Список рецензетов, назначенных на pull request, с информацией о статусе их рецензии
+        assignees:
+          type: array
+          items:
+            $ref: '../../domains/users/schemas.yaml#/components/schemas/ShortUserInfo'
+          description: Список пользователей, назначенных на pull request
+        code_owners:
+          type: array
+          items:
+            $ref: '#/components/schemas/PRReviewInfo'
+          description: Список владельцев кода, назначенных на pull request, с информацией о статусе их рецензии
+      required:
+        - reviewers
+        - assignees
+        - code_owners
+
+    PRTimeAttributes:
+      type: object
+      description: Информация по атрибутам времени, добавленным в PR (отслеживание времени, срок исполнения)
+      properties:
+        tracked_time_by_user:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackedTime'
+          description: Список отслеживаний времени по пользователям
+        due_date:
+          type: string
+          format: date-time
+          description: Срок исполнения
+          nullable: true
+          example: "2019-08-24T14:15:22Z"
+      required:
+        - tracked_time_by_user
+        - due_date
+
+    PRReviewInfo:
+      type: object
+      description: Информация по пользователям и статусу рецензии от них в PR
+      properties:
+        user:
+          $ref: '../../domains/users/schemas.yaml#/components/schemas/ShortUserInfo'
+        status:
+          type: string
+          enum:
+            - APPROVED
+            - COMMENTED
+            - PENDING
+          description: Статус рецензии
+          example: "APPROVED"
+          nullable: false
+      required:
+        - user
+
+    PRUser:
+      type: object
+      required:
+        - username
+        - full_name
+      properties:
+        username:
+          type: string
+          description: Логин пользователя
+          example: "johndoe"
+          nullable: false
+        full_name:
+          type: string
+          description: Полное имя пользователя
+          example: "Иван Петров"
+          nullable: false
+        avatar_url:
+          type: string
+          description: URL аватара
+          example: "https://example.ru/ssd/tools/sc-example/prefix/avatars/5cb88b4bc892cf46294d7584afae435b42ee18e4c602602db8d335f94f18ef79?size=56"
+
+    PullRequestCreatePayload:
+      type: object
+      required:
+        - title
+        - from_branch
+        - to_branch
+      properties:
+        title:
+          type: string
+          description: Название Pull Request
+          example: "PROJ-123: Implement new authentication flow"
+        description:
+          type: string
+          description: Подробное описание Pull Request
+          example: |
+            This PR implements the new OAuth2 authentication flow.
+            Changes include:
+            - Added new OAuth2 provider configuration
+            - Updated login controller
+            - Added unit tests for new functionality
+        from_branch:
+          type: string
+          description: Исходная ветка
+          example: feature/new-auth-flow
+        to_branch:
+          type: string
+          description: Целевая ветка
+          example: develop
+        reviewer_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: Список ID пользователей, назначаемых рецензентами
+          example:
+            - 1
+            - 3
+            - 7
+        label_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: Список ID меток для PR
+          example:
+            - 1
+            - 3
+            - 7
+        milestone_id:
+          type: integer
+          format: int64
+          nullable: true
+          description: ID этапа (milestone) для PR
+          example: 5
+        attachments:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Массив UUID загруженных файлов (полученных через метод загрузки)
+          example:
+            - "123e4567-e89b-12d3-a456-426614174000"
+            - "987fcdeb-51a2-43c7-9d8e-123456789abc"
+
+    PRLabelsList:
+      type: object
+      properties:
+        data:
+          description: Список меток
+          type: array
+          items:
+            $ref: '../labels/schemas.yaml#/components/schemas/Label'
+      required:
+        - data
+
+    PullTask:
+      type: object
+      description: Информация о задаче, связанной с pull request
+      properties:
+        unit_code:
+          type: string
+          description: Код юнита или системы (соответствует полю 'code' в источнике)
+          example: "VCS-8898"
+        summary:
+          type: string
+          description: Заголовок/описание задачи (если доступно отдельно от номера)
+          example: "[Story] Получение списка коммитов ПРа"
+          nullable: true
+        state:
+          type: string
+          description: Статус задачи (машинное или отображаемое значение)
+          example: "in review"
+          nullable: true
+        priority:
+          type: string
+          description: Приоритет задачи
+          example: "Major"
+          nullable: true
+        url:
+          type: string
+          format: uri
+          description: Ссылка на задачу во внешней системе
+          example: "https://example.sbt/example/units/all/unit/VCS-8898"
+          nullable: true
+      required:
+        - unit_code
+        - summary
+        - state
+        - priority
+        - url
+
+    TrackedTime:
+      type: object
+      properties:
+        user:
+          $ref: '../../domains/users/schemas.yaml#/components/schemas/ShortUserInfo'
+        seconds:
+          type: integer
+          description: Затраченное время по таймеру
+          example: 18600
+        is_timer_active:
+          type: boolean
+          description: Продолжает таймер отсчет или остановлен
+          example: false
+      required:
+        - user
+        - seconds
+        - is_timer_active
+
+    PRUpdatePayload:
+      type: object
+      description: |
+        Поля для частичного обновления Pull Request.
+        Все поля опциональны. Хотя бы одно поле должно быть передано.
+      properties:
+        title:
+          type: string
+          description: Новый заголовок PR
+          minLength: 1
+          maxLength: 255
+          example: "Fix critical bug in auth module"
+        is_locked:
+          type: boolean
+          description: |
+            Блокировка обсуждения:
+            - `true` — запретить новые комментарии
+            - `false` — разрешить обсуждение
+          example: true
+        base_name:
+          type: string
+          description: Имя новой целевой ветки (куда мержится PR)
+          example: "develop"
+        body_description:
+          type: string
+          description: |
+            Новое текстовое описание PR (markdown).
+            Для очистки описания передайте пустую строку или null.
+          nullable: true
+          example: "## Changes\n- Fixed validation logic\n- Added tests"
+        body_attachments:
+          type: array
+          description: |
+            Полный актуальный список UUID вложений.
+            При обновлении старый список заменяется новым.
+            Для удаления всех вложений передайте пустой массив [].
+          items:
+            type: string
+            format: uuid
+          uniqueItems: true
+          example:
+            - "123e4567-e89b-12d3-a456-426614174000"
+            - "987fcdeb-51a2-43c7-9d8e-123456789abc"
+      minProperties: 1
+      additionalProperties: false
+
+    PRAttributesUpdatePayload:
+      type: object
+      description: |
+        Поля для частичного обновления атрибутов PR.
+        Все поля опциональны. Хотя бы одно поле должно быть передано.
+      properties:
+        labels:
+          $ref: '../../common/schemas.yaml#/components/schemas/EntityIdList'
+          description: |
+            Новый список ID меток для PR.
+            Заменяет предыдущий список целиком.
+            Для удаления всех меток передайте пустой массив [].
+        milestone:
+          type: integer
+          format: int64
+          minimum: 0
+          description: |
+            Идентификатор этапа (milestone) для PR.
+            - Передайте `0` чтобы снять этап с PR.
+            - Передайте положительное значение чтобы назначить этап с этим id.
+          example: 5
+      minProperties: 1
+      additionalProperties: false
+
+    PRMembersUpdatePayload:
+      type: object
+      description: |
+        Поля для частичного обновления списков участников PR.
+        Все поля опциональны. Хотя бы одно поле должно быть передано.
+        Примечание:
+          - reviewers и assignees можно изменять вручную.
+          - code_owners определяются автоматически из файла CODEOWNERS и не могут быть изменены через API.
+      properties:
+        reviewers:
+          $ref: '../../common/schemas.yaml#/components/schemas/EntityIdList'
+          description: |
+            Новый список ID рецензентов.
+            Заменяет предыдущий список целиком.
+            Для удаления всех передайте пустой массив [].
+        assignees:
+          $ref: '../../common/schemas.yaml#/components/schemas/EntityIdList'
+          description: |
+            Новый список ID назначенных пользователей.
+            Заменяет предыдущий список целиком.
+      minProperties: 1
+      additionalProperties: false
+
+    PRDueDatePayload:
+      type: object
+      description: |
+        Поле для обновления информации по сроку выполнения в PR.
+      properties:
+        due_date:
+          type: string
+          format: date-time
+          nullable: true
+          description: |
+            Новый срок исполнения PR.
+            - Дата-время в формате ISO 8601 — установить срок
+            - null — очистить срок исполнения
+          example: "2024-12-31T23:59:59Z"
+      minProperties: 1
+      additionalProperties: false
+
+    PRTrackedTimePayload:
+      type: object
+      description: |
+        Запрос на управление отслеживанием времени в PR.
+        Поддерживаемые типы:
+        - `start_timer` — запустить таймер для текущего пользователя
+        - `stop_timer` — остановить активный таймер
+        - `track` — добавить запись о затраченном времени вручную
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - start_timer
+            - stop_timer
+            - track
+          description: |
+            - start_timer игнорируется, если таймер уже запущен
+            - stop_timer без активного таймера возвращает 400 Bad Request
+            - track требует указания seconds
+          example: "start_timer"
+        seconds:
+          type: integer
+          description: |
+            Затраченное время в секундах.
+            Требуется только для type=track.
+          minimum: 1
+          example: 14400
+      additionalProperties: false
+
+    PRStatePayload:
+      type: object
+      description: Payload запроса на обновление состояния PR
+      additionalProperties: false
+      required:
+        - state
+      properties:
+        state:
+          type: string
+          enum:
+            - open
+            - closed
+            - merged
+          description: Состояние PR
+          example: "open"
+        merge_method:
+          type: string
+          description: Способ слияния (только для state=merged)
+          enum:
+            - merge
+            - squash
+            - rebase
+            - rebase-merge
+            - manually-merged
+    PRBranchUpdatePayload:
+      type: object
+      required:
+        - strategy
+      properties:
+        strategy:
+          type: string
+          enum:
+            - merge
+            - rebase
+          description: Стратегия обновления ветки (merge или rebase base в head)
+          example: merge
+
+    PRUpstreamInfo:
+      type: object
+      required:
+        - target_branches
+      properties:
+        target_branches:
+          type: array
+          description: >
+            Список веток, куда будет перелит PR по настройкам PRUpstream,
+            в порядке последовательного слияния (от первой к последней).
+            Если список пуст — PRUpstream не активен для данного PR.
+          items:
+            type: string
+          example: ["develop", "feature1", "feature2"]
+
+    PRCommentPayload:
+      allOf:
+      - $ref: '#/components/schemas/CommentContent'
+      - type: object
+        description: Создание обычного комментария к PR. Также создание комментариев с помощью цитирования
+        properties:
+          attachment_uuids:
+            type: array
+            items:
+              type: string
+              format: uuid
+          type:
+            type: string
+            enum: [general]
+        required:
+        - content
+        - type
+    
+    PRReviewCommentPayload:
+      allOf:
+      - $ref: '#/components/schemas/CommentContent'
+      - type: object
+        description: Параметры для создания ревью к ПР
+        properties:
+          type:
+            type: string
+            enum: [review]
+          event:
+            type: string
+            enum:
+            - request_changes
+            - approve
+            description: >
+              Действие ревьюера - `approve` - одобрить PR, `request_changes` - требовать правки. 
+              Этих enum не существует в таблице comment. Они влияют на бизнес-логику на бэке
+            example: "approve"
+          attachment_uuids:
+            type: array
+            items:
+              type: string
+              format: uuid
+        required:
+        - type
+        - event
+    
+    PRCodeCommentPayload:
+      allOf:
+      - $ref: '#/components/schemas/CommentContent'
+      - $ref: '#/components/schemas/CommentCodeContext'
+      - type: object
+        description: Параметры для создания комментария к коду
+        properties:
+          type:
+            type: string
+            enum: [code]
+          attachment_uuids:
+            type: array
+            items:
+              type: string
+              format: uuid
+        required:
+        - content
+        - tree_path
+        - line
+        - type
+    
+    PRCommentUpdate:
+      allOf:
+      - $ref: '#/components/schemas/CommentContent'
+      - type: object
+        description: Запрос на обновление комментария PR
+        properties:
+          attachment_uuids:
+            type: array
+            description: Новый список UUID вложений. 
+            items:
+              type: string
+              format: uuid
+          resolved:
+            type: boolean
+            description: |
+              Завершить/возобновить обсуждение комментария к коду
+              `true` - завершить (установить resolve_doer_id), 
+              `false` - возобновить (очистить resolve_doer_id),
+              Изменяется только в первом комментарии к коду из обсуждения при  закрытии/возобновлении обсуждения
+    
+    CommonCommentInfo:
+      allOf:
+      - $ref: '#/components/schemas/CommentContent'
+      - type: object
+        description: Общие поля для каждого вида комментария
+        required:
+          - id
+          - content
+          - user
+          - created_at
+          - is_author
+        properties:
+          id:
+            type: integer
+            format: int64
+          user:
+            $ref: '../../domains/users/schemas.yaml#/components/schemas/ShortUserInfo'
+          created_at:
+            type: string
+            format: date-time
+          is_author:
+            type: boolean
+            description: Флаг указывает является ли создатель комментария создателем PR
+          attachment_uuids:
+            type: array
+            items:
+              type: string
+              format: uuid
+          reactions:
+            type: array
+            nullable: true
+            items:
+              $ref: '#/components/schemas/CommentReaction'
+          edit_history:
+            $ref: '#/components/schemas/CommentEditHistoryList'
+            nullable: true
+      
+    PRCommentInfo:
+      allOf:
+      - $ref: '#/components/schemas/CommonCommentInfo'
+      - type: object
+        description: Информация об обычном комментарии
+        properties:
+          type:
+            type: string
+            enum: [general]
+            description: В таблице comment это соотвествует type = 0
+        required: 
+        - type
+
+    PRReviewCommentInfo:
+      allOf:
+      - $ref: '#/components/schemas/CommonCommentInfo'
+      - type: object
+        description: Информация о ревью комментарии
+        properties:
+          type:
+            type: string
+            enum: [review]
+            description: В таблице comment это соотвествует type = 22
+        required: 
+        - type
+
+    PRCodeCommentInfo:
+      allOf:
+      - $ref: '#/components/schemas/CommonCommentInfo'
+      - $ref: '#/components/schemas/CommentCodeContext'
+      - type: object
+        description: Информация о комментарии к коду
+        properties:
+          type:
+            type: string
+            enum: [code]
+            description: В таблице comment это соотвествует type = 21
+          invalidated:
+            type: boolean
+            description: Флаг, указывающий что комментарий к коду устарел из-за изменений
+          resolve_doer_id:
+            $ref: '../../domains/users/schemas.yaml#/components/schemas/ShortUserInfo'
+            description: >
+              Пользователь, который завершил обсуждение комментария к коду. Значение имеет только тот комментарий к коду, к которому
+              были оставлены новые комментарии в рамках обсуждения(может не быть комментариев в обсуждении)
+        required: 
+        - tree_path
+        - line
+        - patch
+        - type
+        - invalidated
+
+    CommentContent:
+      type: object
+      properties:
+        content:
+          type: string
+          description: Тело комментария
+          example: "Комментарий к ПР"
+
+    CommentCodeContext:
+      type: object
+      description: Контекст комментария для комментариев к коду
+      properties:
+        tree_path:
+          type: string
+          description: Путь к файлу в репозитории
+          maxLength: 4096
+          example: "src/main/java/com/example/Service.java"
+        line:
+          type: integer
+          format: int64
+          minimum: 1
+          description: >
+            Номер строки в файле хранится в бд следующим образом
+            Если это строка, которая удалена(подсвечивается красным), то line<0
+            Если это строка, которая добавлена(подсвечивается зелёным), то line>0
+          example: 42
+        patch:
+          type: string
+          description: Контекст кода вокруг комментария. 4 строки выше линии комментария
+          nullable: true
+          example: "@@ -10,7 +10,7 @@ class Service {\n-    return false;\n+    return true;"
+          
+    CommentReaction:
+      type: object
+      description: Реакция пользователя на комментарий
+      required:
+        - id
+        - user
+        - reaction_type
+        - created_at
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Уникальный идентификатор реакции
+          example: 789
+        user:
+          $ref: '../../domains/users/schemas.yaml#/components/schemas/ShortUserInfo'
+          description: Пользователь, оставивший реакцию
+        reaction_type:
+          $ref: '#/components/schemas/ReactionTypes'
+        created_at:
+          type: string
+          format: date-time
+          description: Время добавления реакции
+          example: "2025-01-21T12:00:00Z"
+
+    ReactionTypes:
+      type: string
+      enum:
+        - thumbs_up
+        - thumbs_down
+        - checkmark
+        - ok_hand
+        - bandage
+        - clown
+        - cursing_face
+        - nerd_face
+        - eyes
+        - see_no_evil
+        - rocket
+        - fire
+      description: Тип реакции
+      example: "thumbs_up"
+
+    CommentEditHistoryList:
+      type: object
+      description: Список версий комментария после редактирования
+      required:
+        - data
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommentEditVersion'
+
+    CommentEditVersion:
+      type: object
+      description: Сохранённая версия содержимого комментария
+      required:
+        - content
+        - edited_by
+        - edited_at
+      properties:
+        content:
+          type: string
+          description: Содержимое комментария в этой версии
+          example: "Старая версия комментария"
+        edited_by:
+          $ref: '../../domains/users/schemas.yaml#/components/schemas/ShortUserInfo'
+        edited_at:
+          type: string
+          format: date-time
+          description: Время сохранения этой версии
+          example: "2025-01-21T11:00:00Z"
+
+    PRCommentReactionsUpdate:
+      type: object
+      description: Запрос на обновление набора реакций текущего пользователя на комментарий 
+      required:
+        - reactions
+      properties:
+        reactions:
+          type: array
+          uniqueItems: true
+          description: >
+            Полный список реакций текущего пользователя на комментарии.
+            Пустой массив означает удалить все реакции текущего пользователя
+            с комментария.
+          items:
+            $ref: '#/components/schemas/ReactionTypes'
+            

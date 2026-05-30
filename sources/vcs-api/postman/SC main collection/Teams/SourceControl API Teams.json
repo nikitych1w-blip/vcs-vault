@@ -1,0 +1,348 @@
+{
+  "info": {
+    "_postman_id": "3681e1ea-37c0-4e9b-a7ee-8064edaad153",
+    "name": "Teams",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "Read",
+      "item": [
+        {
+          "name": "Get Team By Name (unimplemented)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has valid team structure\", function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('id');",
+                  "    pm.expect(response).to.have.property('name');",
+                  "    pm.expect(response).to.have.property('permissions');",
+                  "    pm.expect(response).to.have.property('members');",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}/teams/{{sc_api_mock_team_name}}",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_web_v2_prefix}}",
+                "projects",
+                "{{sc_api_mock_project_name}}",
+                "teams",
+                "{{sc_api_mock_team_name}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Teams (unimplemented)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has pagination and teams data\", function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('pagination');",
+                  "    pm.expect(response).to.have.property('data');",
+                  "    pm.expect(response.data).to.be.an('array');",
+                  "    if (response.data.length > 0) {",
+                  "        pm.expect(response.data[0]).to.have.property('id');",
+                  "        pm.expect(response.data[0]).to.have.property('name');",
+                  "    }",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}/teams?q={{sc_api_mock_search_query}}&{{pagination_query_params}}",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_web_v2_prefix}}",
+                "projects",
+                "{{sc_api_mock_project_name}}",
+                "teams"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "{{sc_api_mock_search_query}}"
+                },
+                {
+                  "key": "{{pagination_query_params}}",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create",
+      "item": [
+        {
+          "name": "Create Team (unimplemented)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 201 for team creation\", function() {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has success operation status\", function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('code', 200);",
+                  "    pm.expect(response).to.have.property('status', 'Ok');",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"{{sc_api_mock_team_name}}\",\n    \"description\": \"{{sc_api_mock_description}}\",\n    \"permissions\": [\n        {\n            \"id\": 1,\n            \"all_repos\": true,\n            \"privileges\": [\n                1,\n                2\n            ]\n        }\n    ],\n    \"repos\": [],\n    \"members\": []\n}"
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}/teams",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_web_v2_prefix}}",
+                "projects",
+                "{{sc_api_mock_project_name}}",
+                "teams"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Update",
+      "item": [
+        {
+          "name": "Update Team (unimplemented)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200 for team update\", function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has success operation status\", function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('code', 200);",
+                  "    pm.expect(response).to.have.property('status', 'Ok');",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"mock_team2\",\n  \"description\": \"{{sc_api_mock_description}}\",\n  \"permissions\": [\n    {\n      \"id\": 1,\n      \"all_repos\": true,\n      \"privileges\": [1, 2, 3]\n    }\n  ],\n  \"repos\": [],\n  \"members\": []\n}"
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}/teams/{{sc_api_mock_team_name}}",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_web_v2_prefix}}",
+                "projects",
+                "{{sc_api_mock_project_name}}",
+                "teams",
+                "{{sc_api_mock_team_name}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Delete",
+      "item": [
+        {
+          "name": "Delete Team (unimplemented)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 204 for team deletion\", function() {",
+                  "    pm.response.to.have.status(204);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}/teams/{{sc_api_mock_team_name}}",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_web_v2_prefix}}",
+                "projects",
+                "{{sc_api_mock_project_name}}",
+                "teams",
+                "{{sc_api_mock_team_name}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Team User (unimplemented)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 204 for user removal\", function() {",
+                  "    pm.response.to.have.status(204);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}/teams/{{sc_api_mock_team_name}}/{{sc_api_mock_user_id}}",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_web_v2_prefix}}",
+                "projects",
+                "{{sc_api_mock_project_name}}",
+                "teams",
+                "{{sc_api_mock_team_name}}",
+                "{{sc_api_mock_user_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

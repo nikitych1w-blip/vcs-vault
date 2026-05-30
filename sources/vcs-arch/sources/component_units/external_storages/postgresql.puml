@@ -1,0 +1,18 @@
+!definelong PostgreSQL_Component(input_id)
+System_Boundary(external_storage, "External Storages") {
+    Container(input_id, "Platform V Pangolin", "PostgreSQL", "Database")
+    ContainerDb(repo_postgre_data, "Репозитории", "PostgreSQL", "Сущность репозитория и связанные с ним сущности")
+    ContainerDb(user_postgre_data, "Пользователи", "PostgreSQL", "Сущность пользователя/проекта и связанные с ним сущности")
+    ContainerDb(casbin_postgre_data, "Политики", "PostgreSQL", "Политики ролевой модели")
+    ContainerDb(indexer_postgre_data, "Индексы", "PostgreSQL", "Сущности индексации")
+    ContainerDb(etc_postgre_data, "Etc", "PostgreSQL", "Другие сущности")
+}
+
+'PostgreSQL relationships
+Rel(input_id, repo_postgre_data, "Запрос к таблицам репозиториев")
+Rel(input_id, user_postgre_data, "Запрос к таблицам пользователей")
+Rel(input_id, casbin_postgre_data, "Запрос к таблицам политик")
+Rel(input_id, indexer_postgre_data, "Запрос к таблицам индексов")
+Rel(input_id, etc_postgre_data, "Запрос к остальным таблицам")
+
+!enddefinelong

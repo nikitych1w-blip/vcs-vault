@@ -1,0 +1,11 @@
+components:
+  schemas:
+    EntityIdList:
+      type: array
+      description: Список уникальных числовых идентификаторов сущностей
+      items:
+        type: integer
+        format: int64
+        minimum: 1
+      uniqueItems: true
+      example: [1, 2, 3]

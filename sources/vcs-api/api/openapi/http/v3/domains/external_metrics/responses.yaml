@@ -1,0 +1,16 @@
+components:
+  responses:
+    ExternalMetricsListResponse:
+      description: Список внешних метрик репозитория
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/ExternalMetrics'
+    ExternalMetricResponse:
+      description: Информация о внешней метрике
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/ExternalMetric'
+    ExternalMetricDeletedResponse:
+      description: Метрика успешно удалена

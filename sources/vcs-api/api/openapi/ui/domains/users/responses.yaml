@@ -1,0 +1,14 @@
+components:
+  responses:
+    UserResponse:
+      description: Данные пользователя/организации
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/User'
+    RepositoryUsersResponse:
+      description: Список пользователей репозитория (с пагинацией)
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PaginatedUsersList'

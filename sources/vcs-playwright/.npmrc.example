@@ -1,0 +1,69 @@
+; Инструкции по OSC: https://sberworks.ru/wiki/pages/viewpage.action?pageId=41016797
+; SberOSC — https://sberworks.ru/osc/dashboard/
+; Получение токена https://sberworks.ru/osc/dashboard/profile/
+; OSC_BASE64_STRING — BASE64_STRING
+; OSC_TOKEN — Токен
+;
+; base64 строка с кредами к реестру https://portal.works.prod.sbt/ssd/tools/nexus-ci/repository/npm-all/
+; SBT_BASE64_STRING — base64(login:pass)
+; mac/linux: echo -n "login:pass" | base64
+; win powershell: [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes('login:pass'))
+
+; Аутентификация для Nexus (npm-all)
+//portal.works.prod.sbt/ssd/tools/nexus-ci/repository/npm-all/:_auth={SBT_BASE64_STRING}
+; Аутентификация для OSC
+//sberworks.ru/osc/repo/:_auth={OSC_BASE64_STRING}
+
+; === Реестры ===
+; ВСЕ пакеты (включая публичные) идут через OSC
+registry=https://sberworks.ru/osc/repo/npm/
+
+; Общий реестр: все приватные скоупы используют общий прокси
+@vcs:registry=https://portal.works.prod.sbt/ssd/tools/nexus-ci/repository/npm-all/
+
+; ENV. Не парсятся в .npmrc. Для установки браузеров нужно в момент вызова команды передавать значения env.
+; Настройки Playwright: https://playwright.dev/docs/browsers#download-from-artifact-repository
+PLAYWRIGHT_DOWNLOAD_HOST=https://token:{OSC_TOKEN}@sberworks.ru/osc/repo/playwright/dbazure/download/playwright
+NODE_TLS_REJECT_UNAUTHORIZED=0
+; Например, NODE_TLS_REJECT_UNAUTHORIZED=0 PLAYWRIGHT_DOWNLOAD_HOST={url} npx playwright install
+
+; Общие настройки npm
+; Отключает проверку уязвимостей через npm audit при установке пакетов.
+; Полезно в CI/CD, где audit может замедлять сборку или вызывать ложные срабатывания.
+audit=false
+
+; Отключает отображение сообщений о финансовой поддержке пакетов (например, "This package is looking for funding").
+; Убирает ненужные уведомления в терминале.
+fund=false
+
+; Отключает встроенный npm-уведомитель о доступных обновлениях (например, "You are using npm X, but version Y is available").
+; Предотвращает надоедливые сообщения, особенно в автоматизированных средах.
+update-notifier=false
+
+; Включает использование package-lock.json при установке и изменении зависимостей.
+; Обеспечивает воспроизводимость сборки — все разработчики и среды получают одинаковое дерево зависимостей.
+package-lock=true
+
+; При установке пакетов через `npm install <package>` сохраняет точную версию (без каретки ^ или тильды ~).
+; Например: "lodash": "4.17.19" вместо "lodash": "^4.17.19" — повышает стабильность.
+save-exact=true
+
+; Указывает версию формата lockfile. Версия 3 (актуальна для npm 7+) —
+; поддерживает новые возможности, такие как peer dependencies и workspace.
+; Обеспечивает совместимость с современными проектами.
+lockfile-version=3
+
+; Устанавливает уровень логирования — verbose (подробный).
+; Полезно в CI/CD или при отладке проблем с установкой пакетов.
+; Возможные значения: silent, error, warn, http, info, verbose, silly.
+loglevel=verbose
+
+; Отключает строгую проверку SSL-сертификатов.
+; Может быть необходимо в корпоративных средах с прокси или внутренними CA.
+; ⚠️ Не используйте в публичных проектах — снижает безопасность.
+strict-ssl=false
+
+; Требует аутентификацию для всех запросов к реестрам, даже для публичных пакетов.
+; Гарантирует, что npm всегда отправляет токен, если он задан (например, для приватных репозиториев).
+; Важно при использовании приватного реестра с аутентификацией.
+always-auth=true

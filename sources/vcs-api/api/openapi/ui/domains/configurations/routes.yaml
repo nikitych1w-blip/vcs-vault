@@ -1,0 +1,19 @@
+Configuration:
+  get:
+    tags:
+      - Configuration
+    summary: Получение конфигурации инсталяции
+    operationId: GetConfiguration
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/ConfigurationResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

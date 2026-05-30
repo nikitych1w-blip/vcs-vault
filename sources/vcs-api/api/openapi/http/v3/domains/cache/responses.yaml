@@ -1,0 +1,4 @@
+components:
+  responses:
+    CacheResetResponse:
+      description: Кэш тенанта успешно сброшен

@@ -1,0 +1,113 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Deployment.puml
+
+'!include ./../../../../../sources/C4_Deployment.puml
+' Верхний уровень (сегменты)
+
+AddElementTag("fallback", $bgColor="#c0c0c0")
+AddRelTag("fallback", $textColor="#c0c0c0", $lineColor="#438DD5")
+WithoutPropertyHeader()
+
+    Deployment_Node(vm_user, "Пользователь", "Browser") {
+        Person(user, "Actor")
+    }
+
+
+
+Deployment_Node(vm_spo4, "NGAM") {
+    Container(ngam, "СУДИР/NGAM", "KeyCloak", "")
+}
+Deployment_Node(vm_spo5, "Corax") {
+    Container(corax, "Platform V Corax", "Kafka", "")
+}
+Deployment_Node(vm_spo6, "Vault") {
+    Container(secman, "SecMan", "Hashicorp Vault", "")
+}
+Deployment_Node(vm_spo7, "SMTP") {
+    Container(smtp, "SMTP-сервер", "Any", "")
+}
+Deployment_Node(vm_spo8, "LDAP") {
+    Container(ldap, "LDAP", "Microsoft Active Directory", "")
+}
+Deployment_Node(vm_spo10, "Radish") {
+    ContainerDb(redis, "Platform V Radish", "Valkey", "")
+}
+Deployment_Node(vm_spo11, "ALOG") {
+    Container(alog, "Platform V Monitor (ALOG)", "Fluentbit", "")
+}
+Deployment_Node(vm_product, "SourceControl FE") {
+    Container(fe, "SourceControl FE", "HTML, JS, CSS, Fonts, Images", "Статика фронтенда")
+    Container(syngx, "Platform V Syngx", "Syngx", "")
+}
+Deployment_Node(vm_product1, "SourceControl BE", "Golang") {
+    Container(core, "SourceControl Core", "Golang, GoTemplates", "Core backend приложения")
+    Container(core2, "Logger Service", "Логирование в stdout")
+    Container(core3, "Git Service", "Git сервер")
+    Container(core1, "Cron Scheduler", "Менеджмент фоновых задач")
+    Container(core4, "Redis Service", "Взаимодействие с Radish")
+    Container(core5, "Secman Service", "Взаимодействие с SecMan")
+    Container(core6, "Notification Service", "Взаимодействие с событиями")
+    Container(core7, "StaticStorage Service", "Управление динамично-создаваемой статикой")
+    Container(core8, "Cache Service", "Управление кэшированием данных")
+    Container(core9, "Queue Service", "Управление очередями задач")
+    Container(core10, "Session Service", "Управление сессиями")
+
+}
+Deployment_Node(vm_spo, "IAM") {
+    Container(proxy, "Platform V IAM (IAM Proxy)", "OpenResty", "")
+}
+Deployment_Node(vm_spo22, "Haproxy") {
+    Container(haproxy, "Haproxy", "LB", "")
+}
+Deployment_Node(vm_spo1, "Gitaly") {
+    ContainerDb(gitaly, "Gitaly", "Golang", "")
+}
+Deployment_Node(vm_spo2, "Pangolin") {
+    ContainerDb(pangolin, "Platform V Pangolin", "PostgreSQL", "")
+}
+
+Deployment_Node(vm_spo3, "S3") {
+    ContainerDb(s3, "S3 Storage", "Any", "")
+}
+
+
+Rel(user, proxy, "HTTPS", "v1.2")
+Rel(user, haproxy, "TCP")
+Rel(user, haproxy, "HTTPS", "v1.2")
+
+'core to components
+Rel(core, core1, "Invoke")
+Rel(core, core2, "Invoke")
+Rel(core, core3, "Invoke")
+Rel(core, core5, "Invoke")
+Rel(core, core6, "Invoke")
+Rel(core, core7, "Invoke")
+Rel(core, core8, "Invoke")
+Rel(core, core9, "Invoke")
+Rel(core, core10, "Invoke")
+
+
+Rel(core, pangolin, "TCP")
+Rel(core, ldap, "LDAP")
+Rel(core1, core4, "Invoke")
+Rel(core8, core4, "Invoke")
+Rel(core9, core4, "Invoke")
+Rel(core10, core4, "Invoke")
+Rel(core3, gitaly, "GRPC")
+Rel(core4, redis, "TCP")
+Rel(core5, secman, "HTTPS", "v1.2")
+Rel(core6, corax, "TCP")
+Rel(core6, smtp, "SMTP")
+Rel(core7, s3, "HTTPS", "v1.2")
+
+Rel(proxy, syngx, "HTTPS", "v1.2")
+Rel(proxy, ngam, "HTTPS", "v1.2")
+
+Rel(alog, core2, "File read")
+Rel(syngx, core, "HTTPS", "v1.2")
+Rel(haproxy, core, "TCP")
+Rel(haproxy, core, "HTTPS", "v1.2")
+Rel(syngx, fe, "HTTPS", "v1.2")
+
+SHOW_LEGEND()
+@enduml

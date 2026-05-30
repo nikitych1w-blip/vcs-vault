@@ -1,0 +1,123 @@
+components:
+  schemas:
+    UploadSummary:
+      type: object
+      description: Сводка по результатам мультизагрузки
+      properties:
+        total:
+          type: integer
+          description: Общее количество переданных файлов
+          example: 4
+        success:
+          type: integer
+          description: Количество успешно загруженных файлов
+          example: 2
+        failed:
+          type: integer
+          description: Количество файлов, загрузка которых завершилась ошибкой
+          example: 2
+      required:
+        - total
+        - success
+        - failed
+
+    UploadResultData:
+      type: object
+      description: Данные успешно загруженного файла
+      properties:
+        upload_uid:
+          type: string
+          format: uuid
+          description: Уникальный идентификатор загруженного файла
+          example: '123e4567-e89b-12d3-a456-426614174000'
+        url:
+          type: string
+          format: uri
+          description: URL загруженного файла (если доступен)
+          example: 'https://cdn.example.com/files/file_001.pdf'
+        size:
+          type: integer
+          description: Размер файла в байтах
+          example: 102400
+        content_type:
+          type: string
+          description: MIME-тип файла
+          example: 'application/pdf'
+      required:
+        - upload_uid
+        - size
+        - content_type
+        - url
+
+    UploadResultErrorDetails:
+      type: object
+      description: Детали ошибки загрузки (заполняются в зависимости от типа ошибки)
+      properties:
+        detectedType:
+          type: string
+          description: Определённый MIME-тип файла (для ошибок типа файла)
+          example: 'application/x-executable'
+        allowedTypes:
+          type: array
+          items:
+            type: string
+          description: Список разрешённых типов
+          example: ['image/*', 'application/pdf']
+        fileSize:
+          type: integer
+          description: Размер переданного файла в байтах
+          example: 15728640
+        maxSize:
+          type: integer
+          description: Максимально допустимый размер в байтах
+          example: 10485760
+
+    UploadResultError:
+      type: object
+      description: Ошибка загрузки файла
+      properties:
+        message:
+          type: string
+          description: Сообщение об ошибке
+          example: 'Executable files are not permitted'
+        details:
+          $ref: '#/components/schemas/UploadResultErrorDetails'
+      required:
+        - message
+
+    UploadResultItem:
+      type: object
+      description: Результат загрузки одного файла (порядок соответствует порядку в запросе)
+      properties:
+        filename:
+          type: string
+          description: Имя файла
+          example: 'document.pdf'
+        status:
+          type: string
+          enum: [success, failed]
+          description: Статус загрузки
+        data:
+          $ref: '#/components/schemas/UploadResultData'
+          description: Присутствует при status = success
+        error:
+          $ref: '#/components/schemas/UploadResultError'
+          description: Присутствует при status = failed
+      required:
+        - filename
+        - status
+
+    MultiFileUploadResponse:
+      type: object
+      description: Результат мультизагрузки файлов
+      properties:
+        summary:
+          $ref: '#/components/schemas/UploadSummary'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/UploadResultItem'
+          description: Результаты по каждому файлу (порядок совпадает с порядком в запросе)
+      required:
+        - summary
+        - results

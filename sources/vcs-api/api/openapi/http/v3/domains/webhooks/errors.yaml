@@ -1,0 +1,52 @@
+components:
+  responses:
+      WebhooksBadRequest:
+        description: |
+          Ошибка валидации входных данных
+        headers: 
+          X-Request-ID:
+            $ref: '../../common/header.yaml#/headers/X-Request-ID'
+        content:
+          application/problem+json:
+            schema:
+              $ref: '../../common/errors.yaml#/components/schemas/ProblemDetail'
+
+      WebhookBadRequest:
+        description: |
+          Ошибка валидации входных данных
+        headers: 
+          X-Request-ID:
+            $ref: '../../common/header.yaml#/headers/X-Request-ID'      
+        content:
+          application/problem+json:
+            schema:
+              $ref: '../../common/errors.yaml#/components/schemas/ProblemDetail'            
+
+      WebhooksNotFound:
+        description: Указанный объект не найден
+        headers: 
+          X-Request-ID:
+            $ref: '../../common/header.yaml#/headers/X-Request-ID'       
+        content:
+          application/problem+json:
+            schema:
+              $ref: '../../common/errors.yaml#/components/schemas/ProblemDetail'
+
+      WebhookNotFound:
+        description: Указанный объект не найден
+        headers: 
+          X-Request-ID:
+            $ref: '../../common/header.yaml#/headers/X-Request-ID'       
+        content:
+          application/problem+json:
+            schema:
+              $ref: '../../common/errors.yaml#/components/schemas/ProblemDetail'
+      WebhookForbidden:
+        description: Нет прав доступа к взаимодействию с ресурсом
+        headers: 
+          X-Request-ID:
+            $ref: '../../common/header.yaml#/headers/X-Request-ID'    
+        content:
+          application/problem+json:
+            schema:
+              $ref: '../../common/errors.yaml#/components/schemas/ProblemDetail'

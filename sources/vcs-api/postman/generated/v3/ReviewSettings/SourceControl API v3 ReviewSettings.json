@@ -1,0 +1,2229 @@
+{
+  "info": {
+    "_postman_id": "52383a0e-0bfd-4c5c-b7ab-ccafc50882c0",
+    "name": "SourceControl API v3 ReviewSettings",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "SourceControl REST API v3"
+  },
+  "item": [
+    {
+      "name": "ReviewSettings",
+      "item": [
+        {
+          "name": "Get review settings",
+          "request": {
+            "url": {
+              "path": [
+                "repos",
+                ":tenant",
+                ":project",
+                ":repo",
+                "review_settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenant",
+                  "description": "(Required) Tenant identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project",
+                  "description": "(Required) Project identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo",
+                  "description": "(Required) Repository identifier"
+                }
+              ],
+              "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "name": "Список настроек ревью",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"review_settings\": [\n    {\n      \"branch_name\": \"string\",\n      \"approval_settings\": {\n        \"require_default_reviewers\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"default_reviewers\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"merge_restrictions\": {\n        \"block_on_official_review_requests\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"block_on_outdated_branch\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"block_on_rejected_reviews\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"dismiss_stale_approvals\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"require_sonarqube_quality_gate\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"merge_settings\": {\n        \"require_merge_whitelist\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"merge_whitelist_usernames\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"status_checks\": {\n        \"enable_status_check\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status_check_contexts\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"branch_name\": \"string\",\n      \"approval_settings\": {\n        \"require_default_reviewers\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"default_reviewers\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"merge_restrictions\": {\n        \"block_on_official_review_requests\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"block_on_outdated_branch\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"block_on_rejected_reviews\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"dismiss_stale_approvals\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"require_sonarqube_quality_gate\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"merge_settings\": {\n        \"require_merge_whitelist\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"merge_whitelist_usernames\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"status_checks\": {\n        \"enable_status_check\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"status_check_contexts\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 401,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 403,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 500,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Create review settings",
+          "request": {
+            "url": {
+              "path": [
+                "repos",
+                ":tenant",
+                ":project",
+                ":repo",
+                "review_settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenant",
+                  "description": "(Required) Tenant identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project",
+                  "description": "(Required) Project identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo",
+                  "description": "(Required) Repository identifier"
+                }
+              ],
+              "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings"
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"branch_name\": \"<string>\",\n  \"approval_settings\": {\n    \"require_default_reviewers\": \"<boolean>\",\n    \"default_reviewers\": [\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"merge_restrictions\": {\n    \"block_on_official_review_requests\": \"<boolean>\",\n    \"block_on_outdated_branch\": \"<boolean>\",\n    \"block_on_rejected_reviews\": \"<boolean>\",\n    \"dismiss_stale_approvals\": \"<boolean>\",\n    \"require_sonarqube_quality_gate\": \"<boolean>\"\n  },\n  \"merge_settings\": {\n    \"require_merge_whitelist\": \"<boolean>\",\n    \"merge_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status_checks\": {\n    \"enable_status_check\": \"<boolean>\",\n    \"status_check_contexts\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Настройки ревью успешно созданы",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"approval_settings\": {\n    \"require_default_reviewers\": \"<boolean>\",\n    \"default_reviewers\": [\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"merge_restrictions\": {\n    \"block_on_official_review_requests\": \"<boolean>\",\n    \"block_on_outdated_branch\": \"<boolean>\",\n    \"block_on_rejected_reviews\": \"<boolean>\",\n    \"dismiss_stale_approvals\": \"<boolean>\",\n    \"require_sonarqube_quality_gate\": \"<boolean>\"\n  },\n  \"merge_settings\": {\n    \"require_merge_whitelist\": \"<boolean>\",\n    \"merge_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status_checks\": {\n    \"enable_status_check\": \"<boolean>\",\n    \"status_check_contexts\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"branch_name\": \"string\",\n  \"approval_settings\": {\n    \"require_default_reviewers\": \"<boolean>\",\n    \"default_reviewers\": [\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"merge_restrictions\": {\n    \"block_on_official_review_requests\": \"<boolean>\",\n    \"block_on_outdated_branch\": \"<boolean>\",\n    \"block_on_rejected_reviews\": \"<boolean>\",\n    \"dismiss_stale_approvals\": \"<boolean>\",\n    \"require_sonarqube_quality_gate\": \"<boolean>\"\n  },\n  \"merge_settings\": {\n    \"require_merge_whitelist\": \"<boolean>\",\n    \"merge_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status_checks\": {\n    \"enable_status_check\": \"<boolean>\",\n    \"status_check_contexts\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"approval_settings\": {\n    \"require_default_reviewers\": \"<boolean>\",\n    \"default_reviewers\": [\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"merge_restrictions\": {\n    \"block_on_official_review_requests\": \"<boolean>\",\n    \"block_on_outdated_branch\": \"<boolean>\",\n    \"block_on_rejected_reviews\": \"<boolean>\",\n    \"dismiss_stale_approvals\": \"<boolean>\",\n    \"require_sonarqube_quality_gate\": \"<boolean>\"\n  },\n  \"merge_settings\": {\n    \"require_merge_whitelist\": \"<boolean>\",\n    \"merge_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status_checks\": {\n    \"enable_status_check\": \"<boolean>\",\n    \"status_check_contexts\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 400,\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Обнаружены ошибки в переданных данных.\",\n  \"instance\": \"/repos/tenant/project/repo/branches\",\n  \"validation\": [\n    {\n      \"location\": \"field\",\n      \"name\": \"branch_name\",\n      \"error\": \"Имя ветки не может быть пустым.\",\n      \"code\": \"required_field\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"approval_settings\": {\n    \"require_default_reviewers\": \"<boolean>\",\n    \"default_reviewers\": [\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"merge_restrictions\": {\n    \"block_on_official_review_requests\": \"<boolean>\",\n    \"block_on_outdated_branch\": \"<boolean>\",\n    \"block_on_rejected_reviews\": \"<boolean>\",\n    \"dismiss_stale_approvals\": \"<boolean>\",\n    \"require_sonarqube_quality_gate\": \"<boolean>\"\n  },\n  \"merge_settings\": {\n    \"require_merge_whitelist\": \"<boolean>\",\n    \"merge_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status_checks\": {\n    \"enable_status_check\": \"<boolean>\",\n    \"status_check_contexts\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 401,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"approval_settings\": {\n    \"require_default_reviewers\": \"<boolean>\",\n    \"default_reviewers\": [\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"merge_restrictions\": {\n    \"block_on_official_review_requests\": \"<boolean>\",\n    \"block_on_outdated_branch\": \"<boolean>\",\n    \"block_on_rejected_reviews\": \"<boolean>\",\n    \"dismiss_stale_approvals\": \"<boolean>\",\n    \"require_sonarqube_quality_gate\": \"<boolean>\"\n  },\n  \"merge_settings\": {\n    \"require_merge_whitelist\": \"<boolean>\",\n    \"merge_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status_checks\": {\n    \"enable_status_check\": \"<boolean>\",\n    \"status_check_contexts\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 403,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Конфликт данных или бизнес-правил",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"approval_settings\": {\n    \"require_default_reviewers\": \"<boolean>\",\n    \"default_reviewers\": [\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"merge_restrictions\": {\n    \"block_on_official_review_requests\": \"<boolean>\",\n    \"block_on_outdated_branch\": \"<boolean>\",\n    \"block_on_rejected_reviews\": \"<boolean>\",\n    \"dismiss_stale_approvals\": \"<boolean>\",\n    \"require_sonarqube_quality_gate\": \"<boolean>\"\n  },\n  \"merge_settings\": {\n    \"require_merge_whitelist\": \"<boolean>\",\n    \"merge_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status_checks\": {\n    \"enable_status_check\": \"<boolean>\",\n    \"status_check_contexts\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 409,\n  \"title\": \"Конфликт данных\",\n  \"detail\": \"Ресурс с такими параметрами уже существует.\",\n  \"instance\": \"/repos/tenant/project/repo/branches\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"approval_settings\": {\n    \"require_default_reviewers\": \"<boolean>\",\n    \"default_reviewers\": [\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"merge_restrictions\": {\n    \"block_on_official_review_requests\": \"<boolean>\",\n    \"block_on_outdated_branch\": \"<boolean>\",\n    \"block_on_rejected_reviews\": \"<boolean>\",\n    \"dismiss_stale_approvals\": \"<boolean>\",\n    \"require_sonarqube_quality_gate\": \"<boolean>\"\n  },\n  \"merge_settings\": {\n    \"require_merge_whitelist\": \"<boolean>\",\n    \"merge_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status_checks\": {\n    \"enable_status_check\": \"<boolean>\",\n    \"status_check_contexts\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 500,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Update review settings",
+          "request": {
+            "url": {
+              "path": [
+                "repos",
+                ":tenant",
+                ":project",
+                ":repo",
+                "review_settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "branch_name",
+                  "value": "<string>",
+                  "description": "(Required) Имя ветки"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenant",
+                  "description": "(Required) Tenant identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project",
+                  "description": "(Required) Project identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo",
+                  "description": "(Required) Repository identifier"
+                }
+              ],
+              "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings?branch_name=<string>"
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"branch_name\": \"<string>\",\n  \"approval_settings\": {\n    \"require_default_reviewers\": \"<boolean>\",\n    \"default_reviewers\": [\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"merge_restrictions\": {\n    \"block_on_official_review_requests\": \"<boolean>\",\n    \"block_on_outdated_branch\": \"<boolean>\",\n    \"block_on_rejected_reviews\": \"<boolean>\",\n    \"dismiss_stale_approvals\": \"<boolean>\",\n    \"require_sonarqube_quality_gate\": \"<boolean>\"\n  },\n  \"merge_settings\": {\n    \"require_merge_whitelist\": \"<boolean>\",\n    \"merge_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status_checks\": {\n    \"enable_status_check\": \"<boolean>\",\n    \"status_check_contexts\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Настройки ревью успешно обновлены",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings?branch_name=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"approval_settings\": {\n    \"require_default_reviewers\": \"<boolean>\",\n    \"default_reviewers\": [\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"merge_restrictions\": {\n    \"block_on_official_review_requests\": \"<boolean>\",\n    \"block_on_outdated_branch\": \"<boolean>\",\n    \"block_on_rejected_reviews\": \"<boolean>\",\n    \"dismiss_stale_approvals\": \"<boolean>\",\n    \"require_sonarqube_quality_gate\": \"<boolean>\"\n  },\n  \"merge_settings\": {\n    \"require_merge_whitelist\": \"<boolean>\",\n    \"merge_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status_checks\": {\n    \"enable_status_check\": \"<boolean>\",\n    \"status_check_contexts\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"branch_name\": \"string\",\n  \"approval_settings\": {\n    \"require_default_reviewers\": \"<boolean>\",\n    \"default_reviewers\": [\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"merge_restrictions\": {\n    \"block_on_official_review_requests\": \"<boolean>\",\n    \"block_on_outdated_branch\": \"<boolean>\",\n    \"block_on_rejected_reviews\": \"<boolean>\",\n    \"dismiss_stale_approvals\": \"<boolean>\",\n    \"require_sonarqube_quality_gate\": \"<boolean>\"\n  },\n  \"merge_settings\": {\n    \"require_merge_whitelist\": \"<boolean>\",\n    \"merge_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status_checks\": {\n    \"enable_status_check\": \"<boolean>\",\n    \"status_check_contexts\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings?branch_name=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"approval_settings\": {\n    \"require_default_reviewers\": \"<boolean>\",\n    \"default_reviewers\": [\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"merge_restrictions\": {\n    \"block_on_official_review_requests\": \"<boolean>\",\n    \"block_on_outdated_branch\": \"<boolean>\",\n    \"block_on_rejected_reviews\": \"<boolean>\",\n    \"dismiss_stale_approvals\": \"<boolean>\",\n    \"require_sonarqube_quality_gate\": \"<boolean>\"\n  },\n  \"merge_settings\": {\n    \"require_merge_whitelist\": \"<boolean>\",\n    \"merge_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status_checks\": {\n    \"enable_status_check\": \"<boolean>\",\n    \"status_check_contexts\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 400,\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Обнаружены ошибки в переданных данных.\",\n  \"instance\": \"/repos/tenant/project/repo/branches\",\n  \"validation\": [\n    {\n      \"location\": \"field\",\n      \"name\": \"branch_name\",\n      \"error\": \"Имя ветки не может быть пустым.\",\n      \"code\": \"required_field\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings?branch_name=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"approval_settings\": {\n    \"require_default_reviewers\": \"<boolean>\",\n    \"default_reviewers\": [\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"merge_restrictions\": {\n    \"block_on_official_review_requests\": \"<boolean>\",\n    \"block_on_outdated_branch\": \"<boolean>\",\n    \"block_on_rejected_reviews\": \"<boolean>\",\n    \"dismiss_stale_approvals\": \"<boolean>\",\n    \"require_sonarqube_quality_gate\": \"<boolean>\"\n  },\n  \"merge_settings\": {\n    \"require_merge_whitelist\": \"<boolean>\",\n    \"merge_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status_checks\": {\n    \"enable_status_check\": \"<boolean>\",\n    \"status_check_contexts\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 401,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings?branch_name=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"approval_settings\": {\n    \"require_default_reviewers\": \"<boolean>\",\n    \"default_reviewers\": [\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"merge_restrictions\": {\n    \"block_on_official_review_requests\": \"<boolean>\",\n    \"block_on_outdated_branch\": \"<boolean>\",\n    \"block_on_rejected_reviews\": \"<boolean>\",\n    \"dismiss_stale_approvals\": \"<boolean>\",\n    \"require_sonarqube_quality_gate\": \"<boolean>\"\n  },\n  \"merge_settings\": {\n    \"require_merge_whitelist\": \"<boolean>\",\n    \"merge_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status_checks\": {\n    \"enable_status_check\": \"<boolean>\",\n    \"status_check_contexts\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 403,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings?branch_name=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"approval_settings\": {\n    \"require_default_reviewers\": \"<boolean>\",\n    \"default_reviewers\": [\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"merge_restrictions\": {\n    \"block_on_official_review_requests\": \"<boolean>\",\n    \"block_on_outdated_branch\": \"<boolean>\",\n    \"block_on_rejected_reviews\": \"<boolean>\",\n    \"dismiss_stale_approvals\": \"<boolean>\",\n    \"require_sonarqube_quality_gate\": \"<boolean>\"\n  },\n  \"merge_settings\": {\n    \"require_merge_whitelist\": \"<boolean>\",\n    \"merge_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status_checks\": {\n    \"enable_status_check\": \"<boolean>\",\n    \"status_check_contexts\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 404,\n  \"title\": \"Ресурс не найден\",\n  \"detail\": \"Запрашиваемый ресурс не существует.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Конфликт данных или бизнес-правил",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings?branch_name=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"approval_settings\": {\n    \"require_default_reviewers\": \"<boolean>\",\n    \"default_reviewers\": [\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"merge_restrictions\": {\n    \"block_on_official_review_requests\": \"<boolean>\",\n    \"block_on_outdated_branch\": \"<boolean>\",\n    \"block_on_rejected_reviews\": \"<boolean>\",\n    \"dismiss_stale_approvals\": \"<boolean>\",\n    \"require_sonarqube_quality_gate\": \"<boolean>\"\n  },\n  \"merge_settings\": {\n    \"require_merge_whitelist\": \"<boolean>\",\n    \"merge_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status_checks\": {\n    \"enable_status_check\": \"<boolean>\",\n    \"status_check_contexts\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 409,\n  \"title\": \"Конфликт данных\",\n  \"detail\": \"Ресурс с такими параметрами уже существует.\",\n  \"instance\": \"/repos/tenant/project/repo/branches\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings?branch_name=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_name\": \"<string>\",\n  \"approval_settings\": {\n    \"require_default_reviewers\": \"<boolean>\",\n    \"default_reviewers\": [\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"merge_restrictions\": {\n    \"block_on_official_review_requests\": \"<boolean>\",\n    \"block_on_outdated_branch\": \"<boolean>\",\n    \"block_on_rejected_reviews\": \"<boolean>\",\n    \"dismiss_stale_approvals\": \"<boolean>\",\n    \"require_sonarqube_quality_gate\": \"<boolean>\"\n  },\n  \"merge_settings\": {\n    \"require_merge_whitelist\": \"<boolean>\",\n    \"merge_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status_checks\": {\n    \"enable_status_check\": \"<boolean>\",\n    \"status_check_contexts\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 500,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Delete review settings",
+          "request": {
+            "url": {
+              "path": [
+                "repos",
+                ":tenant",
+                ":project",
+                ":repo",
+                "review_settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "branch_name",
+                  "value": "<string>",
+                  "description": "(Required) Имя ветки"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenant",
+                  "description": "(Required) Tenant identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project",
+                  "description": "(Required) Project identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo",
+                  "description": "(Required) Repository identifier"
+                }
+              ],
+              "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings?branch_name=<string>"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "name": "Настройки ревью успешно удалены",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings?branch_name=<string>"
+                },
+                "method": "DELETE"
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings?branch_name=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 400,\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Обнаружены ошибки в переданных данных.\",\n  \"instance\": \"/repos/tenant/project/repo/branches\",\n  \"validation\": [\n    {\n      \"location\": \"field\",\n      \"name\": \"branch_name\",\n      \"error\": \"Имя ветки не может быть пустым.\",\n      \"code\": \"required_field\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings?branch_name=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 401,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings?branch_name=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE"
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 403,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings?branch_name=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 404,\n  \"title\": \"Ресурс не найден\",\n  \"detail\": \"Запрашиваемый ресурс не существует.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "branch_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings?branch_name=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE"
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 500,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Get branch review settings",
+          "request": {
+            "url": {
+              "path": [
+                "repos",
+                ":tenant",
+                ":project",
+                ":repo",
+                "review_settings",
+                ":branch_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenant",
+                  "description": "(Required) Tenant identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project",
+                  "description": "(Required) Project identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo",
+                  "description": "(Required) Repository identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "branch_name",
+                  "description": "(Required) Branch name"
+                }
+              ],
+              "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings/:branch_name"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "name": "Настройки ревью для ветки",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings",
+                    ":branch_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "branch_name",
+                      "description": "(Required) Branch name"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings/:branch_name"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"branch_name\": \"string\",\n  \"approval_settings\": {\n    \"require_default_reviewers\": \"<boolean>\",\n    \"default_reviewers\": [\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"default_reviewers_list\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"required_approvals_count\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ]\n  },\n  \"merge_restrictions\": {\n    \"block_on_official_review_requests\": \"<boolean>\",\n    \"block_on_outdated_branch\": \"<boolean>\",\n    \"block_on_rejected_reviews\": \"<boolean>\",\n    \"dismiss_stale_approvals\": \"<boolean>\",\n    \"require_sonarqube_quality_gate\": \"<boolean>\"\n  },\n  \"merge_settings\": {\n    \"require_merge_whitelist\": \"<boolean>\",\n    \"merge_whitelist_usernames\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status_checks\": {\n    \"enable_status_check\": \"<boolean>\",\n    \"status_check_contexts\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings",
+                    ":branch_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "branch_name",
+                      "description": "(Required) Branch name"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings/:branch_name"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 401,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings",
+                    ":branch_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "branch_name",
+                      "description": "(Required) Branch name"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings/:branch_name"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 403,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings",
+                    ":branch_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "branch_name",
+                      "description": "(Required) Branch name"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings/:branch_name"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 404,\n  \"title\": \"Ресурс не найден\",\n  \"detail\": \"Запрашиваемый ресурс не существует.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repos",
+                    ":tenant",
+                    ":project",
+                    ":repo",
+                    "review_settings",
+                    ":branch_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenant",
+                      "description": "(Required) Tenant identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project",
+                      "description": "(Required) Project identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo",
+                      "description": "(Required) Repository identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "branch_name",
+                      "description": "(Required) Branch name"
+                    }
+                  ],
+                  "raw": "{{baseUrl}}/repos/:tenant/:project/:repo/review_settings/:branch_name"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"status\": 500,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\",\n  \"instance\": \"/repos/tenant/project/repo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  }
+}

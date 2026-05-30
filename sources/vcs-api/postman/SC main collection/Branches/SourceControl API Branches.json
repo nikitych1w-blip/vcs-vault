@@ -1,0 +1,3210 @@
+{
+  "info": {
+    "_postman_id": "9756a26a-bfcd-4937-b15b-00e2cc33e181",
+    "name": "Branches",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "Negative API",
+      "item": [
+        {
+          "name": "Create Branch",
+          "item": [
+            {
+              "name": "api/v3",
+              "item": [
+                {
+                  "name": "[Negative] Create branch by user without permission to interact with tenant",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"new_branch\": \"{{sc_api_mock_branch_name}}\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/aaf8560e-29ec-48e5-aecf-ca59faf39144/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name7777\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Create branch with non-existing tenant",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"new_branch\": \"{{sc_api_mock_branch_name}}\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}1/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}1",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96047d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Create branch with non-existing repository name",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"new_branch\": \"{{sc_api_mock_branch_name}}\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}1/branches",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}1",
+                        "branches"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/10000000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Create branch with non-existing project name",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"new_branch\": \"{{sc_api_mock_branch_name}}\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}1/{{sc_api_mock_repository_name}}/branches",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}1",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1777/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Create branch with name longer than 100 symbols",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"new_branch\": \"new_branch_name7777jjkhkdjhgkdhgkjdhgjdkfjghkdjfhgbjdhbfgjdbfgkjbdfjgbdkjfghkjdfhgkjdfhgkjdhfgkjhdkjghdjkhgkjdgkjdhgkjdhjghdjhgkjdhgkjhdkjghdkjghkjdhgkjdhkgjh\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/10000000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Create branch with empty name",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"new_branch\": \"\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/10000000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Create branch with unacceptable name",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"new_branch\": \"./ ~^:?*[/.////@./\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"./ ~^:?*[/.////@./\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Create branch with name ending with .lock/ or .lock",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"new_branch\": \"new_branch.lock/\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch.lock/\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Create branch with commit SHA longer than 40 symbols",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"new_branch\": \"{{sc_api_mock_branch_name}}\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4654644634646464444554545465464\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches",
+                      "protocol": "https",
+                      "host": [
+                        "ift",
+                        "pd04",
+                        "pvw",
+                        "sbt"
+                      ],
+                      "path": [
+                        "ssd",
+                        "tools",
+                        "sc-ift1",
+                        "api",
+                        "v3",
+                        "repos",
+                        "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                        "ift1",
+                        "1000",
+                        "branches"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4654644634646464444554545465464\"\r\n}'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Create branch with empty commit SHA",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"new_branch\": \"{{sc_api_mock_branch_name}}\",\r\n  \"parent_commit_SHA\": \"\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches",
+                      "protocol": "https",
+                      "host": [
+                        "ift",
+                        "pd04",
+                        "pvw",
+                        "sbt"
+                      ],
+                      "path": [
+                        "ssd",
+                        "tools",
+                        "sc-ift1",
+                        "api",
+                        "v3",
+                        "repos",
+                        "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                        "ift1",
+                        "1000",
+                        "branches"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4654644634646464444554545465464\"\r\n}'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Create branch with already existing name",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"new_branch\": \"{{sc_api_mock_branch_name}}\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"100\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Create branch with non-authorized user",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"new_branch\": \"{{sc_api_mock_branch_name}}\",\r\n  \"parent_commit_SHA\": \"6b13851c99ac021f8fa3ebe498b9cbe01205b584\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"branch_name\",\r\n  \"parent_commit_SHA\": \"6b13851c99ac021f8fa3ebe498b9cbe01205b584\"\r\n}'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Create branch with non-existing commit SHA",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"new_branch\": \"{{sc_api_mock_branch_name}}\",\r\n  \"parent_commit_SHA\": \"182a1a718c62049968938b74087d89a2fa7d7cf7\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches",
+                      "protocol": "https",
+                      "host": [
+                        "ift",
+                        "pd04",
+                        "pvw",
+                        "sbt"
+                      ],
+                      "path": [
+                        "ssd",
+                        "tools",
+                        "sc-ift1",
+                        "api",
+                        "v3",
+                        "repos",
+                        "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                        "ift1",
+                        "1000",
+                        "branches"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"100\",\r\n  \"parent_commit_SHA\": \"182a1a718c62049968938b74087d89a2fa7d7cf7\"\r\n}'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Create branch by user without permissions to the project",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}1",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"new_branch\": \"\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"1001111\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Create branch by user without permissions to interact with the repository",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"new_branch\": \"{{sc_api_mock_branch_name}}\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/privat/branches",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "privat",
+                        "branches"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"1001111\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Create branch by user without permissions to create branches",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"new_branch\": \"{{sc_api_mock_branch_name}}\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"1001111\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Create branch with invalid SHA",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"new_branch\": \"{{sc_api_mock_branch_name}}\",\r\n  \"parent_commit_SHA\": \"6b13851c99ac021f8fa3ebe498b9cbe01205b58,,\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"1001111\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Create branch with invalid tenant UUID",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"new_branch\": \"{{sc_api_mock_branch_name}}\",\r\n  \"parent_commit_SHA\": \"6b13851c99ac021f8fa3ebe498b9cbe01205b584\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be9604...%3Cd/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"branch_name\",\r\n  \"parent_commit_SHA\": \"6b13851c99ac021f8fa3ebe498b9cbe01205b584\"\r\n}'"
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Delete Branch",
+          "item": [
+            {
+              "name": "api/v3",
+              "item": [
+                {
+                  "name": "[Negative] Use unacceptable symbols in branch_name field",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches/.%2F%20~",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches",
+                        ".%2F%20~"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'DELETE' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches/.%2F%20~' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Enter to the branch_name field name ending with .lock/ or .lock",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches/test.lock",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches",
+                        "test.lock"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'DELETE' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches/test.lock' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Delete branch by user having permissions only to read branch",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches/{{sc_api_mock_branch_name}}",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches",
+                        "{{sc_api_mock_branch_name}}"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'DELETE' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches/5' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Delete branch being unauthorized",
+                  "request": {
+                    "auth": {
+                      "type": "noauth"
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches/{{sc_api_mock_branch_name}}",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches",
+                        "{{sc_api_mock_branch_name}}"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'DELETE' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches/3' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Enter non-existing branch name into branch_name field",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches/{{sc_api_mock_branch_name}}",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches",
+                        "{{sc_api_mock_branch_name}}"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'DELETE' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches/5555' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Enter invalid value to tenant_UUID field",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}1/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches/{{sc_api_mock_branch_name}}",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}1",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches",
+                        "{{sc_api_mock_branch_name}}"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'DELETE' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36%2C%2C...%2C%2C/ift1/1000/branches/5' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Delete branch by user without permissions to interact with the tenant",
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "password",
+                          "value": "sa_vcs_admin13",
+                          "type": "string"
+                        },
+                        {
+                          "key": "username",
+                          "value": "sa_vcs_admin13",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches/5",
+                      "protocol": "https",
+                      "host": [
+                        "ift",
+                        "pd04",
+                        "pvw",
+                        "sbt"
+                      ],
+                      "path": [
+                        "ssd",
+                        "tools",
+                        "sc-ift1",
+                        "api",
+                        "v3",
+                        "repos",
+                        "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                        "ift1",
+                        "1000",
+                        "branches",
+                        "5"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'DELETE' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches/5' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Delete branch by user without permissions to interact with the project",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches/{{sc_api_mock_branch_name}}",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches",
+                        "{{sc_api_mock_branch_name}}"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'DELETE' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches/5' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Delete branch by user without permissions to interact with the repository",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches/{{sc_api_mock_branch_name}}",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches",
+                        "{{sc_api_mock_branch_name}}"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'DELETE' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/privat/branches/5' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Enter non-existing value into tenant_UUID field",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches/{{sc_api_mock_branch_name}}",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches",
+                        "{{sc_api_mock_branch_name}}"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'DELETE' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96028d/ift1/privat/branches/5' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Enter non-existing value into project_name field",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches/{{sc_api_mock_branch_name}}",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches",
+                        "{{sc_api_mock_branch_name}}"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'DELETE' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift12345/privat/branches/5' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Enter non-existing value into repo_name field",
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "password",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        },
+                        {
+                          "key": "username",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/privat777/branches/5",
+                      "protocol": "https",
+                      "host": [
+                        "ift",
+                        "pd04",
+                        "pvw",
+                        "sbt"
+                      ],
+                      "path": [
+                        "ssd",
+                        "tools",
+                        "sc-ift1",
+                        "api",
+                        "v3",
+                        "repos",
+                        "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                        "ift1",
+                        "privat777",
+                        "branches",
+                        "5"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'DELETE' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/privat777/branches/5' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Delete branch by user that is not in the white list of allowed to delete branches",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{token_bearer_jwt}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches/{{sc_api_mock_branch_name}}",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches",
+                        "{{sc_api_mock_branch_name}}"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'DELETE' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1/branches/1' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Get Branch",
+          "item": [
+            {
+              "name": "api/v3",
+              "item": [
+                {
+                  "name": "[Negative] Get branch with non-authorized user",
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "password",
+                          "value": "sa_vcs_user14",
+                          "type": "string"
+                        },
+                        {
+                          "key": "username",
+                          "value": "sa_vcs_user14",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches/test1",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches",
+                        "test1"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/privat/branches/test1' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Enter non-existing value into tenant_UUID field",
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "password",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        },
+                        {
+                          "key": "username",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches/test1",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches",
+                        "test1"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96028d/ift1/privat/branches/test1' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Enter non-existing value into project_name field",
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "password",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        },
+                        {
+                          "key": "username",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches/test1",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches",
+                        "test1"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift12345/1000/branches/test1' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Enter non-existing value into repo_name field",
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "password",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        },
+                        {
+                          "key": "username",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches/test1",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches",
+                        "test1"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/100000000000/branches/test1' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Enter non-existing value into branch_name field",
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "password",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        },
+                        {
+                          "key": "username",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches/5555",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches",
+                        "5555"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches/5555' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Enter non-existing value into project_name field",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches/1",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches",
+                        "1"
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches/1' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Get List Branches",
+          "item": [
+            {
+              "name": "api/v3",
+              "item": [
+                {
+                  "name": "[Negative] Get list branch with 1 symbol in branch_name",
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "password",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        },
+                        {
+                          "key": "username",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches?page=1&limit=10&q=te",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "key": "q",
+                          "value": "te"
+                        }
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches?page=1&limit=10&q=te' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Get list branch with >100 symbols in branch_name",
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "password",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        },
+                        {
+                          "key": "username",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches?page=1&limit=10&q=isdfgdehgkjdehgkjedkjghedkjghkjdgkdjugkdkjfgkjdgkjdkghdjghkjdhbgkjbdkjgbkjdghdjghkjhgbdnjdhngdg64654а6845468468464684684684685666666666666666666666666666666666666jn",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "key": "q",
+                          "value": "isdfgdehgkjdehgkjedkjghedkjghkjdgkdjugkdkjfgkjdgkjdkghdjghkjdhbgkjbdkjgbkjdghdjghkjhgbdnjdhngdg64654а6845468468464684684684685666666666666666666666666666666666666jn"
+                        }
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches?page=1&limit=10&q=isdfgdehgkjdehgkjedkjghedkjghkjdgkdjugkdkjfgkjdgkjdkghdjghkjdhbgkjbdkjgbkjdghdjghkjhgbdnjdhngdgjn' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Enter invalid field page",
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "password",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        },
+                        {
+                          "key": "username",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches?page=0,5&limit=10",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "0,5"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "10"
+                        }
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches?page=1&limit=10&q=te' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Enter invalid field limit",
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "password",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        },
+                        {
+                          "key": "username",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches?page=1&limit=0,9",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "0,9"
+                        }
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches?page=1&limit=10&q=te' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Enter invalid field limit (1 to 10)",
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "password",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        },
+                        {
+                          "key": "username",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches?page=1&limit=2",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "2"
+                        }
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches?page=1&limit=10&q=te' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Enter non-existing value in page (>)",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches?page=15&limit=10",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "15"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "10"
+                        }
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches?page=15&limit=10' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Get list branch by user without permissions",
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "password",
+                          "value": "sa_vcs_user14",
+                          "type": "string"
+                        },
+                        {
+                          "key": "username",
+                          "value": "sa_vcs_user14",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches?page=1&limit=10",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "10"
+                        }
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/privat/branches?page=1&limit=10' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Get list branch with sort by non-existing field name",
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "password",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        },
+                        {
+                          "key": "username",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches?page=1&limit=10&q=test123456",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "key": "q",
+                          "value": "test123456"
+                        }
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches?page=1&limit=10&q=test123456' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Get list branch with sort by non-existing field name like",
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "password",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        },
+                        {
+                          "key": "username",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches?page=1&limit=10&q=te777",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "key": "q",
+                          "value": "te777"
+                        }
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches?page=1&limit=10&q=te777' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Enter non-existing value tenant_UUID field",
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "password",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        },
+                        {
+                          "key": "username",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches?page=1&limit=10&q=test1",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "key": "q",
+                          "value": "test1"
+                        }
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96028d/ift1/1000/branches?page=1&limit=10&q=test1' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Enter non-existing value into project_name field",
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "password",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        },
+                        {
+                          "key": "username",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches?page=1&limit=10",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "10"
+                        }
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift123/1000/branches?page=1&limit=10' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Enter non-existing value into repo_name field",
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "password",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        },
+                        {
+                          "key": "username",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches?page=1&limit=10",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "10"
+                        }
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift12/1000000000/branches?page=1&limit=10' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Get list branch with non-authorized user",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches?page=1&limit=10",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "10"
+                        }
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift12/1000/branches?page=1&limit=10' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "[Negative] Get list branch by invalid field sort",
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "password",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        },
+                        {
+                          "key": "username",
+                          "value": "sa_vcs_admin5",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches?page=1&limit=10&sort=test",
+                      "host": [
+                        "{{sc_api_ift_stand_url_external}}"
+                      ],
+                      "path": [
+                        "{{sc_api_api_v3_prefix}}",
+                        "repos",
+                        "{{sc_api_mock_tenant_id}}",
+                        "{{sc_api_mock_project_name}}",
+                        "{{sc_api_mock_repository_name}}",
+                        "branches"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "key": "sort",
+                          "value": "test"
+                        }
+                      ]
+                    },
+                    "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches?page=1&limit=10&sort=test' \\\r\n  -H 'accept: application/json'"
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Read",
+      "item": [
+        {
+          "name": "api/v3",
+          "item": [
+            {
+              "name": "Get Branch",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches/test1",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v3_prefix}}",
+                    "repos",
+                    "{{sc_api_mock_tenant_id}}",
+                    "{{sc_api_mock_project_name}}",
+                    "{{sc_api_mock_repository_name}}",
+                    "branches",
+                    "test1"
+                  ]
+                },
+                "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches/test1' \\\r\n  -H 'accept: application/json'"
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Get Branches",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has pagination and branches data\", function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('pagination');",
+                  "    pm.expect(response).to.have.property('data');",
+                  "    pm.expect(response.data).to.be.an('array');",
+                  "    if (response.data.length > 0) {",
+                  "        pm.expect(response.data[0]).to.have.property('name');",
+                  "    }",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}/repos/{{sc_api_mock_repository_name}}/branches?q={{sc_api_search_query}}&{{pagination_query_params}}",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_web_v2_prefix}}",
+                "projects",
+                "{{sc_api_mock_project_name}}",
+                "repos",
+                "{{sc_api_mock_repository_name}}",
+                "branches"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "{{sc_api_search_query}}"
+                },
+                {
+                  "key": "{{pagination_query_params}}",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Create",
+      "item": [
+        {
+          "name": "api/v3",
+          "item": [
+            {
+              "name": "Create Branch",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v3_prefix}}",
+                    "repos",
+                    "{{sc_api_mock_tenant_id}}",
+                    "{{sc_api_mock_project_name}}",
+                    "{{sc_api_mock_repository_name}}",
+                    "branches"
+                  ]
+                },
+                "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Create Branch",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 201 for branch creation\", function() {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has valid branch structure\", function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('id');",
+                  "    pm.expect(response).to.have.property('name');",
+                  "    pm.expect(response).to.have.property('commit');",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"{{sc_api_mock_branch_name}}\",\n  \"source\": \"master\"\n}"
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}/repos/{{sc_api_mock_repository_name}}/branches",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_web_v2_prefix}}",
+                "projects",
+                "{{sc_api_mock_project_name}}",
+                "repos",
+                "{{sc_api_mock_repository_name}}",
+                "branches"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Update",
+      "item": [
+        {
+          "name": "Rename Branch",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 204 for branch rename\", function() {",
+                  "    pm.response.to.have.status(204);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"{{sc_api_mock_branch_name}}_edited\"\n}"
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}/repos/{{sc_api_mock_repository_name}}/branches/{{sc_api_mock_branch_name}}",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_web_v2_prefix}}",
+                "projects",
+                "{{sc_api_mock_project_name}}",
+                "repos",
+                "{{sc_api_mock_repository_name}}",
+                "branches",
+                "{{sc_api_mock_branch_name}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Restore Branch",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 201 for branch restore\", function() {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has valid branch structure\", function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('id');",
+                  "    pm.expect(response).to.have.property('name');",
+                  "    pm.expect(response).to.have.property('commit');",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}/repos/{{sc_api_mock_repository_name}}/branches/{{sc_api_mock_branch_name}}/restore",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_web_v2_prefix}}",
+                "projects",
+                "{{sc_api_mock_project_name}}",
+                "repos",
+                "{{sc_api_mock_repository_name}}",
+                "branches",
+                "{{sc_api_mock_branch_name}}",
+                "restore"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Delete",
+      "item": [
+        {
+          "name": "api/v3",
+          "item": [
+            {
+              "name": "Delete Branch",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches/3",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v3_prefix}}",
+                    "repos",
+                    "{{sc_api_mock_tenant_id}}",
+                    "{{sc_api_mock_project_name}}",
+                    "{{sc_api_mock_repository_name}}",
+                    "branches",
+                    "3"
+                  ]
+                },
+                "description": "Generated from cURL: curl -X 'DELETE' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches/3' \\\r\n  -H 'accept: application/json'"
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Delete Branch",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200 for branch deletion\", function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_bearer_jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/projects/{{sc_api_mock_project_name}}/repos/{{sc_api_mock_repository_name}}/branches/{{sc_api_mock_branch_name}}",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_web_v2_prefix}}",
+                "projects",
+                "{{sc_api_mock_project_name}}",
+                "repos",
+                "{{sc_api_mock_repository_name}}",
+                "branches",
+                "{{sc_api_mock_branch_name}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Read List",
+      "item": [
+        {
+          "name": "api/v3",
+          "item": [
+            {
+              "name": "Read List Branches",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches?page=1&limit=10",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v3_prefix}}",
+                    "repos",
+                    "{{sc_api_mock_tenant_id}}",
+                    "{{sc_api_mock_project_name}}",
+                    "{{sc_api_mock_repository_name}}",
+                    "branches"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ]
+                },
+                "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches?page=1&limit=10' \\\r\n  -H 'accept: application/json'"
+              },
+              "response": []
+            },
+            {
+              "name": "Read List ASC",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches?page=1&limit=10&sort=name%3Aasc%2Cdate%3Aasc",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v3_prefix}}",
+                    "repos",
+                    "{{sc_api_mock_tenant_id}}",
+                    "{{sc_api_mock_project_name}}",
+                    "{{sc_api_mock_repository_name}}",
+                    "branches"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name%3Aasc%2Cdate%3Aasc"
+                    }
+                  ]
+                },
+                "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches?page=1&limit=10&sort=name%3Aasc%2Cdate%3Aasc' \\\r\n  -H 'accept: application/json'"
+              },
+              "response": []
+            },
+            {
+              "name": "Read List DESC",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches?page=1&limit=10&sort=name%3Adesc%2Cdate%3Adesc",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v3_prefix}}",
+                    "repos",
+                    "{{sc_api_mock_tenant_id}}",
+                    "{{sc_api_mock_project_name}}",
+                    "{{sc_api_mock_repository_name}}",
+                    "branches"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name%3Adesc%2Cdate%3Adesc"
+                    }
+                  ]
+                },
+                "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches?page=1&limit=10&sort=name%3Adesc%2Cdate%3Adesc' \\\r\n  -H 'accept: application/json'"
+              },
+              "response": []
+            },
+            {
+              "name": "Read List LIKE",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "sa_vcs_admin5",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches?page=1&limit=10&q=te",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v3_prefix}}",
+                    "repos",
+                    "{{sc_api_mock_tenant_id}}",
+                    "{{sc_api_mock_project_name}}",
+                    "{{sc_api_mock_repository_name}}",
+                    "branches"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "q",
+                      "value": "te"
+                    }
+                  ]
+                },
+                "description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches?page=1&limit=10&q=te' \\\r\n  -H 'accept: application/json'"
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

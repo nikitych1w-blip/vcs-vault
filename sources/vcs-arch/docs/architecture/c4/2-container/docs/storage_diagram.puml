@@ -1,0 +1,57 @@
+@startuml Services
+
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+!include ./../../../../../sources/container_units/iam.puml
+!include ./../../../../../sources/container_units/ow.puml
+!include ./../../../../../sources/container_units/sc.puml
+!include ./../../../../../sources/container_units/syngx.puml
+!include ./../../../../../sources/container_units/ingress.puml
+!include ./../../../../../sources/container_units/gitaly.puml
+!include ./../../../../../sources/container_units/styles.puml
+
+title Верхнеуровневая диаграмма взаимодействия пользователей, SourceControl и хранилищ
+
+Person(user, "Пользователь", "Использует систему через браузер")
+Person(admin, "Администратор", "Использует систему через браузер")
+
+System_Boundary(nginx_inst, "SynGX Instance") {
+    Syngx_SC_App(nginx)
+}
+
+System_Boundary(sc, "SC Instance") {
+    SC_App(sc_backend)
+    SC_MFE_App(sc_frontend)
+}
+
+System_Boundary(external_storage, "External Storages") {
+Gitaly_App(gitaly)
+    ContainerDb(postgre, "Platform V Pangolin", "PostgreSQL", "Database")
+    ContainerDb(s3_storage, "Managed S3", "S3", "Shared storage")
+    ContainerDb(redis, "Platform V Radish", "Redis", "Shared cache")
+    ContainerDb(kafka, "Platform V Corax", "Kafka", "Message Broker")
+    ContainerDb(telemetry, "Telemetry Collector", "", "Telemetry Collector")
+}
+
+' User operations
+Rel(user, nginx, "Открытие страниц нового фронта")
+Rel(admin, nginx, "Открытие страниц нового фронта")
+Rel(user, nginx, "Открытие страниц старого фронта или запрос api")
+Rel(admin, nginx, "Открытие страниц старого фронта или запрос api")
+
+' Nginx operations
+Rel(nginx, sc_frontend, "Открытие страниц нового фронта")
+Rel(nginx, sc_backend, "Открытие страниц старого фронта или запрос api")
+
+' Frontend -> backend
+Rel(sc_frontend, sc_backend, "Получение данных")
+
+' Storages usage
+Rel(sc_backend, gitaly, "Работа с репозиториями")
+Rel(sc_backend, postgre, "Работа с данными")
+Rel(sc_backend, s3_storage, "Работа с статичными данными")
+Rel(sc_backend, redis, "Работа с кэшируемыми данными")
+Rel(sc_backend, kafka, "Отправка событий")
+Rel(sc_backend, telemetry, "Отправка трейсинга, метрик")
+
+@enduml

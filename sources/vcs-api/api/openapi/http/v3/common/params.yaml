@@ -1,0 +1,105 @@
+components:
+  parameters:
+    Tenant:
+      name: tenant
+      in: path
+      required: true
+      description: Tenant identifier
+      schema:
+        type: string
+
+    Project:
+      name: project
+      in: path
+      required: true
+      description: Project identifier
+      schema:
+        type: string
+
+    Repo:
+      name: repo
+      in: path
+      required: true
+      description: Repository identifier
+      schema:
+        type: string
+
+    BranchName:
+      name: branch_name
+      in: path
+      required: true
+      description: Branch name
+      schema:
+        type: string
+
+    Username:
+      name: username
+      in: path
+      required: true
+      description: Username
+      schema:
+        type: string
+
+    Path:
+      name: path
+      in: path
+      required: true
+      description: File path (may include slashes; greedy match in router)
+      schema:
+        type: string
+
+    Metric:
+      name: metric
+      in: path
+      required: true
+      description: Metric name
+      schema:
+        type: string
+
+    SystemLabel:
+      name: label_name
+      in: path
+      required: true
+      description: Название системной метки (в текущей версии только `tier0`)
+      schema:
+        type: string
+        enum:
+          - tier0
+        example: tier0
+
+    PullRequestIndex:
+      name: index
+      in: path
+      required: true
+      description: Pull request index
+      schema:
+        type: integer
+        format: int64
+
+    CommitSha:
+      name: commit_sha
+      in: path
+      required: true
+      description: Commit SHA (7–40 hex characters)
+      schema:
+        type: string
+        pattern: '^[0-9a-f]{7,40}$'
+        minLength: 7
+        maxLength: 40
+
+    CommentId:
+      name: comment_id
+      in: path
+      required: true
+      description: Comment identifier
+      schema:
+        type: integer
+        format: int64
+
+    WildcardPattern:
+      name: pattern
+      in: path
+      required: true
+      description: Wildcard pattern (router uses `/*`)
+      schema:
+        type: string

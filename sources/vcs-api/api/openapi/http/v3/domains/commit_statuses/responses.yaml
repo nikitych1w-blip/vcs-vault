@@ -1,0 +1,19 @@
+components:
+  responses:
+    CommitStatusListResponse:
+      description: Список статусов коммита
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/CommitStatusListResponse'
+    CommitStatusCreateResponse:
+      description: Статус коммита создан или обновлён
+      headers:
+        Location:
+          schema:
+            type: string
+          description: URL статусов коммита
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/CommitStatusInfo'

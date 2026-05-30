@@ -1,0 +1,69 @@
+ProjectInfo:
+  get:
+    tags:
+      - Projects
+    summary: Получение информации о проекте
+    operationId: GetProjectByName
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/ProjectResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+ProjectAction:
+  post:
+    tags:
+      - Projects
+    summary: Подписаться/отписаться текущему пользователю от проекта
+    operationId: ProjectSubscribeAction
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: './params.yaml#/components/parameters/action'
+    responses:
+      '204':
+        $ref: '../../common/success.yaml#/components/responses/NoContent'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+ProjectUsers:
+  get:
+    tags:
+      - Projects
+    summary: Список участников проекта
+    operationId: GetProjectUsers
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/q'
+      - $ref: '../../common/params.yaml#/components/parameters/page'
+      - $ref: '../../common/params.yaml#/components/parameters/limit'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/ProjectUsersResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

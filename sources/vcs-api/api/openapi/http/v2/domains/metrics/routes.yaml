@@ -1,0 +1,91 @@
+InternalMetrics:
+  get:
+    tags: [metrics]
+    summary: Get internal metric counter
+    operationId: v2GetInternalMetricCounter
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/RepoKey'
+      - $ref: '../../common/params.yaml#/components/parameters/TenantKey'
+      - $ref: '../../common/params.yaml#/components/parameters/ProjectKey'
+      - $ref: '../../common/params.yaml#/components/parameters/MetricKey'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/InternalMetricResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+ExternalMetrics:
+  get:
+    tags: [metrics]
+    summary: Get external metric counter (reuse_metric)
+    operationId: v2GetExternalMetricCounter
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/RepoKey'
+      - $ref: '../../common/params.yaml#/components/parameters/TenantKey'
+      - $ref: '../../common/params.yaml#/components/parameters/ProjectKey'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/ExternalMetricResponse'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  post:
+    tags: [metrics]
+    summary: Set external metric counter (reuse_metric)
+    operationId: v2SetExternalMetricCounter
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/RepoKey'
+      - $ref: '../../common/params.yaml#/components/parameters/TenantKey'
+      - $ref: '../../common/params.yaml#/components/parameters/ProjectKey'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/SetExternalMetricRequest'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/ExternalMetricSetResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  delete:
+    tags: [metrics]
+    summary: Delete external metric counter (reuse_metric)
+    operationId: v2DeleteExternalMetricCounter
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/RepoKey'
+      - $ref: '../../common/params.yaml#/components/parameters/TenantKey'
+      - $ref: '../../common/params.yaml#/components/parameters/ProjectKey'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/ExternalMetricDeleteResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

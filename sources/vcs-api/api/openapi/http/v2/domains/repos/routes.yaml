@@ -1,0 +1,116 @@
+ProjectsRepos:
+  get:
+    tags: [repos]
+    summary: Get repository by repo key
+    operationId: v2GetRepo
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/RepoKey'
+      - $ref: '../../common/params.yaml#/components/parameters/TenantKey'
+      - $ref: '../../common/params.yaml#/components/parameters/ProjectKey'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/RepoGetResponse'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  post:
+    tags: [repos]
+    summary: Create repo in tenant org project (v2)
+    operationId: v2CreateRepo
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/CreateRepoOptions'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/RepoCreateResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+RepoMarksCodehub:
+  post:
+    tags: [repos]
+    summary: Set CodeHub mark for repository
+    operationId: v2SetRepoCodehubMark
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/SetMarkRequest'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/RepoCodehubMarkSetResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  delete:
+    tags: [repos]
+    summary: Delete CodeHub mark for repository
+    operationId: v2DeleteRepoCodehubMark
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/DeleteMarkRequest'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/RepoCodehubMarkDeleteResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+RepoKey:
+  get:
+    tags: [repos]
+    summary: Get repository key (repokey)
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/TenantKey'
+      - $ref: '../../common/params.yaml#/components/parameters/ProjectKey'
+      - $ref: '../../common/params.yaml#/components/parameters/RepositoryName'
+    operationId: v2GetRepoKey
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/RepoKeyResponse'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

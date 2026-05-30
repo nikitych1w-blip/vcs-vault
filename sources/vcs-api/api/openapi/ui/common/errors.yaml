@@ -1,0 +1,79 @@
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      required:
+        - type
+        - title
+        - detail
+      properties:
+        type:
+          type: string
+          nullable: true
+          example: "null"
+          description: "URI типа ошибки (временно null)"
+        title:
+          type: string
+          example: "Некорректный запрос"
+          description: "Краткое название ошибки"
+        detail:
+          type: string
+          example: "Проверьте корректность переданных данных"
+          description: "Подробное описание ошибки"
+        validation:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                example: "name"
+                description: "Имя поля, в котором произошла ошибка"
+              error:
+                type: string
+                example: "Ошибка в имени"
+                description: "Описание ошибки для конкретного поля"
+          description: "Массив ошибок валидации (если есть)"
+
+  responses:
+    BadRequest:
+      description: Некорректный запрос
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+
+    Unauthorized:
+      description: Требуется аутентификация
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+
+    Forbidden:
+      description: Доступ запрещен
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+
+    NotFound:
+      description: Ресурс не найден
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+
+    Conflict:
+      description: Конфликт (например, подписка уже существует с теми же данными)
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+
+    ServerError:
+      description: Ошибка сервера
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"

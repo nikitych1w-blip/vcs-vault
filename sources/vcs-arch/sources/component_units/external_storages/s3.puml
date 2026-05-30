@@ -1,0 +1,16 @@
+!definelong S3_Component(input_id)
+System_Boundary(external_storage, "External Storages") {
+    Container(input_id, "Managed S3", "S3", "Shared storage")
+    ContainerDb(s3_attachments, "Вложения", "S3", "Файлы из issues/PR")
+    ContainerDb(s3_avatars, "Аватары", "S3", "Изображения пользователей и репозиториев")
+    ContainerDb(s3_archive, "Архивы", "S3", "Архивы репозиториев")
+    ContainerDb(s3_temp, "Временные файлы", "S3", "Временные файлы при загрузке на SC")
+}
+
+'S3 relationships
+Rel(input_id, s3_attachments, "Запрос к вложениям")
+Rel(input_id, s3_avatars, "Запрос аватаров")
+Rel(input_id, s3_archive, "Запрос архивам")
+Rel(input_id, s3_temp, "Сохранение временных загружаемых файлами")
+
+!enddefinelong

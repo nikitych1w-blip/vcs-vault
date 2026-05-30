@@ -1,0 +1,250 @@
+{
+  "info": {
+    "_postman_id": "af8cd21d-e54a-407e-87c8-8dea34449952",
+    "name": "BranchProtection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "Создание настроек",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"branch_name\": \"main2\",\r\n  \"push_settings\": {\r\n    \"require_push_whitelist\": true,\r\n    \"push_whitelist_usernames\": [\r\n      //\"sa_vcs_admin5\"\r\n    ],\r\n    \"allow_push_deploy_keys\": true\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-vp/api/v3/repos/{{tenant}}/{{project}}/{{repo}}/branch_protections",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-vp",
+            "api",
+            "v3",
+            "repos",
+            "{{tenant}}",
+            "{{project}}",
+            "{{repo}}",
+            "branch_protections"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Изменение настроек",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"branch_name\": \"main\",\r\n  \"push_settings\": {\r\n    \"require_push_whitelist\": true,\r\n    \"push_whitelist_usernames\": [\r\n      //\"sa_vcs_admin5\"\r\n    ],\r\n    \"allow_push_deploy_keys\": false\r\n  },\r\n  \"force_push_settings\": {\r\n    \"require_force_push_whitelist\": false,\r\n    \"force_push_whitelist_usernames\": [\r\n      \"sa_vcs_admin5\"\r\n    ],\r\n    \"allow_force_push_deploy_keys\": true\r\n  },\r\n  \"deletion_settings\": {\r\n    \"require_deletion_whitelist\": true,\r\n    \"branch_deletion_whitelist_usernames\": [      \r\n    ],\r\n    \"allow_deletion_deploy_keys\": true\r\n  },\r\n  \"additional_restrictions\": {\r\n    \"protected_file_patterns\": \"aa\"\r\n    \r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-vp/api/v3/repos/{{tenant}}/{{project}}/{{repo}}/branch_protections/main",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-vp",
+            "api",
+            "v3",
+            "repos",
+            "{{tenant}}",
+            "{{project}}",
+            "{{repo}}",
+            "branch_protections",
+            "main"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Удаление настроек",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-vp/api/v3/repos/{{tenant}}/{{project}}/{{repo}}/branch_protections/main",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-vp",
+            "api",
+            "v3",
+            "repos",
+            "{{tenant}}",
+            "{{project}}",
+            "{{repo}}",
+            "branch_protections",
+            "main"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Получение правил защиты веток",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-vp/api/v3/repos/{{tenant}}/{{project}}/{{repo}}/branch_protections",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-vp",
+            "api",
+            "v3",
+            "repos",
+            "{{tenant}}",
+            "{{project}}",
+            "{{repo}}",
+            "branch_protections"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+!definelong Cluster_Gitaly_App(id, praefect_id)
+System_Boundary(gitaly_inst, "Gitaly Instance") {
+    ContainerDb(id, "Gitaly x3", "Go", "Хранилище для работы с git репозиториями", $tags="app")
+    Container(praefect_id, "Praefect", "Go", "Маршрутизатор запросов", $tags="app")
+    ContainerDb(praefect_db, "Praefect DB", "PostgreSQL", "База данных Praefect")
+}
+
+Rel(praefect_id, praefect_db, "Получение/Запись данных о транзакциях и репозиториях")
+Rel(praefect_id, id, "Работа с репозиториями")
+!enddefinelong
+
+!definelong Gitaly_App(id)
+ContainerDb(id, "Gitaly", "Go", "Хранилище для работы с git репозиториями", $tags="app")
+!enddefinelong

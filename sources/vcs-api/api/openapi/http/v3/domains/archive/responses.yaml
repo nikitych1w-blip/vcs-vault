@@ -1,0 +1,19 @@
+components:
+  responses:
+    ArchiveDownloadResponse:
+      description: Бинарный поток архива репозитория
+      content:
+        application/zip:
+          schema:
+            type: string
+            format: binary
+        application/gzip:
+          schema:
+            type: string
+            format: binary
+      headers:
+        Content-Disposition:
+          description: Имя файла архива
+          schema:
+            type: string
+            example: 'attachment; filename="repo-main.zip"'

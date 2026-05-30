@@ -1,9 +1,0 @@
-#lv4 
-#ПАО
-#SC
-#UI
-#FE
-#profile
-#settings 
-#ssh
-#gpg

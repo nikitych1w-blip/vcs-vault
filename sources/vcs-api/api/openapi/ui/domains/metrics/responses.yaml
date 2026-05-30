@@ -1,0 +1,8 @@
+components:
+  responses:
+    MetricsResponse:
+      description: Результат проверки репозитория инструментом Sonarqube
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/Metrics'

@@ -1,0 +1,123 @@
+AccessProject:
+  get:
+    summary: Получить права доступа к конкретному проекту
+    description: Возвращает информацию о правах пользователя на конкретный проект по его имени
+    tags:
+      - Access
+    operationId: GetAccessProject
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/AccessProjectResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+AccessProjects:
+  post:
+    summary: Получить права доступа к списку проектов
+    description: Возвращает информацию о правах пользователя на несколько проектов по их Name
+    tags:
+      - Access
+    operationId: GetAccessProjectList
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/AccessProjectsPayload'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/AccessProjectsResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+AccessRepo:
+  get:
+    summary: Получить права доступа к конкретному репозиторию
+    description: Возвращает информацию о правах пользователя на конкретный репозиторий по его имени
+    tags:
+      - Access
+    operationId: GetAccessRepo
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/AccessRepoResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+AccessProjectsRepos:
+  get:
+    summary: Получить права доступа к списку репозиториев проекта
+    description: Возвращает информацию о правах пользователя на все репозитории в рамках проекта
+    tags:
+      - Access
+    operationId: GetAccessProjectsReposList
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/AccessReposResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+AccessRepos:
+  post:
+    summary: Получить права доступа ко всем репозиториям
+    description: Возвращает информацию о правах пользователя на несколько репозиториев
+    tags:
+      - Access
+    operationId: GetAccessReposList
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/AccessReposPayload'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/AccessReposResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

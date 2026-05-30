@@ -1,0 +1,8 @@
+components:
+  responses:
+    ConfigurationResponse:
+      description: Конфигурация проекта
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/Configuration'

@@ -1,0 +1,15 @@
+headers:
+  X-Request-ID:
+    description: |
+      Уникальный идентификатор запроса. 
+      **Обязательно сохраняйте это значение для обращения в техническую поддержку.**
+    schema:
+      type: string
+      format: uuid
+    example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+  Location:
+    description: "URL созданного ресурса: repos/a1b2c3d4-e5f6-7890-abcd-ef1234567890/my_project/my_repo/pulls/45/comments"
+    schema:
+      type: string
+      format: uri
+    example: repos/a1b2c3d4-e5f6-7890-abcd-ef1234567890/my_project/my_repo/pulls/45/comments

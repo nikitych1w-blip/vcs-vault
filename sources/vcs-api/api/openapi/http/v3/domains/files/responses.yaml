@@ -1,0 +1,33 @@
+components:
+  responses:
+    FileRawResponse:
+      description: Содержимое файла
+      content:
+        text/plain:
+          schema:
+            type: string
+            format: binary
+    FileInfoResponse:
+      description: Информация о файлах
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/FileListResponse'
+    FileCreateResponse:
+      description: Файл успешно создан
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/FileResponse'
+    FileUpdateResponse:
+      description: Файл успешно обновлён
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/FileResponse'
+    FileDeleteResponse:
+      description: Файл успешно удалён
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/FileResponse'

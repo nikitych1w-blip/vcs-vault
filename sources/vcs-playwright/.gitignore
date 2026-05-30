@@ -1,0 +1,57 @@
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+playwright/.auth
+certs/
+
+# Allure
+allure-results/
+allure-report/
+
+# TC Integration reports
+playwright-e2e/core/utils/tcIntegrationModule/report/
+
+# Ignore node_modules directory
+node_modules
+
+# Ignore local development files
+.venv
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# tests
+test-results
+cucumber-report
+**/.features-gen/**/*.spec.js
+
+# WebStorm
+.idea
+.cursor
+
+# Ignore log files
+*.log
+npm-debug.log
+
+# Ignore generated files
+build/
+dist/
+*.bundle.js
+
+# Ignore any other build or configuration files
+*.swp
+.DS_Store
+
+# Ignore others files
+.vscode
+
+# nx
+.nx
+update.sh
+
+.npmrc
+.roomodes

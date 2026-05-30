@@ -1,0 +1,15 @@
+!definelong Cluster_SC_App(id)
+Container(id, "SourceControl x3", "BE + FE", "SC Core, GoTemplates, GiteaBridgeMFE, ReactAppMFE", $tags="app")
+!enddefinelong
+
+!definelong SC_App(id)
+Container(id, "SourceControl", "BE + FE", "SC Core, GoTemplates, GiteaBridgeMFE, ReactAppMFE", $tags="app")
+!enddefinelong
+
+!definelong Cluster_SC_MFE_App(id)
+Container(id, "SourceControl MFE React x3", "React", "Новый UI", $tags="app")
+!enddefinelong
+
+!definelong SC_MFE_App(id)
+Container(id, "SourceControl MFE", "React", "Новый UI", $tags="app")
+!enddefinelong

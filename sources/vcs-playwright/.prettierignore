@@ -1,0 +1,21 @@
+# Playwright Specific
+node_modules/
+test-results/
+playwright-report
+
+# Allure
+/allure-report/
+/allure-results/
+
+# IDE - VSCode
+.vscode/*
+
+# System Files
+.DS_Store
+Thumbs.db
+{"mode":"full","isActive":false}
+
+#gitea openapi
+spec
+tests/generated/
+src/api/generated/types/

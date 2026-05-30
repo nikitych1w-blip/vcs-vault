@@ -1,0 +1,44 @@
+@startuml Services
+
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+!include ./../../../../../sources/component_units/sc.puml
+!include ./../../../../../sources/component_units/service.puml
+!include ./../../../../../sources/component_units/interface.puml
+!include ./../../../../../sources/component_units/styles.puml
+!include ./../../../../../sources/component_units/external_storages/collector.puml
+
+title Диаграмма взаимодействия SourceControl c TelemetryCollector
+
+System_Boundary(sc, "SC Backend") {
+    SC_Component_App(sc_app)
+
+
+    Service_SC(log_service, "Log Service", "Сервис для работы с логами")
+    Service_SC(audit_service, "Audit Service", "Сервис для работы с аудитом")
+    Service_SC(metric_service, "Metric Service", "Сервис для работы с метриками")
+    Service_SC(trace_service, "Trace Service", "Сервис для работы с трейсами")
+}
+
+ContainerDb(log_storage, "Логи", "Log Storage", "Запись и хранение логов (e.g. stdout)")
+
+Collector_Component(logs_collector, logs_collector_storage, "LogCollector", "Log Collector Storage", "Логи", "Хранение логов", "Сохранение логов")
+Collector_Component(audit_collector, audit_collector_storage, "AuditCollector", "Audit Collector Storage", "Аудит", "Хранение аудита", "Сохранение аудита")
+Collector_Component(metric_collector, metric_collector_storage, "MetricCollector", "Metric Collector Storage", "Метрики", "Хранение метрик", "Сохранение метрик")
+Collector_Component(tracing_collector, tracing_collector_storage, "TracingCollector", "Tracing Collector Storage", "Трейсы", "Хранение трейсов", "Сохранение трейсинга")
+
+' Service usage
+Rel(sc_app, log_service, "Логирование")
+Rel(sc_app, audit_service, "Аудирование")
+Rel(sc_app, metric_service, "Сбор метрик")
+Rel(sc_app, trace_service, "Трейсинг операций")
+
+'TelemetryCollector usage
+Rel(log_service, log_storage, "Отправка логов", "stdout")
+Rel(audit_service, log_storage, "Отправка аудита", "stdout")
+Rel_U(logs_collector, log_storage, "Скраппинг логов", "tail/file read")
+Rel_U(audit_collector, log_storage, "Скраппинг аудита", "tail/file read")
+Rel(metric_collector, metric_service, "Получение метрик", "http")
+Rel(trace_service, tracing_collector, "Отправка трейсинга", "http/grpc")
+
+@enduml

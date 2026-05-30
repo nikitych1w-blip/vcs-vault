@@ -1,0 +1,1820 @@
+{
+  "info": {
+    "_postman_id": "c5a68a06-dfbd-42a8-a2b2-8faafc4a68d6",
+    "name": "SourceControl API v2 Admin",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "SourceControl REST API v2"
+  },
+  "item": [
+    {
+      "name": "Admin",
+      "description": "Административные операции",
+      "item": [
+        {
+          "name": "Get user (admin)",
+          "request": {
+            "url": {
+              "path": [
+                "admin",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user_key",
+                  "value": "<string>",
+                  "description": "(Required) User login name"
+                }
+              ],
+              "variable": [],
+              "raw": "{{baseUrl}}/admin/users?user_key=<string>"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "name": "Информация о пользователе",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users?user_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 954,\n  \"user_key\": \"string\",\n  \"login_name\": \"string\",\n  \"email\": \"5RJ7kZu@WdVGyZI.ywsv\",\n  \"visibility\": 9825,\n  \"full_name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users?user_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных.\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Имя должно содержать от 1 до 50 символов.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users?user_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users?user_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users?user_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ресурс не найден\",\n  \"detail\": \"Запрашиваемый ресурс не существует.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users?user_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Create user (admin)",
+          "request": {
+            "url": {
+              "path": [
+                "admin",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [],
+              "raw": "{{baseUrl}}/admin/users"
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"full_name\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"visibility\": \"<string>\",\n  \"restricted\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Пользователь создан",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"full_name\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"visibility\": \"<string>\",\n  \"restricted\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6793,\n  \"user_key\": \"string\",\n  \"name\": \"string\",\n  \"email\": \"E1nfVZF3STlo@cIhtuZXCtlDvhIKgG.as\",\n  \"full_name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"full_name\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"visibility\": \"<string>\",\n  \"restricted\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных.\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Имя должно содержать от 1 до 50 символов.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"full_name\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"visibility\": \"<string>\",\n  \"restricted\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"full_name\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"visibility\": \"<string>\",\n  \"restricted\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Конфликт данных",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"full_name\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"visibility\": \"<string>\",\n  \"restricted\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Конфликт данных\",\n  \"detail\": \"Ресурс с такими параметрами уже существует.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"full_name\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"visibility\": \"<string>\",\n  \"restricted\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Add SSH key for user (admin)",
+          "request": {
+            "url": {
+              "path": [
+                "admin",
+                "users",
+                "keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user_key",
+                  "value": "<string>",
+                  "description": "(Required) User login name"
+                }
+              ],
+              "variable": [],
+              "raw": "{{baseUrl}}/admin/users/keys?user_key=<string>"
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"key\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "SSH ключ добавлен",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users/keys?user_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4614,\n  \"fingerprint\": \"string\",\n  \"key_type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users/keys?user_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных.\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Имя должно содержать от 1 до 50 символов.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users/keys?user_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users/keys?user_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users/keys?user_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ресурс не найден\",\n  \"detail\": \"Запрашиваемый ресурс не существует.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users/keys?user_key=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Delete SSH key for user (admin)",
+          "request": {
+            "url": {
+              "path": [
+                "admin",
+                "users",
+                "keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user_key",
+                  "value": "<string>",
+                  "description": "(Required) User login name"
+                },
+                {
+                  "disabled": false,
+                  "key": "title",
+                  "value": "<string>",
+                  "description": "(Required) SSH key title"
+                }
+              ],
+              "variable": [],
+              "raw": "{{baseUrl}}/admin/users/keys?user_key=<string>&title=<string>"
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "name": "SSH ключ удалён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "title",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users/keys?user_key=<string>&title=<string>"
+                },
+                "method": "DELETE"
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "title",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users/keys?user_key=<string>&title=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных.\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Имя должно содержать от 1 до 50 символов.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "title",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users/keys?user_key=<string>&title=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "title",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users/keys?user_key=<string>&title=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE"
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "title",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users/keys?user_key=<string>&title=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ресурс не найден\",\n  \"detail\": \"Запрашиваемый ресурс не существует.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "title",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/users/keys?user_key=<string>&title=<string>"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE"
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Get privileges",
+          "request": {
+            "url": {
+              "path": [
+                "admin",
+                "privileges"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [],
+              "raw": "{{baseUrl}}/admin/privileges"
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"tenant_key\": \"<string>\",\n    \"project_key\": \"<string>\",\n    \"user_key\": \"<string>\"\n  },\n  {\n    \"tenant_key\": \"<string>\",\n    \"project_key\": \"<string>\",\n    \"user_key\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Список привилегий",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "privileges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/privileges"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"tenant_key\": \"<string>\",\n    \"project_key\": \"<string>\",\n    \"user_key\": \"<string>\"\n  },\n  {\n    \"tenant_key\": \"<string>\",\n    \"project_key\": \"<string>\",\n    \"user_key\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"granted\": [\n    {\n      \"user_key\": \"string\",\n      \"privilege_groups\": [\n        {\n          \"tenant_key\": \"string\",\n          \"project_key\": \"string\",\n          \"privilege_group\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"tenant_key\": \"string\",\n          \"project_key\": \"string\",\n          \"privilege_group\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    },\n    {\n      \"user_key\": \"string\",\n      \"privilege_groups\": [\n        {\n          \"tenant_key\": \"string\",\n          \"project_key\": \"string\",\n          \"privilege_group\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"tenant_key\": \"string\",\n          \"project_key\": \"string\",\n          \"privilege_group\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "privileges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/privileges"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"tenant_key\": \"<string>\",\n    \"project_key\": \"<string>\",\n    \"user_key\": \"<string>\"\n  },\n  {\n    \"tenant_key\": \"<string>\",\n    \"project_key\": \"<string>\",\n    \"user_key\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных.\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Имя должно содержать от 1 до 50 символов.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "privileges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/privileges"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"tenant_key\": \"<string>\",\n    \"project_key\": \"<string>\",\n    \"user_key\": \"<string>\"\n  },\n  {\n    \"tenant_key\": \"<string>\",\n    \"project_key\": \"<string>\",\n    \"user_key\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "privileges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/privileges"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"tenant_key\": \"<string>\",\n    \"project_key\": \"<string>\",\n    \"user_key\": \"<string>\"\n  },\n  {\n    \"tenant_key\": \"<string>\",\n    \"project_key\": \"<string>\",\n    \"user_key\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ресурс не найден",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "privileges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/privileges"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"tenant_key\": \"<string>\",\n    \"project_key\": \"<string>\",\n    \"user_key\": \"<string>\"\n  },\n  {\n    \"tenant_key\": \"<string>\",\n    \"project_key\": \"<string>\",\n    \"user_key\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ресурс не найден\",\n  \"detail\": \"Запрашиваемый ресурс не существует.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "privileges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/privileges"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"tenant_key\": \"<string>\",\n    \"project_key\": \"<string>\",\n    \"user_key\": \"<string>\"\n  },\n  {\n    \"tenant_key\": \"<string>\",\n    \"project_key\": \"<string>\",\n    \"user_key\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        },
+        {
+          "name": "Apply privileges",
+          "request": {
+            "url": {
+              "path": [
+                "admin",
+                "privileges"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [],
+              "raw": "{{baseUrl}}/admin/privileges"
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apply_privilege_groups\": {\n    \"grant\": [\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"revoke\": [\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Привилегии применены",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "privileges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/privileges"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apply_privilege_groups\": {\n    \"grant\": [\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"revoke\": [\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applied_status\": {\n    \"granted\": [\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"revoked\": [\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"errors\": {\n    \"grant\": [\n      {\n        \"user_key\": \"string\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"string\",\n            \"project_key\": \"string\",\n            \"privilege_group\": \"string\",\n            \"error\": \"string\"\n          },\n          {\n            \"tenant_key\": \"string\",\n            \"project_key\": \"string\",\n            \"privilege_group\": \"string\",\n            \"error\": \"string\"\n          }\n        ]\n      },\n      {\n        \"user_key\": \"string\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"string\",\n            \"project_key\": \"string\",\n            \"privilege_group\": \"string\",\n            \"error\": \"string\"\n          },\n          {\n            \"tenant_key\": \"string\",\n            \"project_key\": \"string\",\n            \"privilege_group\": \"string\",\n            \"error\": \"string\"\n          }\n        ]\n      }\n    ],\n    \"revoke\": [\n      {\n        \"user_key\": \"string\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"string\",\n            \"project_key\": \"string\",\n            \"privilege_group\": \"string\",\n            \"error\": \"string\"\n          },\n          {\n            \"tenant_key\": \"string\",\n            \"project_key\": \"string\",\n            \"privilege_group\": \"string\",\n            \"error\": \"string\"\n          }\n        ]\n      },\n      {\n        \"user_key\": \"string\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"string\",\n            \"project_key\": \"string\",\n            \"privilege_group\": \"string\",\n            \"error\": \"string\"\n          },\n          {\n            \"tenant_key\": \"string\",\n            \"project_key\": \"string\",\n            \"privilege_group\": \"string\",\n            \"error\": \"string\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Некорректный запрос",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "privileges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/privileges"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apply_privilege_groups\": {\n    \"grant\": [\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"revoke\": [\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Некорректный запрос\",\n  \"detail\": \"Проверьте корректность переданных данных.\",\n  \"validation\": [\n    {\n      \"field\": \"name\",\n      \"error\": \"Имя должно содержать от 1 до 50 символов.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Требуется аутентификация",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "privileges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/privileges"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apply_privilege_groups\": {\n    \"grant\": [\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"revoke\": [\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Требуется аутентификация\",\n  \"detail\": \"Токен доступа отсутствует или недействителен.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Доступ запрещён",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "privileges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/privileges"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apply_privilege_groups\": {\n    \"grant\": [\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"revoke\": [\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Доступ запрещён\",\n  \"detail\": \"Недостаточно прав для выполнения операции.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "name": "Ошибка сервера",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "privileges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [],
+                  "raw": "{{baseUrl}}/admin/privileges"
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apply_privilege_groups\": {\n    \"grant\": [\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      }\n    ],\n    \"revoke\": [\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"user_key\": \"<string>\",\n        \"privilege_groups\": [\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          },\n          {\n            \"tenant_key\": \"<string>\",\n            \"project_key\": \"<string>\",\n            \"privilege_group\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": \"Ошибка сервера\",\n  \"detail\": \"Произошла внутренняя ошибка. Повторите запрос позже.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  }
+}

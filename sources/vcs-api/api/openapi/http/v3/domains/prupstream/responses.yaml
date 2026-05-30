@@ -1,0 +1,16 @@
+components:
+  responses:
+    PRUpstreamGetResponse:
+      description: Настройки PR upstream
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRUpstreamSettingsResponse'
+    PRUpstreamCreateResponse:
+      description: Настройки PR upstream сохранены
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRUpstreamSettingsResponse'
+    PRUpstreamDeleteResponse:
+      description: Настройки PR upstream удалены

@@ -1,0 +1,4 @@
+package: generic
+output: models/events/elk/generic/context.gen.go
+generate:
+  models: true

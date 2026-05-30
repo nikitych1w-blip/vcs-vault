@@ -1,0 +1,26 @@
+ui:
+  baseUrl: 'https://ift.pd04.pvw.sbt/ssd/tools/{{ config:sc.name }}/'
+  proxiedBaseUrl: '{{ config:ui.baseUrl }}prefix/'
+sc:
+  admin:
+    name: '{{ vault:sourcecontrol/at/ow/ift/coordinator:username }}'
+    password: '{{ vault:sourcecontrol/at/ow/ift/coordinator:password }}'
+  users:
+    - name: '{{ vault:sourcecontrol/at/ow/ift/user-1:username }}'
+      password: '{{ vault:sourcecontrol/at/ow/ift/user-1:password }}'
+    - name: '{{ vault:sourcecontrol/at/ow/ift/user-2:username }}'
+      password: '{{ vault:sourcecontrol/at/ow/ift/user-2:password }}'
+    - name: '{{ vault:sourcecontrol/at/ow/ift/user-3:username }}'
+      password: '{{ vault:sourcecontrol/at/ow/ift/user-3:password }}'
+    - name: '{{ vault:sourcecontrol/at/ow/ift/user-4:username }}'
+      password: '{{ vault:sourcecontrol/at/ow/ift/user-4:password }}'
+    - name: '{{ vault:sourcecontrol/at/ow/ift/user-5:username }}'
+      password: '{{ vault:sourcecontrol/at/ow/ift/user-5:password }}'
+ow:
+  baseUrl: https://ift.pd04.pvw.sbt/ssd/external/ow/ssd
+  tools:
+    sc: '{{ config:sc.name }}'
+    tt: tasktracker-g1
+  coordinator:
+    name: '{{ vault:sourcecontrol/at/ow/ift/coordinator:username }}'
+    password: '{{ vault:sourcecontrol/at/ow/ift/coordinator:password }}'

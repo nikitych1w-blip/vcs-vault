@@ -1,0 +1,301 @@
+ReposSearch:
+  get:
+    tags:
+      - Repository
+    summary: Поиск репозиториев (с фильтрацией и пагинацией)
+    operationId: GetReposSearch
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/q'
+      - $ref: './params.yaml#/components/parameters/language'
+      - $ref: '../../common/params.yaml#/components/parameters/sort'
+      - $ref: './params.yaml#/components/parameters/archived'
+      - $ref: './params.yaml#/components/parameters/is_watching'
+      - $ref: './params.yaml#/components/parameters/is_favorite'
+      - $ref: './params.yaml#/components/parameters/is_in_source_hub'
+      - $ref: '../../common/params.yaml#/components/parameters/page'
+      - $ref: '../../common/params.yaml#/components/parameters/limit'
+      - name: project_name
+        in: query
+        required: false
+        description: Имя проекта. Если параметр не передан, то поиск ищет по всем проектам. Если передан - в конкретном проекте
+        schema:
+          type: string
+          example: vcs
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/ReposShortListResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+ProjectRepos:
+  get:
+    tags:
+      - Projects
+    summary: Список репозиториев проекта
+    operationId: GetProjectRepos
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/ReposListResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+Repo:
+  get:
+    tags:
+      - Repository
+    summary: Информации о репозитории
+    operationId: GetRepo
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/ref'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/RepoResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+RepoFavorite:
+  post:
+    tags:
+      - Repository
+    summary: Добавить репозиторий в избранное
+    operationId: SetFavoriteRepo
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+    responses:
+      '201':
+        $ref: '../../common/success.yaml#/components/responses/NoContent'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+  delete:
+    tags:
+      - Repository
+    summary: Удалить репозиторий из избранного
+    operationId: DeleteFavoriteRepo
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+    responses:
+      '204':
+        $ref: '../../common/success.yaml#/components/responses/NoContent'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+RepoSubscribe:
+  put:
+    tags:
+      - Repository
+    summary: Обновить настройки отслеживания
+    description: Обновляет настройки слежения за репозиторием
+    operationId: updateRepoSubscription
+    parameters:
+      - name: project_name
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+        description: "Имя проекта (организации), например `my_project`"
+      - name: repo_name
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+        description: "Имя репозитория, например `my_repo`"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/RepositorySubscription'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PutSubscription200'
+      '201':
+        $ref: './responses.yaml#/components/responses/PutSubscription201'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+BrowseRepoContent:
+  get:
+    tags:
+      - Repository
+    summary: Получение информации о содержимом репозитория на 0 уровне вложенности
+    operationId: GetBrowseRepoContent
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/ref'
+      - $ref: './params.yaml#/components/parameters/path'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/BrowseRepoContentResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+RepoExternalMetrics:
+  get:
+    tags:
+      - Repository
+    summary: Получение информации о внешних метриках репозитория
+    operationId: GetRepoExternalMetrics
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/RepoExternalMetricsResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+RepoRawFile:
+  get:
+    tags:
+      - Repository
+    summary: Получить содержимое файла в формате base64
+    description: |
+      Получение файла из репозитория (с возможностью указать ветку/тэг)
+      Поддерживаются форматы:
+        Исходный код (.go, .py, .js, .java, .rs, .ts, .c, .cpp, .h, .cs, .rb, .php, .sh, .sql, и др.),
+        Markdown (.md, .markdown),
+        CSV / TSV (.csv, .tsv),
+        JSON,
+        YAML / TOML,
+        XML,
+        Diff / Patch (.diff, .patch),
+        SVG (.svg),
+        Изображения (.png, .jpg, .jpeg, .gif, .webp),
+        Текстовые файлы (.txt, .log, без расширения: LICENSE, README, CHANGELOG).
+    operationId: GetRepoRawFile
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - name: ref
+        in: query
+        required: false
+        description: >
+          Ссылка на ветку или тег в формате `branch/<название>` или `tag/<название>`.
+          Например: `branch/develop`, `tag/release/8.1.0`. Если не передан, то по умолчанию - дефолтная ветка репозитория.
+        schema:
+          type: string
+          pattern: '^(branch|tag)/.+$'
+        example: branch/develop
+      - name: path
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Путь к файлу от корневой директории. Например README.md или src/spa/index.js
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/RepoRawFileResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+
+BuildStatusRoute:
+  get:
+    summary: Получить информацию по статусам проверок сборки
+    description: >
+      Получить информацию по статусам проверок сборки можно получить через query параметр ?sha={string}
+      Если для указанного sha нет ни одной проверки, возвращается объект BuildStatus с пустым check_list и overall_status = null.
+    tags:
+      - Repository
+    operationId: GetBuildStatus
+    x-internal: true
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/sha'
+    x-required-privilege: read
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/BuildStatusResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

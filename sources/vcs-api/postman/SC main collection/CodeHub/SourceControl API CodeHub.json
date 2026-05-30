@@ -1,0 +1,93 @@
+{
+  "info": {
+    "_postman_id": "7832a98d-4a5c-4215-931b-131fa400b5fb",
+    "name": "CodeHub",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "Delete CodeHub mark",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token_bearer_jwt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"tenant_key\": \"{{sc_api_mock_tenant_key}}\",\n    \"repo_key\": \"{{sc_api_mock_repository_key}}\",\n    \"project_key\": \"{{sc_api_mock_project_key}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v2_prefix}}/projects/repos/marks/codehub",
+          "host": [
+            "{{sc_api_ift_stand_url_external}}"
+          ],
+          "path": [
+            "{{sc_api_api_v2_prefix}}",
+            "projects",
+            "repos",
+            "marks",
+            "codehub"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create CodeHub Mark",
+      "protocolProfileBehavior": {
+        "disabledSystemHeaders": {}
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token_bearer_jwt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"tenant_key\": \"{{sc_api_mock_tenant_key}}\",\n    \"repo_key\": \"{{sc_api_mock_repository_key}}\",\n    \"project_key\": \"{{sc_api_mock_project_key}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v2_prefix}}/projects/repos/marks/codehub",
+          "host": [
+            "{{sc_api_ift_stand_url_external}}"
+          ],
+          "path": [
+            "{{sc_api_api_v2_prefix}}",
+            "projects",
+            "repos",
+            "marks",
+            "codehub"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

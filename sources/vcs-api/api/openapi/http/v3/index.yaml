@@ -1,0 +1,114 @@
+openapi: 3.0.3
+info:
+  title: SourceControl API v3
+  description: SourceControl REST API v3
+  version: 0.0.0-dev
+  license:
+    name: Internal Proprietary License
+    url: https://example.invalid/
+servers:
+  - url: /api/v3
+security:
+  - authorizationHeaderToken: []
+  - basicHttpAuthentication: []
+  - accessToken: []
+paths:
+  /swagger:
+    $ref: ./domains/admin/routes.yaml#/Swagger
+  /repos/{tenant}/{project}/{repo}/branches:
+    $ref: ./domains/branches/routes.yaml#/RepoBranches
+  /repos/{tenant}/{project}/{repo}/branches/{branch_name}:
+    $ref: ./domains/branches/routes.yaml#/RepoBranch
+  /repos/{tenant}/{project}/{repo}/compare/commits:
+    $ref: ./domains/compare/routes.yaml#/RepoCompareCommits
+  /repos/{tenant}/{project}/{repo}/pulls:
+    $ref: ./domains/pulls/routes.yaml#/RepoPulls
+  /repos/{tenant}/{project}/{repo}/pulls/{index}:
+    $ref: ./domains/pulls/routes.yaml#/RepoPull
+  /repos/{tenant}/{project}/{repo}/pulls/{index}/merge:
+    $ref: ./domains/pulls/routes.yaml#/RepoPullMerge
+  /repos/{tenant}/{project}/{repo}/pulls/{index}/decline:
+    $ref: ./domains/pulls/routes.yaml#/RepoPullDecline
+  /repos/{tenant}/{project}/{repo}/pulls/{index}/files:
+    $ref: ./domains/pulls/routes.yaml#/RepoPullFiles
+  /repos/{tenant}/{project}/{repo}/pulls/{index}/commits:
+    $ref: ./domains/pulls/routes.yaml#/RepoPullCommits
+  /repos/{tenant}/{project}/{repo}/pulls/{index}/diff:
+    $ref: ./domains/pulls/routes.yaml#/RepoPullDiff
+  /repos/{tenant}/{project}/{repo}/pulls/{index}/issues:
+    $ref: ./domains/pulls/routes.yaml#/RepoPullIssues
+  /repos/{tenant}/{project}/{repo}/pulls/{index}/comments:
+    $ref: ./domains/comments/routes.yaml#/RepoPullComments
+  /repos/{tenant}/{project}/{repo}/pulls/{index}/comments/{comment_id}:
+    $ref: ./domains/comments/routes.yaml#/RepoPullComment
+  /repos/{tenant}/{project}/{repo}/subscription:
+    $ref: ./domains/repos/routes.yaml#/RepoSubscription
+  /repos/{tenant}/{project}/{repo}/default-branch:
+    $ref: ./domains/repos/routes.yaml#/RepoDefaultBranch
+  /repos/{tenant}/{project}/{repo}/system-labels/{label_name}:
+    $ref: ./domains/repos/routes.yaml#/RepoSystemLabel
+  /repos/{tenant}/{project}/{repo}/branch_protections:
+    $ref: ./domains/branch_protections/routes.yaml#/RepoBranchProtections
+  /repos/{tenant}/{project}/{repo}/branch_protections/{pattern}:
+    $ref: ./domains/branch_protections/routes.yaml#/RepoBranchProtection
+  /repos/{tenant}/{project}/{repo}/raw/{path}:
+    $ref: ./domains/files/routes.yaml#/RepoRawFile
+  /repos/{tenant}/{project}/{repo}/contents/{path}:
+    $ref: ./domains/files/routes.yaml#/RepoFileInfo
+  /repos/{tenant}/{project}/{repo}/contents/file/create:
+    $ref: ./domains/files/routes.yaml#/RepoFileCreate
+  /repos/{tenant}/{project}/{repo}/contents/file/update:
+    $ref: ./domains/files/routes.yaml#/RepoFileUpdate
+  /repos/{tenant}/{project}/{repo}/contents/file/delete:
+    $ref: ./domains/files/routes.yaml#/RepoFileDelete
+  /repos/{tenant}/{project}/{repo}/archive:
+    $ref: ./domains/archive/routes.yaml#/RepoArchive
+  /repos/{tenant}/{project}/{repo}/sonar:
+    $ref: ./domains/sonar/routes.yaml#/RepoSonarSettings
+  /repos/{tenant}/{project}/{repo}/review_settings:
+    $ref: ./domains/review_settings/routes.yaml#/RepoReviewSettings
+  /repos/{tenant}/{project}/{repo}/review_settings/{branch_name}:
+    $ref: ./domains/review_settings/routes.yaml#/RepoReviewSettingsBranch
+  /repos/{tenant}/{project}/{repo}/privileges:
+    $ref: ./domains/privileges/routes.yaml#/RepoPrivileges
+  /repos/{tenant}/{project}/{repo}:
+    $ref: ./domains/repos/routes.yaml#/Repo
+  /repos/{tenant}/{project}/{repo}/prupstream:
+    $ref: ./domains/prupstream/routes.yaml#/RepoPrUpstream
+  /repos/{tenant}/{project}/{repo}/external_metrics:
+    $ref: ./domains/external_metrics/routes.yaml#/RepoExternalMetrics
+  /repos/{tenant}/{project}/{repo}/external_metrics/{metric}:
+    $ref: ./domains/external_metrics/routes.yaml#/RepoExternalMetric
+  /repos/{tenant}/{project}/{repo}/commits:
+    $ref: ./domains/commits/routes.yaml#/RepoCommits
+  /repos/{tenant}/{project}/{repo}/commits/{commit_sha}/statuses:
+    $ref: ./domains/commit_statuses/routes.yaml#/CommitStatuses
+  /repos/{tenant}/{project}/{repo}/commits/{commit_sha}/pulls:
+    $ref: ./domains/commits/routes.yaml#/CommitPullRequests
+  /repos/{tenant}/{project}/{repo}/webhooks:
+    $ref: ./domains/webhooks/routes.yaml#/RepoWebhooksRoute
+  /repos/{tenant}/{project}/{repo}/webhooks/{webhook_id}:
+    $ref: ./domains/webhooks/routes.yaml#/RepoWebhookRoute
+  /repos/{tenant}/{project}/{repo}/webhooks/{webhook_id}/test:
+    $ref: ./domains/webhooks/routes.yaml#/RepoWebhookTestRoute
+  /repos/{tenant}/{project}:
+    $ref: ./domains/repos/routes.yaml#/ProjectRepos
+  /projects/{tenant}/{project}/privileges:
+    $ref: ./domains/privileges/routes.yaml#/ProjectPrivileges
+  /users/{username}:
+    $ref: ./domains/users/routes.yaml#/User
+  /cache/{tenant}/reset:
+    $ref: ./domains/cache/routes.yaml#/TenantCacheReset
+  /user/tokens:
+    $ref: ./domains/user/routes.yaml#/UserTokens
+  /user/keys:
+    $ref: ./domains/user/routes.yaml#/UserKeys
+components:
+  securitySchemes:
+    authorizationHeaderToken:
+      $ref: ./common/security.yaml#/components/securitySchemes/authorizationHeaderToken
+    basicHttpAuthentication:
+      $ref: ./common/security.yaml#/components/securitySchemes/basicHttpAuthentication
+    accessToken:
+      $ref: ./common/security.yaml#/components/securitySchemes/accessToken
+

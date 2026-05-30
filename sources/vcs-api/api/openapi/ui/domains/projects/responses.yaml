@@ -1,0 +1,14 @@
+components:
+  responses:
+    ProjectResponse:
+      description: Данные о проекте
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/Project'
+    ProjectUsersResponse:
+      description: Участники проекта
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/UsersPaginationList'

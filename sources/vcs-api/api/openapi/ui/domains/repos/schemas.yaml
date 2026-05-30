@@ -1,0 +1,665 @@
+components:
+  schemas:
+    ReposShortList:
+      type: object
+      properties:
+        pagination:
+          $ref: '../../common/pagination.yaml#/components/schemas/Pagination'
+        data:
+          description: Список репозиториев (короткая информация)
+          type: array
+          items:
+            $ref: '#/components/schemas/RepoShortListItem'
+      required:
+        - data
+        - pagination
+    ReposList:
+      type: object
+      properties:
+        pagination:
+          $ref: '../../common/pagination.yaml#/components/schemas/Pagination'
+        data:
+          description: Список репозиториев
+          type: array
+          items:
+            $ref: '#/components/schemas/Repo'
+      required:
+        - data
+        - pagination
+    LastCommit:
+      description: Информация о послденем коммите
+      type: object
+      properties:
+        author:
+          description: Автор коммита
+          $ref: '../users/schemas.yaml#/components/schemas/User'
+        updated_at:
+          type: string
+          format: date-time
+          description: Дата обновления коммита
+        message:
+          type: string
+          description: Сообщение коммита
+          example: "[INDAI-320] - delete technic prompts"
+        sha:
+          type: string
+          description: SHA хэш коммита
+          example: "fcc95b66b646863196dd13fb73367640109df723"
+      required:
+        - author
+        - message
+        - updated_at
+        - sha
+    LanguageInfo:
+      description: Информация о языке
+      type: object
+      properties:
+        percent:
+          description: Процент использования языка
+          type: number
+        name:
+          description: Название языка
+          type: string
+        color:
+          description: Цвет для языка
+          type: string
+      required:
+        - percent
+        - name
+        - color
+
+    RepoShortListItem:
+      description: Короткая информация о репозитории, для выведения списка репозиториев
+      type: object
+      properties:
+        # ——— Обязательные свойства (в порядке из required) ———
+        id:
+          type: integer
+          format: int64
+          description: Уникальный идентификатор
+        avatar_url:
+          type: string
+          description: Ссылка на аватар репозитория
+        name:
+          type: string
+          description: Название репозитория
+        full_name:
+          type: string
+          description: Полное имя репозитория (owner/repo)
+        private:
+          type: boolean
+          description: Частный ли репозиторий
+        internal:
+          type: boolean
+          description: Внутренний ли репозиторий
+        template:
+          type: boolean
+          description: Является ли шаблоном
+        fork:
+          type: boolean
+          description: Является ли форком
+        topics:
+          type: array
+          items:
+            type: string
+          description: Теги репозитория
+        description:
+          type: string
+          description: Описание репозитория
+        forks_count:
+          type: integer
+          format: int64
+          description: Количество форков
+        stars_count:
+          type: integer
+          format: int64
+          description: Количество звёзд
+        is_starring:
+          type: boolean
+          description: Добавлен ли в избранное
+        watchers_count:
+          type: integer
+          format: int64
+          description: Количество наблюдателей
+        is_watching:
+          type: boolean
+          description: Отслеживается ли пользователем
+        archived:
+          type: boolean
+          description: Признак архивности
+        archived_at:
+          type: string
+          format: date-time
+          description: Дата перевода в архив
+        updated_at:
+          type: string
+          format: date-time
+          description: Дата последнего обновления
+        created_at:
+          type: string
+          format: date-time
+          description: Дата создания репозитория
+        is_in_source_hub:
+          type: boolean
+          description: Находится ли репозиторий в in_source_hub
+
+        # ——— Необязательные / nullable свойства (не в required) ———
+        main_language:
+          description: Основной язык репозитория
+          nullable: true
+          $ref: '#/components/schemas/LanguageInfo'
+        repo_parent:
+          description: Родительский репозиторий (если форк)
+          nullable: true
+          $ref: '#/components/schemas/RepoParent'
+
+      required:
+        - id
+        - avatar_url
+        - name
+        - full_name
+        - private
+        - internal
+        - template
+        - fork
+        - topics
+        - description
+        - forks_count
+        - stars_count
+        - is_starring
+        - watchers_count
+        - is_watching
+        - archived
+        - archived_at
+        - updated_at
+        - created_at
+        - is_in_source_hub
+    Repo:
+      description: Полная информация о репозитории
+      type: object
+      properties:
+        branches_count:
+          type: integer
+          description: Количество веток
+        commits_count:
+          type: integer
+          description: Количество коммитов
+        tags_count:
+          type: integer
+          format: int64
+          description: Количество тегов
+        avatar_url:
+          type: string
+          description: Ссылка на аватар репозитория
+        archived:
+          type: boolean
+          description: Признак архивности
+        description:
+          type: string
+          description: Описание репозитория
+        topics:
+          type: array
+          items:
+            type: string
+          description: Теги репозитория
+        empty:
+          type: boolean
+          description: Признак пустоты
+        fork:
+          type: boolean
+          description: Является ли форком
+        forks_count:
+          type: integer
+          format: int64
+          description: Количество форков
+        full_name:
+          type: string
+          description: Полное имя репозитория (owner/repo)
+        id:
+          type: integer
+          format: int64
+          description: Уникальный идентификатор
+        main_language:
+          $ref: '#/components/schemas/LanguageInfo'
+          description: Основной язык репозитория
+        languages:
+          type: array
+          items:
+            $ref: '#/components/schemas/LanguageInfo'
+          description: Языковая статистика
+        link:
+          type: string
+          description: Ссылка на репозиторий
+        name:
+          type: string
+          description: Название репозитория
+        owner:
+          $ref: '../users/schemas.yaml#/components/schemas/User'
+          description: Владелец репозитория
+        private:
+          type: boolean
+          description: Частный ли репозиторий
+        last_commit:
+          type: 'object'
+          description: Информация о последнем коммите
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/LastCommit'
+        status:
+          type: string
+          description: Статус репозитория
+          enum:
+            - ready
+            - migrated
+            - transferred
+            - broken
+        stars_count:
+          type: integer
+          format: int64
+          description: Количество звёзд
+        template:
+          type: boolean
+          description: Является ли шаблоном
+        updated_at:
+          type: string
+          format: date-time
+          description: Дата последнего обновления
+        watchers_count:
+          type: integer
+          format: int64
+          description: Количество наблюдателей
+        website:
+          type: string
+          description: Ссылка на веб-сайт проекта
+        enable_pull_requests:
+          type: boolean
+          description: Поддерживает ли Pull Requests
+        internal:
+          type: boolean
+          description: Внутренний ли репозиторий
+        open_pr_counter:
+          type: integer
+          description: Количество открытых PR
+        repo_parent:
+          $ref: '#/components/schemas/RepoParent'
+          description: Родительский репозиторий (если форк)
+          nullable: true
+        size:
+          type: integer
+          description: Размер репозитория в байтах
+        http_url:
+          type: string
+          description: HTTP-ссылка на репозиторий
+        ssh_url:
+          type: string
+          description: SSH-ссылка на репозиторий
+        created_at:
+          type: string
+          format: date-time
+          description: Дата создания репозитория
+        default_branch:
+          type: string
+          description: Ветка по умолчанию
+        archived_at:
+          type: string
+          format: date-time
+          description: Дата перевода в архив
+        is_starring:
+          type: boolean
+          description: Добавлен ли в избранное
+        is_watching:
+          type: boolean
+          description: |
+            Если `true` — включён режим "Следить".
+            Если `false` — выключён режим "Следить".
+          example: false
+        watch_settings:
+          $ref: '#/components/schemas/RepoWatchSettings'
+          description: Настройки отслеживания репозитория
+        is_in_source_hub:
+          type: boolean
+          description: Находится ли репозиторий в in_source_hub
+        licenses:
+          type: array
+          description: Список лицензий, связанных с репозиторием
+          items:
+            $ref: '#/components/schemas/License'
+        system_labels:
+          description: Системные метки репозитория
+          $ref: '#/components/schemas/SystemLabels'
+      required:
+        - avatar_url
+        - archived
+        - description
+        - topics
+        - empty
+        - fork
+        - forks_count
+        - full_name
+        - id
+        - main_language
+        - languages
+        - link
+        - name
+        - owner
+        - private
+        - status
+        - stars_count
+        - template
+        - updated_at
+        - watchers_count
+        - enable_pull_requests
+        - internal
+        - open_pr_counter
+        - size
+        - http_url
+        - ssh_url
+        - created_at
+        - default_branch
+        - archived_at
+        - is_starring
+        - is_watching
+        - watch_settings
+        - branches_count
+        - tags_count
+        - commits_count
+        - is_in_source_hub
+        - licenses
+        - last_commit
+
+    RepoWatchSettings:
+      description: Настройки отслеживания репозитория
+      type: object
+      additionalProperties: false
+      properties:
+        pull_review_request:
+          type: boolean
+          nullable: true
+          description: Запрос на ревью
+        pull_request_review:
+          type: boolean
+          description: Ревью отправлено
+        pull_review_dismiss:
+          type: boolean
+          description: Ревью отозвано
+        new_pull_request:
+          type: boolean
+          description: Новый запрос на слияние
+        merge_pull_request:
+          type: boolean
+          description: Запрос на слияние выполнен
+        pull_request_push_commits:
+          type: boolean
+          description: Добавлены новые коммиты
+        pull_request_code_comment:
+          type: boolean
+          description: Новый комментарий кода
+        email_notifications:
+          type: boolean
+          description: Получать ли уведомления на почту
+
+    SubscribeRepoBody:
+      $ref: '#/components/schemas/RepoWatchSettings'
+
+    FileType:
+      type: string
+      enum:
+        - markup
+        - plain_text
+        - image
+        - video
+        - audio
+        - pdf
+      description: Тип файла
+    RepoParent:
+      type: object
+      properties:
+        link:
+          type: string
+          example: http://parent.repo
+          description: ссылка на родительский репозиторий
+        full_name:
+          type: string
+          example: org/repo
+          description: полное название репозитория
+      required:
+        - link
+        - full_name
+
+    File:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/FileType'
+        size:
+          type: integer
+          minimum: 0
+          description: Размер файла в байтах.
+        content:
+          type: string
+          nullable: true
+          description: Содержимое файла (если доступно).
+        rawFileLink:
+          type: string
+          nullable: true
+          format: uri
+          description: Прямая ссылка на файл.
+        assetUrlPrefix:
+          type: string
+          nullable: true
+          description: Префикс URL для получения контента.
+      required:
+        - type
+        - size
+      description: Информация о файле
+    RepoContentFileItem:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum: ['FILE']
+        message:
+          type: string
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - name
+        - type
+        - message
+        - updatedAt
+    RepoContentDirectoryItem:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum: ['DIRECTORY']
+        message:
+          type: string
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - name
+        - type
+        - message
+        - updatedAt
+    RepoContentDirectory:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: ['DIRECTORY']
+        children:
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/RepoContentFileItem'
+              - $ref: '#/components/schemas/RepoContentDirectoryItem'
+      required:
+        - type
+        - children
+    RepoContentFile:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: ['FILE']
+        file:
+          $ref: '#/components/schemas/File'
+      required:
+        - type
+        - file
+    BrowseRepoContent:
+      oneOf:
+        - $ref: '#/components/schemas/RepoContentDirectory'
+        - $ref: '#/components/schemas/RepoContentFile'
+
+    License:
+      type: object
+      required:
+        - name
+        - path
+      properties:
+        name:
+          type: string
+          description: Название лицензии
+          example: GNU Affero General Public License v3.0
+        path:
+          type: string
+          description: Путь до файла в репозитории
+          format: uri
+          example: https://portal.works.prod.sbt/ssd/tools/sc/vcs/gitea/src/develop/LICENSE
+    RepoExternalMetric:
+      type: object
+      properties:
+        key:
+          type: string
+          enum: [ downloads, telemetry, artifacts, reuse, labor_costs ]
+          description: Идентификатор (ключ) метрики. Возможные значения - downloads, telemetry, artifacts, reuse, labor_costs
+          example: "downloads"
+        value:
+          type: integer
+          format: int64
+          description: Значение метрики
+          example: 150
+          nullable: true
+        text:
+          type: string
+          description: Подпись для метрики
+          example: "Метрика переиспользования"
+      required:
+        - key
+    RepoExternalMetrics:
+      type: object
+      description: Набор внешних метрик репозитория в формате ключ-объект
+      properties:
+        downloads:
+          $ref: '#/components/schemas/RepoExternalMetric'
+        telemetry:
+          $ref: '#/components/schemas/RepoExternalMetric'
+        artifacts:
+          $ref: '#/components/schemas/RepoExternalMetric'
+        reuse:
+          $ref: '#/components/schemas/RepoExternalMetric'
+        labor_costs:
+          $ref: '#/components/schemas/RepoExternalMetric'
+      required:
+        - downloads
+        - telemetry
+        - artifacts
+        - reuse
+        - labor_costs
+
+    RepositorySubscription:
+      type: object
+      required:
+        - is_watching
+        - pull_review_request
+        - pull_request_review
+        - pull_review_dismiss
+        - new_pull_request
+        - merge_pull_request
+        - pull_request_push_commits
+        - pull_request_code_comment
+        - email_notifications
+      properties:
+        is_watching:
+          type: boolean
+          description: |
+            Если `true` — включён режим "Следить".
+            Если `false` — выключён режим "Следить".
+        pull_review_request:
+          type: boolean
+          example: true
+        pull_request_review:
+          type: boolean
+          example: false
+        pull_review_dismiss:
+          type: boolean
+          example: false
+        new_pull_request:
+          type: boolean
+          example: false
+        merge_pull_request:
+          type: boolean
+          example: false
+        pull_request_push_commits:
+          type: boolean
+          example: false
+        pull_request_code_comment:
+          type: boolean
+          example: false
+        email_notifications:
+          type: boolean
+          description: |
+            Если `true` — включёна email-рассылка по событиям.
+            Если `false` — выключёна email-рассылка по событиям.
+
+    RepositorySubscriptionResponse:
+      allOf:
+        - $ref: "#/components/schemas/RepositorySubscription"
+
+    BuildStatus:
+      type: object
+      description: Актуальные статусы проверок, относящихся к одной сборке
+      required:
+      - overall_status
+      - check_list
+      properties:
+        build_started_at:
+          type: string
+          format: date-time
+          description: Дата начала сборки
+        overall_status:
+          type: string
+          nullable: true
+          description: >
+            Статус проверки. При расчёте общего статуса используется приоритет:
+            error > failure > warning > pending > success.
+          enum:
+            - success
+            - pending
+            - warning
+            - failure
+            - error
+          example: pending
+        check_list:
+          type: array
+          description: >
+            Если сборка существует, то в ней может быть n количество проверок. Для каждой проверки существует один из 5 статусов.
+            Проверки приходят с сортировкой по времени получения последнего статуса.
+          items:
+            $ref: '../diff/schemas.yaml#/components/schemas/CommitStatus'
+
+    SystemLabels:
+      type: object
+      description: Объект с набором системных меток (ключ — имя метки, значение — boolean)
+      additionalProperties:
+        type: boolean
+      example:
+        tier0: true

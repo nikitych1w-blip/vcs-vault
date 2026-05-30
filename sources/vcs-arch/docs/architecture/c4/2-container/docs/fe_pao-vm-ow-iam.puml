@@ -1,0 +1,34 @@
+@startuml
+!include <C4/C4_Container>
+!include ./../../../../../sources/container_units/iam.puml
+!include ./../../../../../sources/container_units/ow.puml
+!include ./../../../../../sources/container_units/sc.puml
+!include ./../../../../../sources/container_units/syngx.puml
+!include ./../../../../../sources/container_units/styles.puml
+
+title Схема ПАО (VM - OW - IAM)
+
+set_styles()
+
+' Уровень системы (System)
+Person(user, "Пользователь", "Использует систему через браузер")
+
+' Контейнеры внутри системы
+Container(iam_ow, "IAM OW", "", "Авторизация пользователя")
+IAM_SC_App(iam_ow)
+
+OW_PAO_App(ow, ow_proxy, ow_etc_id)
+
+IAM_SC_App(iam_sc)
+Syngx_SC_App(nginx)
+
+SC_App(sc)
+
+' Отношения
+Rel(user, iam_ow, " ")
+Rel(iam_ow, ow_proxy, " ")
+Rel(ow_etc_id, iam_sc, " ")
+Rel(iam_sc, nginx, " ")
+Rel(nginx, sc, " ")
+
+@enduml

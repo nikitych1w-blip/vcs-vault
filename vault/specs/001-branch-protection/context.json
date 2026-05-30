@@ -1,0 +1,36 @@
+{
+  "feature_id": "001",
+  "feature_name": "branch-protection",
+  "title": "Защита веток репозитория",
+  "role": "sa",
+  "scope": {
+    "interface": ["UI", "api"],
+    "entity": ["branch", "repo"],
+    "lv_min": 6,
+    "lv_max": 8,
+    "tags": ["ПАО", "branch", "repo"]
+  },
+  "node_coords": [
+    "UI / Проект / Репозитории / Репозиторий / Настройки / Защита веток",
+    "API / v2 / Репозитории / Branch protection"
+  ],
+  "intent": "write-spec",
+  "release": "3.6",
+  "active_step": "specify",
+  "steps_completed": [],
+  "artifacts": {
+    "spec": "specs/001-branch-protection/spec.md",
+    "plan": "specs/001-branch-protection/plan.md",
+    "tasks": "specs/001-branch-protection/tasks.md"
+  },
+  "tms_ids_created": [],
+  "tracker_ids_created": [],
+  "coverage_before": {
+    "total": 14,
+    "covered": 0,
+    "partial": 0,
+    "missing": 14
+  },
+  "coverage_after": null,
+  "notes": []
+}

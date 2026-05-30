@@ -1,0 +1,110 @@
+components:
+  schemas:
+    Configuration:
+      type: object
+      description: Общий объект конфигурации, включающий настройки отдельных модулей
+      properties:
+        app_sub_url:
+          type: string
+          description: Контекст расположения приложения
+          example: /ssd/tools/sc-dev2
+        sbt.one_work:
+          $ref: '#/components/schemas/SbtOneWorkConfig'
+        clickstream.standalone:
+          $ref: '#/components/schemas/ClickStreamStandaloneConfig'
+        archive.config:
+          $ref: '#/components/schemas/ArchiveConfig'
+        repository:
+          $ref: '#/components/schemas/RepositoryConfig'
+      required:
+        - app_sub_url
+        - sbt.one_work
+        - clickstream.standalone
+        - archive.config
+        - repository
+
+    RepositoryConfig:
+      type: object
+      description: Конфигурация репозиториев
+      properties:
+        system_labels_enabled:
+          type: boolean
+          description: Включены ли системные метки
+          example: true
+      required:
+        - system_labels_enabled
+
+    SbtOneWorkConfig:
+      type: object
+      description: Конфигурация модуля sbt.one_work
+      properties:
+        enabled:
+          type: boolean
+          description: Определяет подключение компонента side-menu. При подключении бокового меню, скрывается стандартное горизонтальное меню SourceControl
+          example: true
+        is_pao:
+          type: boolean
+          description: Запущено ли приложение в контуре ПАО. Помогает фронту при подключении компонента side-menu
+          example: true
+        service_url:
+          type: string
+          description: Абсолютный URL для доступа к сервисам OneWork
+          example: https://dev.pd10.pvw.sbt/ssd/ssd-side-menu-backend
+        tool_key:
+          type: string
+          description: Ключ инструмента. Предустановленное значения со стороны OneWork
+          example: sc-dev3
+        context_uri:
+          type: string
+          description: Идентификатор контекста. Для режима organization необходимо установить путь к организации в OneWork
+          example: /scdev
+        menu_key:
+          type: string
+          description: Ключ меню для режима organization. Предустановленное значения со стороны OneWork. Связывает локальные пункты меню с инструментом в OneWork
+          example: source_control
+        login_link:
+          type: string
+          description: Cсылка на сервис авторизации. Ссылка будет установлена на кнопке "Вход" для страницы приветсвия в SourceControl
+          example: https://dev.pd10.pvw.sbt/ssd/tools/sc-ift3/
+        logout_link:
+          type: string
+          description: Cсылка для выхода из системы при авторизации через IAM
+          example: https://dev.pd10.pvw.sbt/ssd/tools/sc-ift3/logout
+        fallback_timeout:
+          type: string
+          format: int32
+          description: Время ожидания ответа от сервиса OneWork после которого меню перейдет в состояние Fallback. Значение передается в формате секунд. По умолчанию равно 10s. Обязательный параметр для меню типа ONEWORK.
+          example: 5s
+        extended_admin_panel:
+          type: boolean
+          description: Включена ли расширенная панель администратора
+    ClickStreamStandaloneConfig:
+      type: object
+      description: Конфигурация для пакета @sbol/clickstream-agent используется только в standalone версии
+      properties:
+        enabled:
+          type: boolean
+          description: Определяет инициализацию сервиса ClickStream для Standalone режима
+          example: true
+        report_url:
+          type: string
+          description: Адрес для отправки событий
+          example: https://clickstream.domain.local
+        api_key:
+          type: string
+          description: API Ключ инструмента для взаимодействия с Clickstream backend
+          example: sc-dev3
+    ArchiveConfig:
+      type: object
+      description: Конфигурация репозиторных архивов
+      properties:
+        max_retries:
+          type: integer
+          description: Количество попыток выкачивания архива
+          example: 10
+        retry_timeout:
+          type: string
+          format: int32
+          description: Время между попытками скачивания архива. По умолчанию равно 15s.
+          example: 15s
+

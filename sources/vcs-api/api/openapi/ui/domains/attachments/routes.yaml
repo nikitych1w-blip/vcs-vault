@@ -1,0 +1,37 @@
+RepoAttachments:
+  post:
+    summary: Загрузить файл на сервер
+    tags:
+      - Attachments
+    operationId: UploadFile
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              files:
+                type: array
+                items:
+                  type: string
+                  format: binary
+                description: Массив файлов для загрузки (поддерживаются любые типы, включая бинарные)
+            required:
+              - files
+    responses:
+      '207':
+        $ref: './responses.yaml#/components/responses/UploadResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

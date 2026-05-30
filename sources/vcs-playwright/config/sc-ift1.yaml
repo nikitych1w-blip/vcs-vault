@@ -1,0 +1,4 @@
+sc:
+  name: sc-ift1
+  ssh:
+    port: 7011

@@ -1,0 +1,300 @@
+{
+  "info": {
+    "_postman_id": "b26dc485-d6ce-4ff9-ae8e-19dc6061e9b1",
+    "name": "Privileges",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "Получение привилегий",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-vp/api/v3/repos/{{tenant}}/{{project}}/{{repo}}/privileges",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-vp",
+            "api",
+            "v3",
+            "repos",
+            "{{tenant}}",
+            "{{project}}",
+            "{{repo}}",
+            "privileges"
+          ],
+          "query": [
+            {
+              "key": "target_branch",
+              "value": "\"\"",
+              "disabled": true
+            },
+            {
+              "key": "milestone",
+              "value": "a",
+              "disabled": true
+            },
+            {
+              "key": "sort",
+              "value": "bbb",
+              "disabled": true
+            },
+            {
+              "key": "state",
+              "value": "closed",
+              "disabled": true
+            },
+            {
+              "key": "state",
+              "value": "123",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Получение привилегий по проекту",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-vp/api/v3/projects/{{tenant}}/{{project}}/privileges",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-vp",
+            "api",
+            "v3",
+            "projects",
+            "{{tenant}}",
+            "{{project}}",
+            "privileges"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Добавление привилегий",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"apply_privilege_groups\":{\"revoke\":[{\r\n        \"user_name\": \"sa_vcs_user14\",\r\n        \"privilege_group\": \"reader\"\r\n    }]}\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-vp/api/v3/repos/{{tenant}}/{{project}}/{{repo}}/privileges",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-vp",
+            "api",
+            "v3",
+            "repos",
+            "{{tenant}}",
+            "{{project}}",
+            "{{repo}}",
+            "privileges"
+          ],
+          "query": [
+            {
+              "key": "target_branch",
+              "value": "\"\"",
+              "disabled": true
+            },
+            {
+              "key": "milestone",
+              "value": "a",
+              "disabled": true
+            },
+            {
+              "key": "sort",
+              "value": "bbb",
+              "disabled": true
+            },
+            {
+              "key": "state",
+              "value": "closed",
+              "disabled": true
+            },
+            {
+              "key": "state",
+              "value": "123",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Добавление привилегий по проекту",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"apply_privilege_groups\":{\"revoke\":[{\r\n        \"user_name\": \"sa_vcs_user10\",\r\n        \"privilege_group\": \"reader\"\r\n    }]}\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-vp/api/v3/projects/{{tenant}}/{{project}}/privileges",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-vp",
+            "api",
+            "v3",
+            "projects",
+            "{{tenant}}",
+            "{{project}}",
+            "privileges"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    }
+  ]
+}

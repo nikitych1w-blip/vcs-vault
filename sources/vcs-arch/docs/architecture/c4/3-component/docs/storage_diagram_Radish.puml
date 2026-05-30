@@ -1,0 +1,35 @@
+@startuml Services
+
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+!include ./../../../../../sources/component_units/sc.puml
+!include ./../../../../../sources/component_units/service.puml
+!include ./../../../../../sources/component_units/interface.puml
+!include ./../../../../../sources/component_units/styles.puml
+!include ./../../../../../sources/component_units/external_storages/redis.puml
+
+title Диаграмма взаимодействия SourceControl c Platform V Radish
+
+set_styles()
+
+System_Boundary(sc, "SC Backend") {
+    SC_Component_App(sc_app)
+
+    Service_SC(cache_service, "Cache Service", "Сервис для работы с кэшируемыми данными")
+    Service_SC(queue_service, "Queue Service", "Сервис для работы с очередями")
+    Service_SC(session_service, "Session Service", "Сервис для работы с сессиями")
+}
+
+Redis_Component(redis_storage)
+
+' Service usage
+Rel(sc_app, cache_service, "Работа с кэшируемыми данными")
+Rel(sc_app, queue_service, "Работа с очередями")
+Rel(sc_app, session_service, "Работа с сессиями")
+
+'Redis usage
+Rel(cache_service, redis_storage, "Запрос данных из кэша")
+Rel(queue_service, redis_storage, "Запрос очередей из кэша")
+Rel(session_service, redis_storage, "Запрос сессий из кэша")
+
+@enduml

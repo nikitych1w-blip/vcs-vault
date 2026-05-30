@@ -1,0 +1,1465 @@
+{
+  "info": {
+    "_postman_id": "5b5dc5e1-1f42-468d-a7c6-050d6b6843e4",
+    "name": "Branch",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "Create branch",
+      "item": [
+        {
+          "name": "Создать ветку",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"new_branch\": \"main3\",\r\n  \"parent_commit_SHA\": \"be5a70dfd74d736f3895d4801fbbc8d492a68c63\"\r\n  //\"extraField\":\"value\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/branches",
+              "host": [
+                "{{sc_api_ift_stand_url_external}}"
+              ],
+              "path": [
+                "{{sc_api_api_v3_prefix}}",
+                "repos",
+                "{{sc_api_mock_tenant_id}}",
+                "{{sc_api_mock_project_name}}",
+                "{{sc_api_mock_repository_name}}",
+                "branches"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Создать ветку пользователем, у которого недостаточно прав для взаимодействия с данным тенантом",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"new_branch\": \"new_branch_name7777\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/aaf8560e-29ec-48e5-aecf-ca59faf39144/ift1/1000/branches",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "aaf8560e-29ec-48e5-aecf-ca59faf39144",
+                "ift1",
+                "1000",
+                "branches"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/aaf8560e-29ec-48e5-aecf-ca59faf39144/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name7777\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный]Создать ветку с несуществующим тенантом",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96047d/ift1/1000/branches",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96047d",
+                "ift1",
+                "1000",
+                "branches"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96047d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Создать ветку с несуществующим именем репозитория",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/10000000/branches",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "10000000",
+                "branches"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/10000000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Создать ветку с несуществующим именем проекта",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1777/1000/branches",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1777",
+                "1000",
+                "branches"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1777/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Создать ветку с именем более 100 символов",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"new_branch\": \"new_branch_name7777jjkhkdjhgkdhgkjdhgjdkfjghkdjfhgbjdhbfgjdbfgkjbdfjgbdkjfghkjdfhgkjdfhgkjdhfgkjhdkjghdjkhgkjdgkjdhgkjdhjghdjhgkjdhgkjhdkjghdkjghkjdhgkjdhkgjh\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "branches"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/10000000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Создать ветку с пустым именем",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"new_branch\": \"\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "branches"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/10000000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Создать ветку с недопустимым именем",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"new_branch\": \"./ ~^:?*[/.////@./\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "branches"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"./ ~^:?*[/.////@./\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Создать ветку с именем, оканчивающимся на .lock/ или .lock",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"new_branch\": \"new_branch.lock/\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "branches"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch.lock/\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Создать ветку с SHA коммита более 40 символов",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"new_branch\": \"new\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4654644634646464444554545465464\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "branches"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4654644634646464444554545465464\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Создать ветку с пустым SHA коммита",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"new_branch\": \"new\",\r\n  \"parent_commit_SHA\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "branches"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4654644634646464444554545465464\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Создать ветку с уже существующим именем",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"new_branch\": \"100\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "branches"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"100\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Создать новую ветку неавторизованным пользователем",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"new_branch\": \"branch_name\",\r\n  \"parent_commit_SHA\": \"6b13851c99ac021f8fa3ebe498b9cbe01205b584\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "branches"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"branch_name\",\r\n  \"parent_commit_SHA\": \"6b13851c99ac021f8fa3ebe498b9cbe01205b584\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный]  Создать ветку с несуществующим SHA коммита",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"new_branch\": \"100\",\r\n  \"parent_commit_SHA\": \"182a1a718c62049968938b74087d89a2fa7d7cf7\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "branches"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"100\",\r\n  \"parent_commit_SHA\": \"182a1a718c62049968938b74087d89a2fa7d7cf7\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Создать ветку пользователем, у которого нет прав к проекту",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin7",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin7",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"new_branch\": \"1001111\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "branches"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"1001111\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Создать ветку пользователем, у которого недостаточно прав для взаимодействия с данным репозиторием",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_user14",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_user14",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"new_branch\": \"1001111\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/privat/branches",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "privat",
+                "branches"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"1001111\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Создать ветку пользователем, у которого недостаточно прав для создания ветки",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_user14",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_user14",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"new_branch\": \"1001111\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "1000",
+                "branches"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"1001111\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Создать ветку с невалидным SHA",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"new_branch\": \"branch_name\",\r\n  \"parent_commit_SHA\": \"6b13851c99ac021f8fa3ebe498b9cbe01205b58,,\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/privat/branches",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "ift1",
+                "privat",
+                "branches"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"1001111\",\r\n  \"parent_commit_SHA\": \"282a1a718c62049968938b74087d89a2fa7d7cf4\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] POST Создать ветку с не валидным tenant_UUID",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"new_branch\": \"branch_name\",\r\n  \"parent_commit_SHA\": \"6b13851c99ac021f8fa3ebe498b9cbe01205b584\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be9604...%3Cd/ift1/1000/branches",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be9604...%3Cd",
+                "ift1",
+                "1000",
+                "branches"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be9604...%3Cd/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"branch_name\",\r\n  \"parent_commit_SHA\": \"6b13851c99ac021f8fa3ebe498b9cbe01205b584\"\r\n}'"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Delete branch",
+      "item": [
+        {
+          "name": "Удалить ветку",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/{{tenant}}/{{project}}/{{repo}}/branches/main3",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "{{tenant}}",
+                "{{project}}",
+                "{{repo}}",
+                "branches",
+                "main3"
+              ],
+              "query": [
+                {
+                  "key": "extraparam",
+                  "value": "3",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'DELETE' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches/3' \\\r\n  -H 'accept: application/json'"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Получить все ветки",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/{{tenant}}/{{project}}/{{repo}}/branches",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-ift1",
+            "api",
+            "v3",
+            "repos",
+            "{{tenant}}",
+            "{{project}}",
+            "{{repo}}",
+            "branches"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "100",
+              "disabled": true
+            },
+            {
+              "key": "sort",
+              "value": ":asc",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Получить ветку",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/{{tenant}}/{{project}}/{{repo}}/branches/ma1in?page=100",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-ift1",
+            "api",
+            "v3",
+            "repos",
+            "{{tenant}}",
+            "{{project}}",
+            "{{repo}}",
+            "branches",
+            "ma1in"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "100"
+            }
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Установить ветку по умолчанию",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sa_vcs_admin5",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"default_branch\":\"main\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/{{tenant}}/{{project}}/{{repo}}/default-branch",
+          "protocol": "https",
+          "host": [
+            "ift",
+            "pd04",
+            "pvw",
+            "sbt"
+          ],
+          "path": [
+            "ssd",
+            "tools",
+            "sc-ift1",
+            "api",
+            "v3",
+            "repos",
+            "{{tenant}}",
+            "{{project}}",
+            "{{repo}}",
+            "default-branch"
+          ]
+        },
+        "description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/ift1/1000/branches' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"new_branch\": \"new_branch_name\",\r\n  \"parent_commit_SHA\": \"a261f1b8a25d247c80a3d703081c9f3512158054\"\r\n}'"
+      },
+      "response": []
+    }
+  ]
+}

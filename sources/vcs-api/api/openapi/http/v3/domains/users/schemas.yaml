@@ -1,0 +1,27 @@
+components:
+  schemas:
+    UserInfo:
+      type: object
+      description: Информация о пользователе
+      required:
+        - login
+        - full_name
+        - email
+        - avatar_url
+      properties:
+        login:
+          type: string
+          description: Логин пользователя
+          example: 'john.doe'
+        full_name:
+          type: string
+          description: Полное имя пользователя
+          example: 'John Doe'
+        email:
+          type: string
+          description: Email пользователя
+          example: 'john.doe@example.com'
+        avatar_url:
+          type: string
+          description: URL аватара пользователя
+          example: 'https://example.com/avatars/john.png'

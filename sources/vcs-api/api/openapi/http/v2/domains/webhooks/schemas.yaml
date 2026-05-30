@@ -1,0 +1,73 @@
+components:
+  schemas:
+    Hook:
+      type: object
+      additionalProperties: false
+      description: Вебхук
+      required: [id, config, events, authorization_header, active, branch_filter, updated_at, created_at]
+      properties:
+        id:
+          type: integer
+          format: int64
+        type:
+          type: string
+          description: Hook type (может отсутствовать, т.к. omitempty)
+        config:
+          type: object
+          additionalProperties:
+            type: string
+          description: Hook config (map)
+        events:
+          type: array
+          items:
+            type: string
+        authorization_header:
+          type: string
+        active:
+          type: boolean
+        branch_filter:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+
+    CreateHookOption:
+      type: object
+      additionalProperties: false
+      description: Запрос создания вебхука
+      required: [config, events]
+      properties:
+        config:
+          $ref: "#/components/schemas/CreateHookOptionConfig"
+        events:
+          type: array
+          items:
+            type: string
+        branch_filter:
+          type: string
+        authorization_header:
+          type: string
+        active:
+          type: boolean
+          nullable: true
+          description: Если не задано — сервер считает true
+
+    DeleteHookOption:
+      type: object
+      additionalProperties: false
+      description: Не используется (DELETE принимает query params)
+
+    CreateHookOptionConfig:
+      type: object
+      additionalProperties: false
+      required: [content_type, url]
+      properties:
+        content_type:
+          type: string
+        url:
+          type: string
+        secret:
+          type: string

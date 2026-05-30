@@ -1,0 +1,29 @@
+@startuml Services
+
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+!include ./../../../../../sources/component_units/sc.puml
+!include ./../../../../../sources/component_units/service.puml
+!include ./../../../../../sources/component_units/interface.puml
+!include ./../../../../../sources/component_units/styles.puml
+!include ./../../../../../sources/component_units/external_storages/kafka.puml
+
+title Диаграмма взаимодействия SourceControl c Platform V Corax
+
+set_styles()
+
+System_Boundary(sc, "SC Backend") {
+    SC_Component_App(sc_app)
+
+    Service_SC(kafka_sender_service, "Kafka Sender Service", "Сервис для отправки событий в Kafka")
+}
+
+Kafka_Component(kafka_storage)
+
+' Service usage
+Rel(sc_app, kafka_sender_service, "Работа с отправкой событий")
+
+'Kafka usage
+Rel(kafka_sender_service, kafka_storage, "Отправка события", "sarama")
+
+@enduml

@@ -1,0 +1,28 @@
+components:
+  responses:
+    ReviewSettingsListResponse:
+      description: Список настроек ревью
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/ReviewSettings'
+    BranchReviewSettingResponse:
+      description: Настройки ревью для ветки
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/BranchReviewSetting'
+    ReviewSettingsCreatedResponse:
+      description: Настройки ревью успешно созданы
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/BranchReviewSetting'
+    ReviewSettingsUpdatedResponse:
+      description: Настройки ревью успешно обновлены
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/BranchReviewSetting'
+    ReviewSettingsDeletedResponse:
+      description: Настройки ревью успешно удалены

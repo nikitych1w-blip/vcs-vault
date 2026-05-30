@@ -1,0 +1,72 @@
+components:
+  schemas:
+    RepoTag:
+      description: Тег репозитория
+      type: object
+      properties:
+        id:
+          type: string
+          description: sha тега
+        name:
+          type: string
+          description: Имя тега
+        target:
+          type: string
+          description: Референс, к чему создавался тег (если тег был с аннотацией, то target будет пустым)
+        sha:
+          type: string
+          description: Хэш коммита, к которому создали тег
+        is_draft:
+          type: boolean
+          description: Черновик или нет (относится к релизам)
+        is_tag:
+          type: boolean
+          description: Тег это или нет (релиз и тег - одна сущность в БД)
+        is_prerelease:
+          type: boolean
+          description: Пре-релиз это или нет
+        title:
+          type: string
+          description: Сообщение для аннотированного тега
+        created_at:
+          type: string
+          format: date-time
+          description: Время создания
+      required:
+        - id
+        - name
+        - target
+        - sha
+        - is_draft
+        - is_tag
+        - is_prerelease
+        - title
+        - created_at
+    PaginatedRepoTagsList:
+      description: Пагинированный список тегов репозитория
+      type: object
+      properties:
+        pagination:
+          $ref: '../../common/pagination.yaml#/components/schemas/Pagination'
+        data:
+          description: Список тегов репозитория
+          type: array
+          items:
+            $ref: '#/components/schemas/RepoTag'
+      required:
+        - pagination
+        - data
+    TagPayload:
+      description: Объект, содержащий имя тега
+      type: object
+      properties:
+        name:
+          type: string
+          description: Имя нового тега
+          example: 'v.8.6.0'
+        commit_sha:
+          type: string
+          description: SHA коммита, к которому будет создан тег
+          example: '9743187d2bc451afaf9ff3fb7ff4c556868958b7'
+      required:
+        - name

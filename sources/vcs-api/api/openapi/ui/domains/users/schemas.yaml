@@ -1,0 +1,155 @@
+components:
+  schemas:
+    ShortUserInfo:
+        type: object
+        required:
+            - id
+            - username
+            - full_name
+        properties:
+          id:
+            type: integer
+            format: int64
+            description: ИД
+          username:
+            type: string
+            description: Логин пользователя
+            example: "johndoe"
+            nullable: false
+          full_name:
+            type: string
+            description: Полное имя пользователя
+            example: "Иван Петров"
+            nullable: false
+          avatar_url:
+            type: string
+            description: URL аватара
+            example: "https://example.ru/ssd/tools/sc-example/prefix/avatars/5cb88b4bc892cf46294d7584afae435b42ee18e4c602602db8d335f94f18ef79?size=56"
+
+    User:
+      type: object
+      properties:
+        active:
+          type: boolean
+          description: Активен?
+        avatar_url:
+          type: string
+          description: URL аватара
+        created:
+          type: string
+          format: date-time
+          description: Дата создания пользователя
+        description:
+          type: string
+        email:
+          type: string
+          description: Email пользователя
+        followers_count:
+          type: integer
+          format: int64
+        following_count:
+          type: integer
+          format: int64
+        id:
+          type: integer
+          format: int64
+          description: ИД
+        is_admin:
+          type: boolean
+          description: Администратор?
+        language:
+          type: string
+          description: Язык
+          example: ru-RU
+        last_login:
+          type: string
+          format: date-time
+          description: Дата последнего входа
+        location:
+          type: string
+          description: Месторасположение
+        login:
+          type: string
+          description: Логин
+        full_name:
+          type: string
+          description: Полное имя пользователя
+        lower_name:
+          type: string
+          description: Полное имя пользователя
+        prohibit:
+          type: boolean
+          description: Запрещен вход?
+        restricted:
+          type: boolean
+          description: Ограничен доступ?
+        starred_repos_count:
+          type: integer
+          format: int64
+        visibility:
+          type: string
+          description: Видимость пользователя
+          enum:
+            - public
+            - limited
+            - private
+        website:
+          type: string
+          description: Вебсайт
+        has_password:
+          type: boolean
+          description: Есть ли у пользователя пароль
+      required:
+        - id
+        - login
+        - lower_name
+        - full_name
+        - visibility
+        - restricted
+        - prohibit
+        - is_admin
+        - active
+        - language
+        - created
+        - starred_repos_count
+        - followers_count
+        - following_count
+
+    UsersList:
+      type: object
+      properties:
+        avatar_url:
+          type: string
+          description: URL аватара
+        id:
+          type: integer
+          format: int64
+          description: ИД
+        login:
+          type: string
+          description: Логин
+        full_name:
+          type: string
+          description: Полное имя пользователя
+        email:
+          type: string
+          description: Email пользователя
+      required:
+        - id
+        - login
+        - full_name
+        - email
+
+    PaginatedUsersList:
+      type: object
+      description: Пагинированный список пользователей репозитория
+      properties:
+        pagination:
+          $ref: '../../common/pagination.yaml#/components/schemas/Pagination'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShortUserInfo'
+      required:
+        - data
+        - pagination

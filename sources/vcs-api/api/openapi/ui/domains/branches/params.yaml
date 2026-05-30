@@ -1,0 +1,9 @@
+components:
+  parameters:
+    branch_name:
+      name: branch_name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Имя ветки

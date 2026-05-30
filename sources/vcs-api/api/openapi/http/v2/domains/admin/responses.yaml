@@ -1,0 +1,41 @@
+components:
+  responses:
+    SwaggerRedirectResponse:
+      description: Redirect to Swagger UI
+      headers:
+        Location:
+          schema:
+            type: string
+          description: URL Swagger UI
+    UserInfoResponse:
+      description: Информация о пользователе
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/UserInfoResponse'
+    UserCreateResponse:
+      description: Пользователь создан
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/CreateUserResponse'
+    SSHKeyCreateResponse:
+      description: SSH ключ добавлен
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/CreateSSHKeyResponse'
+    SSHKeyDeleteResponse:
+      description: SSH ключ удалён
+    PrivilegesGetResponse:
+      description: Список привилегий
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/ResponsePrivilegesGet'
+    PrivilegesApplyResponse:
+      description: Привилегии применены
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/ApplyPrivilegesResponse'

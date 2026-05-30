@@ -1,0 +1,29 @@
+components:
+  responses:
+    AccessProjectResponse:
+      description: Доступы для проекта
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/ProjectAccess'
+
+    AccessProjectsResponse:
+      description: Доступы для списка проектов
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/ProjectListAccess'
+
+    AccessRepoResponse:
+      description: Доступы для репозитория
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/RepoAccess'
+
+    AccessReposResponse:
+      description: Доступы для списка репозиториев
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/ReposListAccess'

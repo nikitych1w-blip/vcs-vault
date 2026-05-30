@@ -1,0 +1,41 @@
+components:
+  schemas:
+    Label:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Уникальный идентификатор метки
+          example: 1
+        name:
+          type: string
+          description: Название метки
+          example: bug
+        color:
+          type: string
+          description: Цвет метки в формате HEX
+          example: "#FF0000"
+        description:
+          type: string
+          description: Описание метки
+          example: "Ошибка в работе функционала"
+      required:
+        - id
+        - name
+        - color
+
+    PaginatedLabelsList:
+      type: object
+      description: Пагинированный список меток репозитория
+      properties:
+        pagination:
+          $ref: '../../common/pagination.yaml#/components/schemas/Pagination'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Label'
+          description: Список меток репозитория
+      required:
+        - pagination
+        - data

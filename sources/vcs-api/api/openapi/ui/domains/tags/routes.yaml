@@ -1,0 +1,54 @@
+RepoTags:
+  get:
+    summary: Получить список тегов репозитория
+    tags:
+      - Tags
+    operationId: GetRepoTagsList
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: '../../common/params.yaml#/components/parameters/q'
+      - $ref: '../../common/params.yaml#/components/parameters/page'
+      - $ref: '../../common/params.yaml#/components/parameters/limit'
+      - $ref: '../../common/params.yaml#/components/parameters/sort'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/RepoTagsListResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+  post:
+    summary: Создать новый тег репозитория
+    tags:
+      - Tags
+    operationId: CreateRepoTag
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/TagPayload'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/RepoTagCreateResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

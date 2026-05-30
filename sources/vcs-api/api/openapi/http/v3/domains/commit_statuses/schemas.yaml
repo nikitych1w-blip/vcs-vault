@@ -1,0 +1,92 @@
+components:
+  schemas:
+    CommitStatusListResponse:
+      type: object
+      required:
+        - pagination
+        - statuses
+      properties:
+        pagination:
+          $ref: '../../common/pagination.yaml#/components/schemas/Pagination'
+        statuses:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommitStatusInfo'
+
+    CommitStatusInfo:
+      type: object
+      required:
+        - id
+        - author
+        - created_at
+        - updated_at
+        - context
+        - state
+        - target_url
+        - sha
+      properties:
+        id:
+          type: integer
+          format: int64
+        author:
+          $ref: '#/components/schemas/CommitStatusAuthor'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        context:
+          type: string
+        description:
+          type: string
+          nullable: true
+        state:
+          type: string
+          enum:
+            - pending
+            - success
+            - error
+            - failure
+            - warning
+        target_url:
+          type: string
+        sha:
+          type: string
+          pattern: '^[0-9a-f]{40}$'
+
+    CommitStatusAuthor:
+      type: object
+      required:
+        - name
+        - email
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+
+    CommitStatusCreateRequest:
+      type: object
+      required:
+        - context
+        - state
+      properties:
+        context:
+          type: string
+          maxLength: 1000
+        state:
+          type: string
+          enum:
+            - pending
+            - success
+            - error
+            - failure
+            - warning
+        description:
+          type: string
+          nullable: true
+          maxLength: 1000
+        target_url:
+          type: string
+          maxLength: 1000

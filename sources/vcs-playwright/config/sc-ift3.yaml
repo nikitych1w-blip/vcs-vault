@@ -1,0 +1,4 @@
+sc:
+  name: sc-ift3
+  ssh:
+    port: 7013

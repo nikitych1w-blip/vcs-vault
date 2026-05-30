@@ -1,0 +1,8 @@
+components:
+  responses:
+    CompareCommitsResponse:
+      description: Результат сравнения коммитов
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/CompareCommitsResponse'

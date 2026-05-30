@@ -1,0 +1,66 @@
+Tenants:
+  get:
+    tags: [tenants]
+    summary: Get tenant by key
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/TenantKey'
+    operationId: v2GetTenantByKey
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/TenantGetResponse'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  post:
+    tags: [tenants]
+    summary: Create tenant
+    operationId: v2CreateTenant
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/CreateTenantOptions'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/TenantCreateResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  delete:
+    tags: [tenants]
+    summary: Delete tenant
+    operationId: v2DeleteTenant
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/DeleteTenantOptions'
+    responses:
+      '204':
+        $ref: './responses.yaml#/components/responses/TenantDeleteResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

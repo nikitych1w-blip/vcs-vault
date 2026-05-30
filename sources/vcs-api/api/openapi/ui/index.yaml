@@ -1,0 +1,136 @@
+openapi: 3.0.3
+info:
+  title: SourceControl UI REST API
+  version: 0.0.1
+  license:
+    name: Internal Proprietary License
+    url: /
+
+servers:
+  - url: /web/v2
+
+security:
+  - cookieAuth: []
+
+paths:
+  /user:
+    $ref: './domains/users/routes.yaml#/UserInfo'
+  /configurations:
+    $ref: './domains/configurations/routes.yaml#/Configuration'
+
+  /topics/search:
+    $ref: './domains/topics/routes.yaml#/TopicsSearch'
+
+  /repos/search:
+    $ref: './domains/repos/routes.yaml#/ReposSearch'
+  /repos/{project_name}/{repo_name}/external_metrics:
+    $ref: './domains/repos/routes.yaml#/RepoExternalMetrics'
+
+  /projects/{project_name}:
+    $ref: './domains/projects/routes.yaml#/ProjectInfo'
+  /projects/{project_name}/{action}:
+    $ref: './domains/projects/routes.yaml#/ProjectAction'
+  /projects/{project_name}/users:
+    $ref: './domains/projects/routes.yaml#/ProjectUsers'
+  /projects/{project_name}/repos:
+    $ref: './domains/repos/routes.yaml#/ProjectRepos'
+
+  /projects/{project_name}/repos/{repo_name}:
+    $ref: './domains/repos/routes.yaml#/Repo'
+  /projects/{project_name}/repos/{repo_name}/favorite:
+    $ref: './domains/repos/routes.yaml#/RepoFavorite'
+  /projects/{project_name}/repos/{repo_name}/subscribe:
+    $ref: './domains/repos/routes.yaml#/RepoSubscribe'
+  /projects/{project_name}/repos/{repo_name}/branches:
+    $ref: './domains/branches/routes.yaml#/RepoBranches'
+  /repos/{project_name}/{repo_name}/labels:
+    $ref: './domains/labels/routes.yaml#/RepoLabels'
+  /repos/{project_name}/{repo_name}/users:
+    $ref: './domains/users/routes.yaml#/RepoUsers'
+  /repos/{project_name}/{repo_name}/milestones:
+    $ref: './domains/milestones/routes.yaml#/RepoMilestones'
+  /repos/{project_name}/{repo_name}/pulls/template:
+    $ref: './domains/template/routes.yaml#/RepoTemplate'
+  /repos/{project_name}/{repo_name}/attachments:
+    $ref: './domains/attachments/routes.yaml#/RepoAttachments'
+  /repos/{project_name}/{repo_name}/pulls:
+    $ref: './domains/pulls/routes.yaml#/RepoPulls'
+  /repos/{project_name}/{repo_name}/tags:
+    $ref: './domains/tags/routes.yaml#/RepoTags'
+  /repos/{project_name}/{repo_name}/topics:
+    $ref: './domains/topics/routes.yaml#/RepoTopics'
+  /repos/{project_name}/{repo_name}/metrics:
+    $ref: './domains/metrics/routes.yaml#/MetricsRoute'
+  /repos/{project_name}/{repo_name}/build/status:
+    $ref: './domains/repos/routes.yaml#/BuildStatusRoute'
+
+  /repos/{project_name}/{repo_name}/pulls/{index}:
+    $ref: './domains/pulls/routes.yaml#/RepoPR'
+  /repos/{project_name}/{repo_name}/pulls/{index}/members:
+    $ref: './domains/pulls/routes.yaml#/PRMembers'
+  /repos/{project_name}/{repo_name}/pulls/{index}/linked_tasks:
+    $ref: './domains/pulls/routes.yaml#/PRLinkedTasks'
+  /repos/{project_name}/{repo_name}/pulls/{index}/attributes:
+    $ref: './domains/pulls/routes.yaml#/PRAttributes'
+  /repos/{project_name}/{repo_name}/pulls/{index}/time_attributes:
+    $ref: './domains/pulls/routes.yaml#/PRTimeAttributes'
+  /repos/{project_name}/{repo_name}/pulls/{index}/time_attributes/due_date:
+    $ref: './domains/pulls/routes.yaml#/PRDueDate'
+  /repos/{project_name}/{repo_name}/pulls/{index}/time_attributes/track:
+    $ref: './domains/pulls/routes.yaml#/PRTrackedTime'
+  /repos/{project_name}/{repo_name}/pulls/{index}/subscribe:
+    $ref: './domains/pulls/routes.yaml#/PRSubscribe'
+  /repos/{project_name}/{repo_name}/pulls/{index}/build:
+    $ref: './domains/pulls/routes.yaml#/PRBuild'
+  /repos/{project_name}/{repo_name}/pulls/{index}/state:
+    $ref: './domains/pulls/routes.yaml#/PRState'
+  /repos/{project_name}/{repo_name}/pulls/{index}/upstream:
+    $ref: './domains/pulls/routes.yaml#/PRUpstream'
+  /repos/{project_name}/{repo_name}/pulls/{index}/members/{user_id}/reset:
+    $ref: './domains/pulls/routes.yaml#/PRMemberReviewReset'
+  /repos/{project_name}/{repo_name}/pulls/{index}/update_branch:
+    $ref: './domains/pulls/routes.yaml#/PRBranchUpdate'
+  /repos/{project_name}/{repo_name}/pulls/{index}/comments:
+    $ref: './domains/pulls/routes.yaml#/PRComments'
+  /repos/{project_name}/{repo_name}/pulls/{index}/comments/{comment_id}:
+    $ref: './domains/pulls/routes.yaml#/PRComment'
+  /repos/{project_name}/{repo_name}/pulls/{index}/comments/{comment_id}/reactions:
+    $ref: './domains/pulls/routes.yaml#/PRCommentReactions'
+
+  # Diff
+  /repos/{project_name}/{repo_name}/diff/commits:
+    $ref: './domains/diff/routes.yaml#/DiffCommits'
+  /repos/{project_name}/{repo_name}/diff/file:
+    $ref: './domains/diff/routes.yaml#/DiffFile'
+  /repos/{project_name}/{repo_name}/diff/tree:
+    $ref: './domains/diff/routes.yaml#/DiffTree'
+  /repos/{project_name}/{repo_name}/diff/filechunk:
+    $ref: './domains/diff/routes.yaml#/FileChunk'
+
+
+  /projects/{project_name}/repos/{repo_name}/branches/{branch_name}:
+    $ref: './domains/branches/routes.yaml#/RepoBranch'
+  /projects/{project_name}/repos/{repo_name}/branches/{branch_name}/restore:
+    $ref: './domains/branches/routes.yaml#/RepoBranchRestore'
+
+  /access/projects/{project_name}:
+    $ref: './domains/access/routes.yaml#/AccessProject'
+  /access/projects:
+    $ref: './domains/access/routes.yaml#/AccessProjects'
+  /access/repos:
+    $ref: './domains/access/routes.yaml#/AccessRepos'
+  /access/projects/{project_name}/repos/{repo_name}:
+    $ref: './domains/access/routes.yaml#/AccessRepo'
+  /access/projects/{project_name}/repos:
+    $ref: './domains/access/routes.yaml#/AccessProjectsRepos'
+
+  /projects/{project_name}/repos/{repo_name}/browse:
+    $ref: './domains/repos/routes.yaml#/BrowseRepoContent'
+
+  /repos/{project_name}/{repo_name}/raw:
+    $ref: './domains/repos/routes.yaml#/RepoRawFile'
+
+components:
+  securitySchemes:
+    cookieAuth:
+      $ref: ./common/security.yaml#/cookieAuth

@@ -1,0 +1,4 @@
+!definelong Syngx_SC_App(id)
+Container(id, "SynGX", "Nginx + LUA", "Маршрутизация запросов", $tags="app")
+!enddefinelong
+

@@ -1,0 +1,25 @@
+RepoMilestones:
+  get:
+    summary: Получить список этапов (milestones) репозитория
+    tags:
+      - Milestones
+    operationId: GetRepoMilestones
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: '../../common/params.yaml#/components/parameters/q'
+      - $ref: "../../common/params.yaml#/components/parameters/page"
+      - $ref: "../../common/params.yaml#/components/parameters/limit"
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/MilestonesListResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

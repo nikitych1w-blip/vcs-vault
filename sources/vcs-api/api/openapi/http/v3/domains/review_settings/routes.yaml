@@ -1,0 +1,123 @@
+RepoReviewSettings:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+  get:
+    tags:
+      - review_settings
+    summary: Get review settings
+    operationId: v3GetReviewSettings
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/ReviewSettingsListResponse'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  post:
+    tags:
+      - review_settings
+    summary: Create review settings
+    operationId: v3CreateReviewSettings
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/ReviewSettingsRequest'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/ReviewSettingsCreatedResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  put:
+    tags:
+      - review_settings
+    summary: Update review settings
+    operationId: v3UpdateReviewSettings
+    parameters:
+      - name: branch_name
+        in: query
+        required: true
+        description: Имя ветки
+        schema:
+          type: string
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/ReviewSettingsRequest'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/ReviewSettingsUpdatedResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  delete:
+    tags:
+      - review_settings
+    summary: Delete review settings
+    operationId: v3DeleteReviewSettings
+    parameters:
+      - name: branch_name
+        in: query
+        required: true
+        description: Имя ветки
+        schema:
+          type: string
+    responses:
+      '204':
+        $ref: './responses.yaml#/components/responses/ReviewSettingsDeletedResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+RepoReviewSettingsBranch:
+  parameters:
+    - $ref: '../../common/params.yaml#/components/parameters/Tenant'
+    - $ref: '../../common/params.yaml#/components/parameters/Project'
+    - $ref: '../../common/params.yaml#/components/parameters/Repo'
+    - $ref: '../../common/params.yaml#/components/parameters/BranchName'
+  get:
+    tags:
+      - review_settings
+    summary: Get branch review settings
+    operationId: v3GetBranchReviewSettings
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/BranchReviewSettingResponse'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

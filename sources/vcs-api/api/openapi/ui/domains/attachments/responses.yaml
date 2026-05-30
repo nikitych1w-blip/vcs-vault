@@ -1,0 +1,8 @@
+components:
+  responses:
+    UploadResponse:
+      description: Файлы загружены (результаты по каждому файлу в порядке запроса)
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/MultiFileUploadResponse'

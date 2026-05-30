@@ -1,0 +1,40 @@
+components:
+  responses:
+    HealthSuccessResponse:
+      description: Сервис работоспособен (status = pass или warn)
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/HealthResponse'
+          example:
+            status: pass
+            description: SourceControl
+            checks:
+              database:ping:
+                - status: pass
+                  time: 2026-04-08T10:15:30Z
+              cache:ping:
+                - status: pass
+                  time: 2026-04-08T10:15:30Z
+
+    HealthFailureResponse:
+      description: Сервис недоступен (status = fail)
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/HealthResponse'
+          example:
+            status: fail
+            description: SourceControl
+            checks:
+              database:ping:
+                - status: fail
+                  time: 2026-04-08T10:15:30Z
+                  output: Database connection timed out.
+
+    SwaggerHealthUIResponse:
+      description: HTML-страница Swagger UI для health-спеки
+      content:
+        text/html:
+          schema:
+            type: string

@@ -1,0 +1,149 @@
+Swagger:
+  get:
+    tags: [admin]
+    summary: Redirect to Swagger UI
+    description: В реализации делает redirect на настройку `API.SwaggerV2URL`.
+    operationId: v2SwaggerRedirect
+    responses:
+      '303':
+        $ref: './responses.yaml#/components/responses/SwaggerRedirectResponse'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+AdminUsers:
+  get:
+    tags: [admin]
+    summary: Get user (admin)
+    operationId: v2AdminGetUser
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/UserKey'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/UserInfoResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  post:
+    tags: [admin]
+    summary: Create user (admin)
+    operationId: v2AdminCreateUser
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/CreateUserRequest'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/UserCreateResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+AdminUserKeys:
+  post:
+    tags: [admin]
+    summary: Add SSH key for user (admin)
+    operationId: v2AdminAddUserSSHKey
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/UserKey'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/CreateSSHKeyRequest'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/SSHKeyCreateResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  delete:
+    tags: [admin]
+    summary: Delete SSH key for user (admin)
+    operationId: v2AdminDeleteUserSSHKey
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/UserKey'
+      - $ref: '../../common/params.yaml#/components/parameters/SSHKeyTitle'
+    responses:
+      '204':
+        $ref: './responses.yaml#/components/responses/SSHKeyDeleteResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+AdminPrivileges:
+  get:
+    tags: [admin]
+    summary: Get privileges
+    operationId: v2AdminGetPrivileges
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/GetPrivilegesRequest'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PrivilegesGetResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  post:
+    tags: [admin]
+    summary: Apply privileges
+    operationId: v2AdminApplyPrivileges
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/ApplyPrivilegesRequest'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/PrivilegesApplyResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

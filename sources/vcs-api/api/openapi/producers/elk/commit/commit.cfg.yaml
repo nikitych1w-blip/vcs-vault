@@ -1,0 +1,7 @@
+package: events
+output: models/events/elk/commit.gen.go
+generate:
+  models: true
+import-mapping:
+  ./generic/meta.yaml: "code.gitea.io/gitea/models/events/elk/generic"
+  ./generic/context.yaml: "code.gitea.io/gitea/models/events/elk/generic"

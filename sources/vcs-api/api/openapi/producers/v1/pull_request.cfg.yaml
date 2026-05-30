@@ -1,0 +1,8 @@
+package: events
+output: models/events/v1/pull_request.gen.go
+generate:
+  models: true
+import-mapping:
+  ./generic/meta.yaml: "code.gitea.io/gitea/models/events/v1/generic"
+  ./generic/context.yaml: "code.gitea.io/gitea/models/events/v1/generic"
+  ./generic/initiator_user.yaml: "code.gitea.io/gitea/models/events/v1/generic"

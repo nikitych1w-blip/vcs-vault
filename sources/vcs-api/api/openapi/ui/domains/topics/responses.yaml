@@ -1,0 +1,8 @@
+components:
+  responses:
+    TopicsListResponse:
+      description: Ответ на поиск по топикам
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PaginatedTopicsList'

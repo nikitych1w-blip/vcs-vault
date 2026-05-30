@@ -1,0 +1,69 @@
+{
+  "info": {
+    "_postman_id": "db5ffa03-02d4-4b10-9609-51fb36c06778",
+    "name": "Configuration",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "Get Configuration",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function() {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has valid configuration structure\", function() {",
+              "    const response = pm.response.json();",
+              "    pm.expect(response).to.have.property('sbt.one_work');",
+              "    pm.expect(response['sbt.one_work']).to.have.property('enabled');",
+              "    pm.expect(response['sbt.one_work']).to.have.property('service_url');",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "pm.environment.set(\"configuration_url\", \"https://sc-ift2.ift.pd04.pvw.sbt/web/v2/configurations\");"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token_bearer_jwt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{sc_api_ift_stand_url_external}}/{{sc_api_web_v2_prefix}}/configurations",
+          "host": [
+            "{{sc_api_ift_stand_url_external}}"
+          ],
+          "path": [
+            "{{sc_api_web_v2_prefix}}",
+            "configurations"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

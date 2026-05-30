@@ -1,0 +1,106 @@
+{
+  "info": {
+    "_postman_id": "cfadab1a-24c8-4ef9-8da3-22716a3e3a8c",
+    "name": "PRUpstream",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "Read",
+      "item": [
+        {
+          "name": "api/v3",
+          "item": [
+            {
+              "name": "Get PRUpstream settings",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": ""
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Create",
+      "item": [
+        {
+          "name": "api/v3",
+          "item": [
+            {
+              "name": "Create PRUpstream settings",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branches\": [\n    \"main\",\n\t\t\"branch1\",\n\t\t\"branch2\"\n  ],\n  \"tracker_project_key\": \"STREAM6\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/prupstream",
+                  "protocol": "https",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v3_prefix}}",
+                    "repos",
+                    "{{sc_api_mock_tenant_id}}",
+                    "{{sc_api_mock_project_name}}",
+                    "{{sc_api_mock_repository_name}}",
+                    "prupstream"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Delete",
+      "item": [
+        {
+          "name": "api/v3",
+          "item": [
+            {
+              "name": "Delete PRUpsream settings",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "https://{{sc_api_ift_stand_url_external}}/{{sc_api_api_v3_prefix}}/repos/{{sc_api_mock_tenant_id}}/{{sc_api_mock_project_name}}/{{sc_api_mock_repository_name}}/prupstream",
+                  "protocol": "https",
+                  "host": [
+                    "{{sc_api_ift_stand_url_external}}"
+                  ],
+                  "path": [
+                    "{{sc_api_api_v3_prefix}}",
+                    "repos",
+                    "{{sc_api_mock_tenant_id}}",
+                    "{{sc_api_mock_project_name}}",
+                    "{{sc_api_mock_repository_name}}",
+                    "prupstream"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

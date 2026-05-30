@@ -1,0 +1,2018 @@
+{
+  "info": {
+    "_postman_id": "ad0e6e0f-16ed-4580-86c8-06ccae695026",
+    "name": "Change PR",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17086204"
+  },
+  "item": [
+    {
+      "name": "api/v3",
+      "item": [
+        {
+          "name": "Валидно изменить PR",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change1\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_admin5\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/13",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "13"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле title более 100 символов",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"gfrqbdpagaunfxcijboqthfyablikcdwiynkjrraysemlqaslwzhwqtmctqaajyfxjrcttulvzqldnuzwspqjlhtoeoifmcjoqxyp\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле title 1 символ",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"g\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле body более 512 символов",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"elmwkqoajrflvhkllzihbbndezwvaduccpmudhixvvljpghpfrtlhvddrhpsbtxwvxaanivjnbmvbnwfwaiajocgskpztskizpncohimosiltwzgqwvazrnifkobptbsznjjbpwmphkqaclwjrzppuztuowoydxsusohzmqpxljocvqzgpxcjezqynmpcoyichbqjlhkmhiyhxvopqcomfuxsrjhegwyiphuseqhbnwuhuyywvejhnldlwiyuzcqduofxohlqiqxrjspqseyqyzxdfijykftusrcfixksjotvkhygnvegafckrslzwnegahmlawmywqcecscoxdqhnjhixeuqqhtaduwaxfjsgeymbtoqitmcuqnrzadpxbpiqwnkfhpbumjropyqaabhuybysnkhlbinefhryzuyszusbykzoydvwlokwqdbvloyldlnaccymimkerghfxqvkbyjtrgcqlcfudkropnrjkowrrbaxrrfumtjivuaqhgn\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле body 1 символ",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"e\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле assigness не валидное значение",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"!!sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле assigness более 40 символов",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"nbyyspqbdzgwfknurexoqpmhnhwpnzuhsqkjkopwe\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле assigness 1 символ",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"n\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Указать в теле запроса некорректную длину массива assignees",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\"\r\n  ],\r\n  \"reviewers\": [\r\n     \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\", \r\n    \"sa_vcs_user15\",\r\n    \"sa_vcs_user11\",\r\n    \"sa_vcs_user1\",\r\n    \"sa_vcs_user2\",\r\n    \"sa_vcs_user3\",\r\n    \"sa_vcs_user4\",\r\n    \"sa_vcs_user5\",\r\n    \"sa_vcs_user6\",\r\n    \"sa_vcs_user7\",\r\n    \"sa_vcs_user8\",\r\n    \"sa_vcs_user9\",\r\n    \"sa_vcs_user10\",\r\n    \"sa_vcs_user21\",\r\n    \"sa_vcs_user22\",\r\n    \"sa_vcs_user23\",\r\n    \"sa_vcs_user24\",\r\n    \"sa_vcs_user25\",\r\n    \"sa_vcs_user26\",\r\n    \"sa_vcs_user27\",\r\n    \"sa_vcs_user28\",\r\n    \"sa_vcs_user29\",\r\n    \"sa_vcs_user30\",\r\n    \"sa_vcs_user31\",\r\n    \"sa_vcs_user32\",\r\n    \"sa_vcs_user33\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле assigness не существующий логин",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user200000\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user20\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле reviewers не валидное значение",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"!!!sa_vcs_user20\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле reviewers более 40 символов",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"gxtpjquyzpthqymeqvednyleixhzitpvuwihincru\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле reviewers 1 символ",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"g\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Указать в теле запроса некорректную длину массива reviewers",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\"\r\n  ],\r\n   \"reviewers\": [\r\n     \"sa_vcs_user20\",\r\n    \"sa_vcs_user18\", \r\n    \"sa_vcs_user15\",\r\n    \"sa_vcs_user11\",\r\n    \"sa_vcs_user1\",\r\n    \"sa_vcs_user2\",\r\n    \"sa_vcs_user3\",\r\n    \"sa_vcs_user4\",\r\n    \"sa_vcs_user5\",\r\n    \"sa_vcs_user6\",\r\n    \"sa_vcs_user7\",\r\n    \"sa_vcs_user8\",\r\n    \"sa_vcs_user9\",\r\n    \"sa_vcs_user10\",\r\n    \"sa_vcs_user21\",\r\n    \"sa_vcs_user22\",\r\n    \"sa_vcs_user23\",\r\n    \"sa_vcs_user24\",\r\n    \"sa_vcs_user25\",\r\n    \"sa_vcs_user26\",\r\n    \"sa_vcs_user27\",\r\n    \"sa_vcs_user28\",\r\n    \"sa_vcs_user29\",\r\n    \"sa_vcs_user30\",\r\n    \"sa_vcs_user31\",\r\n    \"sa_vcs_user32\",\r\n    \"sa_vcs_user33\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле reviewers не существующий логин",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\"\r\n  ],\r\n   \"reviewers\": [\r\n     \"sa_vcs_user200000\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле labels не валидное значение",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\"\r\n  ],\r\n   \"reviewers\": [\r\n     \"sa_vcs_user20\"\r\n  ],\r\n  \"labels\": [\r\n    0,999\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле labels не существующее значение",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\"\r\n  ],\r\n   \"reviewers\": [\r\n     \"sa_vcs_user20\"\r\n  ],\r\n  \"labels\": [\r\n    999\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле labels некорректную длину массива labels",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\"\r\n  ],\r\n   \"reviewers\": [\r\n     \"sa_vcs_user20\"\r\n  ],\r\n  \"labels\": [\r\n    8,\r\n    1,\r\n    2,\r\n    3,\r\n    4,\r\n    5,\r\n    6,\r\n    7,\r\n    9,\r\n    10,\r\n    11,\r\n    12,\r\n    13,\r\n    14,\r\n    15,\r\n    16,\r\n    17,\r\n    18,\r\n    19,\r\n    20,\r\n    21,\r\n    22,\r\n    23,\r\n    24,\r\n    25,\r\n    26\r\n\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле milestone не валидное значение",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\"\r\n  ],\r\n   \"reviewers\": [\r\n     \"sa_vcs_user20\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 0.999,\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле milestone не существующее значение",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\"\r\n  ],\r\n   \"reviewers\": [\r\n     \"sa_vcs_user20\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 999,\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле due_date не корректный формат даты",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\"\r\n  ],\r\n   \"reviewers\": [\r\n     \"sa_vcs_user20\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": \r\n    2, \r\n\r\n  \"due_date\": \"12.36.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле tenant_UUID несуществующее значение",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\"\r\n  ],\r\n   \"reviewers\": [\r\n     \"sa_vcs_user20\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": \r\n    2, \r\n\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96049d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96049d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле project_name несуществующее значение",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\"\r\n  ],\r\n   \"reviewers\": [\r\n     \"sa_vcs_user20\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": \r\n    2, \r\n\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api123456/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api123456",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле repo_name несуществующее значение",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\"\r\n  ],\r\n   \"reviewers\": [\r\n     \"sa_vcs_user20\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": \r\n    2, \r\n\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo123456/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo123456",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Ввести в поле index несуществующее значение",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\"\r\n  ],\r\n   \"reviewers\": [\r\n     \"sa_vcs_user20\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": \r\n    2, \r\n\r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/111",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "111"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Редактировать PR пользователем, у которого недостаточно прав к взаимодействию с репозиторием",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_user14",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_user14",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\"\r\n  ],\r\n   \"reviewers\": [\r\n     \"sa_vcs_user20\"\r\n  ],\r\n \r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/privat/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "privat",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Редактировать PR пользователем, у которого недостаточно прав для редактирования PR",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_user14",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_user14",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user20\"\r\n  ],\r\n   \"reviewers\": [\r\n     \"sa_vcs_user20\"\r\n  ],\r\n \r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Добавить ревьюеров, у которых нет прав к проекту",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_use20\"\r\n  ],\r\n   \"reviewers\": [\r\n     \"sa_vcs_user12\"\r\n  ],\r\n \r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Добавить назначенных пользователей, у которых нет прав к проекту",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_use12\"\r\n  ],\r\n   \"reviewers\": [\r\n     \"sa_vcs_user20\"\r\n  ],\r\n \r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Редактировать PR cо статусом merged",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "password",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                },
+                {
+                  "key": "username",
+                  "value": "sa_vcs_admin5",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_use20\"\r\n  ],\r\n   \"reviewers\": [\r\n     \"sa_vcs_user20\"\r\n  ],\r\n \r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/9",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "9"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "[Негативный] Редактировать PR не авторизованным пользователем",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_use20\"\r\n  ],\r\n   \"reviewers\": [\r\n     \"sa_vcs_user20\"\r\n  ],\r\n \r\n  \"due_date\": \"12.05.2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1",
+              "protocol": "https",
+              "host": [
+                "ift",
+                "pd04",
+                "pvw",
+                "sbt"
+              ],
+              "path": [
+                "ssd",
+                "tools",
+                "sc-ift1",
+                "api",
+                "v3",
+                "repos",
+                "f51f846a-36a5-47f6-b1bd-3b98be96048d",
+                "api1",
+                "test_repo1",
+                "pulls",
+                "1"
+              ]
+            },
+            "description": "Generated from cURL: curl -X 'PATCH' \\\r\n  'https://ift.pd04.pvw.sbt/ssd/tools/sc-ift1/api/v3/repos/f51f846a-36a5-47f6-b1bd-3b98be96048d/api1/test_repo1/pulls/1' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"title\": \"PR_change\",\r\n  \"body\": \"Описание PR\",\r\n  \"assignees\": [\r\n    \"sa_vcs_user13\"\r\n  ],\r\n  \"reviewers\": [\r\n    \"sa_vcs_user18\"\r\n  ],\r\n  \"labels\": [\r\n    8\r\n  ],\r\n  \"milestone\": 2,\r\n  \"due_date\": \"12.05.2026\"\r\n}'"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

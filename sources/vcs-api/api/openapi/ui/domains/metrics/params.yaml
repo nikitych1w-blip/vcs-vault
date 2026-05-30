@@ -1,0 +1,9 @@
+components:
+  parameters:
+    branch:
+      name: branch
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Название ветки (encoded)

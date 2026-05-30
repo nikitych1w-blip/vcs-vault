@@ -1,0 +1,13 @@
+components:
+  parameters:
+    action:
+      name: action
+      in: path
+      required: true
+      description: Название action
+      schema:
+        type: string
+        enum:
+          - follow
+          - unfollow
+        example: follow

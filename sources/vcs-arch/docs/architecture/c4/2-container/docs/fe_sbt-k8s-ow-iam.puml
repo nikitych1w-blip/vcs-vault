@@ -1,0 +1,43 @@
+@startuml
+!include <C4/C4_Container>
+!include ./../../../../../sources/container_units/iam.puml
+!include ./../../../../../sources/container_units/ow.puml
+!include ./../../../../../sources/container_units/sc.puml
+!include ./../../../../../sources/container_units/syngx.puml
+!include ./../../../../../sources/container_units/ingress.puml
+!include ./../../../../../sources/container_units/styles.puml
+
+title Схема SBT (K8S - OW - IAM)
+
+set_styles()
+
+' Уровень системы (System)
+Person(user, "Пользователь", "Использует систему через браузер")
+
+' Контейнеры внутри системы
+IAM_SC_App(iam)
+
+Container_Boundary(k8s_sys, "K8S") {
+    Ingress_K8S_App(ingress)
+
+    OW_SBT_App(ow, nginx)
+
+    Container(k8s_be, "k8s service SC BE", "", "LB")
+    Container(k8s_fe, "k8s service SC FE", "", "LB")
+
+    SC_App(sc)
+    SC_MFE_App(sc_mfe_react)
+}
+
+' Отношения
+Rel(user, iam, " ")
+Rel(iam, ingress, " ")
+Rel(ingress, nginx, " ")
+Rel(nginx, k8s_be, " ")
+Rel(nginx, k8s_fe, " ")
+
+Rel(k8s_be, sc, " ")
+Rel(k8s_fe, sc_mfe_react, " ")
+
+
+@enduml

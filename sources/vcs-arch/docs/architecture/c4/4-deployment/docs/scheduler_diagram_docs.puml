@@ -1,0 +1,18 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Container(appini, "app.ini", "app", "contains configuration for each scheduler task separately")
+Container(sc, "SourceControl", "app", "core")
+Container(sched, "Scheduler", "app", "module responsible for a background jobs")
+Container(workers, "Worker pool", "app", "handlers registered at startup along with scheduler task")
+Container(redis, "Redis", "storage", "synchronization point contains all required queue which are configured automatically at startup")
+
+Rel(sc, appini, "load", "config")
+Rel(sc, sched, "register", "task")
+Rel(sched, redis, "fire events by cron", "message")
+Rel(workers, redis, "poll", "message")
+Rel(admin, appini, "configures", "")
+
+
+SHOW_LEGEND()
+@enduml

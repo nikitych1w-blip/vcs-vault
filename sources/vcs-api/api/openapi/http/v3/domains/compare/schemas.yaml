@@ -1,0 +1,125 @@
+components:
+  schemas:
+    CompareCommitsResponse:
+      type: object
+      description: Результат сравнения коммитов с пагинацией
+      required:
+        - data
+        - pagination
+        - diffInfo
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileCommitFullInfo'
+        pagination:
+          $ref: '../../common/pagination.yaml#/components/schemas/Pagination'
+        diffInfo:
+          $ref: '#/components/schemas/DiffStatInfo'
+    CommitParentOrTreeInfo:
+      type: object
+      properties:
+        created:
+          type: string
+          format: date-time
+          example: '2025-04-05T14:30:00Z'
+        sha:
+          type: string
+        url:
+          type: string
+      required:
+        - created
+        - url
+        - sha
+    CommitUserWithDateInfo:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Логин пользователя
+        email:
+          type: string
+          description: Email пользователя
+        date:
+          type: string
+          description: Время взаимодействия
+      required:
+        - name
+        - email
+        - date
+    DiffStatInfo:
+      type: object
+      description: Статистика различий между двумя ветками/коммитами
+      required:
+        - base_commit
+        - merge_base_commit
+        - head_commit
+        - status
+        - total_commits
+        - total_files
+      properties:
+        base_commit:
+          type: string
+          description: SHA коммита базовой ветки
+        merge_base_commit:
+          type: string
+          description: SHA общего предка между base и head
+        head_commit:
+          type: string
+          description: SHA коммита головной ветки
+        status:
+          type: string
+          description: Статус отношения между ветками
+          enum:
+            - ahead
+            - behind
+            - identical
+            - derived
+            - unknown
+        total_commits:
+          type: integer
+          description: Количество коммитов в диапазоне (на текущей странице)
+        total_files:
+          type: integer
+          description: Количество файлов в диапазоне
+    FileCommitFullInfo:
+      type: object
+      description: Информация по коммиту
+      required:
+        - author
+        - sha
+        - url
+        - committer
+        - tree
+        - message
+        - created
+      properties:
+        author:
+          $ref: '#/components/schemas/CommitUserWithDateInfo'
+        committer:
+          $ref: '#/components/schemas/CommitUserWithDateInfo'
+        created:
+          type: string
+          format: date-time
+          description: Дата создания коммита
+          example: '2025-04-05T14:30:00Z'
+        html_url:
+          type: string
+          description: Ссылка на коммит в интерфейсе
+          nullable: true
+        message:
+          type: string
+          description: Сообщение коммита
+        parents:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/CommitParentOrTreeInfo'
+        sha:
+          type: string
+          description: SHA коммита
+        tree:
+          $ref: '#/components/schemas/CommitParentOrTreeInfo'
+        url:
+          type: string
+          description: API-ссылка на коммит

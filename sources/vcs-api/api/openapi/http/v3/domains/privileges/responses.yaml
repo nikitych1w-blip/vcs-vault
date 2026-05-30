@@ -1,0 +1,16 @@
+components:
+  responses:
+    PrivilegeListResponse:
+      description: Список привилегий
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: './schemas.yaml#/components/schemas/UserPrivilege'
+    ApplyPrivilegesResponse:
+      description: Результат применения привилегий
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/AppliedPrivilegeStatus'

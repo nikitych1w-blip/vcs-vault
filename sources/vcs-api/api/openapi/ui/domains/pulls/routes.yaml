@@ -1,0 +1,703 @@
+RepoPulls:
+  post:
+    summary: Создать новый Pull Request
+    tags:
+      - Pulls
+    operationId: CreatePullRequest
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PullRequestCreatePayload'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/PullCreateResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+PRBuild:
+  post:
+    summary: Запустить/перезапустить сборку PR
+    description: >
+      Инициирует сборку для указанного PR.
+      Ответ означает, что запрос принят в работу. Текущий статус сборки клиент получает
+      через GET /merge_checks
+    tags:
+      - Pulls
+    operationId: PRBuild
+    x-required-privilege: write
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/index'
+    responses:
+      '202':
+        $ref: '../../common/success.yaml#/components/responses/NoContent'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+RepoPR:
+  get:
+    summary: Получить pull request в репозитории по индексу
+    tags:
+      - Pulls
+    operationId: GetPR
+    x-required-privilege: read
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/index'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PRResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  patch:
+    summary: >
+      Частично обновить pull request в репозитории:
+      обновить описание (в т.ч. указать WIP-префикс),
+      ограничить комментарии,
+      изменить целевую ветки,
+      обновить тело пулреквеста,
+      изменить список вложений
+    tags:
+      - Pulls
+    operationId: UpdatePR
+    x-required-privilege: write
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/index'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRUpdatePayload'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PRResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  delete:
+    summary: Удалить pull request
+    tags:
+      - Pulls
+    operationId: DeleteRepoPR
+    x-required-privilege: write
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/index'
+    responses:
+      '204':
+        description: Pull request успешно удалён
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+PRMembers:
+  get:
+    summary: Получить информацию по пользователям, участвующим в pull request
+    tags:
+      - Pulls
+    operationId: GetPRMembers
+    x-required-privilege: read
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/index'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PRMembersResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  patch:
+      summary: Частично обновить участников pull request - заменить списки рецензентов, назначенных пользователей
+      description: |
+        Обновление списков участников PR.
+
+        Правила применения:
+        - Все поля опциональны, обновляются только переданные значения
+        - Массивы заменяются целиком (старые значения удаляются)
+        - Для удаления всех элементов передайте пустой массив []
+      tags:
+        - Pulls
+      operationId: UpdatePRMembers
+      parameters:
+        - $ref: '../../common/params.yaml#/components/parameters/project_name'
+        - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+        - $ref: './params.yaml#/components/parameters/index'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/components/schemas/PRMembersUpdatePayload'
+      responses:
+        '200':
+          description: Участники успешно обновлены
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/components/schemas/PRMembers'
+        '400':
+          $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+        '403':
+          $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+        '404':
+          $ref: '../../common/errors.yaml#/components/responses/NotFound'
+        '500':
+          $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+PRLinkedTasks:
+  get:
+    summary: Получить информацию по связанным с pull request задачам
+    tags:
+      - Pulls
+    operationId: GetPRLinkedTasks
+    x-required-privilege: read
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/index'
+      - $ref: '../../common/params.yaml#/components/parameters/page'
+      - $ref: '../../common/params.yaml#/components/parameters/limit'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PRLinkedTasksResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+PRAttributes:
+  get:
+    summary: Получить информацию по связанным с pull request атрибутам репозитория (метки и этап)
+    tags:
+      - Pulls
+    operationId: GetPRAttributes
+    x-required-privilege: read
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/index'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PRAttributesResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  patch:
+      summary: >
+        Частично обновить атрибуты pull request:
+        заменить метки (labels),
+        изменить этап (milestone)
+      description: |
+        Обновление атрибутов PR (метки и этап).
+        Правила применения:
+        - Массив labels заменяется целиком (старые метки удаляются, новые добавляются)
+        - Для удаления всех меток передайте пустой массив []
+        - Для снятия milestone передайте `milestone: 0`
+      tags:
+        - Pulls
+      operationId: UpdatePRAttributes
+      x-required-privilege: write
+      parameters:
+        - $ref: '../../common/params.yaml#/components/parameters/project_name'
+        - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+        - $ref: './params.yaml#/components/parameters/index'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/components/schemas/PRAttributesUpdatePayload'
+      responses:
+        '200':
+          description: Атрибуты успешно обновлены
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/components/schemas/PRAttributes'
+        '400':
+          $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+        '401':
+          $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+        '403':
+          $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+        '404':
+          $ref: '../../common/errors.yaml#/components/responses/NotFound'
+        '500':
+          $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+PRTimeAttributes:
+  get:
+    summary: Получить информацию по связанным с pull request атрибутам времени
+    tags:
+      - Pulls
+    operationId: GetPRTimeAttributes
+    x-required-privilege: read
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/index'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PRTimeAttributesResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+PRDueDate:
+  put:
+    summary: Обновить в pull request информацию по сроку выполнения
+    tags:
+      - Pulls
+    operationId: UpdatePRDueDate
+    x-internal: true
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/index'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRDueDatePayload'
+    x-required-privilege: write
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PRTimeAttributesResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+PRTrackedTime:
+  post:
+    summary: Добавить в pull request информацию по отслеживанию времени
+    tags:
+      - Pulls
+    operationId: CreatePRTrackedTime
+    x-internal: true
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/index'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRTrackedTimePayload'
+    x-required-privilege: write || create_pr
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PRTimeAttributesResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+PRSubscribe:
+  post:
+    tags:
+      - Pulls
+    summary: Подписаться на pull request
+    operationId: SubscribePR
+    x-required-privilege: read
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/index'
+    responses:
+      '201':
+        $ref: '../../common/success.yaml#/components/responses/NoContent'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+  delete:
+    tags:
+      - Pulls
+    summary: Отписаться от pull request
+    operationId: UnsubscribePR
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/index'
+    responses:
+      '204':
+        $ref: '../../common/success.yaml#/components/responses/NoContent'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+PRState:
+  post:
+    summary: Изменить состояние PR (closed/open/merged)
+    description: >
+      Меняет состояние pull request. Поддерживаемые переходы:
+      open->close(closed), close->open(open) , open->merge (merged),
+      Запрещены такие варианты - merge ->close, merge -> open, close->merge
+    tags:
+      - Pulls
+    operationId: UpdatePRState
+    x-required-privilege: write || merge_pr || merge_without_check
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/index'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRStatePayload'
+    responses:
+      '204':
+        $ref: '../../common/success.yaml#/components/responses/NoContent'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '409':
+        $ref: '../../common/errors.yaml#/components/responses/Conflict'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+PRBranchUpdate:
+  post:
+    summary: Обновить head ветку PR из базовой ветки
+    description: |
+      Выполняет merge или rebase базовой ветки в head ветку PR.      
+    tags:
+      - Pulls
+    operationId: UpdatePRBranch
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/index'
+    requestBody:
+      required: false
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRBranchUpdatePayload'
+    x-required-privilege: merge_pr
+    x-internal: true
+    responses:
+      '204':
+        $ref: '../../common/success.yaml#/components/responses/NoContent'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+        
+PRComments:
+  post:
+    tags:
+      - Pulls
+    summary: Создать комментарий к PR
+    description: Метод позволяет создать общий комментарий к PR, комментарий к коду или ревью ПР.
+    operationId: CreatePRComment
+    x-internal: true
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/index'
+    x-required-privilege: create_pr || approve_pr || merge_pr
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            oneOf:
+             - $ref: './schemas.yaml#/components/schemas/PRCommentPayload'
+             - $ref: './schemas.yaml#/components/schemas/PRReviewCommentPayload'
+             - $ref: './schemas.yaml#/components/schemas/PRCodeCommentPayload'
+    responses:
+      '201':
+        $ref: './responses.yaml#/components/responses/PRCommentCreateResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+PRComment:
+  patch:
+    tags:
+      - Pulls
+    summary: Обновить комментарий 
+    operationId: UpdatePRComment
+    x-internal: true
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/index'
+      - $ref: './params.yaml#/components/parameters/comment_id'
+    x-required-privilege: create_pr || approve_pr || merge_pr
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRCommentUpdate'
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PRCommentUpdateResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+  delete:
+    tags:
+      - Pulls
+    summary: Удалить комментарий PR
+    description: Привилегия manage_comments требуется для удаления чужих комментариев. Остальные привилегии для удаления собственных комментариев
+    operationId: DeletePRComment
+    x-internal: true
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/index'
+      - $ref: './params.yaml#/components/parameters/comment_id'
+    x-required-privilege: create_pr || approve_pr || merge_pr || manage_comments
+    responses:
+      '204':
+        description: Комментарий к PR успешно удален
+        $ref: '../../common/success.yaml#/components/responses/NoContent'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+PRCommentReactions:
+  patch:
+    tags:
+      - Pulls
+    summary: Обновить реакции на комментарий 
+    description: >
+      Метод позволяет обновить набор реакций текущего пользователя на комментарий.
+      Клиент передает полный итоговый список реакций текущего пользователя
+      [] - пустой массив соответствует тому, что реакций пользователя на комментарий нет
+      ['fire'] - пользователь поставил одну реакцию на комментарий
+      ['fire', 'thumds_up'] - пользователь поставил 2 реакции на комментарий
+
+    operationId: UpdatePRCommentReactions
+    x-internal: true
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/index'
+      - $ref: './params.yaml#/components/parameters/comment_id'
+    x-required-privilege: create_pr || approve_pr || merge_pr
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/PRCommentReactionsUpdate'
+    responses:
+      '204':
+        description: Реакции на комментарий PR успешно обновлены
+        $ref: '../../common/success.yaml#/components/responses/NoContent'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+PRMemberReviewReset:
+  post:
+    summary: Перезапросить отзыв у рецензента
+    description: Сбрасывает статус рецензии указанного пользователя в PENDING
+    tags:
+      - Pulls
+    operationId: UpdatePRReviewInfo
+    x-required-privilege: write
+    x-internal: true
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/index'
+      - $ref: './params.yaml#/components/parameters/user_id'
+    responses:
+      '200':
+        description: Статус рецензии успешно сброшен в PENDING
+        content:
+          application/json:
+            schema:
+              $ref: './schemas.yaml#/components/schemas/PRReviewInfo'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'
+
+PRUpstream:
+  get:
+    summary: Получить информацию о PRUpstream для информационного блока
+    description: >
+     Возвращает список веток для последовательного перелива по настройкам PRUpstream.
+     Пустой список означает что PRUpstream не активен для данного PR.
+    tags:
+      - Pulls
+    operationId: GetPRUpstreamInfo
+    parameters:
+      - $ref: '../../common/params.yaml#/components/parameters/project_name'
+      - $ref: '../../common/params.yaml#/components/parameters/repo_name'
+      - $ref: './params.yaml#/components/parameters/index'
+    x-required-privilege: read
+    x-internal: true
+    responses:
+      '200':
+        $ref: './responses.yaml#/components/responses/PRUpstreamInfoResponse'
+      '400':
+        $ref: '../../common/errors.yaml#/components/responses/BadRequest'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '404':
+        $ref: '../../common/errors.yaml#/components/responses/NotFound'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

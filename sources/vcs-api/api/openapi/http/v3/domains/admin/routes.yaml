@@ -1,0 +1,16 @@
+Swagger:
+  get:
+    tags:
+      - admin
+    summary: Redirect to Swagger UI
+    description: Делает redirect (303 See Other) на Swagger UI (`/api/swagger_v3`).
+    operationId: v3RedirectSwagger
+    responses:
+      '303':
+        $ref: './responses.yaml#/components/responses/SwaggerRedirectResponse'
+      '401':
+        $ref: '../../common/errors.yaml#/components/responses/Unauthorized'
+      '403':
+        $ref: '../../common/errors.yaml#/components/responses/Forbidden'
+      '500':
+        $ref: '../../common/errors.yaml#/components/responses/ServerError'

@@ -1,0 +1,269 @@
+components:
+  schemas:
+    RepoCreate:
+      additionalProperties: false
+      properties:
+        auto_init:
+          default: false
+          example: true
+          type: boolean
+        default_branch:
+          example: main
+          maxLength: 100
+          minLength: 1
+          type: string
+        description:
+          description: Описание репозитория
+          example: My awesome repository
+          maxLength: 2048
+          type: string
+        gitignores:
+          example: Python
+          maxLength: 50
+          type: string
+        issue_labels:
+          example: Default
+          maxLength: 50
+          type: string
+        license:
+          example: MIT
+          maxLength: 50
+          type: string
+        name:
+          description: Имя репозитория
+          example: my-repo
+          maxLength: 100
+          minLength: 1
+          type: string
+        private:
+          default: false
+          example: true
+          type: boolean
+        readme:
+          example: default
+          maxLength: 50
+          minLength: 1
+          type: string
+        template:
+          default: false
+          example: false
+          type: boolean
+      required:
+        - name
+      type: object
+
+    RepositoriesResponse:
+      description: Список репозиториев с пагинацией
+      properties:
+        pagination:
+          $ref: ../../common/pagination.yaml#/components/schemas/Pagination
+        repositories:
+          description: Список репозиториев
+          items:
+            $ref: '#/components/schemas/RepositoryV3'
+          type: array
+      required:
+        - pagination
+        - repositories
+      type: object
+    RepositoryLinks:
+      description: Ссылки репозитория
+      properties:
+        clone:
+          description: Ссылка для клонирования (HTTPS)
+          type: string
+        html:
+          description: HTML ссылка
+          type: string
+        ssh:
+          description: Ссылка для клонирования (SSH)
+          type: string
+      required:
+        - html
+        - clone
+        - ssh
+      type: object
+    RepositoryStats:
+      description: Статистика репозитория
+      properties:
+        forks:
+          description: Количество форков
+          type: integer
+        open_pull_requests:
+          description: Количество открытых пулл-реквестов
+          type: integer
+        stars:
+          description: Количество звёзд
+          type: integer
+        watchers:
+          description: Количество наблюдателей
+          type: integer
+      type: object
+    RepositoryV3:
+      description: Репозиторий (v3)
+      properties:
+        archived:
+          description: Архивирован ли репозиторий
+          type: boolean
+        created_at:
+          description: Дата создания
+          format: date-time
+          type: string
+        default_branch:
+          description: Ветка по умолчанию
+          type: string
+        description:
+          description: Описание репозитория
+          type: string
+        empty:
+          description: Пуст ли репозиторий
+          type: boolean
+        fork:
+          description: Является ли форком
+          type: boolean
+        full_name:
+          description: Полное имя репозитория
+          type: string
+        language:
+          description: Основной язык программирования
+          type: string
+        licenses:
+          description: Лицензии
+          items:
+            type: string
+          type: array
+        system_labels:
+          $ref: '#/components/schemas/SystemLabels'
+        links:
+          $ref: '#/components/schemas/RepositoryLinks'
+        name:
+          description: Имя репозитория
+          type: string
+        owner:
+          $ref: '#/components/schemas/ShortProjectInfo'
+        stats:
+          $ref: '#/components/schemas/RepositoryStats'
+        template:
+          description: Является ли шаблоном
+          type: boolean
+        updated_at:
+          description: Дата обновления
+          format: date-time
+          type: string
+        visibility:
+          description: Видимость репозитория
+          type: string
+      required:
+        - name
+        - full_name
+        - visibility
+        - default_branch
+        - fork
+        - template
+        - archived
+        - empty
+        - created_at
+        - updated_at
+        - stats
+        - owner
+        - links
+        - licenses
+      type: object
+    SystemLabels:
+      type: object
+      description: Объект с набором системных меток (ключ — имя метки, значение — boolean)
+      additionalProperties:
+        type: boolean
+      example:
+        tier0: true
+    LabelValue:
+      type: object
+      description: Объект со значением системной метки
+      properties:
+        value:
+          type: boolean
+          description: Значение системной метки
+          example: true
+      required:
+        - value
+    SetDefaultBranchBody:
+      properties:
+        default_branch:
+          description: 'Имя существующей ветки, например: my_branch.'
+          type: string
+      required:
+        - default_branch
+      type: object
+    DefaultBranchResult:
+      type: object
+      required:
+        - default_branch
+      properties:
+        default_branch:
+          type: string
+          description: Имя ветки по умолчанию
+
+    ShortProjectInfo:
+      description: Краткая информация о проекте
+      properties:
+        name:
+          description: Имя проекта
+          type: string
+        url:
+          description: URL проекта
+          type: string
+      required:
+        - name
+        - url
+      type: object
+
+    SubscriptionEvents:
+      description: Настройки событий подписки на репозиторий
+      type: object
+      required:
+        - pull_review_request
+        - pull_request_review
+        - pull_review_dismiss
+        - new_pull_request
+        - merge_pull_request
+        - pull_request_push_commits
+        - pull_request_code_comment
+      properties:
+        pull_review_request:
+          description: Уведомлять о запросах на ревью
+          type: boolean
+        pull_request_review:
+          description: Уведомлять о ревью пулл-реквестов
+          type: boolean
+        pull_review_dismiss:
+          description: Уведомлять об отклонении ревью
+          type: boolean
+        new_pull_request:
+          description: Уведомлять о новых пулл-реквестах
+          type: boolean
+        merge_pull_request:
+          description: Уведомлять о слиянии пулл-реквестов
+          type: boolean
+        pull_request_push_commits:
+          description: Уведомлять о пушах коммитов в пулл-реквесты
+          type: boolean
+        pull_request_code_comment:
+          description: Уведомлять о комментариях к коду в пулл-реквестах
+          type: boolean
+
+    RepositorySubscription:
+      description: Настройки отслеживания репозитория для текущего пользователя
+      type: object
+      required:
+        - is_watching
+        - events
+        - email_notifications
+      properties:
+        is_watching:
+          description: Отслеживает ли пользователь репозиторий
+          type: boolean
+        events:
+          $ref: '#/components/schemas/SubscriptionEvents'
+        email_notifications:
+          description: Включены ли email-уведомления
+          type: boolean

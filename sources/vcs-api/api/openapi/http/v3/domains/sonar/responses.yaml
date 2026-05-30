@@ -1,0 +1,14 @@
+components:
+  responses:
+    SonarSettingsGetResponse:
+      description: Настройки SonarQube
+      content:
+        application/json:
+          schema:
+            $ref: './schemas.yaml#/components/schemas/SonarSettingsResponse'
+    SonarSettingsCreatedResponse:
+      description: Настройки SonarQube успешно созданы
+    SonarSettingsUpdatedResponse:
+      description: Настройки SonarQube успешно обновлены
+    SonarSettingsDeletedResponse:
+      description: Настройки SonarQube успешно удалены

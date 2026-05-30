@@ -1,0 +1,39 @@
+!definelong SourceControlFE_Deployment_Node(id, container_id_fe, container_id_syngx)
+Deployment_Node(id, "sc-syngx01", "Sberlinux") {
+    Container(container_id_fe, "SourceControl FE", "HTML, JS, CSS, Fonts, Images", "Статика фронтенда")
+    Container(container_id_syngx, "Platform V Syngx", "Syngx", "")
+}
+!enddefinelong
+
+!definelong SourceControlCore_Deployment_Node(id, container_id)
+Deployment_Node(id, "sc-be01", "Sberlinux") {
+    Container(container_id, "SourceControl Core", "Golang, GoTemplates", "Core backend приложения")
+}
+!enddefinelong
+
+!definelong SourceControlFE_K8S_Deployment_Node(id, container_id_fe)
+Deployment_Node(id, "sc-fe*** xN", "K8S pod") {
+    Container(container_id_fe, "SourceControl FE", "Syngx, HTML, JS, CSS, Fonts, Images", "Статика фронтенда, раздаваемая syngx")
+}
+!enddefinelong
+
+!definelong SourceControlCore_K8S_Deployment_Node(id, container_id)
+Deployment_Node(id, "sc-be*** xN", "K8S pod") {
+    Container(container_id, "SourceControl Core", "Golang, GoTemplates", "Core backend приложения")
+}
+!enddefinelong
+
+!definelong SourceControlCore_Vault_K8S_Deployment_Node(id, container_id, vault_id)
+Deployment_Node(id, "sc-be*** xN", "K8S pod") {
+    Container(container_id, "SourceControl Core", "Golang, GoTemplates", "Core backend приложения")
+    Container(vault_id, "Vault-Agent", "Sidecar", "Монтирование секретов")
+}
+!enddefinelong
+
+!definelong SourceControlCore_Vault_Alog_K8S_Deployment_Node(id, container_id, vault_id, alog_id)
+Deployment_Node(id, "sc-be*** xN", "K8S pod") {
+    Container(container_id, "SourceControl Core", "Golang, GoTemplates", "Core backend приложения")
+    Container(vault_id, "Vault-Agent", "Sidecar", "Монтирование секретов")
+    Container(alog_id, "Platform V Monitor (ALOG)", "Sidecar", "Сбор логов")
+}
+!enddefinelong
