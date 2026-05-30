@@ -35,21 +35,21 @@ sources:
   - name: 03-vcs-playwright
     description: VCS end-to-end Playwright tests
     type: git
-    url: git@<gitea-host>:vcs/vcs-playwright.git
+    url: git@portal.works.prod.sbt:7998:vcs/vcs-playwright.git
     path: sources/vcs-playwright
     optional: true
 
   - name: 04-vcs-arch
     description: VCS architecture diagrams and docs (C4, PlantUML)
     type: git
-    url: git@<gitea-host>:vcs/vcs-arch.git
+    url: git@portal.works.prod.sbt:7998:vcs/vcs-arch.git
     path: sources/vcs-arch
     optional: true
 
   - name: 05-vcs-api
     description: VCS API specs and Postman collections
     type: git
-    url: git@<gitea-host>:vcs/vcs-api.git
+    url: git@portal.works.prod.sbt:7998:vcs/vcs-api.git
     path: sources/vcs-api
     optional: true
 
@@ -63,7 +63,7 @@ sources:
   - name: 07-vcs-monitoring
     description: VCS monitoring dashboards (Grafana)
     type: git
-    url: git@<gitea-host>:vcs/vcs-monitoring.git
+    url: git@portal.works.prod.sbt:7998:vcs/vcs-monitoring.git
     path: sources/vcs-monitoring
     optional: true
 
@@ -88,3 +88,19 @@ sources:
     env:
       token: SBERTRACK_TOKEN
       base_url: SBERTRACK_BASE
+
+  - name: 10-gitlab
+    description: Gitlab and gitaly docs
+    type: git
+    space: SWTR
+    url: https://github.com/gitlabhq/gitlabhq.git
+    path: sources/gitlab
+    sparse_checkout:
+      - /doc/
+
+  - name: 11-vcs-docs
+    description: SourceControl release docs
+    type: git
+    url: ssh://git@portal.works.prod.sbt:7998/vcs/gitt-docs.git
+    path: sources/vcs-docs
+    optional: true
