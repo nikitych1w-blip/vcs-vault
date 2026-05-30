@@ -1,0 +1,12 @@
+#lv8 
+#SC
+#UI
+#FE
+#ПАО 
+#project
+#repo
+#code
+#branch
+#create 
+#git 
+#CLI 
