@@ -104,3 +104,14 @@ sources:
     url: ssh://git@portal.works.prod.sbt:7998/vcs/gitt-docs.git
     path: sources/vcs-docs
     optional: true
+
+  - name: 12-gitaly-api
+    description: Gitaly proto API
+    type: git
+    url: ssh://git@portal.works.prod.sbt:7998/vcs/gitaly.git
+    path: sources/gitaly-api
+    optional: true
+    sparse_checkout:
+      - /proto/
+
+
