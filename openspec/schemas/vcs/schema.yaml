@@ -49,6 +49,11 @@ artifacts:
       - **WHEN** <условие>
       - **THEN** <результат>
       ```
+
+      Источник правды по API-контракту — sources/vcs-api (паттерн доменов, x-internal).
+      После черновика спеки прогони ревью готовности UI-контракта к реализации —
+      применяй знание vault/skills/be/review_spec_ui.md (вердикт approve/request-changes,
+      обязательный make check-api-compat-all). Расхождение → доработать контракт до be-design.
     requires:
       - proposal
 
@@ -57,6 +62,11 @@ artifacts:
     description: Технический подход BE — flow, DTO, error handling
     template: design.md
     instruction: |
+      ШАГ 0 (гейт контракта): прогони ревью UI-контракта на готовность к backend —
+      знание vault/skills/be/review_spec_ui.md. Источник правды — sources/vcs-api.
+      Продолжай к be/design.md только при вердикте approve/ReadyForBackend;
+      при request-changes/Mismatch — стоп, вернуть контракт SA.
+
       Создай be/design.md на основе sa/proposal.md и sa/specs/.
 
       Разделы:
@@ -67,6 +77,12 @@ artifacts:
       - **DTO**: структуры запроса и ответа
       - **Зависимости**: Kafka, Git, LDAP и др.
       - **Архитектурные решения**: нестандартные решения с обоснованием
+
+      Применяй знания vault/skills/be/: architecture.md (слои/нейминг/DI),
+      errors-logging.md (враппинг %w, уровни логов, трейсинг), db-xorm.md (DTO/Entity,
+      доступ к БД), endpoint-flow.md (контракт→handler→роут), submodule.md (сверка
+      контракта с vcs-api). Если затрагивается схема БД — migrations.md (миграции:
+      SQL кроме SELECT требует аппрува человека).
     requires:
       - proposal
       - sa-specs
@@ -150,6 +166,10 @@ artifacts:
       ## 3. Документация
       - [ ] 3.1 OpenAPI-спека обновлена
       - [ ] 3.2 Swagger-документация сгенерирована
+
+      Тестовые задачи (§2) формулируй по знанию vault/skills/be/testing.md
+      (корнер-кейсы 400/401/403/404/500 + generated-моки mockery). Чеклист — мост
+      к стадии apply; сами знания применяются на apply.
     requires:
       - be-design
       - qa-plan
@@ -159,5 +179,17 @@ apply:
     - be-tasks
   tracks: be/tasks.md
   instruction: |
-    Читай контекстные файлы, выполняй задачи по порядку, отмечай выполненные.
+    Читай контекстные файлы (be/design.md, qa/test-plan.md), выполняй задачи
+    be/tasks.md по порядку, отмечай выполненные.
+
+    Реализация по знаниям vault/skills/be/ (применяй по этапам):
+    - submodule.md — update-spec/update-codegen, контракт из vcs-api (источник правды);
+    - endpoint-flow.md + architecture.md — handler/service/repository, роут, слои/нейминг;
+    - errors-logging.md — враппинг %w, уровни логов, трейсинг;
+    - db-xorm.md — репозиторий (SELECT через builder), DTO/Entity;
+    - migrations.md — миграции БД (SQL кроме SELECT → аппрув человека);
+    - testing.md — юнит-тесты корнер-кейсов + generated-моки mockery;
+    - git-flow.md — ветка feature/VCS-XXXX, формат коммита;
+    - code-review.md — самопроверка перед PR (шаблон PR, red flags, порядок мёржа).
+
     Останавливайся при блокерах или необходимости уточнений.
