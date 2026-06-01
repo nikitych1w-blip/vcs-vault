@@ -1,0 +1,5512 @@
+openapi: 3.0.3
+info:
+  title: SourceControl API v3
+  description: SourceControl REST API v3
+  version: 0.0.0-dev
+  license:
+    name: Internal Proprietary License
+    url: https://example.invalid/
+servers:
+  - url: /api/v3
+security:
+  - authorizationHeaderToken: []
+  - basicHttpAuthentication: []
+  - accessToken: []
+paths:
+  /swagger:
+    get:
+      tags:
+        - admin
+      summary: Redirect to Swagger UI
+      description: Делает redirect (303 See Other) на Swagger UI (`/api/swagger_v3`).
+      operationId: v3RedirectSwagger
+      responses:
+        '303':
+          $ref: '#/components/responses/SwaggerRedirectResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/branches:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+    get:
+      tags:
+        - branches
+      summary: List branches
+      operationId: v3ListBranches
+      parameters:
+        - name: page
+          in: query
+          description: Номер страницы
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+        - name: limit
+          in: query
+          description: Количество элементов на странице
+          schema:
+            type: integer
+            default: 20
+            minimum: 1
+            maximum: 100
+        - name: q
+          in: query
+          description: Поисковый запрос по имени ветки
+          schema:
+            type: string
+        - name: sort
+          in: query
+          description: Сортировка (name, date)
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/BranchListResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      tags:
+        - branches
+      summary: Create branch
+      operationId: v3CreateBranch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BranchCreation'
+      responses:
+        '201':
+          $ref: '#/components/responses/BranchCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/branches/{branch_name}:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+      - $ref: '#/components/parameters/BranchName'
+    get:
+      tags:
+        - branches
+      summary: Get branch
+      operationId: v3GetBranch
+      responses:
+        '200':
+          $ref: '#/components/responses/BranchGetResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      tags:
+        - branches
+      summary: Delete branch
+      operationId: v3DeleteBranch
+      responses:
+        '204':
+          $ref: '#/components/responses/BranchDeleteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/compare/commits:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+    get:
+      tags:
+        - compare
+      summary: Compare commits
+      operationId: v3CompareCommits
+      parameters:
+        - name: from
+          in: query
+          description: Ресурс (ветка/тег/SHA) от которого производится поиск разницы. По умолчанию — ветка по умолчанию.
+          schema:
+            type: string
+        - name: to
+          in: query
+          description: Ресурс (ветка/тег/SHA) до которого производится поиск разницы. По умолчанию — ветка по умолчанию.
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: Номер страницы
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+        - name: limit
+          in: query
+          description: Количество элементов на странице
+          schema:
+            type: integer
+            default: 20
+            minimum: 1
+            maximum: 100
+      responses:
+        '200':
+          $ref: '#/components/responses/CompareCommitsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/pulls:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+    get:
+      tags:
+        - pulls
+      summary: List pull requests
+      operationId: v3ListPullRequests
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+          description: Номер страницы
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 30
+            minimum: 1
+            maximum: 100
+          description: Количество элементов на странице
+        - name: state
+          in: query
+          schema:
+            type: string
+            enum:
+              - open
+              - closed
+              - all
+            default: open
+          description: Фильтр по состоянию
+        - name: sort
+          in: query
+          schema:
+            type: string
+          description: Сортировка (created_at, updated_at, due_date)
+        - name: milestone
+          in: query
+          schema:
+            type: integer
+            format: int64
+          description: Фильтр по вехе
+        - name: labels
+          in: query
+          schema:
+            type: string
+          description: Фильтр по меткам (через запятую)
+        - name: target_branch
+          in: query
+          schema:
+            type: string
+          description: Фильтр по целевой ветке
+        - name: author
+          in: query
+          schema:
+            type: string
+          description: Фильтр по автору
+      responses:
+        '200':
+          $ref: '#/components/responses/PullRequestListResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      tags:
+        - pulls
+      summary: Create pull request
+      operationId: v3CreatePullRequest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PRCreation'
+      responses:
+        '201':
+          $ref: '#/components/responses/PullRequestCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/pulls/{index}:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+      - $ref: '#/components/parameters/PullRequestIndex'
+    get:
+      tags:
+        - pulls
+      summary: Get pull request
+      operationId: v3GetPullRequest
+      responses:
+        '200':
+          $ref: '#/components/responses/PullRequestGetResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    patch:
+      tags:
+        - pulls
+      summary: Update pull request
+      operationId: v3UpdatePullRequest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PRPatch'
+      responses:
+        '200':
+          $ref: '#/components/responses/PullRequestUpdateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/pulls/{index}/merge:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+      - $ref: '#/components/parameters/PullRequestIndex'
+    post:
+      tags:
+        - pulls
+      summary: Merge pull request
+      operationId: v3MergePullRequest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PRMerge'
+      responses:
+        '200':
+          $ref: '#/components/responses/PullRequestMergeResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/pulls/{index}/decline:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+      - $ref: '#/components/parameters/PullRequestIndex'
+    post:
+      tags:
+        - pulls
+      summary: Decline pull request
+      operationId: v3DeclinePullRequest
+      responses:
+        '200':
+          $ref: '#/components/responses/PullRequestDeclineResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PRDeclineRequest'
+        required: true
+  /repos/{tenant}/{project}/{repo}/pulls/{index}/files:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+      - $ref: '#/components/parameters/PullRequestIndex'
+    get:
+      tags:
+        - pulls
+      summary: List changed files in pull request
+      operationId: v3GetPRFiles
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+          description: Номер страницы
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            minimum: 10
+            maximum: 100
+          description: Количество элементов на странице
+        - name: sort
+          in: query
+          schema:
+            type: string
+            default: filepath:asc
+          description: |
+            Сортировка. Формат: field:direction. Допустимые поля: filepath, status.
+      responses:
+        '200':
+          $ref: '#/components/responses/PullRequestFilesResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/pulls/{index}/commits:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+      - $ref: '#/components/parameters/PullRequestIndex'
+    get:
+      tags:
+        - pulls
+      summary: List commits in pull request
+      operationId: v3GetPRCommits
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+          description: Номер страницы
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            minimum: 10
+            maximum: 100
+          description: Количество элементов на странице
+        - name: sort
+          in: query
+          schema:
+            type: string
+            default: created:asc
+          description: |
+            Сортировка. Формат: field:direction. Допустимое поле: created.
+      responses:
+        '200':
+          $ref: '#/components/responses/PullRequestCommitsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/pulls/{index}/diff:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+      - $ref: '#/components/parameters/PullRequestIndex'
+    get:
+      tags:
+        - pulls
+      summary: Download pull request diff or patch
+      operationId: v3PullRequestDiff
+      parameters:
+        - name: diffType
+          in: query
+          schema:
+            type: string
+            enum:
+              - diff
+              - patch
+            default: diff
+          description: Формат вывода (diff или patch)
+      responses:
+        '200':
+          $ref: '#/components/responses/PullRequestDiffResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/pulls/{index}/issues:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+      - $ref: '#/components/parameters/PullRequestIndex'
+    get:
+      tags:
+        - pulls
+      summary: Get linked task tracker issues for a pull request
+      operationId: v3GetPRIssues
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+          description: Номер страницы
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            minimum: 10
+            maximum: 100
+          description: Количество элементов на странице
+        - name: sort
+          in: query
+          schema:
+            type: string
+            default: code:asc
+          description: |
+            Список полей задачи для сортировки через запятую. Поддерживаемые поля: code, status, title, priority. После имени поля можно указать порядок: :asc или :desc.
+      responses:
+        '200':
+          $ref: '#/components/responses/PRIssuesGetResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/pulls/{index}/comments:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+      - $ref: '#/components/parameters/PullRequestIndex'
+    get:
+      tags:
+        - comments
+      summary: List comments on pull request
+      operationId: v3GetPRComments
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+          description: Номер страницы
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 30
+            minimum: 1
+            maximum: 100
+          description: Количество элементов на странице
+        - name: sort
+          in: query
+          schema:
+            type: string
+            enum:
+              - created_at
+              - updated_at
+              - state
+              - stale
+              - official
+              - dismissed
+          description: |
+            Сортировка по полю. Допустимые значения: created_at, updated_at, state, stale, official, dismissed.
+        - name: state
+          in: query
+          schema:
+            type: string
+          description: Фильтр по состоянию комментария
+      responses:
+        '200':
+          $ref: '#/components/responses/CommentListResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      tags:
+        - comments
+      summary: Add comment to pull request
+      operationId: v3AddPRComment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PRCommentCreateOptions'
+      responses:
+        '201':
+          $ref: '#/components/responses/CommentCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/pulls/{index}/comments/{comment_id}:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+      - $ref: '#/components/parameters/PullRequestIndex'
+      - $ref: '#/components/parameters/CommentId'
+    get:
+      tags:
+        - comments
+      summary: Get a single comment
+      operationId: v3GetPRComment
+      responses:
+        '200':
+          $ref: '#/components/responses/CommentGetResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    patch:
+      tags:
+        - comments
+      summary: Update comment
+      operationId: v3UpdatePRComment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentUpdate'
+      responses:
+        '200':
+          $ref: '#/components/responses/CommentUpdateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      tags:
+        - comments
+      summary: Delete comment
+      operationId: v3DeletePRComment
+      responses:
+        '204':
+          $ref: '#/components/responses/CommentDeleteResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/subscription:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+    get:
+      tags:
+        - repos
+      summary: Get repository subscription settings for current user
+      operationId: v3GetRepoSubscription
+      responses:
+        '200':
+          $ref: '#/components/responses/SubscriptionGetResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/default-branch:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+    put:
+      tags:
+        - repos
+      summary: Set default branch
+      operationId: v3SetDefaultBranch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetDefaultBranchBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/DefaultBranchResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/system-labels/{label_name}:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+      - $ref: '#/components/parameters/SystemLabel'
+    get:
+      tags:
+        - repos
+      summary: Получение значения системной метки репозитория
+      description: Возвращает текущее значение указанной системной метки для репозитория
+      operationId: getSystemLabel
+      responses:
+        '200':
+          $ref: '#/components/responses/RepoSystemLabelGetResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    put:
+      tags:
+        - repos
+      summary: Установка значения системной метки репозитория
+      description: Устанавливает значение для указанной системной метки репозитория. В текущей версии поддерживается только метка `tier0`
+      operationId: setSystemLabel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LabelValue'
+      responses:
+        '201':
+          $ref: '#/components/responses/RepoSystemLabelSetResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/branch_protections:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+    get:
+      tags:
+        - branch_protections
+      summary: List branch protections
+      operationId: v3ListBranchProtections
+      responses:
+        '200':
+          $ref: '#/components/responses/BranchProtectionListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      tags:
+        - branch_protections
+      summary: Create branch protection
+      operationId: v3CreateBranchProtection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BranchProtectionBody'
+      responses:
+        '201':
+          $ref: '#/components/responses/BranchProtectionCreatedResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/branch_protections/{pattern}:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+      - $ref: '#/components/parameters/WildcardPattern'
+    get:
+      tags:
+        - branch_protections
+      summary: Get branch protection
+      operationId: v3GetBranchProtection
+      responses:
+        '200':
+          $ref: '#/components/responses/BranchProtectionResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    put:
+      tags:
+        - branch_protections
+      summary: Update branch protection
+      operationId: v3UpdateBranchProtection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BranchProtectionBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/BranchProtectionUpdatedResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      tags:
+        - branch_protections
+      summary: Delete branch protection
+      operationId: v3DeleteBranchProtection
+      responses:
+        '204':
+          $ref: '#/components/responses/BranchProtectionDeletedResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/raw/{path}:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+      - $ref: '#/components/parameters/Path'
+    get:
+      tags:
+        - files
+      summary: Get raw file contents
+      operationId: v3GetFileRaw
+      responses:
+        '200':
+          $ref: '#/components/responses/FileRawResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      parameters:
+        - description: Название коммита/ветки/тэга (например, main, v1.2.0, a1b2c3d). По умолчанию — основная ветка.
+          in: query
+          name: ref
+          schema:
+            type: string
+  /repos/{tenant}/{project}/{repo}/contents/{path}:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+      - $ref: '#/components/parameters/Path'
+    get:
+      tags:
+        - files
+      summary: Get file info
+      operationId: v3GetFileInfo
+      responses:
+        '200':
+          $ref: '#/components/responses/FileInfoResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      parameters:
+        - description: Название коммита/ветки/тэга (например, main, v1.2.0, a1b2c3d). По умолчанию — основная ветка репозитория.
+          in: query
+          name: ref
+          schema:
+            type: string
+        - description: Номер страницы. Если не указан — подразумевается первая страница. При запросе по пути к файлу параметр игнорируется.
+          in: query
+          name: page
+          schema:
+            type: integer
+        - description: Максимальное количество элементов, возвращаемых в списке. Если не указано — по умолчанию максимальное количество элементов списка. При запросе по пути к файлу параметр игнорируется.
+          in: query
+          name: limit
+          schema:
+            type: integer
+        - description: |-
+            Список полей файла для сортировки через запятую. Поддерживаемые поля: name, updated_at, size, type.
+
+            После имени поля можно указать порядок:
+            - :asc — по возрастанию,
+            - :desc — по убыванию.
+            Если порядок не указан, используется :asc.
+
+            Если параметр sort не передан, сервер применяет сортировку по умолчанию:
+            type:asc,name:asc.
+
+            Ограничения:
+            - Максимум 3 поля.
+            - Общая длина не более 100 символов.
+          in: query
+          name: sort
+          schema:
+            type: string
+  /repos/{tenant}/{project}/{repo}/contents/file/create:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+    post:
+      tags:
+        - files
+      summary: Create file
+      operationId: v3CreateFile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFileRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/FileCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/contents/file/update:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+    put:
+      tags:
+        - files
+      summary: Update file
+      operationId: v3UpdateFile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFileRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/FileUpdateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/contents/file/delete:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+    post:
+      tags:
+        - files
+      summary: Delete file
+      operationId: v3DeleteFile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteFileRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/FileDeleteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/archive:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+    get:
+      tags:
+        - archive
+      summary: Download repository archive
+      operationId: v3GetRepositoryArchive
+      parameters:
+        - $ref: '#/components/parameters/archive_sha'
+        - $ref: '#/components/parameters/archive_format'
+        - $ref: '#/components/parameters/archive_prefix'
+      responses:
+        '200':
+          $ref: '#/components/responses/ArchiveDownloadResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/sonar:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+    get:
+      tags:
+        - sonar
+      summary: Get Sonar settings
+      operationId: v3GetSonarSettings
+      responses:
+        '200':
+          $ref: '#/components/responses/SonarSettingsGetResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      tags:
+        - sonar
+      summary: Create Sonar settings
+      operationId: v3CreateSonarSettings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrUpdateSonarProjectRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/SonarSettingsCreatedResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    put:
+      tags:
+        - sonar
+      summary: Update Sonar settings
+      operationId: v3UpdateSonarSettings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrUpdateSonarProjectRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/SonarSettingsUpdatedResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      tags:
+        - sonar
+      summary: Delete Sonar settings
+      operationId: v3DeleteSonarSettings
+      responses:
+        '204':
+          $ref: '#/components/responses/SonarSettingsDeletedResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/review_settings:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+    get:
+      tags:
+        - review_settings
+      summary: Get review settings
+      operationId: v3GetReviewSettings
+      responses:
+        '200':
+          $ref: '#/components/responses/ReviewSettingsListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      tags:
+        - review_settings
+      summary: Create review settings
+      operationId: v3CreateReviewSettings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewSettingsRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/ReviewSettingsCreatedResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    put:
+      tags:
+        - review_settings
+      summary: Update review settings
+      operationId: v3UpdateReviewSettings
+      parameters:
+        - name: branch_name
+          in: query
+          required: true
+          description: Имя ветки
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewSettingsRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/ReviewSettingsUpdatedResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      tags:
+        - review_settings
+      summary: Delete review settings
+      operationId: v3DeleteReviewSettings
+      parameters:
+        - name: branch_name
+          in: query
+          required: true
+          description: Имя ветки
+          schema:
+            type: string
+      responses:
+        '204':
+          $ref: '#/components/responses/ReviewSettingsDeletedResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/review_settings/{branch_name}:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+      - $ref: '#/components/parameters/BranchName'
+    get:
+      tags:
+        - review_settings
+      summary: Get branch review settings
+      operationId: v3GetBranchReviewSettings
+      responses:
+        '200':
+          $ref: '#/components/responses/BranchReviewSettingResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/privileges:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+    get:
+      tags:
+        - privileges
+      summary: Get repo privileges
+      operationId: v3GetRepoPrivileges
+      responses:
+        '200':
+          $ref: '#/components/responses/PrivilegeListResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      parameters:
+        - description: Фильтр по имени пользователя
+          in: query
+          name: username
+          schema:
+            type: string
+        - description: Фильтр по группе привилегий
+          in: query
+          name: group
+          schema:
+            type: string
+    post:
+      tags:
+        - privileges
+      summary: Apply repo privileges
+      operationId: v3ApplyRepoPrivileges
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplyPrivilegeGroupsRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/ApplyPrivilegesResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+    get:
+      tags:
+        - repos
+      summary: Get repository
+      operationId: v3GetRepository
+      responses:
+        '200':
+          $ref: '#/components/responses/RepositoryGetResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      tags:
+        - repos
+      summary: Delete repository
+      operationId: v3DeleteRepository
+      responses:
+        '204':
+          $ref: '#/components/responses/RepositoryDeleteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/prupstream:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+    get:
+      tags:
+        - prupstream
+      summary: Get PR upstream settings
+      operationId: v3GetPrUpstreamSettings
+      responses:
+        '200':
+          $ref: '#/components/responses/PRUpstreamGetResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      tags:
+        - prupstream
+      summary: Create PR upstream settings
+      operationId: v3CreatePrUpstreamSettings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PRUpstreamSettingsCreate'
+      responses:
+        '200':
+          $ref: '#/components/responses/PRUpstreamCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      tags:
+        - prupstream
+      summary: Delete PR upstream settings
+      operationId: v3DeletePrUpstreamSettings
+      responses:
+        '204':
+          $ref: '#/components/responses/PRUpstreamDeleteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/external_metrics:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+    get:
+      tags:
+        - external_metrics
+      summary: List external metrics
+      operationId: v3ListExternalMetrics
+      responses:
+        '200':
+          $ref: '#/components/responses/ExternalMetricsListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/external_metrics/{metric}:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+      - $ref: '#/components/parameters/Metric'
+    post:
+      tags:
+        - external_metrics
+      summary: Set external metric
+      operationId: v3SetExternalMetric
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetExternalMetricRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/ExternalMetricResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      tags:
+        - external_metrics
+      summary: Delete external metric
+      operationId: v3DeleteExternalMetric
+      responses:
+        '204':
+          $ref: '#/components/responses/ExternalMetricDeletedResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/commits:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+    get:
+      tags:
+        - commits
+      summary: List commits
+      operationId: v3ListCommits
+      parameters:
+        - name: page
+          in: query
+          description: Номер страницы
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+        - name: limit
+          in: query
+          description: Количество элементов на странице
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+        - name: since
+          in: query
+          description: SHA или имя ветки (начало диапазона)
+          schema:
+            type: string
+        - name: until
+          in: query
+          description: SHA или имя ветки (конец диапазона)
+          schema:
+            type: string
+        - name: path
+          in: query
+          description: Фильтр по пути файла/директории
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/CommitListResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/commits/{commit_sha}/statuses:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+      - name: commit_sha
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^[0-9a-f]{40}$
+          minLength: 40
+          maxLength: 40
+        description: SHA коммита
+    get:
+      tags:
+        - commit_statuses
+      summary: List commit statuses
+      operationId: v3ListCommitStatuses
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+          description: Номер страницы
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            minimum: 10
+            maximum: 100
+          description: Количество элементов на странице
+        - name: sort
+          in: query
+          schema:
+            type: string
+            default: created_at:asc
+          description: |
+            Сортировка. Формат: field:direction[,field:direction,...]. Допустимые поля: created_at, updated_at, context, state. Направления: asc, desc. Максимум 3 поля.
+      responses:
+        '200':
+          $ref: '#/components/responses/CommitStatusListResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      tags:
+        - commit_statuses
+      summary: Create or update commit status
+      operationId: v3CreateCommitStatus
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommitStatusCreateRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/CommitStatusCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/commits/{commit_sha}/pulls:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+      - $ref: '#/components/parameters/CommitSha'
+    get:
+      tags:
+        - commits
+      summary: List pull requests associated with a commit
+      operationId: v3GetCommitPullRequests
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+          description: Номер страницы
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+            minimum: 10
+            maximum: 100
+          description: Количество элементов на странице
+        - name: sort
+          in: query
+          schema:
+            type: string
+            default: updated_at:desc,created_at:desc
+          description: |
+            Сортировка. Формат: field:direction[,field:direction,...]. Допустимые поля: created_at, updated_at, due_date. Максимум 3 поля.
+      responses:
+        '200':
+          $ref: '#/components/responses/CommitPullRequestsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/webhooks:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+    get:
+      tags:
+        - repos
+      summary: Получить список вебхуков репозитория
+      description: Возвращает список вебхуков репозитория
+      operationId: v3GetRepoWebhooks
+      x-required-privilege: edit
+      x-internal: true
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+          required: false
+          description: Номер страницы (начинается с 1)
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 30
+          required: false
+          description: Количество элементов на странице
+      responses:
+        '200':
+          description: Список вебхуков успешно получен. Может быть пустым, если в репозитории нет вебхуков.
+          headers:
+            X-Request-ID:
+              $ref: '#/components/headers/X-Request-ID'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  webhooks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Webhook'
+        '400':
+          $ref: '#/components/responses/WebhooksBadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/WebhookForbidden'
+        '404':
+          $ref: '#/components/responses/WebhooksNotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      tags:
+        - repos
+      summary: Создать новый вебхук для репозитория
+      description: Создает новый вебхук в коллекции
+      operationId: v3CreateRepoWebhook
+      x-required-privilege: edit
+      x-internal: true
+      requestBody:
+        required: true
+        description: Данные для создания вебхука
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookPayload'
+      responses:
+        '201':
+          description: Вебхук успешно создан
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: URL созданного ресурса
+            X-Request-ID:
+              $ref: '#/components/headers/X-Request-ID'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '400':
+          $ref: '#/components/responses/WebhookBadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/WebhookForbidden'
+        '404':
+          $ref: '#/components/responses/WebhookNotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/webhooks/{webhook_id}:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+      - in: path
+        name: webhook_id
+        schema:
+          type: string
+          minLength: 1
+        required: true
+        description: 'Уникальный идентификатор вебхука, например: `123`.'
+    get:
+      tags:
+        - repos
+      summary: Получить конкретный вебхук репозитория по его идентификатору
+      description: Возвращает конкретный вебхук репозитория по его идентификатору
+      operationId: v3GetRepoWebhook
+      x-required-privilege: edit
+      x-internal: true
+      responses:
+        '200':
+          description: Вебхук успешно получен.
+          headers:
+            X-Request-ID:
+              $ref: '#/components/headers/X-Request-ID'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/WebhookForbidden'
+        '404':
+          $ref: '#/components/responses/WebhookNotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    patch:
+      tags:
+        - repos
+      summary: Обновить вебхук частично
+      description: |
+        Частичное обновление вебхука. Только переданные поля будут обновлены.
+        Остальные поля останутся без изменений.
+      operationId: v3UpdateRepoWebhook
+      x-required-privilege: edit
+      x-internal: true
+      requestBody:
+        required: true
+        description: Данные для частичного обновления вебхука
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookUpdatePayload'
+      responses:
+        '200':
+          description: Элемент успешно обновлен
+          headers:
+            X-Request-ID:
+              $ref: '#/components/headers/X-Request-ID'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '400':
+          $ref: '#/components/responses/WebhookBadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/WebhookForbidden'
+        '404':
+          $ref: '#/components/responses/WebhookNotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      tags:
+        - repos
+      summary: Удалить вебхук
+      description: Удаляет вебхук по его идентификатору
+      operationId: v3DeleteRepoWebhook
+      x-required-privilege: edit
+      x-internal: true
+      responses:
+        '204':
+          description: Элемент успешно удален
+          headers:
+            X-Request-ID:
+              $ref: '#/components/headers/X-Request-ID'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/WebhookForbidden'
+        '404':
+          $ref: '#/components/responses/WebhookNotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/webhooks/{webhook_id}/test:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+      - in: path
+        name: webhook_id
+        schema:
+          type: string
+          minLength: 1
+        required: true
+        description: 'Уникальный идентификатор вебхука, например: `123`.'
+    post:
+      tags:
+        - repos
+      summary: Тестовая отправка вебхука
+      description: |
+        Отправляет тестовый payload на настроенный URL для проверки  доступности, авторизации и корректности конфигурации.
+      operationId: v3TestRepoWebhook
+      x-required-privilege: edit
+      x-internal: true
+      responses:
+        '204':
+          description: Тестовый запрос успешно поставлен в очередь/отправлен.
+          headers:
+            X-Request-ID:
+              $ref: '#/components/headers/X-Request-ID'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/WebhookForbidden'
+        '404':
+          $ref: '#/components/responses/WebhookNotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}/{repo}/marks/codehub:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+      - $ref: '#/components/parameters/Repo'
+    get:
+      tags:
+        - marks
+      summary: Get CodeHub mark
+      operationId: v3GetRepoMarkCodeHub
+      responses:
+        '200':
+          $ref: '#/components/responses/RepoMarkGetResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      tags:
+        - marks
+      summary: Create CodeHub mark
+      operationId: v3CreateRepoMarkCodeHub
+      responses:
+        '201':
+          $ref: '#/components/responses/RepoMarkCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      tags:
+        - marks
+      summary: Delete CodeHub mark
+      operationId: v3DeleteRepoMarkCodeHub
+      responses:
+        '204':
+          $ref: '#/components/responses/RepoMarkDeleteResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /repos/{tenant}/{project}:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+    get:
+      tags:
+        - repos
+      summary: List repositories in project
+      operationId: v3ListRepositories
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+          description: Номер страницы
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            minimum: 1
+            maximum: 100
+          description: Количество элементов на странице
+        - name: q
+          in: query
+          schema:
+            type: string
+          description: Поисковый запрос
+        - name: sort
+          in: query
+          schema:
+            type: string
+          description: Сортировка (name, created_at, updated_at, stars, forks)
+      responses:
+        '200':
+          $ref: '#/components/responses/RepositoriesListResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      tags:
+        - repos
+      summary: Create repository in project
+      operationId: v3CreateRepository
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepoCreate'
+      responses:
+        '201':
+          $ref: '#/components/responses/RepositoryCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /projects/{tenant}/{project}/privileges:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+      - $ref: '#/components/parameters/Project'
+    get:
+      tags:
+        - privileges
+      summary: Get project privileges
+      operationId: v3GetProjectPrivileges
+      responses:
+        '200':
+          $ref: '#/components/responses/PrivilegeListResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      parameters:
+        - description: Фильтр по имени пользователя
+          in: query
+          name: username
+          schema:
+            type: string
+        - description: Фильтр по группе привилегий
+          in: query
+          name: group
+          schema:
+            type: string
+    post:
+      tags:
+        - privileges
+      summary: Apply project privileges
+      operationId: v3ApplyProjectPrivileges
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplyPrivilegeGroupsRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/ApplyPrivilegesResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /users/{username}:
+    parameters:
+      - $ref: '#/components/parameters/Username'
+    get:
+      tags:
+        - users
+      summary: Get user
+      operationId: v3GetUser
+      responses:
+        '200':
+          $ref: '#/components/responses/UserInfoResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /cache/{tenant}/reset:
+    parameters:
+      - $ref: '#/components/parameters/Tenant'
+    get:
+      tags:
+        - cache
+      summary: Reset cache for tenant
+      operationId: v3ResetTenantCache
+      responses:
+        '200':
+          $ref: '#/components/responses/CacheResetResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /user/tokens:
+    post:
+      tags:
+        - user
+      summary: Create personal token
+      operationId: v3CreateUserToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserTokenCreate'
+      responses:
+        '201':
+          $ref: '#/components/responses/UserTokenCreatedResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /user/keys:
+    post:
+      tags:
+        - user
+      summary: Add SSH key to user
+      operationId: v3CreateUserKey
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserKeyCreate'
+      responses:
+        '201':
+          $ref: '#/components/responses/UserKeyCreatedResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  securitySchemes:
+    authorizationHeaderToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API tokens must be prepended with "token" followed by a space.
+    basicHttpAuthentication:
+      type: http
+      scheme: basic
+      description: Авторизация по логину и паролю
+    accessToken:
+      type: apiKey
+      in: query
+      name: access_token
+      description: API access token passed as a query parameter.
+  responses:
+    SwaggerRedirectResponse:
+      description: Редирект на Swagger UI
+      headers:
+        Location:
+          description: URL Swagger UI
+          schema:
+            type: string
+            example: /api/swagger_v3
+    Unauthorized:
+      description: Требуется аутентификация
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+          example:
+            type: null
+            status: 401
+            title: Требуется аутентификация
+            detail: Токен доступа отсутствует или недействителен.
+            instance: /repos/tenant/project/repo
+    Forbidden:
+      description: Доступ запрещён
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+          example:
+            type: null
+            status: 403
+            title: Доступ запрещён
+            detail: Недостаточно прав для выполнения операции.
+            instance: /repos/tenant/project/repo
+    ServerError:
+      description: Ошибка сервера
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+          example:
+            type: null
+            status: 500
+            title: Ошибка сервера
+            detail: Произошла внутренняя ошибка. Повторите запрос позже.
+            instance: /repos/tenant/project/repo
+    BranchListResponse:
+      description: Список веток репозитория с пагинацией
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BranchListResponse'
+    BadRequest:
+      description: Некорректный запрос
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+          example:
+            type: null
+            status: 400
+            title: Некорректный запрос
+            detail: Обнаружены ошибки в переданных данных.
+            instance: /repos/tenant/project/repo/branches
+            validation:
+              - location: field
+                name: branch_name
+                error: Имя ветки не может быть пустым.
+                code: required_field
+    NotFound:
+      description: Ресурс не найден
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+          example:
+            type: null
+            status: 404
+            title: Ресурс не найден
+            detail: Запрашиваемый ресурс не существует.
+            instance: /repos/tenant/project/repo
+    BranchCreateResponse:
+      description: Ветка успешно создана
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BranchItem'
+    Conflict:
+      description: Конфликт данных или бизнес-правил
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+          example:
+            type: null
+            status: 409
+            title: Конфликт данных
+            detail: Ресурс с такими параметрами уже существует.
+            instance: /repos/tenant/project/repo/branches
+    BranchGetResponse:
+      description: Информация о ветке
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Branch'
+    BranchDeleteResponse:
+      description: Ветка успешно удалена
+    CompareCommitsResponse:
+      description: Результат сравнения коммитов
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CompareCommitsResponse'
+    PullRequestListResponse:
+      description: Список пулл-реквестов
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PullRequestListResponse'
+    PullRequestCreateResponse:
+      description: Пулл-реквест успешно создан
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PRInfo'
+    PullRequestGetResponse:
+      description: Информация о пулл-реквесте
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PRInfo'
+    PullRequestUpdateResponse:
+      description: Пулл-реквест обновлён
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PRInfo'
+    PullRequestMergeResponse:
+      description: Пулл-реквест влит
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PRInfo'
+    PullRequestDeclineResponse:
+      description: Пулл-реквест отклонён
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PRInfo'
+    PullRequestFilesResponse:
+      description: Список изменённых файлов пулл-реквеста
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DiffFileInfoListResponse'
+    PullRequestCommitsResponse:
+      description: Список коммитов пулл-реквеста
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PRCommitsResponse'
+    PullRequestDiffResponse:
+      description: Diff или patch пулл-реквеста в текстовом формате
+      content:
+        text/plain:
+          schema:
+            type: string
+    PRIssuesGetResponse:
+      description: Список задач пулл-реквеста
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PRIssuesResponse'
+    CommentListResponse:
+      description: Список комментариев к пулл-реквесту
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CommentListResponse'
+    CommentCreateResponse:
+      description: Комментарий создан
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Comment'
+    CommentGetResponse:
+      description: Информация о комментарии
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Comment'
+    CommentDeleteResponse:
+      description: Комментарий удалён
+    CommentUpdateResponse:
+      description: Комментарий обновлён
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Comment'
+    SubscriptionGetResponse:
+      description: Настройки отслеживания репозитория
+      headers:
+        X-Request-ID:
+          schema:
+            type: string
+            format: uuid
+          description: Уникальный идентификатор запроса
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RepositorySubscription'
+    DefaultBranchResponse:
+      description: Ветка по умолчанию обновлена
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DefaultBranchResult'
+    RepoSystemLabelGetResponse:
+      description: Значение системной метки репозитория
+      headers:
+        X-Request-ID:
+          schema:
+            type: string
+            format: uuid
+          description: Уникальный идентификатор запроса
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LabelValue'
+    RepoSystemLabelSetResponse:
+      description: Значение системной метки репозитория установлено
+      headers:
+        Location:
+          description: URL системной метки репозитория
+          schema:
+            type: string
+        X-Request-ID:
+          schema:
+            type: string
+            format: uuid
+          description: Уникальный идентификатор запроса
+    BranchProtectionListResponse:
+      description: Список правил защиты веток
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/BranchProtectionBody'
+    BranchProtectionCreatedResponse:
+      description: Правило защиты ветки успешно создано
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BranchProtectionBody'
+    BranchProtectionResponse:
+      description: Правило защиты ветки
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BranchProtectionBody'
+    BranchProtectionUpdatedResponse:
+      description: Правило защиты ветки успешно обновлено
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BranchProtectionBody'
+    BranchProtectionDeletedResponse:
+      description: Правило защиты ветки успешно удалено
+    FileRawResponse:
+      description: Содержимое файла
+      content:
+        text/plain:
+          schema:
+            type: string
+            format: binary
+    FileInfoResponse:
+      description: Информация о файлах
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FileListResponse'
+    FileCreateResponse:
+      description: Файл успешно создан
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FileResponse'
+    FileUpdateResponse:
+      description: Файл успешно обновлён
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FileResponse'
+    FileDeleteResponse:
+      description: Файл успешно удалён
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FileResponse'
+    ArchiveDownloadResponse:
+      description: Бинарный поток архива репозитория
+      content:
+        application/zip:
+          schema:
+            type: string
+            format: binary
+        application/gzip:
+          schema:
+            type: string
+            format: binary
+      headers:
+        Content-Disposition:
+          description: Имя файла архива
+          schema:
+            type: string
+            example: attachment; filename="repo-main.zip"
+    SonarSettingsGetResponse:
+      description: Настройки SonarQube
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SonarSettingsResponse'
+    SonarSettingsUpdatedResponse:
+      description: Настройки SonarQube успешно обновлены
+    SonarSettingsCreatedResponse:
+      description: Настройки SonarQube успешно созданы
+    SonarSettingsDeletedResponse:
+      description: Настройки SonarQube успешно удалены
+    ReviewSettingsListResponse:
+      description: Список настроек ревью
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ReviewSettings'
+    ReviewSettingsUpdatedResponse:
+      description: Настройки ревью успешно обновлены
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BranchReviewSetting'
+    ReviewSettingsCreatedResponse:
+      description: Настройки ревью успешно созданы
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BranchReviewSetting'
+    ReviewSettingsDeletedResponse:
+      description: Настройки ревью успешно удалены
+    BranchReviewSettingResponse:
+      description: Настройки ревью для ветки
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BranchReviewSetting'
+    PrivilegeListResponse:
+      description: Список привилегий
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/UserPrivilege'
+    ApplyPrivilegesResponse:
+      description: Результат применения привилегий
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AppliedPrivilegeStatus'
+    RepositoryGetResponse:
+      description: Информация о репозитории
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RepositoryV3'
+    RepositoryDeleteResponse:
+      description: Репозиторий удалён
+    PRUpstreamGetResponse:
+      description: Настройки PR upstream
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PRUpstreamSettingsResponse'
+    PRUpstreamCreateResponse:
+      description: Настройки PR upstream сохранены
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PRUpstreamSettingsResponse'
+    PRUpstreamDeleteResponse:
+      description: Настройки PR upstream удалены
+    ExternalMetricsListResponse:
+      description: Список внешних метрик репозитория
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ExternalMetrics'
+    ExternalMetricResponse:
+      description: Информация о внешней метрике
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ExternalMetric'
+    ExternalMetricDeletedResponse:
+      description: Метрика успешно удалена
+    CommitListResponse:
+      description: Список коммитов с пагинацией
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CommitListResponse'
+    CommitStatusListResponse:
+      description: Список статусов коммита
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CommitStatusListResponse'
+    CommitStatusCreateResponse:
+      description: Статус коммита создан или обновлён
+      headers:
+        Location:
+          schema:
+            type: string
+          description: URL статусов коммита
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CommitStatusInfo'
+    CommitPullRequestsResponse:
+      description: Список пулл-реквестов, связанных с коммитом
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CommitPullRequestsResponse'
+    WebhooksBadRequest:
+      description: |
+        Ошибка валидации входных данных
+      headers:
+        X-Request-ID:
+          $ref: '#/components/headers/X-Request-ID'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+    WebhookForbidden:
+      description: Нет прав доступа к взаимодействию с ресурсом
+      headers:
+        X-Request-ID:
+          $ref: '#/components/headers/X-Request-ID'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+    WebhooksNotFound:
+      description: Указанный объект не найден
+      headers:
+        X-Request-ID:
+          $ref: '#/components/headers/X-Request-ID'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+    WebhookBadRequest:
+      description: |
+        Ошибка валидации входных данных
+      headers:
+        X-Request-ID:
+          $ref: '#/components/headers/X-Request-ID'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+    WebhookNotFound:
+      description: Указанный объект не найден
+      headers:
+        X-Request-ID:
+          $ref: '#/components/headers/X-Request-ID'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+    RepoMarkGetResponse:
+      description: CodeHub mark state for repository
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RepoMarkCodeHubResponse'
+    RepoMarkCreateResponse:
+      description: CodeHub mark created
+    RepoMarkDeleteResponse:
+      description: CodeHub mark deleted
+    RepositoriesListResponse:
+      description: Список репозиториев
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RepositoriesResponse'
+    RepositoryCreateResponse:
+      description: Репозиторий создан
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RepositoryV3'
+    UserInfoResponse:
+      description: Информация о пользователе
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserInfo'
+    CacheResetResponse:
+      description: Кэш тенанта успешно сброшен
+    UserTokenCreatedResponse:
+      description: Токен успешно создан
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserTokenCreated'
+      headers:
+        Location:
+          description: URL созданного ресурса
+          schema:
+            type: string
+    UserKeyCreatedResponse:
+      description: SSH-ключ успешно добавлен
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserKey'
+  schemas:
+    ValidationError:
+      type: object
+      properties:
+        location:
+          description: Местоположение ошибки
+          type: string
+          enum:
+            - field
+            - param
+            - header
+          example: field
+        name:
+          description: Имя параметра/поля
+          type: string
+          example: branch_name
+        error:
+          description: Человекочитаемое сообщение об ошибке
+          type: string
+          example: Имя ветки не может быть пустым.
+        code:
+          description: Машиночитаемый код ошибки
+          type: string
+          example: required_field
+    ProblemDetail:
+      description: Стандартный формат ответа об ошибке (RFC 9457)
+      type: object
+      required:
+        - type
+        - status
+        - title
+        - detail
+        - instance
+      properties:
+        type:
+          description: URI-идентификатор типа ошибки
+          type: string
+          format: uri
+          nullable: true
+          example: null
+        status:
+          description: HTTP статус код ошибки
+          type: integer
+          format: int32
+          minimum: 400
+          maximum: 599
+          example: 400
+        title:
+          description: Человекочитаемое краткое описание типа ошибки
+          type: string
+          example: Некорректный запрос
+        detail:
+          description: Конкретное сообщение об ошибке для текущего случая
+          type: string
+          example: Обнаружены ошибки в переданных данных.
+        instance:
+          description: URI, идентифицирующий данное конкретное возникновение ошибки
+          type: string
+          format: uri-reference
+          example: /repos/tenant/project/repo/branches
+        validation:
+          description: Массив ошибок валидации, null если ошибок валидации нет
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    shortCommitInfo:
+      properties:
+        created_at:
+          description: Дата создания коммита
+          example: '2025-04-05T14:30:00Z'
+          format: date-time
+          type: string
+        hash:
+          description: Хэш коммита
+          example: abc1234
+          type: string
+        title:
+          description: Заголовок коммита
+          example: Update dependencies
+          type: string
+      required:
+        - hash
+        - title
+        - created_at
+      type: object
+    BranchItem:
+      description: Информация о ветке
+      properties:
+        commit:
+          $ref: '#/components/schemas/shortCommitInfo'
+        name:
+          description: Название ветки
+          type: string
+        protected:
+          description: Защищена ли ветка
+          type: boolean
+        protection_rules:
+          description: Правила защиты ветки
+          items:
+            type: string
+          type: array
+      required:
+        - name
+        - protected
+        - commit
+      type: object
+    Pagination:
+      type: object
+      description: Объект, представляющий информацию о пагинации
+      properties:
+        current_page:
+          type: integer
+          description: Текущая страница
+          example: 1
+        per_page:
+          type: integer
+          description: Число элементов на одной странице
+          example: 30
+        total_pages:
+          type: integer
+          description: Всего страниц
+          example: 10
+        total_items:
+          type: integer
+          description: Общее количество элементов
+          example: 250
+    BranchListResponse:
+      description: Список веток репозитория с пагинацией
+      properties:
+        branches:
+          description: Список веток
+          items:
+            $ref: '#/components/schemas/BranchItem'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      required:
+        - pagination
+        - branches
+      type: object
+    BranchCreation:
+      properties:
+        new_branch:
+          description: Имя новой ветки
+          example: new_branch_name
+          maxLength: 100
+          minLength: 1
+          type: string
+        parent_commit_SHA:
+          description: SHA родительского коммита
+          example: d94b5f7ec7c6d7602c78a5e9b8a5b8c94d093eda
+          maxLength: 40
+          minLength: 4
+          pattern: ^[0-9a-fA-F]{4,40}$
+          type: string
+      required:
+        - new_branch
+        - parent_commit_SHA
+      type: object
+    Branch:
+      description: Возвращаемая новая ветка
+      properties:
+        commit:
+          $ref: '#/components/schemas/shortCommitInfo'
+        name:
+          description: Имя ветки
+          example: main
+          type: string
+        protected:
+          description: Является ли ветка защищённой
+          example: true
+          type: boolean
+        protection_rules:
+          items:
+            description: Имена правил защиты, применённых к ветке. Не возвращается если protected False
+            example:
+              - '*'
+              - main
+            type: string
+          type: array
+      required:
+        - name
+        - protected
+        - commit
+      type: object
+    CommitUserWithDateInfo:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Логин пользователя
+        email:
+          type: string
+          description: Email пользователя
+        date:
+          type: string
+          description: Время взаимодействия
+      required:
+        - name
+        - email
+        - date
+    CommitParentOrTreeInfo:
+      type: object
+      properties:
+        created:
+          type: string
+          format: date-time
+          example: '2025-04-05T14:30:00Z'
+        sha:
+          type: string
+        url:
+          type: string
+      required:
+        - created
+        - url
+        - sha
+    FileCommitFullInfo:
+      type: object
+      description: Информация по коммиту
+      required:
+        - author
+        - sha
+        - url
+        - committer
+        - tree
+        - message
+        - created
+      properties:
+        author:
+          $ref: '#/components/schemas/CommitUserWithDateInfo'
+        committer:
+          $ref: '#/components/schemas/CommitUserWithDateInfo'
+        created:
+          type: string
+          format: date-time
+          description: Дата создания коммита
+          example: '2025-04-05T14:30:00Z'
+        html_url:
+          type: string
+          description: Ссылка на коммит в интерфейсе
+          nullable: true
+        message:
+          type: string
+          description: Сообщение коммита
+        parents:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/CommitParentOrTreeInfo'
+        sha:
+          type: string
+          description: SHA коммита
+        tree:
+          $ref: '#/components/schemas/CommitParentOrTreeInfo'
+        url:
+          type: string
+          description: API-ссылка на коммит
+    DiffStatInfo:
+      type: object
+      description: Статистика различий между двумя ветками/коммитами
+      required:
+        - base_commit
+        - merge_base_commit
+        - head_commit
+        - status
+        - total_commits
+        - total_files
+      properties:
+        base_commit:
+          type: string
+          description: SHA коммита базовой ветки
+        merge_base_commit:
+          type: string
+          description: SHA общего предка между base и head
+        head_commit:
+          type: string
+          description: SHA коммита головной ветки
+        status:
+          type: string
+          description: Статус отношения между ветками
+          enum:
+            - ahead
+            - behind
+            - identical
+            - derived
+            - unknown
+        total_commits:
+          type: integer
+          description: Количество коммитов в диапазоне (на текущей странице)
+        total_files:
+          type: integer
+          description: Количество файлов в диапазоне
+    CompareCommitsResponse:
+      type: object
+      description: Результат сравнения коммитов с пагинацией
+      required:
+        - data
+        - pagination
+        - diffInfo
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileCommitFullInfo'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        diffInfo:
+          $ref: '#/components/schemas/DiffStatInfo'
+    PRReviewInfo:
+      description: Информация о ревью
+      properties:
+        lastReviewedCommit:
+          description: SHA последнего проверенного коммита
+          nullable: true
+          type: string
+        status:
+          description: Статус ревью
+          enum:
+            - APPROVED
+            - COMMENTED
+            - PENDING
+          type: string
+        username:
+          description: Имя пользователя
+          type: string
+      required:
+        - username
+        - status
+      type: object
+    PRListItem:
+      description: Краткая информация о пулл-реквесте (для списков)
+      properties:
+        assignees:
+          description: Назначенные пользователи
+          items:
+            type: string
+          type: array
+        base:
+          $ref: '#/components/schemas/Branch'
+        body:
+          description: Описание
+          type: string
+        closed_at:
+          description: Дата закрытия
+          format: date-time
+          type: string
+        code_owners:
+          description: Владельцы кода
+          items:
+            $ref: '#/components/schemas/PRReviewInfo'
+          type: array
+        created_at:
+          description: Дата создания
+          format: date-time
+          type: string
+        diff_url:
+          description: URL diff
+          type: string
+        due_date:
+          description: Срок выполнения
+          format: date-time
+          type: string
+        head:
+          $ref: '#/components/schemas/Branch'
+        html_url:
+          description: HTML URL
+          type: string
+        index:
+          description: Номер пулл-реквеста
+          format: int64
+          type: integer
+        labels:
+          description: Имена меток
+          items:
+            type: string
+          type: array
+        merge_base:
+          description: Базовый коммит слияния
+          type: string
+        merge_commit_sha:
+          description: SHA коммита слияния
+          type: string
+        mergeable:
+          description: Возможно ли слияние
+          type: boolean
+        merged_at:
+          description: Дата слияния
+          format: date-time
+          type: string
+        merged_by:
+          description: Пользователь, выполнивший слияние
+          type: string
+        milestone:
+          description: Идентификатор вехи
+          format: int64
+          type: integer
+        patch_url:
+          description: URL patch
+          type: string
+        pr_creator:
+          description: Создатель
+          type: string
+        reviewers:
+          description: Ревьюеры
+          items:
+            $ref: '#/components/schemas/PRReviewInfo'
+          type: array
+        state:
+          description: Состояние
+          enum:
+            - open
+            - closed
+            - merged
+          type: string
+        title:
+          description: Заголовок
+          type: string
+        updated_at:
+          description: Дата обновления
+          format: date-time
+          type: string
+        url:
+          description: API URL
+          type: string
+      required:
+        - index
+        - title
+        - body
+        - state
+        - pr_creator
+        - head
+        - base
+        - mergeable
+        - assignees
+        - reviewers
+        - code_owners
+        - labels
+        - diff_url
+        - patch_url
+        - html_url
+        - url
+        - merge_base
+        - created_at
+        - updated_at
+      type: object
+    PullRequestListResponse:
+      description: Список пулл-реквестов с пагинацией
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        pulls:
+          description: Список пулл-реквестов
+          items:
+            $ref: '#/components/schemas/PRListItem'
+          type: array
+      required:
+        - pagination
+        - pulls
+      type: object
+    PRCreation:
+      description: Данные для создания нового PR
+      properties:
+        assignees:
+          description: Массив логинов назначенных пользователей
+          example:
+            - login1
+            - login2
+          items:
+            description: логин назначенного пользователя
+            maxLength: 40
+            minLength: 2
+            type: string
+          type: array
+        base:
+          description: Имя ветки куда вливаем
+          example: main
+          maxLength: 100
+          minLength: 2
+          type: string
+        body:
+          description: Описание PR
+          example: Описание PR
+          maxLength: 512
+          minLength: 2
+          type: string
+        due_date:
+          description: Предполагаемая дата исполнения PR
+          example: 12.05.2025
+          minLength: 1
+          type: string
+        head:
+          description: Имя вливаемой ветки
+          example: feature_branch
+          maxLength: 100
+          minLength: 2
+          type: string
+        labels:
+          description: Массив ID меток PR
+          example:
+            - 1
+            - 2
+          items:
+            description: ID метки PR
+            minimum: 1
+            type: integer
+          type: array
+        milestone:
+          description: Идентификатор ЭТАПА к которому привязывается PR
+          example: 4
+          minimum: 1
+          type: integer
+        reviewers:
+          description: Массив логинов ревьюеров
+          example:
+            - login1
+            - login2
+          items:
+            description: логин ревьюера
+            maxLength: 40
+            minLength: 2
+            type: string
+          type: array
+        title:
+          description: Заголовок PR
+          example: PR_title
+          maxLength: 100
+          minLength: 1
+          type: string
+      required:
+        - title
+        - head
+        - base
+      type: object
+    Label:
+      description: Метка
+      properties:
+        id:
+          description: Идентификатор метки
+          type: string
+      required:
+        - id
+      type: object
+    PRInfo:
+      description: Информация о пулл-реквесте
+      properties:
+        assignees:
+          description: Назначенные пользователи
+          items:
+            type: string
+          type: array
+        base:
+          $ref: '#/components/schemas/Branch'
+        body:
+          description: Описание
+          type: string
+        closed_at:
+          description: Дата закрытия
+          format: date-time
+          nullable: true
+          type: string
+        code_owners:
+          description: Владельцы кода
+          items:
+            $ref: '#/components/schemas/PRReviewInfo'
+          type: array
+        created_at:
+          description: Дата создания
+          format: date-time
+          type: string
+        diff_url:
+          description: URL diff
+          type: string
+        due_date:
+          description: Срок выполнения
+          format: date-time
+          nullable: true
+          type: string
+        head:
+          $ref: '#/components/schemas/Branch'
+        html_url:
+          description: HTML URL
+          type: string
+        index:
+          description: Номер пулл-реквеста
+          format: int64
+          type: integer
+        labels:
+          description: Метки
+          items:
+            $ref: '#/components/schemas/Label'
+          type: array
+        merge_base:
+          description: Базовый коммит слияния
+          type: string
+        merge_commit_sha:
+          description: SHA коммита слияния
+          nullable: true
+          type: string
+        mergeable:
+          description: Возможно ли слияние
+          type: boolean
+        merged_at:
+          description: Дата слияния
+          format: date-time
+          nullable: true
+          type: string
+        merged_by:
+          description: Пользователь, выполнивший слияние
+          nullable: true
+          type: string
+        milestone:
+          description: Идентификатор вехи
+          format: int64
+          nullable: true
+          type: integer
+        patch_url:
+          description: URL patch
+          type: string
+        pr_creator:
+          description: Создатель
+          type: string
+        reviewers:
+          description: Ревьюеры
+          items:
+            $ref: '#/components/schemas/PRReviewInfo'
+          type: array
+        state:
+          description: Состояние
+          enum:
+            - open
+            - closed
+            - merged
+          type: string
+        title:
+          description: Заголовок
+          type: string
+        updated_at:
+          description: Дата обновления
+          format: date-time
+          type: string
+        url:
+          description: API URL
+          type: string
+      required:
+        - index
+        - title
+        - body
+        - state
+        - pr_creator
+        - head
+        - base
+        - mergeable
+        - assignees
+        - reviewers
+        - code_owners
+        - labels
+        - diff_url
+        - patch_url
+        - html_url
+        - url
+        - merge_base
+        - created_at
+        - updated_at
+      type: object
+    PRPatch:
+      description: Данные для обновления PR
+      properties:
+        assignees:
+          description: Массив логинов назначенных пользователей
+          nullable: true
+          example:
+            - login1
+            - login2
+          items:
+            description: логин назначенного пользователя
+            maxLength: 40
+            minLength: 2
+            type: string
+          type: array
+        body:
+          description: Описание PR
+          nullable: true
+          example: Описание PR
+          maxLength: 512
+          minLength: 2
+          type: string
+        due_date:
+          description: Предполагаемая дата исполнения PR
+          nullable: true
+          example: 12.05.2025
+          minLength: 1
+          type: string
+        labels:
+          description: Массив ID меток PR
+          nullable: true
+          example:
+            - 1
+            - 2
+          items:
+            description: ID метки PR
+            minimum: 1
+            type: integer
+          type: array
+        milestone:
+          description: Идентификатор ЭТАПА к которому привязывается PR
+          nullable: true
+          example: 4
+          minimum: 1
+          type: integer
+        reviewers:
+          description: Массив логинов ревьюеров
+          nullable: true
+          example:
+            - login1
+            - login2
+          items:
+            description: логин ревьюера
+            maxLength: 40
+            minLength: 2
+            type: string
+          type: array
+        title:
+          description: Заголовок PR
+          nullable: true
+          example: PR_title
+          maxLength: 100
+          minLength: 2
+          type: string
+      type: object
+    PRMerge:
+      additionalProperties: false
+      description: Параметры для слияния PR запроса
+      properties:
+        delete_branch_after_merge:
+          description: Удалять ли ветку после слияния
+          example: true
+          nullable: true
+          type: boolean
+        force_merge:
+          description: Принудительно выполнить слияние, игнорируя статусы CI/CD и правила защиты. По умолчанию false
+          example: false
+          nullable: true
+          type: boolean
+        head_commit_id:
+          description: SHA последнего коммита в ветке PR. Используется для проверки актуальности.
+          example: a1b2c3d4e5f6...
+          maxLength: 40
+          minLength: 1
+          nullable: true
+          type: string
+        merge_commit_id:
+          description: SHA коммита, который должен быть использован как merge commit. Если указан, то этот коммит будет результирующий. Контрольный параметр, подтверждающий, что слияние выполняется для конкретного состояния PR.
+          example: a1b2c3d4e5f6...
+          maxLength: 40
+          minLength: 1
+          nullable: true
+          type: string
+        merge_method:
+          description: 'Метод интеграции одной ветки в другую. Доступные значения: merge, squash, rebase, rebase-merge, manually-merged'
+          enum:
+            - merge
+            - squash
+            - rebase
+            - rebase-merge
+            - manually-merged
+          example: rebase
+          type: string
+        merge_when_checks_succeed:
+          description: Автоматически слить PR, когда все проверки пройдут. По умолчанию false
+          example: false
+          nullable: true
+          type: boolean
+        message:
+          description: Тело сообщения коммита, который будет создан при слиянии PR
+          example: A cubicularis deporto deprecator quas tamen ascit auditor auctor. Dens cinis contabesco usus cui crapula celer turbo.
+          maxLength: 1000
+          minLength: 1
+          nullable: true
+          type: string
+        title:
+          description: Заголовок коммита слияния. Если не указано — используется заголовок PR.
+          example: Fix login validation
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+        - merge_method
+      type: object
+    PRDeclineRequest:
+      additionalProperties: false
+      description: Параметры для отмены PR запроса
+      properties:
+        message:
+          description: Комментарий к отмене PR запроса
+          example: Task was rejected.
+          maxLength: 1000
+          nullable: true
+          type: string
+      type: object
+    DiffFileInfo:
+      description: Информация о файле в diff пулл-реквеста
+      type: object
+      required:
+        - filepath
+        - status
+        - additions
+        - deletions
+        - changes
+        - raw_url
+      properties:
+        filepath:
+          description: Путь к файлу
+          type: string
+        previous_name:
+          description: Предыдущее имя файла (при переименовании). Поле отсутствует если нет переименования
+          type: string
+        nodeType:
+          description: Тип узла
+          type: string
+        executable:
+          description: Является ли файл исполняемым. Поле отсутствует если не применимо
+          type: boolean
+        status:
+          description: Статус изменения файла (added, modified, deleted, renamed и т.д.)
+          type: string
+        additions:
+          description: Количество добавленных строк
+          type: integer
+        deletions:
+          description: Количество удалённых строк
+          type: integer
+        changes:
+          description: Общее количество изменённых строк
+          type: integer
+        raw_url:
+          description: URL для получения raw-содержимого файла
+          type: string
+        html_url:
+          description: HTML URL файла. Поле может отсутствовать
+          type: string
+    DiffFileInfoListResponse:
+      description: Список изменённых файлов с пагинацией
+      type: object
+      required:
+        - pagination
+        - files
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        files:
+          description: Список изменённых файлов
+          type: array
+          items:
+            $ref: '#/components/schemas/DiffFileInfo'
+    schemas-CommitUserWithDateInfo:
+      description: Информация об авторе/коммиттере
+      properties:
+        date:
+          description: Дата
+          format: date-time
+          type: string
+        email:
+          description: Email пользователя
+          format: email
+          type: string
+        name:
+          description: Имя пользователя
+          type: string
+      required:
+        - name
+        - email
+        - date
+      type: object
+    schemas-CommitParentOrTreeInfo:
+      description: Информация о родительском коммите или дереве
+      properties:
+        created:
+          description: Дата создания
+          type: string
+        sha:
+          description: SHA объекта
+          type: string
+        url:
+          description: URL объекта
+          type: string
+      required:
+        - sha
+        - url
+        - created
+      type: object
+    schemas-FileCommitFullInfo:
+      description: Полная информация о коммите
+      properties:
+        author:
+          $ref: '#/components/schemas/schemas-CommitUserWithDateInfo'
+        committer:
+          $ref: '#/components/schemas/schemas-CommitUserWithDateInfo'
+        created:
+          description: Дата создания
+          format: date-time
+          type: string
+        html_url:
+          description: HTML URL коммита
+          type: string
+        message:
+          description: Сообщение коммита
+          type: string
+        parents:
+          description: Родительские коммиты
+          items:
+            $ref: '#/components/schemas/schemas-CommitParentOrTreeInfo'
+          type: array
+        sha:
+          description: SHA коммита
+          type: string
+        tree:
+          $ref: '#/components/schemas/schemas-CommitParentOrTreeInfo'
+        url:
+          description: API URL коммита
+          type: string
+      required:
+        - sha
+        - message
+        - url
+        - created
+        - author
+        - committer
+        - tree
+      type: object
+    PRCommitsResponse:
+      description: Список коммитов пулл-реквеста с пагинацией
+      type: object
+      required:
+        - pagination
+        - commits
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        commits:
+          description: Список коммитов
+          type: array
+          items:
+            $ref: '#/components/schemas/schemas-FileCommitFullInfo'
+    IssueInfoResponse:
+      description: Задача из трекера задач, связанная с пулл-реквестом
+      type: object
+      required:
+        - code
+        - title
+        - status
+        - url
+        - priority
+      properties:
+        code:
+          description: Код задачи
+          type: string
+          example: SC-123
+        title:
+          description: Заголовок задачи
+          type: string
+          example: Ошибка 500 при изменении PR
+        status:
+          description: Статус задачи
+          type: string
+          example: Closed
+        url:
+          description: URL задачи в трекере
+          type: string
+          example: https://sc-example.com/units/all/unit/SC-123
+        priority:
+          description: Приоритет задачи
+          type: string
+          example: major
+    PRIssuesResponse:
+      description: Список задач пулл-реквеста с пагинацией
+      type: object
+      required:
+        - pagination
+        - issues
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        issues:
+          description: Список задач
+          type: array
+          items:
+            $ref: '#/components/schemas/IssueInfoResponse'
+    CommentAuthor:
+      description: Автор комментария
+      type: object
+      required:
+        - name
+        - email
+      properties:
+        name:
+          description: Имя пользователя
+          type: string
+        email:
+          description: Email пользователя
+          type: string
+          format: email
+    FileVariant:
+      description: Вариант файла, к которому относится комментарий к коду
+      type: string
+      enum:
+        - PREVIOUS
+        - PROPOSED
+    CommentContext:
+      description: Контекст комментария
+      type: object
+      required:
+        - pull_request
+      properties:
+        file_variant:
+          $ref: '#/components/schemas/FileVariant'
+        line:
+          description: Номер строки в файле
+          type: integer
+          minimum: 1
+        filepath:
+          description: Путь к файлу
+          type: string
+          minLength: 1
+          maxLength: 1000
+        commit_sha:
+          description: SHA коммита, к которому относится комментарий
+          type: string
+          minLength: 40
+          maxLength: 40
+        pull_request:
+          description: Индекс пулл-реквеста
+          type: integer
+    ReviewType:
+      description: Статус ревью
+      type: string
+      enum:
+        - REQUEST_CHANGES
+        - APPROVED
+        - COMMENTED
+    Comment:
+      description: Комментарий к пулл-реквесту
+      type: object
+      required:
+        - id
+        - body
+        - author
+        - created_at
+        - updated_at
+        - official
+        - invalidated
+        - anchor_url
+        - context
+        - review_id
+        - type
+      properties:
+        id:
+          description: Идентификатор комментария
+          type: integer
+        body:
+          description: Текст комментария
+          type: string
+        author:
+          $ref: '#/components/schemas/CommentAuthor'
+        created_at:
+          description: Дата создания
+          type: string
+          format: date-time
+        updated_at:
+          description: Дата обновления
+          type: string
+          format: date-time
+        official:
+          description: Является ли комментарий официальным ревью
+          type: boolean
+        invalidated:
+          description: Является ли комментарий недействительным (устаревший код)
+          type: boolean
+        anchor_url:
+          description: URL привязки комментария к коду
+          type: string
+        context:
+          $ref: '#/components/schemas/CommentContext'
+        review_id:
+          description: Идентификатор ревью
+          type: integer
+        type:
+          $ref: '#/components/schemas/ReviewType'
+    CommentListResponse:
+      description: Список комментариев с пагинацией
+      type: object
+      required:
+        - comments
+        - pagination
+      properties:
+        comments:
+          description: Список комментариев
+          type: array
+          items:
+            $ref: '#/components/schemas/Comment'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    CommentBody:
+      description: Тело комментария
+      type: object
+      properties:
+        body:
+          description: Текст комментария
+          type: string
+          minLength: 1
+      required:
+        - body
+    CommentCommitSHA:
+      description: SHA коммита, к которому привязывается комментарий
+      type: object
+      properties:
+        commit_sha:
+          description: SHA коммита. Если не указан, вычисляется автоматически.
+          type: string
+          minLength: 40
+          maxLength: 40
+          nullable: true
+    PRSimpleCommentCreateOptions:
+      description: Параметры для создания простого комментария к PR
+      allOf:
+        - $ref: '#/components/schemas/CommentBody'
+        - $ref: '#/components/schemas/CommentCommitSHA'
+        - type: object
+          properties:
+            reply_to:
+              description: ID комментария, на который отправляется ответ
+              type: integer
+              format: int64
+              minimum: 1
+              nullable: true
+    PRReviewCommentCreateOptions:
+      description: Параметры для создания ревью к PR
+      allOf:
+        - $ref: '#/components/schemas/CommentBody'
+        - $ref: '#/components/schemas/CommentCommitSHA'
+        - type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/ReviewType'
+          required:
+            - type
+    PRCodeCommentCreateOptions:
+      description: Параметры для создания комментария к коду в PR
+      allOf:
+        - $ref: '#/components/schemas/CommentBody'
+        - $ref: '#/components/schemas/CommentCommitSHA'
+        - type: object
+          properties:
+            file_variant:
+              $ref: '#/components/schemas/FileVariant'
+            filepath:
+              description: Путь к файлу
+              type: string
+              minLength: 1
+              maxLength: 1000
+            line:
+              description: Номер строки в файле
+              type: integer
+              minimum: 1
+            review_id:
+              description: Идентификатор ревью, к которому относится комментарий
+              type: integer
+              format: int64
+              minimum: 1
+              nullable: true
+          required:
+            - file_variant
+            - filepath
+            - line
+    PRCommentCreateOptions:
+      description: Параметры создания комментария к PR. Если передан `type`, создаётся ревью; если передан хотя бы один из `file_variant`, `filepath`, `line`, создаётся комментарий к коду; иначе создаётся простой комментарий.
+      oneOf:
+        - $ref: '#/components/schemas/PRSimpleCommentCreateOptions'
+        - $ref: '#/components/schemas/PRReviewCommentCreateOptions'
+        - $ref: '#/components/schemas/PRCodeCommentCreateOptions'
+    CommentUpdate:
+      description: Параметры обновления комментария
+      type: object
+      required:
+        - body
+      properties:
+        body:
+          description: Новый текст комментария
+          type: string
+          minLength: 1
+    SubscriptionEvents:
+      description: Настройки событий подписки на репозиторий
+      type: object
+      required:
+        - pull_review_request
+        - pull_request_review
+        - pull_review_dismiss
+        - new_pull_request
+        - merge_pull_request
+        - pull_request_push_commits
+        - pull_request_code_comment
+      properties:
+        pull_review_request:
+          description: Уведомлять о запросах на ревью
+          type: boolean
+        pull_request_review:
+          description: Уведомлять о ревью пулл-реквестов
+          type: boolean
+        pull_review_dismiss:
+          description: Уведомлять об отклонении ревью
+          type: boolean
+        new_pull_request:
+          description: Уведомлять о новых пулл-реквестах
+          type: boolean
+        merge_pull_request:
+          description: Уведомлять о слиянии пулл-реквестов
+          type: boolean
+        pull_request_push_commits:
+          description: Уведомлять о пушах коммитов в пулл-реквесты
+          type: boolean
+        pull_request_code_comment:
+          description: Уведомлять о комментариях к коду в пулл-реквестах
+          type: boolean
+    RepositorySubscription:
+      description: Настройки отслеживания репозитория для текущего пользователя
+      type: object
+      required:
+        - is_watching
+        - events
+        - email_notifications
+      properties:
+        is_watching:
+          description: Отслеживает ли пользователь репозиторий
+          type: boolean
+        events:
+          $ref: '#/components/schemas/SubscriptionEvents'
+        email_notifications:
+          description: Включены ли email-уведомления
+          type: boolean
+    SetDefaultBranchBody:
+      properties:
+        default_branch:
+          description: 'Имя существующей ветки, например: my_branch.'
+          type: string
+      required:
+        - default_branch
+      type: object
+    DefaultBranchResult:
+      type: object
+      required:
+        - default_branch
+      properties:
+        default_branch:
+          type: string
+          description: Имя ветки по умолчанию
+    LabelValue:
+      type: object
+      description: Объект со значением системной метки
+      properties:
+        value:
+          type: boolean
+          description: Значение системной метки
+          example: true
+      required:
+        - value
+    AdditionalRestrictions:
+      description: Дополнительные ограничения
+      properties:
+        protected_file_patterns:
+          description: Шаблон защищённых файлов
+          type: string
+        unprotected_file_patterns:
+          description: Шаблон незащищённых файлов
+          type: string
+      type: object
+    DeletionSettings:
+      description: Настройки удаления ветки
+      properties:
+        allow_deletion_deploy_keys:
+          description: Разрешить удаление для deploy-ключей
+          type: boolean
+        branch_deletion_whitelist_usernames:
+          description: Пользователи с разрешением удаления
+          items:
+            type: string
+          type: array
+        require_deletion_whitelist:
+          description: Требовать белый список для удаления
+          type: boolean
+      type: object
+    ForcePushSettings:
+      description: Настройки force push
+      properties:
+        allow_force_push_deploy_keys:
+          description: Разрешить force push для deploy-ключей
+          type: boolean
+        force_push_whitelist_usernames:
+          description: Пользователи с разрешением force push
+          items:
+            type: string
+          type: array
+        require_force_push_whitelist:
+          description: Требовать белый список для force push
+          type: boolean
+      type: object
+    PushSettings:
+      description: Настройки push
+      properties:
+        allow_push_deploy_keys:
+          description: Разрешить push для deploy-ключей
+          type: boolean
+        push_whitelist_usernames:
+          description: Пользователи с разрешением push
+          items:
+            type: string
+          type: array
+        require_push_whitelist:
+          description: Требовать белый список для push
+          type: boolean
+      type: object
+    BranchProtectionBody:
+      additionalProperties: false
+      description: Настройки защиты ветки
+      properties:
+        additional_restrictions:
+          $ref: '#/components/schemas/AdditionalRestrictions'
+        branch_name:
+          description: Имя ветки или шаблон
+          maxLength: 255
+          type: string
+        deletion_settings:
+          $ref: '#/components/schemas/DeletionSettings'
+        force_push_settings:
+          $ref: '#/components/schemas/ForcePushSettings'
+        push_settings:
+          $ref: '#/components/schemas/PushSettings'
+      required:
+        - branch_name
+        - push_settings
+        - force_push_settings
+        - deletion_settings
+        - additional_restrictions
+      type: object
+    Content:
+      type: object
+      description: Метаданные и содержимое файла/каталога
+      properties:
+        type:
+          type: string
+          description: 'Тип объекта: file, dir, symlink, submodule'
+        content:
+          type: string
+          description: Содержимое в base64; для каталогов может быть пустым
+        encoding:
+          type: string
+          description: Кодировка содержимого (обычно base64)
+        size:
+          type: integer
+          format: int64
+          description: Размер в байтах
+        path:
+          type: string
+        name:
+          type: string
+        sha:
+          type: string
+        last_commit_sha:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+        download_url:
+          type: string
+        git_url:
+          type: string
+        url:
+          type: string
+        html_url:
+          type: string
+        target:
+          type: string
+          description: Для symlink — целевой путь
+    FileListResponse:
+      type: object
+      description: Пагинированный список файлов и каталогов (или один элемент при запросе к файлу)
+      required:
+        - pagination
+        - files
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/Content'
+    CreateFileRequest:
+      type: object
+      required:
+        - content
+        - filepath
+      properties:
+        content:
+          type: string
+          description: Base64-encoded file content
+        message:
+          type: string
+          description: Commit message
+        branch:
+          type: string
+          description: Branch name (defaults to repository default branch)
+        filepath:
+          type: string
+          description: File path relative to repository root
+    BranchCommitInfo:
+      type: object
+      properties:
+        hash:
+          type: string
+        title:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    schemas-Branch:
+      type: object
+      properties:
+        name:
+          type: string
+        protected:
+          type: boolean
+        protection_rules:
+          type: array
+          items:
+            type: string
+        commit:
+          $ref: '#/components/schemas/BranchCommitInfo'
+    PersonWithDate:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        date:
+          type: string
+    CommitParent:
+      type: object
+      properties:
+        created:
+          type: string
+          format: date-time
+        sha:
+          type: string
+        url:
+          type: string
+    GitRef:
+      type: object
+      properties:
+        created:
+          type: string
+          format: date-time
+        sha:
+          type: string
+        url:
+          type: string
+    FileRepoCommit:
+      type: object
+      properties:
+        author:
+          $ref: '#/components/schemas/PersonWithDate'
+        committer:
+          $ref: '#/components/schemas/PersonWithDate'
+        created:
+          type: string
+          format: date-time
+        parents:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommitParent'
+        sha:
+          type: string
+        message:
+          type: string
+        url:
+          type: string
+        html_url:
+          type: string
+        tree:
+          $ref: '#/components/schemas/GitRef'
+    Signer:
+      type: object
+      properties:
+        email:
+          type: string
+        name:
+          type: string
+        username:
+          type: string
+    Verification:
+      type: object
+      properties:
+        payload:
+          type: string
+        reason:
+          type: string
+        signature:
+          type: string
+        signer:
+          $ref: '#/components/schemas/Signer'
+        verified:
+          type: boolean
+    FileResponse:
+      type: object
+      description: Результат операции с файлом (создание, обновление, удаление)
+      properties:
+        branch:
+          $ref: '#/components/schemas/schemas-Branch'
+        commit:
+          $ref: '#/components/schemas/FileRepoCommit'
+        content:
+          $ref: '#/components/schemas/Content'
+        verification:
+          $ref: '#/components/schemas/Verification'
+    UpdateFileRequest:
+      type: object
+      required:
+        - content
+        - filepath
+        - sha
+      properties:
+        content:
+          type: string
+          description: Base64-encoded file content
+        message:
+          type: string
+          description: Commit message
+        branch:
+          type: string
+          description: Branch name (defaults to repository default branch)
+        from_path:
+          type: string
+          description: Source path to move/rename from (optional)
+        filepath:
+          type: string
+          description: Existing file path
+        sha:
+          type: string
+          description: Commit SHA
+    DeleteFileRequest:
+      type: object
+      required:
+        - filepath
+        - sha
+      properties:
+        sha:
+          type: string
+          description: Commit SHA
+        branch:
+          type: string
+          description: Branch name (defaults to repository default branch)
+        message:
+          type: string
+          description: Commit message
+        filepath:
+          type: string
+          description: Existing file path
+        signoff:
+          type: boolean
+          description: Add Signed-off-by to commit message
+    SonarSettingsResponse:
+      type: object
+      description: Настройки SonarQube для репозитория
+      required:
+        - sonar_server_url
+        - sonar_project_key
+        - sonar_token
+      properties:
+        sonar_server_url:
+          type: string
+          description: URL сервера SonarQube
+        sonar_project_key:
+          type: string
+          description: Ключ проекта в SonarQube
+        sonar_token:
+          type: string
+          description: Токен аутентификации SonarQube
+    CreateOrUpdateSonarProjectRequest:
+      type: object
+      required:
+        - sonar_server_url
+        - sonar_project_key
+        - sonar_token
+      properties:
+        sonar_server_url:
+          type: string
+          description: URL of the SonarQube server
+          maxLength: 2048
+        sonar_project_key:
+          type: string
+          description: Unique project key in SonarQube
+          maxLength: 50
+        sonar_token:
+          type: string
+          description: Token used for authentication with SonarQube
+          minLength: 40
+          maxLength: 255
+    DefaultReviewerSet:
+      type: object
+      required:
+        - default_reviewers_list
+        - required_approvals_count
+      properties:
+        default_reviewers_list:
+          type: array
+          description: Список ревьюеров по умолчанию
+          items:
+            type: string
+        required_approvals_count:
+          type: integer
+          description: Минимальное количество необходимых аппрувов
+    ApprovalSettings:
+      type: object
+      required:
+        - require_default_reviewers
+        - default_reviewers
+      properties:
+        require_default_reviewers:
+          type: boolean
+          description: Назначать ли ревьюеров по умолчанию
+        default_reviewers:
+          type: array
+          description: Список наборов ревьюеров по умолчанию
+          items:
+            $ref: '#/components/schemas/DefaultReviewerSet'
+    MergeRestrictions:
+      type: object
+      properties:
+        block_on_official_review_requests:
+          type: boolean
+          description: Блокировать слияние, если есть запросы на официальное ревью
+        block_on_outdated_branch:
+          type: boolean
+          description: Блокировать слияние, если ветка отстаёт от основной
+        block_on_rejected_reviews:
+          type: boolean
+          description: Блокировать слияние при наличии отклонённых ревью
+        dismiss_stale_approvals:
+          type: boolean
+          description: Сбрасывать аппрувы при новых изменениях
+        require_sonarqube_quality_gate:
+          type: boolean
+          description: Требовать прохождения SonarQube Quality Gate
+    MergeSettings:
+      type: object
+      properties:
+        require_merge_whitelist:
+          type: boolean
+          description: Требовать белый список на слияние
+        merge_whitelist_usernames:
+          type: array
+          description: Список пользователей, которым разрешено слияние
+          items:
+            type: string
+    StatusChecks:
+      type: object
+      properties:
+        enable_status_check:
+          type: boolean
+          description: Включить проверку CI статусов
+        status_check_contexts:
+          type: array
+          description: Список обязательных CI проверок
+          items:
+            type: string
+    BranchReviewSetting:
+      type: object
+      required:
+        - branch_name
+        - approval_settings
+        - merge_restrictions
+        - merge_settings
+        - status_checks
+      properties:
+        branch_name:
+          type: string
+          description: Название ветки, к которой применяются настройки (например, "*")
+        approval_settings:
+          $ref: '#/components/schemas/ApprovalSettings'
+        merge_restrictions:
+          $ref: '#/components/schemas/MergeRestrictions'
+        merge_settings:
+          $ref: '#/components/schemas/MergeSettings'
+        status_checks:
+          $ref: '#/components/schemas/StatusChecks'
+    ReviewSettings:
+      type: object
+      required:
+        - review_settings
+      properties:
+        review_settings:
+          type: array
+          description: Список настроек ревью для веток
+          items:
+            $ref: '#/components/schemas/BranchReviewSetting'
+    ReviewSettingsRequest:
+      type: object
+      required:
+        - branch_name
+        - approval_settings
+        - merge_restrictions
+        - merge_settings
+        - status_checks
+      properties:
+        branch_name:
+          type: string
+          description: Название ветки, к которой применяются настройки (например, "*")
+        approval_settings:
+          $ref: '#/components/schemas/ApprovalSettings'
+        merge_restrictions:
+          $ref: '#/components/schemas/MergeRestrictions'
+        merge_settings:
+          $ref: '#/components/schemas/MergeSettings'
+        status_checks:
+          $ref: '#/components/schemas/StatusChecks'
+    UserPrivilege:
+      type: object
+      required:
+        - user_name
+        - privilege_group
+      properties:
+        user_name:
+          type: string
+          description: Имя пользователя
+          example: john.doe
+        privilege_group:
+          type: string
+          description: Назначенная группа привилегий
+          example: readers
+    PrivilegeGroupsOperations:
+      type: object
+      properties:
+        grant:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserPrivilege'
+        revoke:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserPrivilege'
+    ApplyPrivilegeGroupsRequest:
+      type: object
+      required:
+        - apply_privilege_groups
+      properties:
+        apply_privilege_groups:
+          $ref: '#/components/schemas/PrivilegeGroupsOperations'
+    AppliedPrivilegeStatus:
+      type: object
+      properties:
+        applied_status:
+          type: object
+          properties:
+            granted:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserPrivilege'
+            revoked:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserPrivilege'
+            errors:
+              type: object
+              properties:
+                grant:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      user_name:
+                        type: string
+                      privilege_group:
+                        type: string
+                      error:
+                        type: string
+                revoke:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      user_name:
+                        type: string
+                      privilege_group:
+                        type: string
+                      error:
+                        type: string
+    SystemLabels:
+      type: object
+      description: Объект с набором системных меток (ключ — имя метки, значение — boolean)
+      additionalProperties:
+        type: boolean
+      example:
+        tier0: true
+    RepositoryLinks:
+      description: Ссылки репозитория
+      properties:
+        clone:
+          description: Ссылка для клонирования (HTTPS)
+          type: string
+        html:
+          description: HTML ссылка
+          type: string
+        ssh:
+          description: Ссылка для клонирования (SSH)
+          type: string
+      required:
+        - html
+        - clone
+        - ssh
+      type: object
+    ShortProjectInfo:
+      description: Краткая информация о проекте
+      properties:
+        name:
+          description: Имя проекта
+          type: string
+        url:
+          description: URL проекта
+          type: string
+      required:
+        - name
+        - url
+      type: object
+    RepositoryStats:
+      description: Статистика репозитория
+      properties:
+        forks:
+          description: Количество форков
+          type: integer
+        open_pull_requests:
+          description: Количество открытых пулл-реквестов
+          type: integer
+        stars:
+          description: Количество звёзд
+          type: integer
+        watchers:
+          description: Количество наблюдателей
+          type: integer
+      type: object
+    RepositoryV3:
+      description: Репозиторий (v3)
+      properties:
+        archived:
+          description: Архивирован ли репозиторий
+          type: boolean
+        created_at:
+          description: Дата создания
+          format: date-time
+          type: string
+        default_branch:
+          description: Ветка по умолчанию
+          type: string
+        description:
+          description: Описание репозитория
+          type: string
+        empty:
+          description: Пуст ли репозиторий
+          type: boolean
+        fork:
+          description: Является ли форком
+          type: boolean
+        full_name:
+          description: Полное имя репозитория
+          type: string
+        language:
+          description: Основной язык программирования
+          type: string
+        licenses:
+          description: Лицензии
+          items:
+            type: string
+          type: array
+        system_labels:
+          $ref: '#/components/schemas/SystemLabels'
+        links:
+          $ref: '#/components/schemas/RepositoryLinks'
+        name:
+          description: Имя репозитория
+          type: string
+        owner:
+          $ref: '#/components/schemas/ShortProjectInfo'
+        stats:
+          $ref: '#/components/schemas/RepositoryStats'
+        template:
+          description: Является ли шаблоном
+          type: boolean
+        updated_at:
+          description: Дата обновления
+          format: date-time
+          type: string
+        visibility:
+          description: Видимость репозитория
+          type: string
+      required:
+        - name
+        - full_name
+        - visibility
+        - default_branch
+        - fork
+        - template
+        - archived
+        - empty
+        - created_at
+        - updated_at
+        - stats
+        - owner
+        - links
+        - licenses
+      type: object
+    PRUpstreamSettingsResponse:
+      properties:
+        branches:
+          items:
+            type: string
+          type: array
+        created_at:
+          format: date-time
+          type: string
+        id:
+          format: int64
+          type: integer
+        project_identifier:
+          type: string
+        repo_identifier:
+          type: string
+        tenant_identifier:
+          type: string
+        tracker_project_key:
+          type: string
+      required:
+        - id
+        - branches
+        - tracker_project_key
+        - tenant_identifier
+        - project_identifier
+        - repo_identifier
+        - created_at
+      type: object
+    PRUpstreamSettingsCreate:
+      additionalProperties: false
+      properties:
+        branches:
+          description: Список веток, для которых будет запускаться PRUpstream
+          example:
+            - main
+            - develop
+            - feature/*
+          items:
+            type: string
+          type: array
+        tracker_project_key:
+          description: Ключ проекта в системе ведения задач
+          example: PROJ-123
+          maxLength: 255
+          type: string
+      required:
+        - branches
+        - tracker_project_key
+      type: object
+    ExternalMetrics:
+      type: object
+      properties:
+        downloads:
+          type: integer
+          format: int64
+          nullable: true
+        telemetry:
+          type: integer
+          format: int64
+          nullable: true
+        artifacts:
+          type: integer
+          format: int64
+          nullable: true
+        reuse:
+          type: integer
+          format: int64
+          nullable: true
+        labor_costs:
+          type: integer
+          format: int64
+          nullable: true
+        tenant_identifier:
+          type: string
+        project_identifier:
+          type: string
+        repo_identifier:
+          type: string
+    SetExternalMetricRequest:
+      type: object
+      required:
+        - value
+        - text
+      properties:
+        value:
+          type: integer
+          format: int32
+          description: Значение метрики
+        text:
+          type: string
+          description: Подпись для метрики
+          maxLength: 255
+    ExternalMetric:
+      type: object
+      required:
+        - metric
+        - value
+        - text
+      properties:
+        metric:
+          type: string
+        value:
+          type: integer
+          format: int64
+        text:
+          type: string
+        tenant_identifier:
+          type: string
+        project_identifier:
+          type: string
+        repo_identifier:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+    CommitListResponse:
+      description: Список коммитов с пагинацией
+      properties:
+        commits:
+          description: Список коммитов
+          items:
+            $ref: '#/components/schemas/schemas-FileCommitFullInfo'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      required:
+        - pagination
+        - commits
+      type: object
+    CommitStatusAuthor:
+      type: object
+      required:
+        - name
+        - email
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+    CommitStatusInfo:
+      type: object
+      required:
+        - id
+        - author
+        - created_at
+        - updated_at
+        - context
+        - state
+        - target_url
+        - sha
+      properties:
+        id:
+          type: integer
+          format: int64
+        author:
+          $ref: '#/components/schemas/CommitStatusAuthor'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        context:
+          type: string
+        description:
+          type: string
+          nullable: true
+        state:
+          type: string
+          enum:
+            - pending
+            - success
+            - error
+            - failure
+            - warning
+        target_url:
+          type: string
+        sha:
+          type: string
+          pattern: ^[0-9a-f]{40}$
+    CommitStatusListResponse:
+      type: object
+      required:
+        - pagination
+        - statuses
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        statuses:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommitStatusInfo'
+    CommitStatusCreateRequest:
+      type: object
+      required:
+        - context
+        - state
+      properties:
+        context:
+          type: string
+          maxLength: 1000
+        state:
+          type: string
+          enum:
+            - pending
+            - success
+            - error
+            - failure
+            - warning
+        description:
+          type: string
+          nullable: true
+          maxLength: 1000
+        target_url:
+          type: string
+          maxLength: 1000
+    CommitPullRequestsResponse:
+      description: Список пулл-реквестов, связанных с коммитом
+      type: object
+      required:
+        - pagination
+        - pulls
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        pulls:
+          description: Список пулл-реквестов
+          type: array
+          items:
+            $ref: '#/components/schemas/PRListItem'
+    WebhookConfig:
+      type: object
+      description: Конфигурация вебхука
+      required:
+        - url
+        - http_method
+        - content_type
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL-адрес для отправки webhook
+          example: https://example.com/webhook
+        http_method:
+          type: string
+          description: HTTP метод для запроса
+          enum:
+            - POST
+            - GET
+          default: POST
+          example: POST
+        content_type:
+          type: string
+          description: Тип содержимого отправляемых данных
+          enum:
+            - application/json
+            - application/x-www-form-urlencoded
+          default: application/json
+          example: application/json
+        secret:
+          type: string
+          description: Секретный ключ для подписи webhook (опционально)
+          example: your-secret-key-here
+          minLength: 1
+          maxLength: 256
+    RepositoryEvents:
+      type: string
+      enum:
+        - create
+        - delete
+        - fork
+        - push
+        - repository
+        - release
+        - package
+        - rebuild
+        - wiki
+        - issues
+        - issue_assign
+        - issue_label
+        - issue_milestone
+        - issue_comment
+        - pull_request
+        - pull_request_assign
+        - pull_request_label
+        - pull_request_milestone
+        - pull_request_comment
+        - pull_request_review
+        - pull_request_review_approved
+        - pull_request_review_rejected
+        - pull_request_review_comment
+        - pull_request_sync
+    Webhook:
+      type: object
+      required:
+        - id
+        - active
+        - config
+        - created_at
+        - updated_at
+        - events
+      properties:
+        id:
+          type: integer
+          description: ID вебхука
+          example: 12345
+        active:
+          type: boolean
+          description: Флаг активности
+          example: true
+        authorization_header:
+          type: string
+          description: Заголовок авторизации (если есть)
+          example: Bearer token123
+        config:
+          $ref: '#/components/schemas/WebhookConfig'
+        created_at:
+          type: string
+          format: date-time
+          description: Дата создания
+          example: '2024-01-15T10:30:00Z'
+        updated_at:
+          type: string
+          format: date-time
+          description: Дата обновления
+        events:
+          type: array
+          description: Список событий для вебхука
+          items:
+            $ref: '#/components/schemas/RepositoryEvents'
+        branch_filter:
+          type: string
+          description: Фильтр веток для событий, указанный в виде glob-шаблона
+          example: master, release*
+    WebhookConfigPayload:
+      type: object
+      description: Конфигурация вебхука
+      required:
+        - url
+        - http_method
+        - content_type
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL-адрес для отправки webhook
+          example: https://example.com/webhook
+        http_method:
+          type: string
+          description: HTTP метод для запроса
+          enum:
+            - POST
+            - GET
+          example: POST
+        content_type:
+          type: string
+          description: Тип содержимого отправляемых данных
+          enum:
+            - application/json
+            - application/x-www-form-urlencoded
+          example: application/json
+        secret:
+          type: string
+          description: Секретный ключ для подписи webhook (опционально)
+          example: your-secret-key-here
+          minLength: 1
+          maxLength: 256
+    WebhookPayload:
+      type: object
+      description: Данные для создания вебхука
+      required:
+        - active
+        - config
+        - events
+      properties:
+        active:
+          type: boolean
+          description: Флаг активности вебхука
+          example: true
+        authorization_header:
+          type: string
+          description: Заголовок авторизации (если есть)
+          example: Bearer token123
+        config:
+          $ref: '#/components/schemas/WebhookConfigPayload'
+        events:
+          type: array
+          description: Список событий для вебхука
+          items:
+            $ref: '#/components/schemas/RepositoryEvents'
+          minItems: 1
+        branch_filter:
+          type: string
+          description: Фильтр веток для событий, указанный в виде glob-шаблона
+          example: master, release*
+    WebhookUpdateConfigPayload:
+      type: object
+      description: Конфигурация вебхука
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL-адрес для отправки webhook
+          example: https://example.com/webhook
+        http_method:
+          type: string
+          description: HTTP метод для запроса
+          enum:
+            - POST
+            - GET
+          example: POST
+        content_type:
+          type: string
+          description: Тип содержимого отправляемых данных
+          enum:
+            - application/json
+            - application/x-www-form-urlencoded
+          example: application/json
+        secret:
+          type: string
+          description: Секретный ключ для подписи webhook (опционально)
+          example: your-secret-key-here
+          minLength: 1
+          maxLength: 256
+    WebhookUpdatePayload:
+      type: object
+      description: Данные для частичного обновления вебхука
+      properties:
+        active:
+          type: boolean
+          description: Флаг активности вебхука
+          example: true
+        authorization_header:
+          type: string
+          description: Заголовок авторизации (если есть)
+          example: Bearer token123
+        config:
+          $ref: '#/components/schemas/WebhookUpdateConfigPayload'
+        events:
+          type: array
+          description: Список событий для вебхука
+          items:
+            $ref: '#/components/schemas/RepositoryEvents'
+        branch_filter:
+          type: string
+          description: Фильтр веток для событий, указанный в виде glob-шаблона
+          example: master, release*
+    RepoMarkCodeHubResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - active
+      properties:
+        active:
+          type: boolean
+    RepositoriesResponse:
+      description: Список репозиториев с пагинацией
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        repositories:
+          description: Список репозиториев
+          items:
+            $ref: '#/components/schemas/RepositoryV3'
+          type: array
+      required:
+        - pagination
+        - repositories
+      type: object
+    RepoCreate:
+      additionalProperties: false
+      properties:
+        auto_init:
+          default: false
+          example: true
+          type: boolean
+        default_branch:
+          example: main
+          maxLength: 100
+          minLength: 1
+          type: string
+        description:
+          description: Описание репозитория
+          example: My awesome repository
+          maxLength: 2048
+          type: string
+        gitignores:
+          example: Python
+          maxLength: 50
+          type: string
+        issue_labels:
+          example: Default
+          maxLength: 50
+          type: string
+        license:
+          example: MIT
+          maxLength: 50
+          type: string
+        name:
+          description: Имя репозитория
+          example: my-repo
+          maxLength: 100
+          minLength: 1
+          type: string
+        private:
+          default: false
+          example: true
+          type: boolean
+        readme:
+          example: default
+          maxLength: 50
+          minLength: 1
+          type: string
+        template:
+          default: false
+          example: false
+          type: boolean
+      required:
+        - name
+      type: object
+    UserInfo:
+      type: object
+      description: Информация о пользователе
+      required:
+        - login
+        - full_name
+        - email
+        - avatar_url
+      properties:
+        login:
+          type: string
+          description: Логин пользователя
+          example: john.doe
+        full_name:
+          type: string
+          description: Полное имя пользователя
+          example: John Doe
+        email:
+          type: string
+          description: Email пользователя
+          example: john.doe@example.com
+        avatar_url:
+          type: string
+          description: URL аватара пользователя
+          example: https://example.com/avatars/john.png
+    UserTokenCreate:
+      additionalProperties: false
+      properties:
+        name:
+          description: Уникальное человекочитаемое имя токена
+          example: CI/CD pipeline token
+          maxLength: 100
+          minLength: 1
+          type: string
+        scopes:
+          description: Список разрешённых прав доступа (scopes) для токена
+          example:
+            - repo:read
+            - user:profile
+          items:
+            example: repo:read
+            pattern: ^[a-z_]+:[a-z_]+
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+        - name
+        - scopes
+      type: object
+    UserTokenCreated:
+      properties:
+        created_at:
+          format: date-time
+          type: string
+        id:
+          format: int64
+          type: integer
+        name:
+          type: string
+        scopes:
+          items:
+            type: string
+          type: array
+        sha1:
+          type: string
+        token_last_eight:
+          type: string
+      required:
+        - id
+        - name
+        - scopes
+        - sha1
+        - token_last_eight
+        - created_at
+      type: object
+    UserKeyCreate:
+      properties:
+        key:
+          description: SSH публичный ключ
+          type: string
+        read_only:
+          description: Создать ключ только для чтения
+          type: boolean
+        title:
+          description: Название ключа
+          type: string
+      required:
+        - title
+        - key
+      type: object
+    UserKey:
+      properties:
+        created_at:
+          format: date-time
+          type: string
+        fingerprint:
+          type: string
+        id:
+          format: int64
+          type: integer
+        key:
+          type: string
+        read_only:
+          type: boolean
+        title:
+          type: string
+        user_login:
+          type: string
+      required:
+        - id
+        - title
+        - key
+        - fingerprint
+        - read_only
+        - user_login
+        - created_at
+      type: object
+  parameters:
+    Tenant:
+      name: tenant
+      in: path
+      required: true
+      description: Tenant identifier
+      schema:
+        type: string
+    Project:
+      name: project
+      in: path
+      required: true
+      description: Project identifier
+      schema:
+        type: string
+    Repo:
+      name: repo
+      in: path
+      required: true
+      description: Repository identifier
+      schema:
+        type: string
+    BranchName:
+      name: branch_name
+      in: path
+      required: true
+      description: Branch name
+      schema:
+        type: string
+    PullRequestIndex:
+      name: index
+      in: path
+      required: true
+      description: Pull request index
+      schema:
+        type: integer
+        format: int64
+    CommentId:
+      name: comment_id
+      in: path
+      required: true
+      description: Comment identifier
+      schema:
+        type: integer
+        format: int64
+    SystemLabel:
+      name: label_name
+      in: path
+      required: true
+      description: Название системной метки (в текущей версии только `tier0`)
+      schema:
+        type: string
+        enum:
+          - tier0
+        example: tier0
+    WildcardPattern:
+      name: pattern
+      in: path
+      required: true
+      description: Wildcard pattern (router uses `/*`)
+      schema:
+        type: string
+    Path:
+      name: path
+      in: path
+      required: true
+      description: File path (may include slashes; greedy match in router)
+      schema:
+        type: string
+    archive_sha:
+      name: sha
+      in: query
+      required: true
+      description: SHA коммита (4-40 hex символов)
+      schema:
+        type: string
+        pattern: ^[0-9a-f]{4,40}$
+        minLength: 4
+        maxLength: 40
+    archive_format:
+      name: format
+      in: query
+      required: false
+      description: Формат архива. По умолчанию zip.
+      schema:
+        type: string
+        enum:
+          - zip
+          - tar.gz
+          - tgz
+        default: zip
+    archive_prefix:
+      name: prefix
+      in: query
+      required: false
+      description: Путь-префикс в архиве репозитория
+      schema:
+        type: string
+    Metric:
+      name: metric
+      in: path
+      required: true
+      description: Metric name
+      schema:
+        type: string
+    CommitSha:
+      name: commit_sha
+      in: path
+      required: true
+      description: Commit SHA (7–40 hex characters)
+      schema:
+        type: string
+        pattern: ^[0-9a-f]{7,40}$
+        minLength: 7
+        maxLength: 40
+    Username:
+      name: username
+      in: path
+      required: true
+      description: Username
+      schema:
+        type: string
+  headers:
+    X-Request-ID:
+      description: |
+        Уникальный идентификатор запроса. 
+        **Обязательно сохраняйте это значение для обращения в техническую поддержку.**
+      schema:
+        type: string
+        format: uuid
+      example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
