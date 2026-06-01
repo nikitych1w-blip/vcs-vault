@@ -3,19 +3,79 @@ CLI_DIR  := vault-cli
 CONFIG   ?= sources.yaml
 GOFLAGS  := -buildvcs=false
 
-.PHONY: build clone pull status help
+OPENSPEC := ~/.npm-global/bin/openspec
+CHANGE   ?=
+ARTIFACT ?= proposal
 
-build:
+.PHONY: build clone pull vault-status help \
+        openspec-config openspec-validate openspec-new openspec-status \
+        openspec-instructions openspec-ff openspec-archive openspec-list \
+        sync
+
+# ---------------------------------------------------------------------------
+# Справка
+# ---------------------------------------------------------------------------
+
+help: ## Показать доступные команды
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
+		| awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-24s\033[0m %s\n", $$1, $$2}'
+
+# ---------------------------------------------------------------------------
+# vault-cli
+# ---------------------------------------------------------------------------
+
+build: ## Собрать vault-cli бинарь
 	cd $(CLI_DIR) && go build $(GOFLAGS) -o ../$(BINARY) .
 
-clone: build
+clone: build ## Клонировать источники: make clone SOURCES=...
 	./$(BINARY) -c $(CONFIG) clone $(SOURCES)
 
-pull: build
+pull: build ## Обновить источники: make pull SOURCES=...
 	./$(BINARY) -c $(CONFIG) pull $(SOURCES)
 
-status: build
+vault-status: build ## Статус источников vault-cli
 	./$(BINARY) -c $(CONFIG) status
 
-help: build
-	./$(BINARY) --help
+# ---------------------------------------------------------------------------
+# openspec — скиллы и схема
+# ---------------------------------------------------------------------------
+
+openspec-config: ## Пересобрать openspec/config.yaml из vault/skills/
+	@bash scripts/build-openspec-config.sh
+
+openspec-validate: ## Валидировать схему vcs
+	$(OPENSPEC) schema validate vcs
+
+# ---------------------------------------------------------------------------
+# openspec — работа с изменениями
+# ---------------------------------------------------------------------------
+
+openspec-new: ## Создать изменение: make openspec-new CHANGE=vcs-10012-name
+	@[ -n "$(CHANGE)" ] || { echo "Укажи: make openspec-new CHANGE=vcs-XXXXX-name"; exit 1; }
+	$(OPENSPEC) new change $(CHANGE) --schema vcs
+
+openspec-status: ## Статус артефактов: make openspec-status CHANGE=vcs-10012-name
+	@[ -n "$(CHANGE)" ] || { echo "Укажи: make openspec-status CHANGE=vcs-XXXXX-name"; exit 1; }
+	$(OPENSPEC) status --change $(CHANGE)
+
+openspec-instructions: ## Инструкции: make openspec-instructions CHANGE=... ARTIFACT=proposal
+	@[ -n "$(CHANGE)" ] || { echo "Укажи: make openspec-instructions CHANGE=vcs-XXXXX-name"; exit 1; }
+	$(OPENSPEC) instructions $(ARTIFACT) --change $(CHANGE)
+
+openspec-ff: ## Fast-forward все артефакты: make openspec-ff CHANGE=vcs-10012-name
+	@[ -n "$(CHANGE)" ] || { echo "Укажи: make openspec-ff CHANGE=vcs-XXXXX-name"; exit 1; }
+	$(OPENSPEC) instructions --change $(CHANGE)
+
+openspec-archive: ## Архивировать изменение: make openspec-archive CHANGE=vcs-10012-name
+	@[ -n "$(CHANGE)" ] || { echo "Укажи: make openspec-archive CHANGE=vcs-XXXXX-name"; exit 1; }
+	$(OPENSPEC) archive $(CHANGE)
+
+openspec-list: ## Список активных изменений
+	$(OPENSPEC) list
+
+# ---------------------------------------------------------------------------
+# Полный цикл — пересборка конфига и валидация
+# ---------------------------------------------------------------------------
+
+sync: openspec-config openspec-validate ## Пересобрать config из vault/skills/ + валидировать схему
+	@echo "✓ Готово к работе"
