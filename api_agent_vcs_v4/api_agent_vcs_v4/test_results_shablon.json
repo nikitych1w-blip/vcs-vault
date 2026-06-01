@@ -1,0 +1,202 @@
+{
+  "summary": {
+    "total": 24,
+    "passed": 3,
+    "failed": 21,
+    "success_rate": "12.5%"
+  },
+  "results": [
+    {
+      "test_id": "VCS-19340",
+      "name": "Успешное получение статусов сборки с валидным SHA",
+      "passed": false,
+      "expected_status": 200,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19341",
+      "name": "Пустой список проверок (нет сборок для SHA)",
+      "passed": false,
+      "expected_status": 200,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19342",
+      "name": "Статус pending (ожидание проверки)",
+      "passed": false,
+      "expected_status": 200,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19343",
+      "name": "Статус failure (ошибка сборки)",
+      "passed": false,
+      "expected_status": 200,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19344",
+      "name": "Статус warning (предупреждение)",
+      "passed": false,
+      "expected_status": 200,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19345",
+      "name": "Статус error (критическая ошибка)",
+      "passed": false,
+      "expected_status": 200,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19346",
+      "name": "Запрос без авторизации",
+      "passed": false,
+      "expected_status": 401,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19347",
+      "name": "Невалидный токен",
+      "passed": false,
+      "expected_status": 401,
+      "actual_status": 403,
+      "response": "{\"type\":\"null\",\"title\":\"Доступ запрещен\",\"detail\":\"Вам закрыт доступ\"}\n"
+    },
+    {
+      "test_id": "VCS-19348",
+      "name": "Пользователь без прав read",
+      "passed": false,
+      "expected_status": 403,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19349",
+      "name": "Минимальная длина SHA (39 символов)",
+      "passed": false,
+      "expected_status": 400,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19350",
+      "name": "Валидная длина SHA (40 символов)",
+      "passed": false,
+      "expected_status": 200,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19351",
+      "name": "Длина SHA 41 символ",
+      "passed": false,
+      "expected_status": 400,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19352",
+      "name": "Пустое значение SHA",
+      "passed": false,
+      "expected_status": 400,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19353",
+      "name": "Отсутствие параметра SHA",
+      "passed": false,
+      "expected_status": 400,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19354",
+      "name": "Специальные символы в SHA",
+      "passed": false,
+      "expected_status": 400,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19355",
+      "name": "Валидные параметры + авторизация",
+      "passed": false,
+      "expected_status": 200,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19356",
+      "name": "Несуществующий проект",
+      "passed": true,
+      "expected_status": 404,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19357",
+      "name": "Несуществующий репозиторий",
+      "passed": true,
+      "expected_status": 404,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19358",
+      "name": "Без авторизации",
+      "passed": false,
+      "expected_status": 401,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19359",
+      "name": "SHA с некорректными символами",
+      "passed": false,
+      "expected_status": 400,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19360",
+      "name": "Очень длинный SHA (>100 символов)",
+      "passed": false,
+      "expected_status": 400,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19361",
+      "name": "Коммит с несколькими проверками",
+      "passed": false,
+      "expected_status": 200,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19362",
+      "name": "Коммит с изменением статуса проверки",
+      "passed": false,
+      "expected_status": 200,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    },
+    {
+      "test_id": "VCS-19363",
+      "name": "Удалённый репозиторий",
+      "passed": true,
+      "expected_status": 404,
+      "actual_status": 404,
+      "response": "404 page not found\n"
+    }
+  ]
+}
