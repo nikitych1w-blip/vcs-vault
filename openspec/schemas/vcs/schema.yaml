@@ -7,28 +7,16 @@ artifacts:
     generates: sa/proposal.md
     description: Бизнес-намерение изменения — зачем, для кого, scope
     template: proposal.md
-    instruction: >
-      Ты — Системный аналитик (SA) продукта SourceControl.
-
-      @file ../../../vault/skills/common/product.md
-
-      @file ../../../vault/skills/common/model.md
-
-      @file ../../../vault/skills/sa/role.md
-
-      Создай документ proposal.md — бизнес-намерение изменения.
+    instruction: |
+      Создай proposal.md — бизнес-намерение изменения.
 
       Разделы:
-
-      - **Why**: 1-2 предложения о проблеме или возможности. Почему сейчас?
-
-      - **What Changes**: Список изменений. Пометь breaking changes как **BREAKING**.
-
-      - **Capabilities**: Какие спеки будут созданы или изменены:
-        - **New Capabilities**: Новые возможности. Каждая станет `sa/specs/<name>/spec.md`. Используй kebab-case.
-        - **Modified Capabilities**: Существующие возможности с изменением требований. Проверь `openspec/specs/`.
-
-      - **Impact**: Затронутые API, сервисы, зависимости.
+      - **Why**: 1-2 предложения о проблеме. Почему сейчас?
+      - **What Changes**: список изменений, breaking changes помечай **BREAKING**
+      - **Capabilities**:
+        - **New Capabilities**: новые возможности, каждая станет `sa/specs/<name>/spec.md` (kebab-case)
+        - **Modified Capabilities**: существующие возможности с изменением требований
+      - **Impact**: затронутые API, сервисы, зависимости
 
       Не описывай реализацию — только намерение и контекст.
     requires: []
@@ -37,36 +25,23 @@ artifacts:
     generates: sa/specs/**/*.md
     description: Delta-спеки требований — ADDED / MODIFIED / REMOVED
     template: spec.md
-    instruction: >
-      Ты — Системный аналитик (SA) продукта SourceControl.
-
-      @file ../../../vault/skills/common/product.md
-
-      @file ../../../vault/skills/common/model.md
-
-      @file ../../../vault/skills/sa/role.md
-
-      Создай файлы спецификаций на основе proposal.md.
+    instruction: |
+      Создай файлы спецификаций на основе sa/proposal.md.
       Один файл на каждую capability из раздела Capabilities.
 
       Delta-операции (заголовки ##):
+      - **ADDED Requirements**
+      - **MODIFIED Requirements** — включай полный обновлённый текст
+      - **REMOVED Requirements** — укажи **Reason** и **Migration**
 
-      - **ADDED Requirements**: Новые требования
-
-      - **MODIFIED Requirements**: Изменённое поведение — включай полный обновлённый текст
-
-      - **REMOVED Requirements**: Удалённые фичи — укажи **Reason** и **Migration**
-
-      Формат требования:
-
+      Формат каждого требования:
       ```
       ### REQ-XXX: <название>
-
       **Узел**: <путь в test-model>
       **Уровень**: lv<N>
-      **Теги**: #... #...
-      **Версия API**: <v1 / v2 / v3 / web1 / web2>
-      **Компонент**: <UI / API / CLI>
+      **Теги**: #...
+      **Версия API**: <v1/v2/v3/web1/web2>
+      **Компонент**: <UI/API/CLI>
 
       Система SHALL <описание поведения>.
 
@@ -74,12 +49,6 @@ artifacts:
       - **WHEN** <условие>
       - **THEN** <результат>
       ```
-
-      Правила:
-      - Координата узла обязательна в каждом требовании
-      - Указывай версию API явно
-      - Deprecated-узлы (`(удалить раздел)`) не анализируй
-      - Описывай логику изнутри: валидации, трансформации, взаимодействие сервисов
     requires:
       - proposal
 
@@ -87,36 +56,17 @@ artifacts:
     generates: be/design.md
     description: Технический подход BE — flow, DTO, error handling
     template: design.md
-    instruction: >
-      Ты — Backend-разработчик (BE) продукта SourceControl (Go, Gitea).
-
-      @file ../../../vault/skills/common/product.md
-
-      @file ../../../vault/skills/common/model.md
-
+    instruction: |
       Создай be/design.md на основе sa/proposal.md и sa/specs/.
 
       Разделы:
-
       - **Endpoint(s)**: METHOD path — описание
-
-      - **Auth**: механизм аутентификации (access-token / JWT)
-
+      - **Auth**: механизм аутентификации
       - **Flow**: пошаговая обработка запроса
-
       - **Error Handling**: таблица условие → код → сообщение
-
-      - **DTO / Модели данных**: структуры запроса и ответа
-
+      - **DTO**: структуры запроса и ответа
       - **Зависимости**: Kafka, Git, LDAP и др.
-
       - **Архитектурные решения**: нестандартные решения с обоснованием
-
-      Правила:
-      - Каждое решение трассируемо к требованию из sa/specs/
-      - Указывай версию API явно (v1 / v2 / v3 / web1 / web2)
-      - Kafka: описывай топик, схему сообщения, триггер
-      - Deprecated-функциональность не реализуй
     requires:
       - proposal
       - sa-specs
@@ -125,33 +75,16 @@ artifacts:
     generates: fe/design.md
     description: UI/UX подход FE — компоненты, состояния, API-интеграция
     template: design.md
-    instruction: >
-      Ты — Frontend-разработчик (FE) продукта SourceControl.
-
-      @file ../../../vault/skills/common/product.md
-
-      @file ../../../vault/skills/common/model.md
-
+    instruction: |
       Создай fe/design.md на основе sa/proposal.md, sa/specs/ и be/design.md.
 
       Разделы:
-
       - **Компоненты**: новые или изменяемые UI-компоненты
-
-      - **Состояния**: loading / success / empty / error/{код} для каждого компонента
-
+      - **Состояния**: loading / success / empty / error/{код}
       - **API-интеграция**: таблица эндпоинт → версия → когда вызывается
-
-      - **Данные для отображения**: какие поля из API-ответа идут в UI
-
+      - **Данные для отображения**: поля из API-ответа в UI
       - **Навигация**: переходы, URL-параметры, query params
-
       - **Узлы test-model**: затрагиваемые узлы #UI и #FE с уровнем
-
-      Правила:
-      - Опирайся только на узлы #UI и #FE из test-model
-      - Версия API — преимущественно web2 для нового FE
-      - Deprecated-узлы не реализуй
     requires:
       - proposal
       - sa-specs
@@ -160,38 +93,19 @@ artifacts:
     generates: qa/test-plan.md
     description: Тест-план — сценарии, #ПАО-узлы, gate релиза
     template: tasks.md
-    instruction: >
-      Ты — Тестировщик (QA) продукта SourceControl.
-
-      @file ../../../vault/skills/common/product.md
-
-      @file ../../../vault/skills/common/model.md
-
-      @file ../../../vault/skills/qa/role.md
-
+    instruction: |
       Создай qa/test-plan.md на основе sa/specs/.
 
       Разделы:
-
       - **Затрагиваемые узлы**: таблица путь → lv → теги → статус
-
       - **Позитивные сценарии**: `- [ ] TC: <описание> — узел lv<N>`
-
       - **Негативные сценарии**: `- [ ] TC: <описание> — узел lv<N>`
-
       - **Граничные случаи**: `- [ ] TC: <описание> — узел lv<N>`
-
-      - **Приоритетные кейсы (#ПАО)**: `- [ ] TC: <описание> — узел lv<N>, #ПАО`
-
+      - **Приоритетные (#ПАО)**: `- [ ] TC: <описание> — узел lv<N>, #ПАО`
       - **Gate релиза**:
         - [ ] Все #ПАО-узлы имеют status: covered
         - [ ] SA подтвердил список изменённых узлов
         - [ ] Метрика покрытия рассчитана
-
-      Правила:
-      - lv7–lv8 — основной уровень детализации
-      - #ПАО-узлы покрывай первыми
-      - Разное поведение в разных версиях API — разные TC
     requires:
       - sa-specs
 
@@ -199,35 +113,17 @@ artifacts:
     generates: qaa/tasks.md
     description: Чеклист автоматизации — e2e, integration, contract
     template: tasks.md
-    instruction: >
-      Ты — QA Automation Engineer (QAA) продукта SourceControl.
-
-      @file ../../../vault/skills/common/product.md
-
-      @file ../../../vault/skills/common/model.md
-
-      @file ../../../vault/skills/qa/role.md
-
+    instruction: |
       Создай qaa/tasks.md на основе qa/test-plan.md и be/design.md.
 
       Разделы:
-
       - **E2E тесты (UI)**: `- [ ] e2e: <сценарий> — узел lv<N>, TC-XXXX`
-
-      - **Integration тесты (API)**: `- [ ] integration: <эндпоинт> — позитивный/негативный кейс`
-
+      - **Integration тесты (API)**: `- [ ] integration: <эндпоинт> — позитивный/негативный`
       - **Contract тесты**: соответствие OpenAPI-спеке, схема Kafka-события
-
       - **Приоритетные (#ПАО)**: `- [ ] <тест> — узел lv<N>, #ПАО`
-
       - **Инфраструктура**:
         - [ ] Тестовые данные (фикстуры / моки) подготовлены
         - [ ] CI: тесты добавлены в pipeline
-
-      Правила:
-      - Каждый тест трассируется к TC через TC-XXXX
-      - #ПАО-узлы автоматизируй первыми
-      - Разные версии API — разные тесты
     requires:
       - qa-plan
       - be-design
@@ -236,16 +132,8 @@ artifacts:
     generates: be/tasks.md
     description: Чеклист реализации бэкенда
     template: tasks.md
-    instruction: >
-      Ты — Backend-разработчик (BE) продукта SourceControl (Go, Gitea).
-
-      @file ../../../vault/skills/common/product.md
-
-      @file ../../../vault/skills/common/model.md
-
+    instruction: |
       Создай be/tasks.md на основе be/design.md и qa/test-plan.md.
-
-      Разделы:
 
       ## 1. Реализация
       - [ ] 1.1 Роутинг: зарегистрировать эндпоинт
@@ -262,8 +150,6 @@ artifacts:
       ## 3. Документация
       - [ ] 3.1 OpenAPI-спека обновлена
       - [ ] 3.2 Swagger-документация сгенерирована
-
-      Каждая задача должна быть завершаема за одну сессию.
     requires:
       - be-design
       - qa-plan
