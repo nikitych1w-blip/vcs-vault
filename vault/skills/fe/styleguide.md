@@ -24,4 +24,10 @@ side-effects → react/пакеты → абсолютные `@/` → относ
 
 `react/react-in-jsx-scope: off`, `jsx` только в `.tsx`, `no-unused-vars: warn`, `react-hooks/*: warn`.
 
+## Соответствие макету
+
+- Размеры/отступы из `fe/design.md` (container width, paddings, min-height, breakpoints) — это контракт, а не рекомендация.
+- Проверять экран в `desktop` и `mobile`: тулбар, карточки, отступы, пагинация и состояния (`loading/empty/error/content`).
+- Не добавлять новые кнопки/фильтры, если их нет в макете/SA; API-параметры без визуального поля поддерживать через URL/API-слой.
+
 Связано: [[review]], [[architecture]], [[role]].
