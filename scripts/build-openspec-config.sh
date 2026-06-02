@@ -130,13 +130,17 @@ log_ok "$OUTPUT обновлён"
 log_ok "context: $(( CONTEXT_SIZE / 1024 )) KB / 50 KB"
 echo ""
 echo "  context (common/):"
-find "$VAULT/common" -maxdepth 1 -name "*.md" 2>/dev/null | sort | \
-    while read -r f; do echo "    + $(basename "$f")"; done
+if [[ -d "$VAULT/common" ]]; then
+    while IFS= read -r -d '' f; do
+        echo "    + $(basename "$f")"
+    done < <(find "$VAULT/common" -maxdepth 1 -name "*.md" -print0 | sort -z)
+fi
 
 for role in sa be fe qa qaa; do
     dir="$VAULT/$role"
-    files=$(find "$dir" -maxdepth 1 -name "*.md" 2>/dev/null | sort)
-    [[ -n "$files" ]] || continue
+    [[ -d "$dir" ]] || continue
     echo "  rules ($role/):"
-    echo "$files" | while read -r f; do echo "    + $(basename "$f")"; done
+    while IFS= read -r -d '' f; do
+        echo "    + $(basename "$f")"
+    done < <(find "$dir" -maxdepth 1 -name "*.md" -print0 | sort -z)
 done

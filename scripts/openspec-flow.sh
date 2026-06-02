@@ -427,6 +427,7 @@ generate_instruction_bundle() {
     local artifact="$1"
     local json_out="$INSTRUCTIONS_DIR/${artifact}.json"
     local prompt_out="$PROMPTS_DIR/${artifact}.prompt.md"
+    local output_path output_dir
 
     if [[ "$artifact" == "apply" ]]; then
         "$OPENSPEC_BIN" instructions apply --change "$CHANGE" --json > "$json_out"
@@ -436,12 +437,16 @@ generate_instruction_bundle() {
 
     create_prompt_markdown "$json_out" "$prompt_out"
 
-    local output_path
     output_path="$(json_field "$json_out" "outputPath")"
 
     log "Saved JSON: $json_out"
     log "Saved prompt: $prompt_out"
     if [[ -n "$output_path" ]]; then
+        # For concrete file paths (no glob patterns), ensure role folders exist.
+        if [[ "$output_path" != *"*"* && "$output_path" != *"?"* && "$output_path" != *"["* ]]; then
+            output_dir="$CHANGE_DIR/$(dirname "$output_path")"
+            mkdir -p "$output_dir"
+        fi
         log "Expected artifact output: $CHANGE_DIR/$output_path"
     fi
 }
@@ -501,7 +506,60 @@ run_sync_if_needed() {
     log "Schema validation completed."
 }
 
-ARTIFACT_ORDER=(proposal sa-specs be-design fe-design qa-plan qaa-tasks be-tasks)
+CORE_ARTIFACT_ORDER=(proposal sa-specs be-design fe-design qa-plan be-tasks fe-tasks)
+
+list_status_artifacts() {
+    python3 - "$LATEST_STATUS_JSON" <<'PY'
+import json
+import sys
+
+with open(sys.argv[1], "r", encoding="utf-8") as fh:
+    payload = json.load(fh)
+
+for artifact in payload.get("artifacts", []):
+    artifact_id = artifact.get("id")
+    if artifact_id:
+        print(artifact_id)
+PY
+}
+
+contains_item() {
+    local needle="$1"
+    shift || true
+    local item
+    for item in "$@"; do
+        if [[ "$item" == "$needle" ]]; then
+            return 0
+        fi
+    done
+    return 1
+}
+
+build_artifact_order() {
+    local -a status_artifacts merged_order
+    local artifact
+
+    mapfile -t status_artifacts < <(list_status_artifacts)
+
+    if [[ ${#status_artifacts[@]} -eq 0 ]]; then
+        ARTIFACT_ORDER=("${CORE_ARTIFACT_ORDER[@]}")
+        return 0
+    fi
+
+    for artifact in "${CORE_ARTIFACT_ORDER[@]}"; do
+        if contains_item "$artifact" "${status_artifacts[@]}"; then
+            merged_order+=("$artifact")
+        fi
+    done
+
+    for artifact in "${status_artifacts[@]}"; do
+        if ! contains_item "$artifact" "${merged_order[@]}"; then
+            merged_order+=("$artifact")
+        fi
+    done
+
+    ARTIFACT_ORDER=("${merged_order[@]}")
+}
 
 log "Change: $CHANGE"
 log "OpenSpec: $OPENSPEC_BIN"
@@ -516,6 +574,10 @@ else
 fi
 
 mkdir -p "$INSTRUCTIONS_DIR" "$PROMPTS_DIR" "$STATUS_DIR"
+
+refresh_status_json
+build_artifact_order
+log "Artifact order: ${ARTIFACT_ORDER[*]}"
 
 if [[ "$RESUME" == "1" && -f "$STATE_FILE" ]]; then
     last_stage="$(awk -F= '$1=="stage"{print $2; exit}' "$STATE_FILE")"
@@ -560,6 +622,10 @@ for artifact in "${ARTIFACT_ORDER[@]}"; do
         blocked)
             missing="$(artifact_missing_deps "$artifact")"
             warn "[$artifact] is blocked by: ${missing:-unknown dependencies}"
+            if ask_yes_no "Generate instruction bundle for blocked stage '$artifact' anyway?" "y" "0"; then
+                generate_instruction_bundle "$artifact"
+                write_state "artifact-$artifact-instructions-saved"
+            fi
             if ! ask_yes_no "Continue to the next stage anyway?" "y" "0"; then
                 pause_flow "blocked at $artifact"
             fi

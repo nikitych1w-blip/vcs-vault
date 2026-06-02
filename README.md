@@ -75,7 +75,8 @@ make openspec-flow CHANGE=vcs-10012-add-reactions
 Что делает цель:
 - опционально запускает `openspec-config` и `openspec-validate` (через `AUTO_SYNC=1`);
 - создаёт change при отсутствии;
-- проходит артефакты схемы `vcs` в порядке `proposal -> sa-specs -> be-design -> fe-design -> qa-plan -> qaa-tasks -> be-tasks`;
+- проходит артефакты схемы `vcs` в порядке `proposal -> sa-specs -> be-design -> fe-design -> qa-plan -> be-tasks -> fe-tasks`
+  (дополнительные артефакты схемы, например `qaa-tasks`, добавляются автоматически в конце);
 - сохраняет `openspec ... --json` и готовые session prompt файлы в директорию change;
 - ставит confirm-gates перед `apply` и `archive`.
 
@@ -86,7 +87,7 @@ make openspec-flow CHANGE=vcs-10012-add-reactions
 make openspec-flow CHANGE=vcs-10012-add-reactions AUTO_SYNC=0
 
 # продолжить с checkpoint
-make openspec-flow-resume CHANGE=vcs-10012-add-reactions
+make openspec-flow-resume CHANGE=vcs-00000
 
 # автоматом пройти archive-gate
 make openspec-flow CHANGE=vcs-10012-add-reactions AUTO_ARCHIVE=1

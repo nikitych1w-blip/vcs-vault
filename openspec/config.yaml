@@ -514,6 +514,7 @@ rules:
     - **Однозначность.** Никаких «система должна корректно обрабатывать» — только конкретные условия, входные данные, результаты.
     - **Полнота.** Описывать happy path, альтернативные сценарии и ошибки.
     - **Трассируемость.** Каждое требование имеет связь с UI-элементом или API-эндпоинтом.
+    - **Артефакт в `vcs-api` после валидации.** После завершения валидации SA-артефактов (`proposal`, `sa-specs`) обязательно зафиксировать целевой OpenAPI-артефакт в `vcs-api` (конкретный файл и endpoint), который должен быть изменен на этапе реализации.
     - **Deprecated — не анализируем.** Узлы с пометкой `(удалить раздел)` исключаются из работы.
     
     ---
@@ -528,14 +529,14 @@ rules:
     ---
     name: openapi writer
     description: >
-    Помогает системному аналитику писать и изменять OpenAPI 3.0.3 спецификации для проекта VCS на основе существующих паттернов репозитория vcs-api и, при необходимости, поведения upstream-проекта Gitea. Используется для проектирования endpoint'ов, параметров, схем, request/response bodies, ошибок и привилегий с учетом единого стиля API, формата application/problem+json, пагинации для коллекций и проверки обратной совместимости. Результат работы — готовый YAML-фрагмент OpenAPI, пригодный для вставки в репозиторий vcs-api.
+    Помогает системному аналитику писать и изменять OpenAPI 3.0.3 спецификации для проекта VCS на основе существующих паттернов репозитория vcs-api и, при необходимости, поведения upstream-проекта Gitea. Используется для проектирования endpoint'ов, параметров, схем, request/response bodies, ошибок и привилегий с учетом единого стиля API, формата application/problem+json, пагинации для коллекций и проверки обратной совместимости. Результат работы — фактически подготовленный артефакт спецификации в файлах vcs-api (не только текстовый фрагмент).
     ---
     
     ## Назначение
     
     Используй этот скилл, когда нужно написать или изменить OpenAPI-спецификацию для проекта VCS.
     
-    Результат работы — готовый YAML-фрагмент для репозитория `vcs-api`, соответствующий существующему стилю проекта и OpenAPI 3.0.3.
+    Результат работы — измененные/созданные OpenAPI-файлы в `vcs-api`, соответствующие существующему стилю проекта и OpenAPI 3.0.3.
     
     ## Когда использовать
     
@@ -645,6 +646,23 @@ rules:
     
     Если изменение ломающее — явно предупреди об этом.
     
+    ### Шаг 5. Зафиксировать и подготовить артефакт в `vcs-api`
+    
+    После всей валидации контракта обязательно не только указать целевой артефакт в `vcs-api`, но и внести изменения в саму спецификацию в файлах `vcs-api`:
+    
+    - путь к файлу OpenAPI;
+    - endpoint/operation, который изменяется;
+    - какие части контракта затрагиваются (path, params, responses, schemas).
+    - обновленный YAML в целевом файле `vcs-api` по указанному пути (готово к commit/push пользователем).
+    
+    ### Шаг 6. Пересобрать bundle и подготовить итог
+    
+    После изменения OpenAPI-файлов в `vcs-api` обязательно выполни сборку артефактов проекта:
+    
+    - запусти `make bundle` (или эквивалентную команду сборки в текущем репозитории);
+    - убедись, что bundle/generated-файлы обновлены консистентно с измененными схемами;
+    - зафиксируй в результате, что рабочее состояние готово к commit/push пользователем без дополнительных правок контракта.
+    
     ## Формат результата
     
     Возвращай результат в таком формате:
@@ -657,8 +675,17 @@ rules:
     ## API contract
     
     ```yaml
-    <YAML-фрагмент OpenAPI>
+    <внесенный YAML-контракт OpenAPI из измененных файлов vcs-api>
     ```
+    
+    ## Target files in vcs-api
+    
+    - `<путь_к_файлу>`: что именно изменено
+    
+    ## Build
+    
+    - `make bundle` (выполнено/не выполнено)
+    - какие generated/bundle файлы обновились
     
     ## Проверка обратной совместимости
     
@@ -680,6 +707,9 @@ rules:
     содержит описанные параметры и схемы;
     использует единый формат ошибок;
     учитывает обратную совместимость;
+    после всей валидации зафиксирован целевой артефакт в vcs-api (файл + endpoint/operation + затронутые части контракта);
+    после валидации фактически внесены изменения в соответствующие OpenAPI-файлы `vcs-api`;
+    после изменения спецификации пересобран bundle (`make bundle`) и обновлены generated-артефакты;
     готов для вставки в репозиторий vcs-api.
     
     ## Антипаттерны
@@ -730,6 +760,7 @@ rules:
     - **Однозначность.** Никаких «система должна корректно обрабатывать» — только конкретные условия, входные данные, результаты.
     - **Полнота.** Описывать happy path, альтернативные сценарии и ошибки.
     - **Трассируемость.** Каждое требование имеет связь с UI-элементом или API-эндпоинтом.
+    - **Артефакт в `vcs-api` после валидации.** После завершения валидации SA-артефактов (`proposal`, `sa-specs`) обязательно зафиксировать целевой OpenAPI-артефакт в `vcs-api` (конкретный файл и endpoint), который должен быть изменен на этапе реализации.
     - **Deprecated — не анализируем.** Узлы с пометкой `(удалить раздел)` исключаются из работы.
     
     ---
@@ -744,14 +775,14 @@ rules:
     ---
     name: openapi writer
     description: >
-    Помогает системному аналитику писать и изменять OpenAPI 3.0.3 спецификации для проекта VCS на основе существующих паттернов репозитория vcs-api и, при необходимости, поведения upstream-проекта Gitea. Используется для проектирования endpoint'ов, параметров, схем, request/response bodies, ошибок и привилегий с учетом единого стиля API, формата application/problem+json, пагинации для коллекций и проверки обратной совместимости. Результат работы — готовый YAML-фрагмент OpenAPI, пригодный для вставки в репозиторий vcs-api.
+    Помогает системному аналитику писать и изменять OpenAPI 3.0.3 спецификации для проекта VCS на основе существующих паттернов репозитория vcs-api и, при необходимости, поведения upstream-проекта Gitea. Используется для проектирования endpoint'ов, параметров, схем, request/response bodies, ошибок и привилегий с учетом единого стиля API, формата application/problem+json, пагинации для коллекций и проверки обратной совместимости. Результат работы — фактически подготовленный артефакт спецификации в файлах vcs-api (не только текстовый фрагмент).
     ---
     
     ## Назначение
     
     Используй этот скилл, когда нужно написать или изменить OpenAPI-спецификацию для проекта VCS.
     
-    Результат работы — готовый YAML-фрагмент для репозитория `vcs-api`, соответствующий существующему стилю проекта и OpenAPI 3.0.3.
+    Результат работы — измененные/созданные OpenAPI-файлы в `vcs-api`, соответствующие существующему стилю проекта и OpenAPI 3.0.3.
     
     ## Когда использовать
     
@@ -861,6 +892,23 @@ rules:
     
     Если изменение ломающее — явно предупреди об этом.
     
+    ### Шаг 5. Зафиксировать и подготовить артефакт в `vcs-api`
+    
+    После всей валидации контракта обязательно не только указать целевой артефакт в `vcs-api`, но и внести изменения в саму спецификацию в файлах `vcs-api`:
+    
+    - путь к файлу OpenAPI;
+    - endpoint/operation, который изменяется;
+    - какие части контракта затрагиваются (path, params, responses, schemas).
+    - обновленный YAML в целевом файле `vcs-api` по указанному пути (готово к commit/push пользователем).
+    
+    ### Шаг 6. Пересобрать bundle и подготовить итог
+    
+    После изменения OpenAPI-файлов в `vcs-api` обязательно выполни сборку артефактов проекта:
+    
+    - запусти `make bundle` (или эквивалентную команду сборки в текущем репозитории);
+    - убедись, что bundle/generated-файлы обновлены консистентно с измененными схемами;
+    - зафиксируй в результате, что рабочее состояние готово к commit/push пользователем без дополнительных правок контракта.
+    
     ## Формат результата
     
     Возвращай результат в таком формате:
@@ -873,8 +921,17 @@ rules:
     ## API contract
     
     ```yaml
-    <YAML-фрагмент OpenAPI>
+    <внесенный YAML-контракт OpenAPI из измененных файлов vcs-api>
     ```
+    
+    ## Target files in vcs-api
+    
+    - `<путь_к_файлу>`: что именно изменено
+    
+    ## Build
+    
+    - `make bundle` (выполнено/не выполнено)
+    - какие generated/bundle файлы обновились
     
     ## Проверка обратной совместимости
     
@@ -896,6 +953,9 @@ rules:
     содержит описанные параметры и схемы;
     использует единый формат ошибок;
     учитывает обратную совместимость;
+    после всей валидации зафиксирован целевой артефакт в vcs-api (файл + endpoint/operation + затронутые части контракта);
+    после валидации фактически внесены изменения в соответствующие OpenAPI-файлы `vcs-api`;
+    после изменения спецификации пересобран bundle (`make bundle`) и обновлены generated-артефакты;
     готов для вставки в репозиторий vcs-api.
     
     ## Антипаттерны
@@ -3082,6 +3142,477 @@ rules:
   fe-design:
   - |
     Ты — Frontend-разработчик (FE).
+  - |
+    # FE · API-клиент (Orval + React Query)
+    
+    Скилл-выжимка. Полная заметка — `../../knowledges/fe/codegen.md` (+ `stack.md`). Источник правды по контракту — `vcs-api` (UI-surface), OpenAPI 3.0.3.
+    
+    ## Workflow кодогенерации
+    
+    ```bash
+    npm run api:lint       # redocly lint спеки
+    npm run api:bundle     # сборка → openapi_ui_bundle.yaml (руками не править)
+    npm run api:build      # lint + bundle
+    npm run api:generate   # Orval → web_src/spa/shared/api/generated/{methods,models}
+    npm run ts:lint        # tsc — проверить, что изменения API не сломали код
+    ```
+    
+    ## Что генерится
+    
+    - `generated/methods/<tag>.ts` — **React Query хуки** (имя из `operationId`: `listEntities` → `useListEntities`).
+    - `generated/models/*.ts` — типы (имя из имени OpenAPI-схемы; enum → union).
+    - HTTP — кастомный `customInstance` (`shared/api/axiosClient.ts`).
+    
+    ## Правила
+    
+    - **`generated/` и `openapi_ui_bundle.yaml` руками НЕ править** — перегенерируются.
+    - В компонентах использовать **сгенерированные хуки** (`useGet…`, `use…Mutation`), не «сырой» `useQuery`.
+    - Изменения контракта согласовывать с аналитикой и BE; новый домен — отдельная папка в `domains/`.
+    - Для типов бизнес-сущностей — Utility Types (`Partial`/`Omit`/`Pick`/`Required`).
+    
+    Связано: [[architecture]], [[create-page]], [[role]]. Контракт — общий с BE (vault/skills/be/submodule.md).
+    
+    ---
+    
+    # FE · Архитектура (FSD + React)
+    
+    Скилл-выжимка. Полная заметка — `../../knowledges/fe/architecture.md` (+ `stack.md`).
+    
+    ## Стек (web2)
+    
+    React 18.3 + TypeScript, React Router 6, **Rsbuild** (Rspack, Module Federation 2.0), **React Query** + **Axios**, стили — **CSS Modules** + **@sds-eng/base**. Архитектура — **Feature-Sliced Design (FSD)**.
+    
+    ## Слои FSD (`web_src/spa/`)
+    
+    `app → pages → widgets → features → entities → shared` (зависимости только вниз; `processes/` зарезервирован).
+    
+    - `app/` — `App.tsx` (провайдеры Theme/Query/Router), `bootstrap.tsx`, `browser-router.tsx`.
+    - `entities/` — бизнес-сущности (Repository, PullRequest, Project, User, Access…).
+    - `features/` — сценарии (CreateBranchModal, RefSelector, Comments…).
+    - `pages/` — по одной на роут.
+    - `shared/` — `api/` (axiosClient, queryClient, generated), `lib/` (хуки/хелперы), `config/` (`router.ts` → `pathKeys`), `ui/`, `assets/`, `icons/`, `types/`.
+    
+    Публичный API среза — через `index.ts`; импорт между срезами — только через него. Проверка слоёв: `npm run lint:fsd` (steiger).
+    
+    ## API-слой (важные факты)
+    
+    - Базовый путь: **`/apifront/web/v2`**, `baseURL` из `window.__CONTEXT_API_PATH__` (`shared/api/axiosClient.ts`).
+    - React Query (`shared/api/queryClient.ts`): `staleTime: 60_000`, `retry: false`, `refetchOnWindowFocus: false`, `refetchOnReconnect: true`.
+    - Запросы — только через сгенерированные Orval-хуки ([[api-client]]), не «сырой» `useQuery`.
+    
+    ## Роутинг / MFE
+    
+    React Router v6 `createBrowserRouter`. В MFE-режиме basename из `window.__CONTEXT_PATH__`; неизвестный роут → перезагрузка (fallback на старый UI). Добавление роута — см. [[create-page]] (+ обязательная синхронизация с `gitea-react-adapter.js`).
+    
+    ## Чего избегать
+    
+    - Нарушать направление зависимостей FSD (ловит steiger).
+    - Импорт мимо `index.ts` среза.
+    - Прямой `useQuery`/`useMutation` вместо сгенерированных хуков.
+    
+    Связано: [[api-client]], [[create-page]], [[styleguide]], [[role]].
+    
+    ---
+    
+    # FE · Создание страницы (React, FSD)
+    
+    Скилл-выжимка. Полные заметки — `../../knowledges/fe/webpage-creation.md` и `gitea-react-adapter.md`.
+    
+    ## Шаги
+    
+    1. **Путь** в `shared/config/router.ts` → `pathKeys` (напр. `repository.newPage: '/:orgName/:repoName/new-page'`).
+    2. **Структура** `pages/NewPage/{config,ui,lib,model}` + `index.ts`:
+       - `config/route.tsx` — `RouteObject` с `lazy` (динамический импорт компонента);
+       - `ui/NewPagePage.tsx` + `.module.css` — главный компонент;
+       - `lib/` — хуки/хелперы, `model/` — типы.
+    3. **Компонент**: параметры через `useCustomParams()` (path: `orgName`/`repoName`/`branchName`/`prIndex`…, **всегда с дефолтами** `= ''`) и `useQueryParams()` (`getParam`/`setParams`); данные — **сгенерированными Orval-хуками** ([[api-client]]).
+    4. **Регистрация** роута в `app/browser-router.tsx` (в нужном layout: `RepoLayout`/`OrganizationLayout`/`PullLayout`).
+    5. **🔴 Синхронизация с адаптером**: на новый роут добавить regex в `web_src/js/bridge/gitea-react-adapter.js` (`routeHandlers`, от частных к общим; при необходимости — `getCheckAPIUrl` для проверки существования ресурса). Без этого переход уйдёт в старый UI.
+    
+    ## Состояния (обязательно)
+    
+    ```tsx
+    if (isLoading) return <Spinner />;            // @sds-eng/base
+    if (isError || !data) return <PageError type="SERVER_ERROR" />;
+    // пусто → <PageError type="EMPTY" />
+    ```
+    Подробнее — [[states-checklist]].
+    
+    ## Зарезервированные префиксы (всегда старый UI)
+    
+    `/admin/** /user/** /org/** /notifications/** /pulls/** /repo/**` — React их не обрабатывает.
+    
+    ## Чего избегать
+    
+    - Прямой `useQuery`/`useMutation` вместо Orval-хуков.
+    - Деструктуризация `useCustomParams()` без дефолтов.
+    - Новый роут в `browser-router` без regex в `gitea-react-adapter.js`.
+    
+    Связано: [[architecture]], [[api-client]], [[states-checklist]], [[role]].
+    
+    ---
+    
+    # FE · Линты и готовность к ревью
+    
+    Скилл-выжимка. Опирается на `../../knowledges/fe/stack.md`, `styleguide.md`, `development-checklist.md`. Ветки/коммиты — общий стандарт `vault/skills/be/git-flow.md` (husky + commitlint + lint-staged).
+    
+    ## Проверки перед PR
+    
+    ```bash
+    npm run lint          # prettier --check + eslint (web_src/spa)
+    npm run ts:lint        # tsc --noEmit
+    npm run lint:css       # stylelint web_src/spa/**/*.css
+    npm run lint:fsd       # steiger — архитектура FSD
+    npm run lint:orval     # prettier+eslint --fix по generated
+    npm run format         # prettier --write (фикс)
+    ```
+    
+    ## Чек-лист
+    
+    - [ ] Ветка/коммит по стандарту (`feature/VCS-XXXX_...`, `VCS-XXXX: ...`) — git-flow.
+    - [ ] `lint` + `ts:lint` + `lint:css` + `lint:fsd` зелёные.
+    - [ ] `generated/` и `openapi_ui_bundle.yaml` не правились руками ([[api-client]]).
+    - [ ] Покрыты состояния loading/empty/error/no-access ([[states-checklist]]).
+    - [ ] Новый роут синхронизирован с `gitea-react-adapter.js` ([[create-page]]).
+    - [ ] `data-testid` на ключевых элементах; WireMock-моки обновлены ([[testing]]).
+    - [ ] Standalone-сборка проверена ([[states-checklist]]).
+    
+    ## Red flags
+    
+    - Правки в `generated/`/бандле руками.
+    - Нарушение FSD (импорт снизу вверх / мимо `index.ts`).
+    - `useQuery` вместо Orval-хуков; необработанные состояния.
+    - `FC<>`, `interface` вместо `type`, `import React`, `!!`/`+''` (нарушения [[styleguide]]).
+    - Новый роут без regex в адаптере.
+    
+    Связано: [[styleguide]], [[architecture]], [[api-client]], [[states-checklist]], [[testing]], [[role]].
+    
+    ---
+    
+    # Роль: Frontend-разработчик (FE)
+    
+    > Общий контекст продукта: `common/product.md`
+    > Система координат: `common/model.md`
+    
+    ---
+    
+    ## Зоны ответственности
+    
+    - Реализация UI-компонентов и интерфейсов на основе требований и дизайна
+    - Описание и покрытие фич тест-кейсами (Test-Driven Development)
+    - Интеграция с API: вызовы endpoint’ов, обработка ответов, ошибок и edge cases
+    - Обеспечение кроссбраузерной совместимости и responsive-дизайна
+    - Оптимизация производительности интерфейса (рендеринг, bundle size, lazy loading)
+    - Обеспечение доступности (a11y) интерфейса
+    - Сотрудничество с SA: уточнение требований, выявление несоответствий
+    - Сотрудничество с QA: участие в ревью TC, воспроизведение багов
+    
+    ---
+    
+    ## Артефакты
+    
+    | Артефакт | Описание |
+    |----------|----------|
+    | UI-требование | Поведение компонента: предусловия, сценарии, ограничения |
+    | UI-элемент | Компонент интерфейса: структура, состояние, взаимодействия |
+    | Тест-кейс | Шаги проверки, ожидаемый результат, edge cases |
+    | Скриншоты / скринкасты | Доказательство работы функционала |
+    | Описание бага | Шаги воспроизведения, ожидаемое/фактическое поведение |
+    
+    ---
+    
+    ## Формат UI-требования
+    
+    ```markdown
+    ## Фича: <название>
+    
+    **Узел**: <путь в test-model>
+    **Уровень**: lv<N>
+    **Теги**: #... #...
+    **Версия UI**: web1 / web2
+    **Компонент**: <UI>
+    
+    ### Предусловия
+    - Пользователь аутентифицирован
+    - Имеются права на <действие>
+    - ...
+    
+    ### Основной сценарий
+    1. Пользователь переходит к <разделу>
+    2. Пользователь выполняет <действие>
+    3. Проверяется результат
+    
+    ### Альтернативные сценарии
+    - ...
+    
+    ### Логика реализации
+    - Состояния компонента: initial / loading / success / error
+    - Валидации: формат, диапазон, обязательные поля
+    - Взаимодействие с API: endpoint, параметры, обработка ошибок
+    
+    ### Ограничения / Edge cases
+    - ...
+    - События: resize, scroll, focus, blur
+    
+    ### Связанные API-эндпоинты
+    - ...
+    ```
+    
+    ---
+    
+    ## Формат UI-элемента
+    
+    ```markdown
+    ## <Название компонента>
+    
+    **Узел**: <путь в test-model>
+    **Контекст**: <где используется>
+    
+    ### Состояния
+    | Состояние | Описание |
+    |-----------|----------|
+    | initial | Исходное состояние |
+    | loading | Загрузка данных |
+    | success | Данные получены, ошибок нет |
+    | error | Ошибка загрузки/обработки |
+    | disabled | Неактивный элемент |
+    
+    ### Поведение
+    - При клике: ...
+    - При фокусе: ...
+    - При изменении размера: ...
+    - При прокрутке: ...
+    
+    ### Валидации
+    - ...
+    - ...
+    
+    ### API-вызовы
+    - `GET /api/...` — при инициализации
+    - `POST /api/...` — при сохранении
+    - ...
+    
+    ### Связанные требования
+    - ...
+    ```
+    
+    ---
+    
+    ## Формат тест-кейса
+    
+    ```markdown
+    ## TC-<ID>: <название>
+    
+    **Узел**: <путь в test-model>
+    **Версия UI**: web1 / web2
+    **Приоритет**: high / medium / low
+    
+    ### Предусловия
+    - ...
+    
+    ### Шаги
+    1. ...
+    2. ...
+    3. ...
+    
+    ### Ожидаемый результат
+    - ...
+    
+    ### Edge cases
+    - ...
+    ```
+    
+    ---
+    
+    ## Принципы работы
+    
+    - **Координата в каждом артефакте.** Каждое UI-требование привязано к узлу test-model.
+    - **Версионность UI.** Требование указывает версию интерфейса (web1 / web2).
+    - **Однозначность.** Чёткие условия входа, шаги, ожидаемые результаты.
+    - **Полнота.** Happy path, альтернативные сценарии, ошибки, edge cases.
+    - **Трассируемость.** Каждое требование связано с API или бизнес-логикой.
+    - **Deprecated — не реализуем.** Узлы с `(удалить раздел)` исключаются.
+    
+    ---
+    
+    ## Чего избегать
+    
+    - Не создавать UI без четкого требования и координаты в модели
+    - Не игнорировать состояния loading/error при работе с API
+    - Не смешивать логику разных версий UI без явной версионности
+    - Не использовать hardcoded values — только из API/конфига
+    - Не оставлять UI-требования без покрытия тест-кейсами
+    
+    ---
+    
+    ## Типичные сценарии работы
+    
+    | Задача | Уровни модели | API |
+    |--------|---------------|-----|
+    | Создание проекта | `UI / Проект / Новый проект` | `POST /api/v2/orgs/:org/repos` |
+    | Создание ветки | `UI / Проект / Репозиторий / Код / Ветки / Создание` | `POST /api/v1/repos/:owner/:repo/git/refs` |
+    | MR: открытие | `UI / Проект / Запросы на слияние / Открыть` | `POST /api/v1/repos/:owner/:repo/pulls` |
+    | MR: слияние | `UI / Проект / Запросы на слияние / Мердж` | `PUT /api/v1/repos/:owner/:repo/pulls/:index/merge` |
+    | Настройки репозитория | `UI / Проект / Репозиторий / Настройки` | `PATCH /api/v1/repos/:owner/:repo` |
+    
+    ---
+    
+    ## Инструменты и технологии
+    
+    Актуальный стек — в `knowledges/fe/stack.md` (источник правды). Кратко (web2, новый фронт):
+    
+    - **Фреймворк**: React 18 + TypeScript
+    - **Сборка / MFE**: Rsbuild + Module Federation
+    - **Архитектура**: Feature-Sliced Design (FSD), `web_src/spa`
+    - **API-клиент**: Orval (кодоген из vcs-api UI) + TanStack React Query
+    - **UI-кит**: Sber Design System (`@sds-eng/*`), Octicons
+    - **Линтеры**: ESLint, Prettier, Stylelint, Steiger (FSD), `tsc --noEmit`
+    - **Тесты**: Playwright (+ WireMock для моков API)
+    - Легаси-UI (Go Templates + SSR) — см. `knowledges/fe/legacy.md`
+    
+    ---
+    
+    ## Скиллы FE (этой папки `skills/fe/`, вшиты в схему `vcs`)
+    
+    | Скилл | Этап | О чём |
+    |-------|------|-------|
+    | [architecture.md](architecture.md) | fe-design / apply | FSD-слои, React18, API /apifront/web/v2, React Query |
+    | [api-client.md](api-client.md) | fe-tasks / apply | Orval-кодоген, generated не править |
+    | [create-page.md](create-page.md) | apply | создание страницы + синхронизация роута с адаптером |
+    | [styleguide.md](styleguide.md) | apply | React Style Guide |
+    | [states-checklist.md](states-checklist.md) | fe-tasks / apply | состояния, доступ, data-testid, standalone |
+    | [testing.md](testing.md) | fe-tasks / тесты | WireMock + Playwright |
+    | [review.md](review.md) | review | линты (eslint/ts/css/steiger), готовность к PR |
+    
+    Каждый скилл — выжимка, ссылается на глубокую заметку в `../../knowledges/fe/`.
+    
+    ## Заметки FE (глубокий источник — `vault/knowledges/fe/`)
+    
+    | Док | О чём | Этап применения |
+    |-----|-------|-----------------|
+    | [stack.md](../../knowledges/fe/stack.md) | стек web2 | fe-design |
+    | [architecture.md](../../knowledges/fe/architecture.md) | FSD-слои | fe-design / apply |
+    | [codegen.md](../../knowledges/fe/codegen.md) | OpenAPI + Orval | fe-tasks / apply |
+    | [webpage-creation.md](../../knowledges/fe/webpage-creation.md) | создание страницы React | apply |
+    | [gitea-react-adapter.md](../../knowledges/fe/gitea-react-adapter.md) | роуты, Legacy↔React, MFE | apply |
+    | [ui-system.md](../../knowledges/fe/ui-system.md) | компоненты @sds-eng | apply |
+    | [styleguide.md](../../knowledges/fe/styleguide.md) | React Style Guide | apply |
+    | [development-checklist.md](../../knowledges/fe/development-checklist.md) | чеклист (ошибки/состояния/access/data-testid) | fe-tasks / apply |
+    | [wiremock.md](../../knowledges/fe/wiremock.md) | моки API | fe-tasks / тесты |
+    | [tools.md](../../knowledges/fe/tools.md) | инструменты/библиотеки | все этапы |
+    | [legacy.md](../../knowledges/fe/legacy.md) | легаси SSR-контекст | контекст |
+    
+    Эти знания вшиты в схему `vcs` (этапы `fe-design`/`fe-tasks`/`apply`) и применяются автоматически через `openspec instructions`.
+    
+    ---
+    
+    ## Контроль качества
+    
+    - code review (pull request)
+    - unit / integration / e2e тесты
+    - coverage не ниже 80% для логики
+    - a11y audit (WCAG 2.1 AA)
+    - cross-browser testing (Chrome, Firefox, Safari, Edge)
+    
+    ---
+    
+    # FE · Состояния, доступ, чеклист разработки
+    
+    Скилл-выжимка. Полная заметка — `../../knowledges/fe/development-checklist.md` (источник VCS-10805).
+    
+    ## Обязательные состояния экрана
+    
+    | Состояние | Что делать |
+    |-----------|-----------|
+    | **loading** | `Spinner`/заглушка (`@sds-eng/base`), не пустой экран |
+    | **error** | понятное сообщение (без stack trace/raw error), кнопка «Повторить» где уместно; `PageError type="SERVER_ERROR"` |
+    | **empty** | `PageError type="EMPTY"`; различать «нет данных вообще» vs «нет совпадений по фильтру» |
+    | **content** | безопасно обрабатывать `undefined`/`null`; lazy-loading/виртуализация для больших списков |
+    
+    ## Права доступа (access)
+    
+    - UI адаптируется под доступ пользователя (ручки `/access/repo`, `/access/project`).
+    - Права **всегда** проверяются на бэкенде — UI-ограничения не заменяют их.
+    - Отсутствие прав не должно ломать рендер; не должно быть «мерцающих» элементов при разных ролях.
+    
+    ## data-testid
+    
+    На ключевые интерактивные элементы (кнопки/формы/таблицы/модалки), семантичные имена (`project-create-repo-button`), уникальные в компоненте, обязательно для элементов с условным рендером. (Стандарт — [[styleguide]].)
+    
+    ## Standalone / MFE
+    
+    Микрофронтенд работает и в составе хоста (MFE), и в standalone — проверить standalone-сборку на стенде перед мержем.
+    
+    ## Ссылки Legacy ↔ React
+    
+    - **`LinkRouter`** — переход внутри ReactApp (бесшовно).
+    - **`Link` (из sds)** — переход на LegacyUI (Go Templates): hard-reload (нужно для инициализации GiteaBridgeMFE).
+    - Избегать `full-page reload` при переходах внутри нового фронта.
+    
+    ## Моки
+    
+    WireMock отражает актуальное API, покрывает success/error/empty/loading — см. [[testing]].
+    
+    Связано: [[create-page]], [[testing]], [[styleguide]], [[role]].
+    
+    ---
+    
+    # FE · React Style Guide
+    
+    Скилл-выжимка. Полная заметка — `../../knowledges/fe/styleguide.md` (источник VCS-8306). Соблюдение проверяется ESLint/Prettier.
+    
+    ## Правила
+    
+    1. **Неиспользуемый параметр колбэка** → `_` (`items.map((_, index) => …)`).
+    2. **Не `FC<>`** — типизировать пропсы напрямую: `const Button = ({ label }: Props) => …`.
+    3. **`type` вместо `interface`** (`type User = {…}`, union, `Partial<User>`, `A & B`).
+    4. **Явное приведение типов**: `Boolean(x)` / `String(x)` / `Number(x)`, не `!!` / `+ ''` / `+x`.
+    5. **`data-testid`** (не `data-test-id`) — на ключевые интерактивные элементы.
+    6. **Тип пропсов внутри файла — просто `Props`** (при импорте: `import { Props as ButtonProps }`).
+    7. **Именованные импорты React**: `import { useState, useEffect } from 'react'` (не `import React`).
+    
+    ## Prettier (из `stack.md`)
+    
+    `printWidth 120`, `tabWidth 2`, `semi true`, `singleQuote true`, `trailingComma 'all'`, `arrowParens 'always'`, `endOfLine 'lf'`.
+    
+    ## Сортировка импортов (simple-import-sort)
+    
+    side-effects → react/пакеты → абсолютные `@/` → относительные `./` → `*.module.css` → `*.css` → медиа.
+    
+    ## ESLint-акценты
+    
+    `react/react-in-jsx-scope: off`, `jsx` только в `.tsx`, `no-unused-vars: warn`, `react-hooks/*: warn`.
+    
+    Связано: [[review]], [[architecture]], [[role]].
+    
+    ---
+    
+    # FE · Тесты и моки
+    
+    Скилл-выжимка. Полная заметка — `../../knowledges/fe/wiremock.md` (источник VCS-8337).
+    
+    ## WireMock (моки API)
+    
+    Маппинги в `__files` (тела) + `mappings` (правила). Покрывать **все состояния**: success / error / empty / loading.
+    
+    Сценарии (stateful) — по `scenarioName` + `requiredScenarioState`:
+    - список (`GET …/entities` → `list.json`), элемент, создание (1-й POST → 400, 2-й → 201), удаление (1-й DELETE → 404, 2-й → 200).
+    - начальное состояние `"Started"`, цепочка состояний непрерывна, без опечаток.
+    - приоритет: меньше число = выше; точное совпадение метод/URL/query/headers/body.
+    
+    **Отладка:** `/__admin/requests`, сброс сценариев `POST /__admin/scenarios/reset`. В dev (Strict Mode) возможны дубль-запросы → использовать prod-сборку / curl / тесты.
+    
+    ## data-testid
+    
+    Добавлять на ключевые элементы для E2E/компонентных тестов — стандарт `data-testid` ([[styleguide]]).
+    
+    ## E2E
+    
+    Playwright (`@playwright/test`, `playwright.config.js`). Связывать сценарий с узлом test-model/TC (как у QAA), переиспользовать фикстуры из `mocks/__files/`.
+    
+    > ⚠️ Юнит-раннер компонентов (vitest/jest) в стеке однозначно не зафиксирован — уточнить у фронтендера; не выдумывать.
+    
+    Связано: [[states-checklist]], [[review]], [[role]].
   qa-plan:
   - |
     Ты — Тестировщик (QA).
@@ -3398,3 +3929,7 @@ rules:
     - Не детализировать тест только до lv1–lv2 — доводить до lv7–lv8
     - Не игнорировать `#ПАО`-узлы при планировании спринта
     - Не закрывать дефект без обновления `status` затронутого узла
+    
+    ---
+    
+    [1;33m[WARN][0m  Папка не найдена: /home/khalbashkeev.p.s@sbertech.ru/Development/vcs-vault/vault/skills/qaa
