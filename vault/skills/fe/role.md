@@ -181,7 +181,21 @@
 
 ---
 
-## База знаний FE (источник правды — `vault/knowledges/fe/`)
+## Скиллы FE (этой папки `skills/fe/`, вшиты в схему `vcs`)
+
+| Скилл | Этап | О чём |
+|-------|------|-------|
+| [architecture.md](architecture.md) | fe-design / apply | FSD-слои, React18, API /apifront/web/v2, React Query |
+| [api-client.md](api-client.md) | fe-tasks / apply | Orval-кодоген, generated не править |
+| [create-page.md](create-page.md) | apply | создание страницы + синхронизация роута с адаптером |
+| [styleguide.md](styleguide.md) | apply | React Style Guide |
+| [states-checklist.md](states-checklist.md) | fe-tasks / apply | состояния, доступ, data-testid, standalone |
+| [testing.md](testing.md) | fe-tasks / тесты | WireMock + Playwright |
+| [review.md](review.md) | review | линты (eslint/ts/css/steiger), готовность к PR |
+
+Каждый скилл — выжимка, ссылается на глубокую заметку в `../../knowledges/fe/`.
+
+## Заметки FE (глубокий источник — `vault/knowledges/fe/`)
 
 | Док | О чём | Этап применения |
 |-----|-------|-----------------|
