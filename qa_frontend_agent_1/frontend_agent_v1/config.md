@@ -1,2 +1,0 @@
-login sa_vcs_admin5
-password sa_vcs_admin5
