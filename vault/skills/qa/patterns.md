@@ -2,6 +2,12 @@
 
 > На основе анализа 117 реальных тест-кейсов из TMS (export_test_cases_*.xlsx)
 
+> ⚠️ **Координата обязательна.** Каждый TC начинается с узла test-model
+> (`node` + `lv` + теги) — см. `../common/model.md` и формат frontmatter в
+> `BASE-TESTING.md`. Шаблоны ниже описывают **структуру шагов/результатов**;
+> frontmatter с координатой (`id/node/lv/tags/api_version/status/priority/tms`)
+> добавляется из `BASE-TESTING.md`. TC без координаты невалиден.
+
 ---
 
 ## Статистика по паттернам

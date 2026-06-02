@@ -134,6 +134,11 @@ artifacts:
         - [ ] Все #ПАО-узлы имеют status: covered
         - [ ] SA подтвердил список изменённых узлов
         - [ ] Метрика покрытия рассчитана
+
+      Применяй скиллы vault/skills/qa/: BASE-TESTING.md (координата узла, форматы TC/бага,
+      жизненный цикл), API-SWAGGER-TESTING.md (TC по OpenAPI/Swagger), UI-FRONTEND-TESTING.md
+      (UI/web2-сценарии), patterns.md (шаблоны шагов/результатов). Координата узла
+      (node+lv) обязательна — common/model.md. #ПАО + status: missing блокирует релиз.
     requires:
       - sa-specs
 
@@ -152,6 +157,10 @@ artifacts:
       - **Инфраструктура**:
         - [ ] Тестовые данные (фикстуры / моки) подготовлены
         - [ ] CI: тесты добавлены в pipeline
+
+      Опора — qa/test-plan.md (скиллы vault/skills/qa/) + паттерн e2e из
+      sources/vcs-playwright и faq/scenario-endpoint-to-test.md (Фаза 5: node → TC → тест).
+      Координата узла обязательна. (QAA-скиллы как отдельный набор из vcs-playwright — TODO.)
     requires:
       - qa-plan
       - be-design
