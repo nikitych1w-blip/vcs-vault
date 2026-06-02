@@ -60,6 +60,10 @@
   - с `project_name` — проверка существования проекта и прав доступа.
 - Недостаток прав: `403 Forbidden`.
 - Несуществующий `project_name`: `404 NotFound`.
+- Routing middleware (обязательный формат для реализации в `routers/sc/api.go`):
+  - для `GET /repos/search` использовать стандартные middleware `isSigned` (group-level) + `orgAssignment()` + `checkPrivilege(privileges_model.Read)`;
+  - не вводить отдельный кастомный middleware только под этот endpoint, если задача решается переиспользованием существующей цепочки;
+  - проверки `Doer/Tenant/privilege` не дублировать в handler — это зона middleware.
 
 ### Flow
 
@@ -70,6 +74,7 @@
    - `page/limit` как положительные значения;
    - tri-state фильтры (`archived`, `is_watching`, `is_favorite`, `is_in_source_hub`).
 3. Handler формирует request entity и вызывает `ReposSearchService`.
+   - Валидация должна работать через request-object (`GetReposSearchRequestObject`), а не через ручной разбор raw query в handler.
 4. Service определяет scope доступа пользователя; при `project_name` возвращает доменные `ErrProjectNotFound` или `ErrForbidden`.
 5. Service нормализует сортировку (whitelist: `update`, `name`, `stars`, `forks`) и передает фильтр в `ReposSearchDB`.
 6. Repository выполняет read-only выборку через `builder.And/Or/Eq`, применяет фильтры, сортировку, пагинацию и подсчет `total_items`.
@@ -141,6 +146,7 @@ type ReposSearchResult struct {
 4. Service и repository не формируют HTTP-ответы, только доменные данные и ошибки.
 5. Трейсинг добавляется в публичные методы handler/service/repository.
 6. Операция остается read-only, без транзакционного сценария.
+7. Значения `default page size`/`max limit` передаются через DI-конфиг в server/service, без скрытой зависимости на `setting.*` внутри бизнес-логики.
 
 ## Risks / Trade-offs
 

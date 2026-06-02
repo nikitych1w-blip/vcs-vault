@@ -21,6 +21,11 @@ Web/REST → Controller(Handler/Server) → Service(Usecase) → Repository → 
 
 Зависимости передаются в конструктор и хранятся в полях структуры; внутри методов — уже готовые зависимости, новые экземпляры руками не создаём. В новом коде **не используем указатели** (меньше риск nil pointer dereference). Сервис получает в конструктор репозитории/трейсер/логгер; репозиторий — engine/tracer.
 
+Обязательные правила DI:
+- не читать `setting.*` в бизнес-логике service/validate, если значение может быть передано через конструктор (`defaultPaging`, `maxLimit`, feature flags);
+- не оставлять «заглушки» в constructor wiring (пустые default-объекты вместо реальных dependency providers);
+- интерфейсы зависимостей серверного слоя держать в `interfaces.go`, не разносить по случайным файлам.
+
 ## Суффиксы модулей по слоям
 
 | Слой | Именование |
@@ -40,6 +45,10 @@ Web/REST → Controller(Handler/Server) → Service(Usecase) → Repository → 
 - `interfaces.go` — все интерфейсы зависимостей контроллера в одном файле.
 - `handler_<operationId_snake_case>.go` — **1 операция = 1 файл**. Имя метода = `operationId` из OpenAPI; имя файла = `handler_` + snake_case(operationId). `operationId` — единственный источник правды.
 - `convert.go` — маппинг доменных сущностей в API-модели; `validate.go` — валидация; `errors.go` — типизированные API-ошибки.
+
+Для strict/generated endpoint-ов:
+- wrapper-функция операции (`<OperationID>Handler`) размещается рядом с handler операции и использует `newServerInterfaceWrapper(...)`;
+- mapping ошибок формата параметров (`InvalidParamFormatError`) делается через `BadRequestJSONErrorHandler`, а не ad-hoc в router.
 
 ```
 api/servers/ui/pull_requests/
@@ -80,5 +89,15 @@ GoLand: Code Style → Go → Imports, Sorting type `gofmt`, Group stdlib import
 - Старые функции, заменяемые DI-реализацией, помечать `// Deprecated: use <...>` с указанием замены.
 - **Не использовать именованные возвращаемые значения** (`(err error)`) в новом коде.
 - Логику обращения к БД из `models`/`modules` при рефакторинге выносить в `repository` и помечать старое Deprecated.
+
+## Границы ответственности (жёстко)
+
+- Handler: транспорт + вызов service + mapping доменных ошибок в HTTP.
+- Service: бизнес-правила, фильтрация/scope, enrichment ответа.
+- Middleware: auth/tenant/assignment/privilege.
+
+Нельзя:
+- дублировать middleware-проверки (`Doer/Tenant/privilege`) в handler;
+- вносить endpoint-специфичные компромиссы в общий middleware вместо корректного роутинга.
 
 Связано: [[be-error-logging]], [[be-db-xorm]], [[be-implement-endpoint]].

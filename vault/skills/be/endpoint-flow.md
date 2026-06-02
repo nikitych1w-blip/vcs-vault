@@ -38,9 +38,13 @@
 
 Подключить endpoint в `routers/sc/api.go`:
 - добавить путь и метод;
-- middleware (`isSigned`, `orgAssignment`, `repoAssignment`);
+- middleware (`isSigned`, `orgAssignment`, `repoAssignment`) — **переиспользовать существующие**, без создания отдельного middleware «только под одну ручку»;
 - `checkPrivilege(...)` согласно `x-required-privilege`;
 - направить в нужный handler.
+
+Дополнительно:
+- если нужен `ServerInterfaceWrapper` (generated parser + типовые 400-ошибки), использовать `newServerInterfaceWrapper(...)` в handler-файле операции по принятому паттерну;
+- не переносить endpoint-специфичную логику в общие middleware (`orgAssignment`/`repoAssignment`) без отдельного согласования.
 
 ## Порядок реализации (обязательный)
 
@@ -53,6 +57,8 @@
 - [ ] `operationId` реализован 1:1 (контракт ↔ handler).
 - [ ] В `StrictServerInterface` есть метод, сигнатура соблюдена.
 - [ ] Роут добавлен в `routers/sc/api.go` с корректным `checkPrivilege`.
+- [ ] Роут использует **reuse** стандартной middleware-цепочки (без custom middleware для единичного endpoint).
+- [ ] Валидация query/path/body делается через request-object и `validate.go`, а не ad-hoc if-ветками в handler.
 - [ ] Unit-тесты добавлены и проходят.
 - [ ] Generated-файлы не редактировались вручную.
 - [ ] `make test-backend-correct` проходит.
@@ -61,6 +67,8 @@
 
 - Редактировать `*.gen.go` руками.
 - Бизнес-логика в handler-е.
+- Переносить проверку auth/tenant/privilege в handler, если она уже обеспечивается middleware.
+- Создавать «локальный» middleware под один endpoint, когда можно переиспользовать стандартную цепочку.
 - Реализация endpoint-а до тестов и формализации поведения.
 - Самописные моки вместо generated (см. [[be-unit-tests]]).
 

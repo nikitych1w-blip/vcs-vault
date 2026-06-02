@@ -28,10 +28,19 @@ React 18.3 + TypeScript, React Router 6, **Rsbuild** (Rspack, Module Federation 
 
 React Router v6 `createBrowserRouter`. В MFE-режиме basename из `window.__CONTEXT_PATH__`; неизвестный роут → перезагрузка (fallback на старый UI). Добавление роута — см. [[create-page]] (+ обязательная синхронизация с `gitea-react-adapter.js`).
 
+## Источники требований (приоритет)
+
+1. `openspec/changes/<change-id>/fe/design.md` (состав экрана и ограничения макета),
+2. SA-спека/контракт API,
+3. дизайн-система (`@sds-eng/*`) для реализации.
+
+Нельзя компенсировать неясность требований добавлением «логичных» UI-элементов от себя — сначала уточнение у SA/инициатора.
+
 ## Чего избегать
 
 - Нарушать направление зависимостей FSD (ловит steiger).
 - Импорт мимо `index.ts` среза.
 - Прямой `useQuery`/`useMutation` вместо сгенерированных хуков.
+- Располагать в UI бизнес-правила, которые должны обеспечиваться backend/middleware.
 
 Связано: [[api-client]], [[create-page]], [[styleguide]], [[role]].
