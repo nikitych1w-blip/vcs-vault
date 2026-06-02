@@ -3,13 +3,17 @@ CLI_DIR  := vault-cli
 CONFIG   ?= sources.yaml
 GOFLAGS  := -buildvcs=false
 
-OPENSPEC := ~/.npm-global/bin/openspec
+OPENSPEC := $(HOME)/.npm-global/bin/openspec
 CHANGE   ?=
 ARTIFACT ?= proposal
+AUTO_SYNC    ?= 1
+AUTO_ARCHIVE ?= 0
+FLOW_STATE_DIR ?= .openspec-flow
 
 .PHONY: build clone pull vault-status help \
         openspec-config openspec-validate openspec-new openspec-status \
         openspec-instructions openspec-ff openspec-archive openspec-list \
+        openspec-flow openspec-flow-resume \
         sync
 
 # ---------------------------------------------------------------------------
@@ -72,6 +76,25 @@ openspec-archive: ## Архивировать изменение: make openspec-
 
 openspec-list: ## Список активных изменений
 	$(OPENSPEC) list
+
+openspec-flow: ## One-command flow: make openspec-flow CHANGE=vcs-10012-name [AUTO_SYNC=1] [AUTO_ARCHIVE=0]
+	@[ -n "$(CHANGE)" ] || { echo "Укажи: make openspec-flow CHANGE=vcs-XXXXX-name"; exit 1; }
+	@bash scripts/openspec-flow.sh \
+		--change "$(CHANGE)" \
+		--openspec "$(OPENSPEC)" \
+		--auto-sync "$(AUTO_SYNC)" \
+		--auto-archive "$(AUTO_ARCHIVE)" \
+		--state-dir "$(FLOW_STATE_DIR)"
+
+openspec-flow-resume: ## Продолжить flow: make openspec-flow-resume CHANGE=vcs-10012-name
+	@[ -n "$(CHANGE)" ] || { echo "Укажи: make openspec-flow-resume CHANGE=vcs-XXXXX-name"; exit 1; }
+	@bash scripts/openspec-flow.sh \
+		--change "$(CHANGE)" \
+		--openspec "$(OPENSPEC)" \
+		--auto-sync "$(AUTO_SYNC)" \
+		--auto-archive "$(AUTO_ARCHIVE)" \
+		--state-dir "$(FLOW_STATE_DIR)" \
+		--resume
 
 # ---------------------------------------------------------------------------
 # Полный цикл — пересборка конфига и валидация

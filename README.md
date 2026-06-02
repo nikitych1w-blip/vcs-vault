@@ -64,6 +64,42 @@ make pull SOURCES=01-git               # обновить конкретный
 
 ---
 
+## OpenSpec one-command flow
+
+Для semi-auto сценария без ручного copy-paste из terminal stdout используйте единый запуск:
+
+```bash
+make openspec-flow CHANGE=vcs-10012-add-reactions
+```
+
+Что делает цель:
+- опционально запускает `openspec-config` и `openspec-validate` (через `AUTO_SYNC=1`);
+- создаёт change при отсутствии;
+- проходит артефакты схемы `vcs` в порядке `proposal -> sa-specs -> be-design -> fe-design -> qa-plan -> qaa-tasks -> be-tasks`;
+- сохраняет `openspec ... --json` и готовые session prompt файлы в директорию change;
+- ставит confirm-gates перед `apply` и `archive`.
+
+Полезные параметры:
+
+```bash
+# выключить pre-sync (config + validate)
+make openspec-flow CHANGE=vcs-10012-add-reactions AUTO_SYNC=0
+
+# продолжить с checkpoint
+make openspec-flow-resume CHANGE=vcs-10012-add-reactions
+
+# автоматом пройти archive-gate
+make openspec-flow CHANGE=vcs-10012-add-reactions AUTO_ARCHIVE=1
+
+# переопределить директорию служебного состояния
+make openspec-flow CHANGE=vcs-10012-add-reactions FLOW_STATE_DIR=.openspec-flow
+```
+
+По умолчанию state и prompt-файлы лежат в:
+`openspec/changes/<change>/.openspec-flow/`.
+
+---
+
 ## Первый запуск
 
 ```bash
