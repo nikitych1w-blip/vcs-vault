@@ -161,15 +161,20 @@ func convertCache(cacheDir, outDir, space string) error {
 	return nil
 }
 
+// pdfToMarkdown извлекает текст из PDF через pdftotext (poppler).
+// pandoc не умеет читать PDF (только писать), поэтому используется pdftotext.
 func pdfToMarkdown(pdfPath string) (string, error) {
-	cmd := exec.Command("pandoc", "-f", "pdf", "-t", "markdown_strict", "--wrap=none", pdfPath)
-	var out bytes.Buffer
+	// -layout — сохранить структуру/таблицы; -enc UTF-8 — корректная кириллица; "-" — вывод в stdout.
+	cmd := exec.Command("pdftotext", "-layout", "-enc", "UTF-8", pdfPath, "-")
+	var out, errb bytes.Buffer
 	cmd.Stdout = &out
-	cmd.Stderr = os.Stderr
+	cmd.Stderr = &errb
 	if err := cmd.Run(); err != nil {
-		return "", err
+		return "", fmt.Errorf("pdftotext (нужен poppler): %w: %s", err, strings.TrimSpace(errb.String()))
 	}
-	return out.String(), nil
+	// form feed (разрыв страницы PDF) → пустая строка
+	text := strings.ReplaceAll(out.String(), "\f", "\n\n")
+	return strings.TrimSpace(text), nil
 }
 
 func buildPage(meta pageMeta, space, body string) string {

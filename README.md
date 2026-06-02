@@ -58,7 +58,7 @@ make pull SOURCES=01-git               # обновить конкретный
 | Тип | Описание |
 |-----|----------|
 | `git` | Клонирует / обновляет git-репозиторий. Поддерживает sparse checkout и постобработку файлов (переименование расширений, патч ссылок). |
-| `wiki` | Скачивает страницы из SberTrack wiki через async export API, конвертирует PDF → Markdown через pandoc. Требует `SBERTRACK_TOKEN`. |
+| `wiki` | Скачивает страницы из SberTrack wiki через async export API (PDF), извлекает текст через `pdftotext` (poppler). Требует `SBERTRACK_TOKEN`. |
 
 Репозитории с пометкой `optional: true` пропускаются без ошибки, если SSH-доступ недоступен.
 
@@ -114,6 +114,6 @@ make clone
 
 - Go 1.22+
 - git
-- pandoc (для wiki-адаптера)
+- `pdftotext` (poppler / poppler-utils) — для wiki-адаптера (PDF → текст)
 - SSH-ключ с доступом к внутренним репозиториям (для `vcs-*`)
 - `SBERTRACK_TOKEN` (для wiki-источников)
