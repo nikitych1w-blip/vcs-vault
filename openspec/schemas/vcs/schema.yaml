@@ -158,9 +158,11 @@ artifacts:
         - [ ] Тестовые данные (фикстуры / моки) подготовлены
         - [ ] CI: тесты добавлены в pipeline
 
-      Опора — qa/test-plan.md (скиллы vault/skills/qa/) + паттерн e2e из
-      sources/vcs-playwright и faq/scenario-endpoint-to-test.md (Фаза 5: node → TC → тест).
-      Координата узла обязательна. (QAA-скиллы как отдельный набор из vcs-playwright — TODO.)
+      Применяй скиллы vault/skills/qaa/: role.md, codegen.md (zod-типы из vcs-api),
+      api-tests.md (BackApi/isStatus/ajv, Kafka), ui-tests.md (Page Object Model + Element),
+      conventions.md (нейминг/структура/cleanup), setup-run.md, review.md.
+      Опора — qa/test-plan.md + sources/vcs-playwright + faq/scenario-endpoint-to-test.md
+      (Фаза 5: node → TC → тест). Координата узла обязательна.
     requires:
       - qa-plan
       - be-design
