@@ -1,0 +1,103 @@
+{
+  "summary": {
+    "total": 10,
+    "passed": 8,
+    "failed": 2,
+    "success_rate": "80.00%"
+  },
+  "results": [
+    {
+      "test_id": "TC-001",
+      "name": "Название теста - Успешный сценарий",
+      "passed": true,
+      "expected_result": "Описание ожидаемого поведения",
+      "actual_result": "Описание фактического поведения",
+      "screenshot": "path/to/screenshot_001.png",
+      "browser": "Chrome 125.0.6422.78",
+      "os": "macOS 14.5"
+    },
+    {
+      "test_id": "TC-002",
+      "name": "Название теста - Пустое состояние",
+      "passed": true,
+      "expected_result": "Описание ожидаемого поведения",
+      "actual_result": "Описание фактического поведения",
+      "screenshot": "path/to/screenshot_002.png",
+      "browser": "Chrome 125.0.6422.78",
+      "os": "macOS 14.5"
+    },
+    {
+      "test_id": "TC-003",
+      "name": "Название теста - Ошибка валидации",
+      "passed": true,
+      "expected_result": "Описание ожидаемого поведения",
+      "actual_result": "Описание фактического поведения",
+      "screenshot": "path/to/screenshot_003.png",
+      "browser": "Chrome 125.0.6422.78",
+      "os": "macOS 14.5"
+    },
+    {
+      "test_id": "TC-004",
+      "name": "Название теста - Edge case",
+      "passed": false,
+      "expected_result": "Описание ожидаемого поведения",
+      "actual_result": "Описание фактического поведения",
+      "screenshot": "path/to/screenshot_004.png",
+      "browser": "Chrome 125.0.6422.78",
+      "os": "macOS 14.5",
+      "bug_id": "BUG-XXXX"
+    },
+    {
+      "test_id": "TC-005",
+      "name": "Название теста - Навигация",
+      "passed": true,
+      "expected_result": "Описание ожидаемого поведения",
+      "actual_result": "Описание фактического поведения",
+      "screenshot": "path/to/screenshot_005.png",
+      "browser": "Chrome 125.0.6422.78",
+      "os": "macOS 14.5"
+    },
+    {
+      "test_id": "TC-006",
+      "name": "Название теста - Состояние загрузки",
+      "passed": true,
+      "expected_result": "Описание ожидаемого поведения",
+      "actual_result": "Описание фактического поведения",
+      "screenshot": "path/to/screenshot_006.png",
+      "browser": "Chrome 125.0.6422.78",
+      "os": "macOS 14.5"
+    },
+    {
+      "test_id": "TC-007",
+      "name": "Название теста - Адаптивность",
+      "passed": true,
+      "expected_result": "Описание ожидаемого поведения",
+      "actual_result": "Описание фактического поведения",
+      "screenshot": "path/to/screenshot_007.png",
+      "browser": "Chrome 125.0.6422.78",
+      "os": "macOS 14.5"
+    },
+    {
+      "test_id": "TC-008",
+      "name": "Название теста - Анимации и переходы",
+      "passed": true,
+      "expected_result": "Описание ожидаемого поведения",
+      "actual_result": "Описание фактического поведения",
+      "screenshot": "path/to/screenshot_008.png",
+      "browser": "Chrome 125.0.6422.78",
+      "os": "macOS 14.5"
+    }
+  ],
+  "metadata": {
+    "ui_node": "UI / [Название экрана]",
+    "api_version": "web2",
+    "test_date": "2026-06-02",
+    "testers": ["[Имя тестировщика]"],
+    "environment": "https://sc-vp.ift.pd04.pvw.sbt/web/v2/",
+    "browser_versions": {
+      "Chrome": "125.0.6422.78",
+      "Firefox": "[версия]",
+      "Safari": "[версия]"
+    }
+  }
+}
