@@ -168,12 +168,36 @@
 
 ## Инструменты и технологии
 
-- **Фреймворк**: React / Vue / Angular (уточнить в стеке проекта)
-- **Стили**: CSS-in-JS / Tailwind / SCSS
-- **Сборщик**: Vite / Webpack
-- **Тестирование**: Vitest / Jest / Cypress / Playwright
-- **Линтеры**: ESLint, Stylelint, Prettier
-- **CI/CD**: Jenkins / GitHub Actions / GitLab CI
+Актуальный стек — в `knowledges/fe/stack.md` (источник правды). Кратко (web2, новый фронт):
+
+- **Фреймворк**: React 18 + TypeScript
+- **Сборка / MFE**: Rsbuild + Module Federation
+- **Архитектура**: Feature-Sliced Design (FSD), `web_src/spa`
+- **API-клиент**: Orval (кодоген из vcs-api UI) + TanStack React Query
+- **UI-кит**: Sber Design System (`@sds-eng/*`), Octicons
+- **Линтеры**: ESLint, Prettier, Stylelint, Steiger (FSD), `tsc --noEmit`
+- **Тесты**: Playwright (+ WireMock для моков API)
+- Легаси-UI (Go Templates + SSR) — см. `knowledges/fe/legacy.md`
+
+---
+
+## База знаний FE (источник правды — `vault/knowledges/fe/`)
+
+| Док | О чём | Этап применения |
+|-----|-------|-----------------|
+| [stack.md](../../knowledges/fe/stack.md) | стек web2 | fe-design |
+| [architecture.md](../../knowledges/fe/architecture.md) | FSD-слои | fe-design / apply |
+| [codegen.md](../../knowledges/fe/codegen.md) | OpenAPI + Orval | fe-tasks / apply |
+| [webpage-creation.md](../../knowledges/fe/webpage-creation.md) | создание страницы React | apply |
+| [gitea-react-adapter.md](../../knowledges/fe/gitea-react-adapter.md) | роуты, Legacy↔React, MFE | apply |
+| [ui-system.md](../../knowledges/fe/ui-system.md) | компоненты @sds-eng | apply |
+| [styleguide.md](../../knowledges/fe/styleguide.md) | React Style Guide | apply |
+| [development-checklist.md](../../knowledges/fe/development-checklist.md) | чеклист (ошибки/состояния/access/data-testid) | fe-tasks / apply |
+| [wiremock.md](../../knowledges/fe/wiremock.md) | моки API | fe-tasks / тесты |
+| [tools.md](../../knowledges/fe/tools.md) | инструменты/библиотеки | все этапы |
+| [legacy.md](../../knowledges/fe/legacy.md) | легаси SSR-контекст | контекст |
+
+Эти знания вшиты в схему `vcs` (этапы `fe-design`/`fe-tasks`/`apply`) и применяются автоматически через `openspec instructions`.
 
 ---
 

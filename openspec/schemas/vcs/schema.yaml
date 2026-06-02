@@ -102,11 +102,11 @@ artifacts:
       - **Навигация**: переходы, URL-параметры, query params
       - **Узлы test-model**: затрагиваемые узлы #UI и #FE с уровнем
 
-      Применяй знания vault/skills/fe/: architecture.md (FSD-слои, React),
-      api-client.md (Orval-кодоген из vcs-api UI, react-query, generated не править),
-      mfe.md (Rsbuild + Module Federation, exposes ./export-app), data-state.md
-      (React Query, состояния loading/empty/error/no-access), components.md (UI-кит
-      @sds-eng/octicons). Источник правды по контракту — sources/vcs-api (UI-surface).
+      Применяй знания vault/knowledges/fe/ (авторитетная база фронтендера):
+      stack.md (React18+TS+Rsbuild), architecture.md (FSD-слои web_src/spa),
+      codegen.md (Orval из vcs-api UI → shared/api/generated, generated не править),
+      gitea-react-adapter.md (роуты/мост Legacy↔React), ui-system.md (@sds-eng компоненты),
+      tools.md, legacy.md (контекст SSR). Источник правды по контракту — sources/vcs-api (UI-surface).
     requires:
       - proposal
       - sa-specs
@@ -207,8 +207,9 @@ artifacts:
       - [ ] 3.1 npm run lint + lint:types + lint:css
       - [ ] 3.2 npm run lint:fsd (steiger) — без нарушений FSD
 
-      Применяй знания vault/skills/fe/: architecture.md (FSD), api-client.md (Orval/react-query),
-      mfe.md, data-state.md, components.md, testing.md, review.md.
+      Применяй знания vault/knowledges/fe/: development-checklist.md (ошибки/loading/empty/
+      access/data-testid/standalone), codegen.md (Orval), wiremock.md (моки состояний),
+      webpage-creation.md (создание страницы), architecture.md (FSD), ui-system.md (@sds-eng).
     requires:
       - fe-design
       - qa-plan
@@ -233,13 +234,16 @@ apply:
     - git-flow.md — ветка feature/VCS-XXXX, формат коммита;
     - code-review.md — самопроверка перед PR (шаблон PR, red flags, порядок мёржа).
 
-    FE (web2) — по знаниям vault/skills/fe/ (по этапам):
-    - api-client.md — Orval-кодоген (npm run api:generate), react-query, generated не править;
+    FE (web2) — по знаниям vault/knowledges/fe/ (авторитетная база фронтендера, по этапам):
+    - codegen.md — Orval-кодоген (npm run api:generate) из vcs-api UI, generated не править;
     - architecture.md — FSD-слои (web_src/spa), steiger;
-    - mfe.md — Rsbuild + Module Federation, exposes ./export-app, react singleton;
-    - data-state.md — React Query, состояния loading/empty/error/no-access;
-    - components.md — FSD-срезы, UI-кит @sds-eng/octicons;
-    - testing.md — Playwright (+ jsdom);
-    - review.md — lint/lint:types/lint:css/lint:fsd, готовность к PR; git-flow.md — ветка/коммит.
+    - webpage-creation.md — создание новой страницы на React (основной гайд реализации);
+    - gitea-react-adapter.md — роутинг, мост Legacy↔React, MFE/standalone;
+    - ui-system.md — компоненты Sber Design System (@sds-eng/base);
+    - styleguide.md — React Style Guide (конвенции кода);
+    - development-checklist.md — ошибки/loading/empty/access/data-testid/standalone/ссылки;
+    - wiremock.md — моки API (success/error/empty/loading);
+    - tools.md — инструменты и библиотеки.
+    Ветка/коммит — общие правила vault/skills/be/git-flow.md.
 
     Останавливайся при блокерах или необходимости уточнений.
