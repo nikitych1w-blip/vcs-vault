@@ -3,7 +3,7 @@ CLI_DIR  := vault-cli
 CONFIG   ?= sources.yaml
 GOFLAGS  := -buildvcs=false
 
-OPENSPEC := $(HOME)/.npm-global/bin/openspec
+OPENSPEC := openspec
 CHANGE   ?=
 ARTIFACT ?= proposal
 AUTO_SYNC    ?= 1
@@ -14,7 +14,7 @@ FLOW_STATE_DIR ?= .openspec-flow
         openspec-config openspec-validate openspec-new openspec-status \
         openspec-instructions openspec-ff openspec-archive openspec-list \
         openspec-flow openspec-flow-resume \
-        sync
+        sync setup
 
 # ---------------------------------------------------------------------------
 # Справка
@@ -27,6 +27,9 @@ help: ## Показать доступные команды
 # ---------------------------------------------------------------------------
 # vault-cli
 # ---------------------------------------------------------------------------
+
+setup: ## Настроить репозиторий после клонирования (git hooks и др.)
+	git config core.hooksPath .githooks
 
 build: ## Собрать vault-cli бинарь
 	cd $(CLI_DIR) && go build $(GOFLAGS) -o ../$(BINARY) .

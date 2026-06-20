@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+if git diff --cached --name-only | grep -q '^sources/'; then
+  echo "ERROR: sources/ is read-only reference material. Do not commit changes there."
+  exit 1
+fi
