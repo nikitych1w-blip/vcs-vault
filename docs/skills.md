@@ -89,7 +89,7 @@ vault/skills/
 
 ## Как скиллы попадают в openspec
 
-Скрипт `scripts/build-openspec-config.sh` читает все `.md` файлы из `vault/skills/` и собирает `openspec/config.yaml`:
+`openspec/config.yaml` собирается из `vault/skills/` через `make openspec-config`. Маппинг:
 
 - `common/` → поле `context` (общий контекст для всех ролей, лимит 50KB)
 - `sa/` → rules для артефактов `proposal`, `sa-specs`
@@ -98,7 +98,6 @@ vault/skills/
 - `qa/` → rules для артефакта `qa-plan`
 - `qa/` + `qaa/` → rules для артефакта `qaa-tasks`
 
-Запустить пересборку:
 ```bash
 make openspec-config   # только пересборка config.yaml
 make sync              # пересборка + валидация схемы

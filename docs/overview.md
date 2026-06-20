@@ -58,11 +58,7 @@ vcs-vault/
 │   ├── schemas/vcs/          # Схема артефактов для схемы vcs
 │   └── changes/              # История изменений (каждое — своя директория)
 ├── vault-cli/                # Go-бинарь sync для управления источниками
-├── scripts/                  # Вспомогательные bash-скрипты
-│   ├── build-openspec-config.sh  # Генерация openspec/config.yaml из vault/skills/
-│   └── openspec-flow.sh          # Автоматизированный flow через все артефакты
-├── faq/                      # FAQ по каждому источнику знаний
-├── mcp/                      # Описания MCP-серверов
+├── faq/sources/              # FAQ по каждому внешнему источнику знаний (один .md на источник)
 ├── sources.yaml              # Реестр всех внешних источников
 ├── Makefile                  # Все команды управления
 └── vault.canvas              # Карта vault (Obsidian Canvas)
@@ -83,3 +79,5 @@ vcs-vault/
 - SSH-ключ для внутренних репозиториев Sberbank (`vcs-*`)
 - `SBERTRACK_TOKEN` (wiki-источники)
 - Node.js + `openspec` CLI (`~/.npm-global/bin/openspec`)
+
+Obsidian-конфиг (`vault/.obsidian/`) находится в `.gitignore` — каждый участник настраивает его локально.

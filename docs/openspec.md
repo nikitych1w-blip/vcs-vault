@@ -94,7 +94,7 @@ make openspec-archive CHANGE=vcs-10012-add-reactions
 make openspec-flow CHANGE=vcs-10012-add-reactions
 ```
 
-Скрипт `scripts/openspec-flow.sh` автоматизирует весь цикл:
+Автоматизирует весь цикл:
 
 1. Пересобирает `openspec/config.yaml` из `vault/skills/` (AUTO_SYNC=1 по умолчанию)
 2. Валидирует схему vcs
@@ -190,7 +190,7 @@ Flow сохраняет текущее состояние в `flow.state` — п
 
 ## Связь с vault/skills/
 
-При каждом запуске `openspec-flow` (если AUTO_SYNC=1) скрипт пересобирает `openspec/config.yaml` из `vault/skills/`. Это значит:
+При каждом запуске `openspec-flow` (если AUTO_SYNC=1) пересобирается `openspec/config.yaml` из `vault/skills/`:
 
 - Изменение скиллов сразу попадает в следующий запуск flow
 - `config.yaml` — артефакт сборки, не источник правды

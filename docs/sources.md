@@ -117,3 +117,5 @@ vault-cli/
             ├── wiki.go   # WikiAdapter: async export + download + pandoc
             └── api.go    # SberTrack wiki API client
 ```
+
+Бинарь собирается в корень репозитория как `./sync` при каждом вызове `make clone / pull / vault-status`.
