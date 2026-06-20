@@ -95,27 +95,4 @@ sync pull [source-names...]    # Обновить источники
 sync status                    # Статус всех источников
 ```
 
-### Архитектура
-
-```
-vault-cli/
-├── main.go
-├── cmd/
-│   ├── root.go       # Cobra root + флаг -c (config path)
-│   ├── clone.go      # cobra clone command
-│   ├── pull.go       # cobra pull command
-│   ├── status.go     # cobra status command
-│   └── run.go        # runner: загружает config, вызывает adapter
-└── internal/
-    ├── config/       # Парсинг sources.yaml → структуры Source
-    └── adapter/
-        ├── adapter.go    # Interface Adapter (Clone, Pull, Status)
-        ├── git/
-        │   ├── git.go    # GitAdapter: clone + sparse-checkout + post_process
-        │   └── api.go    # Вспомогательные операции с git
-        └── wiki/
-            ├── wiki.go   # WikiAdapter: async export + download + pandoc
-            └── api.go    # SberTrack wiki API client
-```
-
 Бинарь собирается в корень репозитория как `./sync` при каждом вызове `make clone / pull / vault-status`.
