@@ -1,0 +1,252 @@
+name: vcs
+version: 1
+description: Кросс-функциональная схема SourceControl — SA, BE, FE, QA, QAA
+
+artifacts:
+  - id: proposal
+    generates: sa/proposal.md
+    description: Бизнес-намерение изменения — зачем, для кого, scope
+    template: proposal.md
+    instruction: |
+      Создай proposal.md — бизнес-намерение изменения.
+
+      Разделы:
+      - **Why**: 1-2 предложения о проблеме. Почему сейчас?
+      - **What Changes**: список изменений, breaking changes помечай **BREAKING**
+      - **Capabilities**:
+        - **New Capabilities**: новые возможности, каждая станет `sa/specs/<name>/spec.md` (kebab-case)
+        - **Modified Capabilities**: существующие возможности с изменением требований
+      - **Impact**: затронутые API, сервисы, зависимости
+      - **Макет** (если фича затрагивает UI/web2): ссылка на макет (Figma/скрин/путь к изображению) — вход для fe-design
+
+      Не описывай реализацию — только намерение и контекст.
+    requires: []
+
+  - id: sa-specs
+    generates: sa/specs/**/*.md
+    description: Delta-спеки требований — ADDED / MODIFIED / REMOVED
+    template: spec.md
+    instruction: |
+      Создай файлы спецификаций на основе sa/proposal.md.
+      Один файл на каждую capability из раздела Capabilities.
+
+      Delta-операции (заголовки ##):
+      - **ADDED Requirements**
+      - **MODIFIED Requirements** — включай полный обновлённый текст
+      - **REMOVED Requirements** — укажи **Reason** и **Migration**
+
+      Формат каждого требования:
+      ```
+      ### REQ-XXX: <название>
+      **Узел**: <путь в test-model>
+      **Уровень**: lv<N>
+      **Теги**: #...
+      **Версия API**: <v1/v2/v3/web1/web2>
+      **Компонент**: <UI/API/CLI>
+
+      Система SHALL <описание поведения>.
+
+      #### Scenario: <название>
+      - **WHEN** <условие>
+      - **THEN** <результат>
+      ```
+
+      Источник правды по API-контракту — sources/vcs-api (паттерн доменов, x-internal).
+      После черновика спеки прогони ревью готовности UI-контракта к реализации —
+      применяй знание vault/skills/be/review_spec_ui.md (вердикт approve/request-changes,
+      обязательный make check-api-compat-all). Расхождение → доработать контракт до be-design.
+    requires:
+      - proposal
+
+  - id: be-design
+    generates: be/design.md
+    description: Технический подход BE — flow, DTO, error handling
+    template: design.md
+    instruction: |
+      ШАГ 0 (гейт контракта): прогони ревью UI-контракта на готовность к backend —
+      знание vault/skills/be/review_spec_ui.md. Источник правды — sources/vcs-api.
+      Продолжай к be/design.md только при вердикте approve/ReadyForBackend;
+      при request-changes/Mismatch — стоп, вернуть контракт SA.
+
+      Создай be/design.md на основе sa/proposal.md и sa/specs/.
+
+      Разделы:
+      - **Endpoint(s)**: METHOD path — описание
+      - **Auth**: механизм аутентификации
+      - **Flow**: пошаговая обработка запроса
+      - **Error Handling**: таблица условие → код → сообщение
+      - **DTO**: структуры запроса и ответа
+      - **Зависимости**: Kafka, Git, LDAP и др.
+      - **Архитектурные решения**: нестандартные решения с обоснованием
+
+      Применяй знания vault/skills/be/: architecture.md (слои/нейминг/DI),
+      errors-logging.md (враппинг %w, уровни логов, трейсинг), db-xorm.md (DTO/Entity,
+      доступ к БД), endpoint-flow.md (контракт→handler→роут), submodule.md (сверка
+      контракта с vcs-api). Если затрагивается схема БД — migrations.md (миграции:
+      SQL кроме SELECT требует аппрува человека).
+    requires:
+      - proposal
+      - sa-specs
+
+  - id: fe-design
+    generates: fe/design.md
+    description: UI/UX подход FE — компоненты, состояния, API-интеграция
+    template: design.md
+    instruction: |
+      Создай fe/design.md на основе sa/proposal.md, sa/specs/, be/design.md
+      и МАКЕТА (скрин/ссылка от оператора — поле «Макет» в proposal или вложение).
+      Из макета выдели: какие компоненты нужны (напр. поиск + список карточек),
+      что отображается, данные — из ранее сгенерированной спеки (Orval-хуки),
+      и учти пагинацию/фильтры/сортировку из спеки. Если макета нет — отметить
+      и проектировать по требованиям + дизайн-системе (@sds-eng).
+
+      Разделы:
+      - **Макет**: ссылка/описание источника + ключевые элементы экрана
+      - **Компоненты**: новые или изменяемые UI-компоненты
+      - **Состояния**: loading / success / empty / error/{код}
+      - **API-интеграция**: таблица эндпоинт → версия → когда вызывается
+      - **Данные для отображения**: поля из API-ответа в UI
+      - **Навигация**: переходы, URL-параметры, query params
+      - **Узлы test-model**: затрагиваемые узлы #UI и #FE с уровнем
+
+      Применяй скиллы vault/skills/fe/: architecture.md (FSD-слои, React18, API /apifront/web/v2),
+      api-client.md (Orval из vcs-api UI → shared/api/generated, generated не править),
+      styleguide.md (React-конвенции), create-page.md (роуты + gitea-react-adapter).
+      Глубокие заметки — vault/knowledges/fe/. Источник правды по контракту — sources/vcs-api (UI-surface).
+    requires:
+      - proposal
+      - sa-specs
+
+  - id: qa-plan
+    generates: qa/test-plan.md
+    description: Тест-план — сценарии, #ПАО-узлы, gate релиза
+    template: tasks.md
+    instruction: |
+      Создай qa/test-plan.md на основе sa/specs/.
+
+      Разделы:
+      - **Затрагиваемые узлы**: таблица путь → lv → теги → статус
+      - **Позитивные сценарии**: `- [ ] TC: <описание> — узел lv<N>`
+      - **Негативные сценарии**: `- [ ] TC: <описание> — узел lv<N>`
+      - **Граничные случаи**: `- [ ] TC: <описание> — узел lv<N>`
+      - **Приоритетные (#ПАО)**: `- [ ] TC: <описание> — узел lv<N>, #ПАО`
+      - **Gate релиза**:
+        - [ ] Все #ПАО-узлы имеют status: covered
+        - [ ] SA подтвердил список изменённых узлов
+        - [ ] Метрика покрытия рассчитана
+    requires:
+      - sa-specs
+
+  - id: qaa-tasks
+    generates: qaa/tasks.md
+    description: Чеклист автоматизации — e2e, integration, contract
+    template: tasks.md
+    instruction: |
+      Создай qaa/tasks.md на основе qa/test-plan.md и be/design.md.
+
+      Разделы:
+      - **E2E тесты (UI)**: `- [ ] e2e: <сценарий> — узел lv<N>, TC-XXXX`
+      - **Integration тесты (API)**: `- [ ] integration: <эндпоинт> — позитивный/негативный`
+      - **Contract тесты**: соответствие OpenAPI-спеке, схема Kafka-события
+      - **Приоритетные (#ПАО)**: `- [ ] <тест> — узел lv<N>, #ПАО`
+      - **Инфраструктура**:
+        - [ ] Тестовые данные (фикстуры / моки) подготовлены
+        - [ ] CI: тесты добавлены в pipeline
+    requires:
+      - qa-plan
+      - be-design
+
+  - id: be-tasks
+    generates: be/tasks.md
+    description: Чеклист реализации бэкенда
+    template: tasks.md
+    instruction: |
+      Создай be/tasks.md на основе be/design.md и qa/test-plan.md.
+
+      ## 1. Реализация
+      - [ ] 1.1 Роутинг: зарегистрировать эндпоинт
+      - [ ] 1.2 Handler: валидация параметров
+      - [ ] 1.3 Service: бизнес-логика
+      - [ ] 1.4 DTO: описать структуры
+      - [ ] 1.5 Маппинг: внешний ответ → internal DTO
+
+      ## 2. Тесты
+      - [ ] 2.1 Unit: handler — позитивный кейс
+      - [ ] 2.2 Unit: handler — негативные кейсы (400, 401, 403, 404)
+      - [ ] 2.3 Unit: service — бизнес-логика
+
+      ## 3. Документация
+      - [ ] 3.1 OpenAPI-спека обновлена
+      - [ ] 3.2 Swagger-документация сгенерирована
+
+      Тестовые задачи (§2) формулируй по знанию vault/skills/be/testing.md
+      (корнер-кейсы 400/401/403/404/500 + generated-моки mockery). Чеклист — мост
+      к стадии apply; сами знания применяются на apply.
+    requires:
+      - be-design
+      - qa-plan
+
+  - id: fe-tasks
+    generates: fe/tasks.md
+    description: Чеклист реализации фронтенда (web2, FSD/React)
+    template: tasks.md
+    instruction: |
+      Создай fe/tasks.md на основе fe/design.md, sa/specs/ и qa/test-plan.md.
+
+      ## 0. API-клиент
+      - [ ] 0.1 Обновить контракт vcs-api (UI) и сгенерить клиент: npm run api:generate (Orval)
+      - [ ] 0.2 Убедиться, что нужные хуки/модели появились в shared/api/generated (руками не править)
+
+      ## 1. Реализация (FSD)
+      - [ ] 1.1 Разместить код по слою FSD: pages/ | features/ | entities/ | shared/
+      - [ ] 1.2 Компоненты (shared/ui + @sds-eng), публичный API среза через index.ts
+      - [ ] 1.3 Данные через React Query (сгенерированные хуки), маппинг API → UI
+      - [ ] 1.4 Состояния экрана: loading / empty / error/{код} / no-access
+      - [ ] 1.5 MFE: при необходимости обновить exposes/интеграцию с хостом
+
+      ## 2. Тесты
+      - [ ] 2.1 Playwright: позитивный сценарий
+      - [ ] 2.2 Playwright: негативные/граничные (empty, error 400/401/403/404/500, no-access)
+      - [ ] 2.3 (уточнить раннер юнит-тестов компонентов у разработчика)
+
+      ## 3. Линты
+      - [ ] 3.1 npm run lint + lint:types + lint:css
+      - [ ] 3.2 npm run lint:fsd (steiger) — без нарушений FSD
+
+      Применяй скиллы vault/skills/fe/: create-page.md (создание страницы), api-client.md (Orval),
+      states-checklist.md (ошибки/loading/empty/access/data-testid/standalone), testing.md (WireMock+Playwright).
+    requires:
+      - fe-design
+      - qa-plan
+
+apply:
+  requires:
+    - be-tasks
+    - fe-tasks
+  tracks: be/tasks.md
+  instruction: |
+    Реализация фичи. Читай контекстные файлы (be/design.md, fe/design.md,
+    qa/test-plan.md), выполняй задачи из be/tasks.md и fe/tasks.md по порядку,
+    отмечай выполненные.
+
+    BE — по знаниям vault/skills/be/ (по этапам):
+    - submodule.md — update-spec/update-codegen, контракт из vcs-api (источник правды);
+    - endpoint-flow.md + architecture.md — handler/service/repository, роут, слои/нейминг;
+    - errors-logging.md — враппинг %w, уровни логов, трейсинг;
+    - db-xorm.md — репозиторий (SELECT через builder), DTO/Entity;
+    - migrations.md — миграции БД (SQL кроме SELECT → аппрув человека);
+    - testing.md — юнит-тесты корнер-кейсов + generated-моки mockery;
+    - git-flow.md — ветка feature/VCS-XXXX, формат коммита;
+    - code-review.md — самопроверка перед PR (шаблон PR, red flags, порядок мёржа).
+
+    FE (web2) — по скиллам vault/skills/fe/ (по этапам; глубокие заметки — vault/knowledges/fe/):
+    - api-client.md — Orval-кодоген (npm run api:generate) из vcs-api UI, generated не править;
+    - architecture.md — FSD-слои (web_src/spa), API /apifront/web/v2, React Query;
+    - create-page.md — создание страницы React + синхронизация роута с gitea-react-adapter.js;
+    - styleguide.md — React Style Guide (type/named imports/data-testid/без FC);
+    - states-checklist.md — состояния loading/empty/error/no-access, права доступа, standalone;
+    - testing.md — WireMock (моки состояний) + Playwright;
+    - review.md — lint/ts:lint/lint:css/lint:fsd, готовность к PR.
+    Ветка/коммит — общие правила vault/skills/be/git-flow.md.
+
+    Останавливайся при блокерах или необходимости уточнений.

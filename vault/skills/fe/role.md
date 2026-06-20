@@ -1,0 +1,224 @@
+# Роль: Frontend-разработчик (FE)
+
+> Общий контекст продукта: `common/product.md`
+> Система координат: `common/model.md`
+
+---
+
+## Зоны ответственности
+
+- Реализация UI-компонентов и интерфейсов на основе требований и дизайна
+- Описание и покрытие фич тест-кейсами (Test-Driven Development)
+- Интеграция с API: вызовы endpoint’ов, обработка ответов, ошибок и edge cases
+- Обеспечение кроссбраузерной совместимости и responsive-дизайна
+- Оптимизация производительности интерфейса (рендеринг, bundle size, lazy loading)
+- Обеспечение доступности (a11y) интерфейса
+- Сотрудничество с SA: уточнение требований, выявление несоответствий
+- Сотрудничество с QA: участие в ревью TC, воспроизведение багов
+
+---
+
+## Артефакты
+
+| Артефакт | Описание |
+|----------|----------|
+| UI-требование | Поведение компонента: предусловия, сценарии, ограничения |
+| UI-элемент | Компонент интерфейса: структура, состояние, взаимодействия |
+| Тест-кейс | Шаги проверки, ожидаемый результат, edge cases |
+| Скриншоты / скринкасты | Доказательство работы функционала |
+| Описание бага | Шаги воспроизведения, ожидаемое/фактическое поведение |
+
+---
+
+## Формат UI-требования
+
+```markdown
+## Фича: <название>
+
+**Узел**: <путь в test-model>
+**Уровень**: lv<N>
+**Теги**: #... #...
+**Версия UI**: web1 / web2
+**Компонент**: <UI>
+
+### Предусловия
+- Пользователь аутентифицирован
+- Имеются права на <действие>
+- ...
+
+### Основной сценарий
+1. Пользователь переходит к <разделу>
+2. Пользователь выполняет <действие>
+3. Проверяется результат
+
+### Альтернативные сценарии
+- ...
+
+### Логика реализации
+- Состояния компонента: initial / loading / success / error
+- Валидации: формат, диапазон, обязательные поля
+- Взаимодействие с API: endpoint, параметры, обработка ошибок
+
+### Ограничения / Edge cases
+- ...
+- События: resize, scroll, focus, blur
+
+### Связанные API-эндпоинты
+- ...
+```
+
+---
+
+## Формат UI-элемента
+
+```markdown
+## <Название компонента>
+
+**Узел**: <путь в test-model>
+**Контекст**: <где используется>
+
+### Состояния
+| Состояние | Описание |
+|-----------|----------|
+| initial | Исходное состояние |
+| loading | Загрузка данных |
+| success | Данные получены, ошибок нет |
+| error | Ошибка загрузки/обработки |
+| disabled | Неактивный элемент |
+
+### Поведение
+- При клике: ...
+- При фокусе: ...
+- При изменении размера: ...
+- При прокрутке: ...
+
+### Валидации
+- ...
+- ...
+
+### API-вызовы
+- `GET /api/...` — при инициализации
+- `POST /api/...` — при сохранении
+- ...
+
+### Связанные требования
+- ...
+```
+
+---
+
+## Формат тест-кейса
+
+```markdown
+## TC-<ID>: <название>
+
+**Узел**: <путь в test-model>
+**Версия UI**: web1 / web2
+**Приоритет**: high / medium / low
+
+### Предусловия
+- ...
+
+### Шаги
+1. ...
+2. ...
+3. ...
+
+### Ожидаемый результат
+- ...
+
+### Edge cases
+- ...
+```
+
+---
+
+## Принципы работы
+
+- **Координата в каждом артефакте.** Каждое UI-требование привязано к узлу test-model.
+- **Версионность UI.** Требование указывает версию интерфейса (web1 / web2).
+- **Однозначность.** Чёткие условия входа, шаги, ожидаемые результаты.
+- **Полнота.** Happy path, альтернативные сценарии, ошибки, edge cases.
+- **Трассируемость.** Каждое требование связано с API или бизнес-логикой.
+- **Deprecated — не реализуем.** Узлы с `(удалить раздел)` исключаются.
+
+---
+
+## Чего избегать
+
+- Не создавать UI без четкого требования и координаты в модели
+- Не игнорировать состояния loading/error при работе с API
+- Не смешивать логику разных версий UI без явной версионности
+- Не использовать hardcoded values — только из API/конфига
+- Не оставлять UI-требования без покрытия тест-кейсами
+
+---
+
+## Типичные сценарии работы
+
+| Задача | Уровни модели | API |
+|--------|---------------|-----|
+| Создание проекта | `UI / Проект / Новый проект` | `POST /api/v2/orgs/:org/repos` |
+| Создание ветки | `UI / Проект / Репозиторий / Код / Ветки / Создание` | `POST /api/v1/repos/:owner/:repo/git/refs` |
+| MR: открытие | `UI / Проект / Запросы на слияние / Открыть` | `POST /api/v1/repos/:owner/:repo/pulls` |
+| MR: слияние | `UI / Проект / Запросы на слияние / Мердж` | `PUT /api/v1/repos/:owner/:repo/pulls/:index/merge` |
+| Настройки репозитория | `UI / Проект / Репозиторий / Настройки` | `PATCH /api/v1/repos/:owner/:repo` |
+
+---
+
+## Инструменты и технологии
+
+Актуальный стек — в `knowledges/fe/stack.md` (источник правды). Кратко (web2, новый фронт):
+
+- **Фреймворк**: React 18 + TypeScript
+- **Сборка / MFE**: Rsbuild + Module Federation
+- **Архитектура**: Feature-Sliced Design (FSD), `web_src/spa`
+- **API-клиент**: Orval (кодоген из vcs-api UI) + TanStack React Query
+- **UI-кит**: Sber Design System (`@sds-eng/*`), Octicons
+- **Линтеры**: ESLint, Prettier, Stylelint, Steiger (FSD), `tsc --noEmit`
+- **Тесты**: Playwright (+ WireMock для моков API)
+- Легаси-UI (Go Templates + SSR) — см. `knowledges/fe/legacy.md`
+
+---
+
+## Скиллы FE (этой папки `skills/fe/`, вшиты в схему `vcs`)
+
+| Скилл | Этап | О чём |
+|-------|------|-------|
+| [architecture.md](architecture.md) | fe-design / apply | FSD-слои, React18, API /apifront/web/v2, React Query |
+| [api-client.md](api-client.md) | fe-tasks / apply | Orval-кодоген, generated не править |
+| [create-page.md](create-page.md) | apply | создание страницы + синхронизация роута с адаптером |
+| [styleguide.md](styleguide.md) | apply | React Style Guide |
+| [states-checklist.md](states-checklist.md) | fe-tasks / apply | состояния, доступ, data-testid, standalone |
+| [testing.md](testing.md) | fe-tasks / тесты | WireMock + Playwright |
+| [review.md](review.md) | review | линты (eslint/ts/css/steiger), готовность к PR |
+
+Каждый скилл — выжимка, ссылается на глубокую заметку в `../../knowledges/fe/`.
+
+## Заметки FE (глубокий источник — `vault/knowledges/fe/`)
+
+| Док | О чём | Этап применения |
+|-----|-------|-----------------|
+| [stack.md](../../knowledges/fe/stack.md) | стек web2 | fe-design |
+| [architecture.md](../../knowledges/fe/architecture.md) | FSD-слои | fe-design / apply |
+| [codegen.md](../../knowledges/fe/codegen.md) | OpenAPI + Orval | fe-tasks / apply |
+| [webpage-creation.md](../../knowledges/fe/webpage-creation.md) | создание страницы React | apply |
+| [gitea-react-adapter.md](../../knowledges/fe/gitea-react-adapter.md) | роуты, Legacy↔React, MFE | apply |
+| [ui-system.md](../../knowledges/fe/ui-system.md) | компоненты @sds-eng | apply |
+| [styleguide.md](../../knowledges/fe/styleguide.md) | React Style Guide | apply |
+| [development-checklist.md](../../knowledges/fe/development-checklist.md) | чеклист (ошибки/состояния/access/data-testid) | fe-tasks / apply |
+| [wiremock.md](../../knowledges/fe/wiremock.md) | моки API | fe-tasks / тесты |
+| [tools.md](../../knowledges/fe/tools.md) | инструменты/библиотеки | все этапы |
+| [legacy.md](../../knowledges/fe/legacy.md) | легаси SSR-контекст | контекст |
+
+Эти знания вшиты в схему `vcs` (этапы `fe-design`/`fe-tasks`/`apply`) и применяются автоматически через `openspec instructions`.
+
+---
+
+## Контроль качества
+
+- code review (pull request)
+- unit / integration / e2e тесты
+- coverage не ниже 80% для логики
+- a11y audit (WCAG 2.1 AA)
+- cross-browser testing (Chrome, Firefox, Safari, Edge)
