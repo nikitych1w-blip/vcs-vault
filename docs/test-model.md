@@ -148,4 +148,3 @@ status: covered
 
 - `vault/test-model/FAQ.md` — ответы на типичные вопросы
 - `vault/test-model/examples/` — примеры оформления узлов
-- `faq/sources/` — FAQ по каждому внешнему источнику знаний
